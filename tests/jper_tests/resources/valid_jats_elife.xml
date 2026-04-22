@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE article PUBLIC
+        "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.1d1 20130915//EN" "JATS-archivearticle1.dtd">
+<article article-type="research-article" dtd-version="1.1d1" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+    <front>
+        <journal-meta>
+            <journal-id journal-id-type="nlm-ta">elife</journal-id>
+            <journal-id journal-id-type="hwp">eLife</journal-id>
+            <journal-id journal-id-type="publisher-id">eLife</journal-id>
+            <journal-title-group>
+                <journal-title>eLife</journal-title>
+            </journal-title-group>
+            <issn publication-format="electronic">2050-084X</issn>
+            <publisher>
+                <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
+            </publisher>
+        </journal-meta>
+        <article-meta>
+            <article-id pub-id-type="publisher-id">05538</article-id>
+            <article-id pub-id-type="doi">10.7554/eLife.05538</article-id>
+            <article-categories>
+                <subj-group subj-group-type="display-channel">
+                    <subject>Research article</subject>
+                </subj-group>
+                <subj-group subj-group-type="heading">
+                    <subject>Developmental biology and stem cells</subject>
+                </subj-group>
+                <subj-group subj-group-type="heading">
+                    <subject>Genomics and evolutionary biology</subject>
+                </subj-group>
+            </article-categories>
+            <title-group>
+                <article-title>Constraint and divergence of global gene expression in the mammalian embryo
+                </article-title>
+            </title-group>
+            <contrib-group>
+                <contrib contrib-type="author" id="author-21396" equal-contrib="yes">
+                    <name>
+                        <surname>Spies</surname>
+                        <given-names>Noah</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff1">1</xref>
+                    <xref ref-type="aff" rid="aff2">2</xref>
+                    <xref ref-type="fn" rid="equal-contrib">&#x2020;</xref>
+                    <xref ref-type="other" rid="par-3"/>
+                    <xref ref-type="fn" rid="con1"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" id="author-22083" equal-contrib="yes">
+                    <name>
+                        <surname>Smith</surname>
+                        <given-names>Cheryl L</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff1">1</xref>
+                    <xref ref-type="aff" rid="aff2">2</xref>
+                    <xref ref-type="fn" rid="equal-contrib">&#x2020;</xref>
+                    <xref ref-type="fn" rid="con2"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" id="author-22084">
+                    <name>
+                        <surname>Rodriguez</surname>
+                        <given-names>Jesse M</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff3">3</xref>
+                    <xref ref-type="aff" rid="aff4">4</xref>
+                    <xref ref-type="fn" rid="pa1">&#x2021;</xref>
+                    <xref ref-type="fn" rid="con3"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" id="author-7553">
+                    <name>
+                        <surname>Baker</surname>
+                        <given-names>Julie C</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff2">2</xref>
+                    <xref ref-type="other" rid="par-1"/>
+                    <xref ref-type="other" rid="par-2"/>
+                    <xref ref-type="fn" rid="con5"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" id="author-10909">
+                    <name>
+                        <surname>Batzoglou</surname>
+                        <given-names>Serafim</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff3">3</xref>
+                    <xref ref-type="fn" rid="con6"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" corresp="yes" id="author-21404">
+                    <name>
+                        <surname>Sidow</surname>
+                        <given-names>Arend</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff1">1</xref>
+                    <xref ref-type="aff" rid="aff2">2</xref>
+                    <xref ref-type="corresp" rid="cor1">&#x002a;</xref>
+                    <xref ref-type="fn" rid="con4"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <aff id="aff1">
+                    <label>1</label>
+                    <institution content-type="dept">Department of Pathology</institution>,<institution>Stanford
+                    University School of Medicine</institution>,
+                    <addr-line>
+                        <named-content content-type="city">Stanford</named-content>
+                    </addr-line>
+                    ,
+                    <country>United States</country>
+                </aff>
+                <aff id="aff2">
+                    <label>2</label>
+                    <institution content-type="dept">Department of Genetics</institution>,<institution>Stanford
+                    University School of Medicine</institution>,
+                    <addr-line>
+                        <named-content content-type="city">Stanford</named-content>
+                    </addr-line>
+                    ,
+                    <country>United States</country>
+                </aff>
+                <aff id="aff3">
+                    <label>3</label>
+                    <institution content-type="dept">Department of Computer Science</institution>,<institution>Stanford
+                    University</institution>,
+                    <addr-line>
+                        <named-content content-type="city">Stanford</named-content>
+                    </addr-line>
+                    ,
+                    <country>United States</country>
+                </aff>
+                <aff id="aff4">
+                    <label>4</label>
+                    <institution content-type="dept">Biomedical Informatics Program</institution>,<institution>Stanford
+                    University School of Medicine</institution>,
+                    <addr-line>
+                        <named-content content-type="city">Stanford</named-content>
+                    </addr-line>
+                    ,
+                    <country>United States</country>
+                </aff>
+            </contrib-group>
+            <contrib-group content-type="section">
+                <contrib contrib-type="editor" id="author-1083">
+                    <name>
+                        <surname>Ferguson-Smith</surname>
+                        <given-names>Anne C</given-names>
+                    </name>
+                    <role>Reviewing editor</role>
+                    <aff><institution>University of Cambridge</institution>,
+                        <country>United Kingdom</country>
+                    </aff>
+                </contrib>
+            </contrib-group>
+            <author-notes>
+                <corresp id="cor1"><label>&#x002a;</label>For correspondence:
+                    <email>arend@stanford.edu</email>
+                </corresp>
+                <fn fn-type="con" id="equal-contrib">
+                    <label>&#x2020;</label>
+                    <p>These authors contributed equally to this work</p>
+                </fn>
+                <fn fn-type="present-address" id="pa1">
+                    <label>&#x2021;</label>
+                    <p>Google Inc., Mountain View, United States</p>
+                </fn>
+            </author-notes>
+            <pub-date publication-format="electronic" date-type="pub">
+                <day>14</day>
+                <month>04</month>
+                <year>2015</year>
+            </pub-date>
+            <pub-date pub-type="collection">
+                <year>2015</year>
+            </pub-date>
+            <volume>4</volume>
+            <elocation-id>e05538</elocation-id>
+            <history>
+                <date date-type="received">
+                    <day>09</day>
+                    <month>11</month>
+                    <year>2014</year>
+                </date>
+                <date date-type="accepted">
+                    <day>13</day>
+                    <month>04</month>
+                    <year>2015</year>
+                </date>
+            </history>
+            <permissions>
+                <copyright-statement>&#x00a9; 2015, Spies et al</copyright-statement>
+                <copyright-year>2015</copyright-year>
+                <copyright-holder>Spies et al</copyright-holder>
+                <license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+                    <license-p>This article is distributed under the terms of the<ext-link ext-link-type="uri"
+                                                                                           xlink:href="http://creativecommons.org/licenses/by/4.0/">
+                        Creative Commons Attribution License</ext-link>, which permits unrestricted use and
+                        redistribution provided that the original author and source are credited.
+                    </license-p>
+                </license>
+            </permissions>
+            <self-uri content-type="pdf" xlink:href="elife05538.pdf"/>
+            <abstract>
+                <object-id pub-id-type="doi">10.7554/eLife.05538.001</object-id>
+                <p>The effects of genetic variation on gene regulation in the developing mammalian embryo remain largely
+                    unexplored. To globally quantify these effects, we crossed two divergent mouse strains and asked how
+                    genotype of the mother or of the embryo drives gene expression phenotype genomewide. Embryonic
+                    expression of 331 genes depends on the genotype of the mother. Embryonic genotype controls
+                    allele-specific expression of 1594 genes and a highly overlapping set of cis-expression quantitative
+                    trait loci (eQTL). A marked paucity of trans-eQTL suggests that the widespread expression
+                    differences do not propagate through the embryonic gene regulatory network. The cis-eQTL genes
+                    exhibit lower-than-average evolutionary conservation and are depleted for developmental regulators,
+                    consistent with purifying selection acting on expression phenotype of pattern formation genes. The
+                    widespread effect of maternal and embryonic genotype in conjunction with the purifying selection we
+                    uncovered suggests that embryogenesis is an important and understudied reservoir of phenotypic
+                    variation.
+                </p>
+                <p>
+                    <bold>DOI:</bold>
+                    <ext-link ext-link-type="doi" xlink:href="10.7554/eLife.05538.001">
+                        http://dx.doi.org/10.7554/eLife.05538.001
+                    </ext-link>
+                </p>
+            </abstract>
+            <abstract abstract-type="executive-summary">
+                <object-id pub-id-type="doi">10.7554/eLife.05538.002</object-id>
+                <title>eLife digest</title>
+                <p>The way that the embryo of a mammal, such as a mouse or a human, develops from a fertilized egg is a
+                    complicated process that relies on controlling: which genes are active; when these genes activate;
+                    and for how long they are active. In broad terms, there are four ways that this control can be
+                    achieved:
+                </p>
+                <p>First, inside the sperm or egg, genes can be marked with small chemical tags that flag these genes to
+                    be activated (or remain inactive) after fertilization, depending on whether the modification was
+                    made by the father (in the sperm) or the mother (in the egg); this process is known as &#x2018;imprinting&#x2019;.
+                    Second, the mother can alter the gene activity in her offspring via the placenta; this process is
+                    known as &#x2018;maternal effect&#x2019;. Third, instructions encoded within the embryo&#x0027;s DNA
+                    can directly control if, and when, a nearby gene becomes activated; this is known as &#x2018;
+                    <italic>cis</italic>-regulation&#x2019;. Finally, similar instructions can also control genes that
+                    are situated elsewhere in the embryo&#x0027;s DNA through indirect mechanisms; this is known as
+                    &#x2018;<italic>trans</italic>-regulation&#x2019;.
+                </p>
+                <p>Now, Spies, Smith et al. have investigated these four processes in the offspring of two different
+                    strains of mice, one originally from Europe and the other from Southeast Asia. The two strains were
+                    crossbred and the resulting embryos were analyzed to see which of the four processes affected gene
+                    activity. This analysis revealed 31 imprinted genes and 331 genes that exhibited a maternal effect&#x2014;which
+                    sometimes changed gene activity by as much as 52%. Spies, Smith et al. also found over a thousand
+                    DNA instructions in the embryo&#x0027;s DNA that could directly influence the activity of nearby
+                    genes, but fewer instructions that could indirectly control genes that were further away.
+                </p>
+                <p>These results suggest that direct control of genes, which affects only the genes closest to the DNA
+                    instruction, can vary a lot between individual embryos of the same species. However, indirect
+                    control of embryonically active genes, which affects many genes across the genome at the same time,
+                    appears much more tightly constrained by evolutionary forces. Which genes in the mother are
+                    responsible for the molecular signals that drive the maternal effect is an important question for
+                    future work, with implications for the genetic basis of embryonic development and disease.
+                </p>
+                <p>
+                    <bold>DOI:</bold>
+                    <ext-link ext-link-type="doi" xlink:href="10.7554/eLife.05538.002">
+                        http://dx.doi.org/10.7554/eLife.05538.002
+                    </ext-link>
+                </p>
+            </abstract>
+            <kwd-group kwd-group-type="author-keywords">
+                <title>Author keywords</title>
+                <kwd>allele-specific expression</kwd>
+                <kwd>quantitative trait loci</kwd>
+                <kwd>parental effects</kwd>
+                <kwd>gene expression</kwd>
+            </kwd-group>
+            <kwd-group kwd-group-type="research-organism">
+                <title>Research organism</title>
+                <kwd>mouse</kwd>
+            </kwd-group>
+            <funding-group>
+                <award-group id="par-1">
+                    <funding-source>
+                        <institution-wrap>
+                            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000002
+                            </institution-id>
+                            <institution content-type="university">National Institutes of Health (NIH)</institution>
+                        </institution-wrap>
+                    </funding-source>
+                    <award-id>R01GM103787</award-id>
+                    <principal-award-recipient>
+                        <name>
+                            <surname>Baker</surname>
+                            <given-names>Julie C</given-names>
+                        </name>
+                    </principal-award-recipient>
+                </award-group>
+                <award-group id="par-2">
+                    <funding-source>
+                        <institution-wrap>
+                            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000861
+                            </institution-id>
+                            <institution>Burroughs Wellcome Fund (BWF)</institution>
+                        </institution-wrap>
+                    </funding-source>
+                    <principal-award-recipient>
+                        <name>
+                            <surname>Baker</surname>
+                            <given-names>Julie C</given-names>
+                        </name>
+                    </principal-award-recipient>
+                </award-group>
+                <award-group id="par-3">
+                    <funding-source>
+                        <institution-wrap>
+                            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000002
+                            </institution-id>
+                            <institution content-type="university">National Institutes of Health (NIH)</institution>
+                        </institution-wrap>
+                    </funding-source>
+                    <award-id>T32 HG000044</award-id>
+                    <principal-award-recipient>
+                        <name>
+                            <surname>Spies</surname>
+                            <given-names>Noah</given-names>
+                        </name>
+                    </principal-award-recipient>
+                </award-group>
+                <funding-statement>The funders had no role in study design, data collection and interpretation, or the
+                    decision to submit the work for publication.
+                </funding-statement>
+            </funding-group>
+            <custom-meta-group>
+                <custom-meta>
+                    <meta-name>elife-xml-version</meta-name>
+                    <meta-value>2.3</meta-value>
+                </custom-meta>
+                <custom-meta specific-use="meta-only">
+                    <meta-name>Author impact statement</meta-name>
+                    <meta-value>Embryonic gene expression is strongly influenced by maternal genetic variation and by
+                        embryonic variation that acts in
+                        <italic>cis</italic>
+                        but not in<italic>trans</italic>.
+                    </meta-value>
+                </custom-meta>
+            </custom-meta-group>
+        </article-meta>
+    </front>
+    <body>
+        <sec sec-type="intro" id="s1">
+            <title>Introduction</title>
+            <p>Multicellular animals develop via complex pattern formation processes that unfold during embryogenesis,
+                with gene regulation playing a central role. Surprisingly, the impact of genetic variation on gene
+                regulation and the relative importance of the genetic mechanisms underlying regulatory variation in
+                mammalian embryogenesis remain undefined. There are four broad categories of genetic mechanisms of gene
+                expression regulation: imprinting, parental effects, cis-regulation, and trans-regulation. All of these
+                are potentially subject to natural selection and provide genetic windows into the forces that shape gene
+                regulatory evolution. Here, we quantify their impact and relevance in mammalian embryogenesis by asking
+                which of these genetic mechanisms reveal evolutionary divergence or constraint since the last common
+                ancestor of two distantly related mouse strains, C57BL/6 (B6) and Cast/Ei (Cast).
+            </p>
+            <p>Genomic imprinting is a well-studied form of parent-of-origin-dependent gene expression that produces
+                strongly biased allelic expression patterns in offspring according to the parental source of the
+                inherited allele. The progeny&#x0027;s imprinted gene expression patterns result from epigenetic
+                modifications put in place in the previous generation and reflect the particular genetic architecture at
+                these specialized loci. A recent genome-wide survey estimated that fewer than 200 genes are imprinted in
+                mice and humans (<xref ref-type="bibr" rid="bib2">Babak et al., 2008</xref>). Imprinting is thought to
+                play a critical role in early embryonic and placental development in mammals and has been shown to
+                influence post-natal health and behavior [Reviewed in<xref ref-type="bibr" rid="bib3">Peters
+                    (2014)</xref>].
+            </p>
+		
+		</sec>
+		<sec id="s4-12">
+			<title>ASE vs eQTL comparison</title>
+			<p>We estimated expected ASE (BAF
+				<sub>
+					<italic>pred</italic>
+				</sub>
+				) from total expression levels using the following transformation for each gene:
+				<disp-formula id="equ1">
+					<mml:math id="m1">
+						<mml:mrow>
+							<mml:msub>
+								<mml:mtext>BAF</mml:mtext>
+								<mml:mrow>
+									<mml:mi>p</mml:mi>
+									<mml:mi>r</mml:mi>
+									<mml:mi>e</mml:mi>
+									<mml:mi>d</mml:mi>
+								</mml:mrow>
+							</mml:msub>
+							<mml:mo>&#x003d;</mml:mo>
+							<mml:mfrac>
+								<mml:mrow>
+									<mml:msub>
+										<mml:mtext>BAF</mml:mtext>
+										<mml:mrow>
+											<mml:mi>e</mml:mi>
+											<mml:mi>x</mml:mi>
+											<mml:mi>p</mml:mi>
+										</mml:mrow>
+									</mml:msub>
+								</mml:mrow>
+								<mml:mrow>
+									<mml:mn>2</mml:mn>
+									<mml:mo>&#x00d7;</mml:mo>
+									<mml:mrow>
+										<mml:mo>(</mml:mo>
+										<mml:mrow>
+											<mml:mn>1</mml:mn>
+											<mml:mo>&#x2212;</mml:mo>
+											<mml:msub>
+												<mml:mtext>BAF</mml:mtext>
+												<mml:mrow>
+													<mml:mi>e</mml:mi>
+													<mml:mi>x</mml:mi>
+													<mml:mi>p</mml:mi>
+												</mml:mrow>
+											</mml:msub>
+										</mml:mrow>
+										<mml:mo>)</mml:mo>
+									</mml:mrow>
+								</mml:mrow>
+							</mml:mfrac>
+							<mml:mo>,</mml:mo>
+							<mml:mtext>&#x2009;where&#x2009;</mml:mtext>
+							<mml:msub>
+								<mml:mtext>BAF</mml:mtext>
+								<mml:mrow>
+									<mml:mi>e</mml:mi>
+									<mml:mi>x</mml:mi>
+									<mml:mi>p</mml:mi>
+								</mml:mrow>
+							</mml:msub>
+							<mml:mo>&#x003d;</mml:mo>
+							<mml:mfrac>
+								<mml:mrow>
+									<mml:msub>
+										<mml:mi mathvariant="normal">&#x03bc;</mml:mi>
+										<mml:mrow>
+											<mml:mtext>B</mml:mtext>
+											<mml:mn>6</mml:mn>
+											<mml:mo>/</mml:mo>
+											<mml:mtext>B</mml:mtext>
+											<mml:mn>6</mml:mn>
+										</mml:mrow>
+									</mml:msub>
+								</mml:mrow>
+								<mml:mrow>
+									<mml:msub>
+										<mml:mi mathvariant="normal">&#x03bc;</mml:mi>
+										<mml:mrow>
+											<mml:mtext>B</mml:mtext>
+											<mml:mn>6</mml:mn>
+											<mml:mo>/</mml:mo>
+											<mml:mtext>B</mml:mtext>
+											<mml:mn>6</mml:mn>
+										</mml:mrow>
+									</mml:msub>
+									<mml:mo>&#x002b;</mml:mo>
+									<mml:msub>
+										<mml:mi mathvariant="normal">&#x03bc;</mml:mi>
+										<mml:mrow>
+											<mml:mtext>B</mml:mtext>
+											<mml:mn>6</mml:mn>
+											<mml:mo>/</mml:mo>
+											<mml:mtext>B</mml:mtext>
+											<mml:mtext>Cast</mml:mtext>
+										</mml:mrow>
+									</mml:msub>
+								</mml:mrow>
+							</mml:mfrac>
+							<mml:mo>,</mml:mo>
+						</mml:mrow>
+					</mml:math>
+				</disp-formula>
+				and &#x03bc;
+				<sub>
+					<italic>g</italic>
+				</sub>
+				are the mean total expression levels across all mice with genotype
+				<italic>g</italic>
+				at the gene of interest. The BAF
+				<sub>
+					<italic>pred</italic>
+				</sub>
+				transformation is required to estimate &#x03bc;
+				<sub>Cast/Cast</sub>
+				from &#x03bc;
+				<sub>B6/B6</sub>
+				and &#x03bc;<sub>B6/Cast</sub>. Because of variance in the estimation of &#x03bc;
+				<sub>
+					<italic>g</italic>
+				</sub>
+				, the predicted BAF can be larger than 1.0.
+			</p>
+		</sec>
+    </body>
+    <back>
+        <ack id="ack">
+            <title>Acknowledgements</title>
+            <p>NS was supported in part by the Stanford Genome Training Program (NIH/NHGRI), JMB by the Biomedical
+                Informatics Training Program (NIH/NLM), and JCB by the Burroughs Wellcome Fund Preterm Birth Initiative.
+                We thank Elizabeth Finn for help with embryo dissections, Ghia Euskirchen and staff of the Stanford
+                Center for Genomics and Personalized Medicine and Ziming Weng for help with sequencing, Cyril Ramathal
+                and the Reijo-Pera lab for qPCR advice, and Casey Brown, Stephen Montgomery, and Eric Stone for
+                discussions and comments on the manuscript.
+            </p>
+            <p>All raw sequencing data are available in the Gene Expression Omnibus (<ext-link ext-link-type="uri"
+                                                                                               xlink:href="http://www.ncbi.nlm.nih.gov/geo/">
+                http://www.ncbi.nlm.nih.gov/geo/</ext-link>) under accession number GSE62967.
+            </p>
+        </ack>
+        <sec sec-type="additional-information" id="s5">
+            <title>Additional information</title>
+            <fn-group content-type="competing-interest">
+                <title>Competing interests</title>
+                <fn fn-type="conflict" id="conf1">
+                    <p>The authors declare that no competing interests exist.</p>
+                </fn>
+            </fn-group>
+            <fn-group content-type="author-contribution">
+                <title>Author contributions</title>
+                <fn fn-type="con" id="con1">
+                    <p>NS, Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or
+                        revising the article
+                    </p>
+                </fn>
+                <fn fn-type="con" id="con2">
+                    <p>CLS, Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or
+                        revising the article
+                    </p>
+                </fn>
+                <fn fn-type="con" id="con3">
+                    <p>JMR, Conception and design, Analysis and interpretation of data, Drafting or revising the
+                        article
+                    </p>
+                </fn>
+                <fn fn-type="con" id="con4">
+                    <p>AS, Conception and design, Analysis and interpretation of data, Drafting or revising the
+                        article
+                    </p>
+                </fn>
+                <fn fn-type="con" id="con5">
+                    <p>JCB, Conception and design, Drafting or revising the article</p>
+                </fn>
+                <fn fn-type="con" id="con6">
+                    <p>SB, Analysis and interpretation of data, Drafting or revising the article</p>
+                </fn>
+            </fn-group>
+            <fn-group content-type="ethics-information">
+                <title>Ethics</title>
+                <fn fn-type="other">
+                    <p>Animal experimentation: All experimental procedures were carried out in accordance with the
+                        Administrative Panel on Laboratory Animal Care protocols (&#x0023;11799 and &#x0023;13646) and
+                        the institutional guidelines set by the Veterinary Service Center at Stanford University.
+                    </p>
+                </fn>
+            </fn-group>
+        </sec>
+        <sec sec-type="supplementary-material" id="s6">
+            <title>Additional files</title>
+            <supplementary-material id="SD1-data">
+                <object-id pub-id-type="doi">10.7554/eLife.05538.012</object-id>
+                <label>Supplementary file 1.</label>
+                <caption>
+                    <p>Gene summaries.</p>
+                    <p>
+                        <bold>DOI:</bold>
+                        <ext-link ext-link-type="doi" xlink:href="10.7554/eLife.05538.012">
+                            http://dx.doi.org/10.7554/eLife.05538.012
+                        </ext-link>
+                    </p>
+                </caption>
+                <media xlink:href="elife05538s001.tsv" mimetype="text" mime-subtype="tsv"/>
+            </supplementary-material>
+            <sec sec-type="datasets" id="s6-1">
+                <title>Major dataset</title>
+                <p>The following dataset was generated:</p>
+                <p>
+                    <related-object content-type="generated-dataset"
+                                    source-id="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE62967"
+                                    source-id-type="uri" id="dataro1"><collab collab-type="author">Smith CL</collab>,
+                        <collab collab-type="author">Spies N</collab>,<collab collab-type="author">Rodriguez JM</collab>
+                        ,<collab collab-type="author">Baker JC</collab>,<collab collab-type="author">Batzoglou
+                            S</collab>,<collab collab-type="author">Sidow A</collab>,
+                        <year>2015</year>
+                        <x>,</x>
+                        <source>Raw sequencing data</source>
+                        <x>,</x>
+                        <ext-link ext-link-type="uri"
+                                  xlink:href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE62967">
+                            http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc&#x003d;GSE62967
+                        </ext-link>
+                        <x>,</x>
+                        <comment>Publicly available at NCBI Gene Expression Omnibus (GSE62967).</comment>
+                    </related-object>
+                </p>
+            </sec>
+        </sec>
+        <ref-list>
+            <title>References</title>
+            <ref id="bib1">
+                <element-citation publication-type="journal">
+                    <person-group person-group-type="author">
+                        <collab>1000 Genomes Project Consortium</collab>
+                    </person-group>
+                    <year>2012</year>
+                    <article-title>An integrated map of genetic variation from 1,092 human genomes</article-title>
+                    <source>Nature</source>
+                    <volume>491</volume>
+                    <fpage>56</fpage>
+                    <lpage>65</lpage>
+                    <pub-id pub-id-type="doi">10.1038/nature11632</pub-id>
+                </element-citation>
+            </ref>
+            <ref id="bib2">
+                <element-citation publication-type="journal">
+                    <person-group person-group-type="author">
+                        <name>
+                            <surname>Babak</surname>
+                            <given-names>T</given-names>
+                        </name>
+                        <name>
+                            <surname>Deveale</surname>
+                            <given-names>B</given-names>
+                        </name>
+                        <name>
+                            <surname>Armour</surname>
+                            <given-names>C</given-names>
+                        </name>
+                        <name>
+                            <surname>Raymond</surname>
+                            <given-names>C</given-names>
+                        </name>
+                        <name>
+                            <surname>Cleary</surname>
+                            <given-names>MA</given-names>
+                        </name>
+                        <name>
+                            <surname>van der Kooy</surname>
+                            <given-names>D</given-names>
+                        </name>
+                        <name>
+                            <surname>Johnson</surname>
+                            <given-names>JM</given-names>
+                        </name>
+                        <name>
+                            <surname>Lim</surname>
+                            <given-names>LP</given-names>
+                        </name>
+                    </person-group>
+                    <year>2008</year>
+                    <article-title>Global survey of genomic imprinting by transcriptome sequencing</article-title>
+                    <source>Current Biology</source>
+                    <volume>18</volume>
+                    <fpage>1735</fpage>
+                    <lpage>1741</lpage>
+                    <pub-id pub-id-type="doi">10.1016/j.cub.2008.09.044</pub-id>
+                </element-citation>
+            </ref>
+            <ref id="bib3">
+                <element-citation publication-type="journal">
+                    <person-group person-group-type="author">
+                        <name>
+                            <surname>Beck</surname>
+                            <given-names>AH</given-names>
+                        </name>
+                        <name>
+                            <surname>Weng</surname>
+                            <given-names>Z</given-names>
+                        </name>
+                        <name>
+                            <surname>Witten</surname>
+                            <given-names>DM</given-names>
+                        </name>
+                        <name>
+                            <surname>Zhu</surname>
+                            <given-names>S</given-names>
+                        </name>
+                        <name>
+                            <surname>Foley</surname>
+                            <given-names>JW</given-names>
+                        </name>
+                        <name>
+                            <surname>Lacroute</surname>
+                            <given-names>P</given-names>
+                        </name>
+                        <name>
+                            <surname>Smith</surname>
+                            <given-names>CL</given-names>
+                        </name>
+                        <name>
+                            <surname>Tibshirani</surname>
+                            <given-names>R</given-names>
+                        </name>
+                        <name>
+                            <surname>van de Rijn</surname>
+                            <given-names>M</given-names>
+                        </name>
+                        <name>
+                            <surname>Sidow</surname>
+                            <given-names>A</given-names>
+                        </name>
+                        <name>
+                            <surname>West</surname>
+                            <given-names>RB</given-names>
+                        </name>
+                    </person-group>
+                    <year>2010</year>
+                    <article-title>3&#x0027;-end sequencing for expression quantification (3SEQ) from archival tumor
+                        samples
+                    </article-title>
+                    <source>PLOS ONE</source>
+                    <volume>5</volume>
+                    <fpage>e8768</fpage>
+                    <pub-id pub-id-type="doi">10.1371/journal.pone.0008768</pub-id>
+                </element-citation>
+            </ref>
+        </ref-list>
+    </back>
+</article>

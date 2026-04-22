@@ -1,0 +1,54 @@
+<ce:author-group xmlns:ce="http://www.elsevier.com/xml/common/dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sa="http://www.elsevier.com/xml/common/struct-aff/dtd"> 
+    <ce:author xmlns="http://www.elsevier.com/xml/ja/dtd" 
+        xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" id="aut0005" author-id="S0959440X18300186-ce8affbff56dc58e13a35051d860bc29">
+        <ce:given-name>Some</ce:given-name>
+        <ce:surname>Person</ce:surname>
+        <ce:e-address id="eadd0005" type="email" xlink:href="mailto:some@person.org">some@person.org</ce:e-address>
+        <ce:e-address id="eadd0005" type="fake_email" xlink:href="mailto:some@person.org">fake@person.org</ce:e-address>
+        <ce:cross-ref id="crf0005" refid="aff0005">
+            <ce:sup loc="post">1</ce:sup>
+        </ce:cross-ref>
+        <ce:cross-ref id="cor0001" refid="cor1">
+            <ce:sup loc="post">*</ce:sup>
+        </ce:cross-ref>
+    </ce:author>
+    <ce:author xmlns="http://www.elsevier.com/xml/ja/dtd" 
+        xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" id="aut0010" author-id="S0959440X18300186-5f7a237040a5ef41e980f814afd39a6e" orcid="0000-0001-0002-0003">
+        <ce:given-name>Other</ce:given-name>
+        <ce:surname>Person</ce:surname>
+        <ce:cross-ref id="crf0010" refid="aff0005">
+            <ce:sup loc="post">1</ce:sup>
+        </ce:cross-ref>
+        <ce:cross-ref id="crf0015" refid="aff0010">
+            <ce:sup loc="post">2</ce:sup>
+        </ce:cross-ref>
+    </ce:author>
+    <ce:affiliation xmlns="http://www.elsevier.com/xml/ja/dtd" 
+        xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" id="aff0005" affiliation-id="S0959440X18300186-658718a360a8a448f9bc3809b6df735e">
+        <ce:label>1</ce:label>
+        <ce:textfn>
+            Some
+            <ce:italic>University</ce:italic>
+            ,
+            <ce:italic>United</ce:italic>
+            <ce:italic>Kingdom</ce:italic>
+        </ce:textfn>
+        <sa:affiliation>
+            <sa:organization>Some University</sa:organization>
+            <sa:address-line>123 Random Street</sa:address-line>
+            <sa:city>City A</sa:city>
+            <sa:postal-code>Post-code</sa:postal-code>
+            <sa:country>United Kingdom</sa:country>
+        </sa:affiliation>
+    </ce:affiliation>
+    <ce:affiliation xmlns="http://www.elsevier.com/xml/ja/dtd" 
+        xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" id="aff0010" affiliation-id="S0959440X18300186-658718a360a8a448f9bc3809b6df735e">
+        <ce:label>2</ce:label>
+        <ce:textfn>University of Other, City B, United Kingdom</ce:textfn>
+        <sa:affiliation>
+            <sa:organization>University of Other</sa:organization>
+            <sa:city>City B</sa:city>
+            <sa:country>United Kingdom</sa:country>
+        </sa:affiliation>
+    </ce:affiliation>
+</ce:author-group>

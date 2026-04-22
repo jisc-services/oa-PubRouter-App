@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+{% from "helpers/pagination.html" import render_pagination %}
+
+<div class="row cms">
+  {% if run_details %}
+	<h1>Harvester errors <small>for {{run_details["name"]}}</small></h1>
+	<div class="row">
+		<div class="col span-5 cms">
+			<dl class="dl-horiz dl-horiz--spaced">
+				<dt>Run date</dt><dd>{{run_details["created"]}}</dd>
+				<dt>Start date</dt><dd>{{run_details["start_date"]}}</dd>
+				<dt>End date</dt><dd>{{run_details["end_date"]}}</dd>
+			</dl>
+		</div>
+		<div class="col span-6 cms">
+			<dl class="dl-horiz dl-horiz--spaced">
+				<dt>Harvested</dt><dd>{{run_details["num_received"]}}</dd>
+				<dt>Created</dt><dd>{{run_details["num_sent"]}}</dd>
+				<dt>Num errors</dt><dd>{{run_details["num_errors"]}}</dd>
+			</dl>
+		</div>
+	</div>
+  {% else %}
+	<h1>Harvester errors</h1>
+  {% endif %}
+	<table class="content-table">
+		<thead>
+			<tr>
+				<th id="co-1" scope="col" class="persist essential no-wrap">Error&nbsp;Date</th>
+				<th id="co-2" scope="col" class="persist essential">Harvester</th>
+				<th id="co-3" scope="col" class="persist essential">Error Description</th>
+				<th id="co-4" scope="col" class="optional">URL</th>
+				<th id="co-5" scope="col" class="optional">Document</th>
+				<th id="co-6" scope="col" class="optiomal">Harvester Id</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for id, created, name, error, url, document, ws_id, hist_id in error_list %}
+			<tr>
+				<td headers="co-1">{{created}}</td>
+				<td headers="co-2">{{name}}</td>
+				<td headers="co-3">{{error}}</td>
+				<td headers="co-4">{{url}}</td>
+				<td headers="co-5">{{document}}</td>
+				<td headers="co-6">{{ws_id}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	</div>
+	<div class="row">
+	{{render_pagination(num_of_pages,page_num,url_for('harvester.error')+'?')}}
+	</div>
+</div>
+{% endblock %}
+{% block extra_js_bottom %} {% endblock extra_js_bottom %}
+

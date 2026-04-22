@@ -1,0 +1,4 @@
+Type,Organisation name,Organisation ID,Account status,Admin user's email address,User type (S=standard),Last name,First name,Role in organisation,Comments
+A,Admin,10,test,XXXX@jisc.ac.uk,J,User,Admin,,
+R,A University,55,test,n.mcdoug@A.ac.uk,,McDoug,Noelle,Scholarly Publications Manager,
+P,A Publisher,135,,ContentDelivery@A.org,S,User,Standard,,"No response from publisher, account contact email address added by Router team. "

@@ -1,0 +1,9 @@
+<ce:fake-group xmlns:ce="http://www.elsevier.com/xml/common/dtd" xmlns:xlink="http://www.w3.org/1999/xlink">
+   		<ce:grant-sponsor id="gs1" sponsor-id="https://doi.org/10.13039/501100000867">Commonwealth Scholarship Commission</ce:grant-sponsor>
+        <ce:grant-sponsor id="1" >A Sponsor</ce:grant-sponsor>
+        <ce:grant-sponsor id="2">Other Sponsor</ce:grant-sponsor>
+        <ce:grant-number refid="gs1">NGCN-2018-237</ce:grant-number>
+        <ce:grant-number refid="1">1</ce:grant-number>
+        <ce:grant-number refid="1">2</ce:grant-number>
+        <ce:grant-number refid="2">3</ce:grant-number>
+</ce:fake-group>

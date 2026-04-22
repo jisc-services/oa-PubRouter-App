@@ -1,0 +1,78 @@
+{
+    "provider" : {
+      "agent" : "Crossref",
+      "id" : 1,
+      "harv_id" : 2,
+      "ref" : "10.1515/jib-2020-0017",
+      "route" : "harvester"
+    },
+    "links" : [],
+    "metadata" : {
+      "author" : [
+        {
+          "name" : {
+            "surname" : "Baig",
+            "fullname" : "Hasan Baig",
+            "firstname" : "Hasan"
+          },
+          "affiliations": [{
+                "org": "University of Connecticut",
+                "city": "Storrs",
+                "country": "USA",
+                "raw": "University of Connecticut, Storrs, USA"
+            }]
+
+        }
+      ],
+      "publication_date" : {
+        "year" : "2020",
+        "day" : "25",
+        "date" : "2020-06-25",
+        "publication_format" : "printed",
+        "month" : "06"
+      },
+      "journal" : {
+        "volume" : "0",
+        "title" : "Journal of Integrative Bioinformatics",
+        "identifier" : [
+          {
+            "id" : "1613-4516",
+            "type" : "eissn"
+          }
+        ],
+        "publisher" : [
+          "Walter de Gruyter GmbH"
+        ],
+        "issue" : "0"
+      },
+      "article" : {
+        "abstract" : "AbstractSynthetic biology builds upon genetics, molecular biology",
+        "type" : "journal-article",
+        "subject" : [
+          "General Medicine"
+        ],
+        "title" : "Synthetic biology open language (SBOL) version 3.0.0",
+        "identifier" : [
+          {
+            "id" : "10.1515/jib-2020-0017",
+            "type" : "doi"
+          }
+        ]
+      },
+      "history_date" : [
+        {
+          "date_type" : "ppub",
+          "date" : "2020-06-25"
+        },
+        {
+          "date_type" : "issued",
+          "date" : "2020-06-25"
+        }
+      ]
+    },
+    "id" : 1,
+    "created" : "2020-07-22T13:32:09Z",
+    "repositories" : [3, 4, 5, 6, 7, 8, 9],
+    "type" : "R",
+    "analysis_date" : "2020-07-22T13:50:00Z"
+}

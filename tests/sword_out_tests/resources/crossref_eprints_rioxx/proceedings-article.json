@@ -1,0 +1,64 @@
+ {
+    "id": 1,
+    "created": "2020-07-23T11:19:03Z",
+    "type": "R",
+    "vers": "4",
+    "metadata": {
+      "journal": {
+        "title": "Abstract- und Posterband – 91. Jahresversammlung der Deutschen Gesellschaft für HNO-Heilkunde, Kopf- und Hals-Chirurgie e.V., Bonn – Welche Qualität macht den Unterschied",
+        "publisher": [
+          "© Georg Thieme Verlag KG"
+        ]
+      },
+      "article": {
+        "title": "HANNA – Real-world data on effectiveness and safety of Nivolumab in patients with recurrent or metastatic (R/M) squamous cell carcinoma of the head and neck (SCCHN) in Germany",
+        "type": "proceedings",
+        "version": "vor",
+        "identifier": [
+          {
+            "type": "doi",
+            "id": "10.1055/s-0040-1710942"
+          }
+        ]
+      },
+      "publication_date": {
+        "publication_format": "electronic",
+        "date": "2020-06-10",
+        "year": "2020",
+        "month": "06",
+        "day": "10"
+      },
+      "author": [
+        {
+          "affiliations": [{"raw": "Universitätsklinikum Hamburg-Eppendorf, Klinik und Poliklinik für Hals-, Nasen- und Ohrenheilkunde"}],
+          "name": {
+            "firstname": "Chia-Jung",
+            "surname": "Busch",
+            "fullname": "Chia-Jung Busch"
+          }
+        }
+      ],
+      "history_date": [
+        {
+          "date_type": "epub",
+          "date": "2020-06-10"
+        }
+      ],
+      "license_ref": [
+        {
+          "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+          "start": "2020-06-10"
+        }
+      ]
+    },
+    "provider": {
+      "id": 1,
+      "agent": "Crossref",
+      "harv_id": 2,
+      "ref": "10.1055/s-0040-1710942",
+      "route": "harvester"
+    },
+    "repositories": [3, 4, 5],
+    "analysis_date": "2020-07-23T11:20:52Z",
+    "links": [ ]
+  }

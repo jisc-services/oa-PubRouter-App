@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<div class="row cms">
+	<div class="col span-8">
+		<h1>Login to Publications Router</h1>
+		<p>The access code emailed to <b>{{email}}</b> <span id="counter"></span>.</p>
+		
+		<form id="login_2_factor" method="post" action="{{url_for('account.token_login')}}" class="form">
+			<fieldset class="box box--padding-large box--padding-bottom-none box--brd-vlgreyblue box--bg-vlgreyblue">
+				<input type="hidden" id="user_uuid" name="user_uuid" value="{{user_uuid}}">
+				<ul class="form-fields">
+					<li>
+						<label class="form__label" for="access_code">Enter code</label>
+						<input class="form__item" id="access_code" type="text" name="access_code">
+					</li>
+					<li>
+						<label class="form__label"></label>
+						<button class="btn btn--3d btn--primary" id="login" type="submit">Log in</button>
+						<span id="msg" class="gap-left-15 hili"></span>
+					</li>
+				</ul>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block extra_js_bottom %}
+	<script>
+		/*
+		*	Code to display countdown timer for access code expiry.
+		*/
+
+		function expiresSnippet(mins, secs) {
+			return `expires in <span class="bold hili">${mins}' ${secs.toString().padStart(2, '0')}"</span>`;
+		};
+		const expiryDate = new Date(Date.parse("{{expiry_isoformat}}"));
+		let secsRemaining = Math.trunc((expiryDate - new Date())/ 1000);
+		const counterEl = document.getElementById('counter');
+		// Initial display
+		counterEl.innerHTML = expiresSnippet(5, 0);
+		// Run function every second (1000 millisecs)
+		const secondTimer = setInterval(() => {
+			if (secsRemaining === 0) {
+				clearInterval(secondTimer);
+				counterEl.innerHTML = `has now <span class="bold hili">expired</span>`;
+			} else {
+				const mins = Math.trunc(secsRemaining / 60);
+				const secs = secsRemaining - mins * 60;
+				counterEl.innerHTML = expiresSnippet(mins, secs);
+			}
+			secsRemaining = secsRemaining - 1;
+		}, 1000);
+	</script>
+{% endblock extra_js_bottom %}

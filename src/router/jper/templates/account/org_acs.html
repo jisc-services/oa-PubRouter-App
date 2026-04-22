@@ -1,0 +1,66 @@
+{% extends "base.html" %}a
+{% block content %}
+{% import "helpers/account_macros.html" as account_macros %}
+
+<div class="row cms">
+	<h1 id="stickme">{{title}}</h1>
+	<div class="smaller nav-btns tall">
+		<a href="{{ url_for('account.index')}}" role="button" aria-label="List all accounts">All</a>
+		<a class="gap-left-15" href="{{ url_for('account.manage_publishers')}}" role="button" aria-label="List publisher accounts">Publi-shers</a>
+		<a href="{{ url_for('account.manage_publishers')}}/autotest" role="button" aria-label="List auto-test publisher accounts">Auto test</a>
+		<a href="{{ url_for('account.manage_publishers')}}/no_autotest" role="button" aria-label="List non auto-test publisher accounts">Non-auto</a>
+		<a class="gap-left-15" href="{{ url_for('account.manage_repositories')}}/live" role="button" aria-label="List live repository accounts">Repo Live</a>
+		<a href="{{ url_for('account.manage_repositories')}}/live/problem" role="button" aria-label="List problematic live accounts">Live fault</a>
+		<a href="{{ url_for('account.manage_repositories')}}/live/on" role="button" aria-label="List active live accounts">Live on</a>
+		<a href="{{ url_for('account.manage_repositories')}}/live/off" role="button" aria-label="List inactive live accounts">Live off</a>
+		<a class="gap-left-15" href="{{ url_for('account.manage_repositories')}}/test" role="button" aria-label="List test repository accounts">Repo Test</a>
+		<a href="{{ url_for('account.manage_repositories')}}/test/problem" role="button" aria-label="List problematic test accounts">Test fault</a>
+		<a href="{{ url_for('account.manage_repositories')}}/test/on" role="button" aria-label="List active test accounts">Test on</a>
+		<a href="{{ url_for('account.manage_repositories')}}/test/off" role="button" aria-label="List inactive test accounts">Test off</a>
+	</div>
+	{% set sw_col_class = "optional" if "Publisher" in title else "persist essential" %}
+	<div class="col span-12 cms">
+		<table data-rwdtable-sortable data-sortable-col-zero class="content-table" id="org_acs">
+			<thead>
+				<tr class="no-decoration">
+					<th {% if sort_col == 1 %}data-sort-default{% endif %} class="persist essential">Account Type</th>
+					<th {% if sort_col == 2 %}data-sort-default{% endif %} class="persist essential">Organisation Name</th>
+					<th class="optional">ID</th>
+					<th class="optional">UUID</th>
+					<th class="optional">Contact Email</th>
+					<th class="{{sw_col_class}}">Repo s/w</th>
+					<th class="persist essential" style="width: 10rem">Status</th>
+					<th class="persist essential" style="width: 6rem">On/Off</th>
+					<th class="persist essential">Manage</th>
+					<th class="persist essential" style="width: 9rem">Jump</th>
+				</tr>
+			</thead>
+
+			<tbody class="user_tbody">
+			{% for org_ac in org_acs %}
+				{% set org_status = org_ac.org_status() %}
+				{% set has_sword = org_ac.has_sword_collection() %}
+				{% set org_name = org_ac.org_name %}
+				{% set (role_formatted, role_sort) = org_ac.formatted_role() %}
+				<tr class="{{account_macros.row_status_class(org_status)}}" data-ajax_url="{{url_for('account.admin_ajax', org_id=org_ac.id)}}">
+					<td data-sort-value="{{make_sortable_str(role_sort, org_name, lengths=[4,30])}}">{{role_formatted}}</td>
+					<td data-sort-value="{{org_name.upper()}}">{{org_name}}</td>
+					<td data-sort-value="{{org_ac.id}}">{{org_ac.id}}</td>
+					<td>{{org_ac.uuid}}</td>
+					<td>{{org_ac.contact_email}}</td>
+					<td>{{org_ac.repository_data.repository_software | default("", true) | capitalize}}</td>
+					<td>{{account_macros.status_button_span(has_sword, org_ac, org_status, days_since_deposit_fn)}}</td>
+					<td>{{account_macros.on_off_button_span(org_status)}}</td>
+					<td><a title="Manage organisation" href="{{url_for('account.disp_org_acc', org_uuid=org_ac.uuid)}}">Manage</a></td>
+					<td>{{account_macros.quick_links(org_ac, has_sword)}}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		<p class="info-note"><i>Account type</i> column: <b>test</b> - account is not Live; &nbsp;<b>auto</b> - publisher is auto-testing; &nbsp;<b>route</b> - routing to YOUR-ORG test repos during auto-testing.</p>
+	</div>
+</div>
+{% endblock %} 
+{% block extra_js_bottom %}
+<script type="text/javascript" src="/static/js/service_accounts.js"></script>
+{% endblock extra_js_bottom %}

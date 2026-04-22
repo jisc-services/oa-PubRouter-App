@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD Journal Publishing DTD v2.3 20070202//EN" "journalpublishing.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article">
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="publisher-id">Front. Astron. Space Sci.</journal-id>
+			<journal-title>Frontiers in Astronomy and Space Sciences</journal-title>
+			<abbrev-journal-title abbrev-type="pubmed">Front. Astron. Space Sci.</abbrev-journal-title>
+			<issn pub-type="epub">2296-987X</issn>
+			<publisher>
+				<publisher-name>Frontiers Media S.A.</publisher-name>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-id pub-id-type="doi">10.3389/fspas.2017.00022</article-id>
+			<article-categories>
+				<subj-group subj-group-type="heading">
+					<subject>Astronomy and Space Sciences</subject>
+					<subj-group>
+						<subject>Original Research</subject>
+					</subj-group>
+				</subj-group>
+			</article-categories>
+			<title-group>
+				<article-title>Confrontation of the Magnetically Arrested Disc Scenario with Observations of FR II Sources</article-title>
+			</title-group>
+			<contrib-group>
+				<contrib contrib-type="author" corresp="yes">
+					<name>
+						<surname>Rusinek</surname>
+						<given-names>Katarzyna</given-names>
+					</name>
+					<xref ref-type="author-notes" rid="fn001">
+						<sup>&#x0002A;</sup>
+					</xref>
+					<uri xlink:href="http://loop.frontiersin.org/people/472116/overview"/>
+				</contrib>
+				<contrib contrib-type="assisting author">
+					<name>
+						<surname>Sikora</surname>
+						<given-names>Marek</given-names>
+					</name>
+				</contrib>
+			</contrib-group>
+			<contrib-group>
+				<contrib contrib-type="editor">
+					<name>
+						<surname>Editor</surname>
+						<given-names>Isa</given-names>
+					</name>
+				</contrib>
+			</contrib-group>
+			<aff>
+				<institution>Nicolaus Copernicus Astronomical Center, Polish Academy of Sciences</institution>, <addr-line>Warsaw</addr-line>, <country>Poland</country>
+			</aff>
+			<pub-date pub-type="epub">
+				<day>12</day>
+				<month>10</month>
+				<year>2017</year>
+			</pub-date>
+			<pub-date pub-type="collection">
+				<year>2017</year>
+			</pub-date>
+			<volume>4</volume>
+			<elocation-id>22</elocation-id>
+			<history>
+				<date date-type="received">
+					<day>29</day>
+					<month>08</month>
+					<year>2017</year>
+				</date>
+				<date date-type="accepted">
+					<day>27</day>
+					<month>09</month>
+					<year>2017</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-statement>Copyright &#x000A9; 2017 Rusinek and Sikora.</copyright-statement>
+				<copyright-year>2017</copyright-year>
+				<copyright-holder>Rusinek and Sikora</copyright-holder>
+				<license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+					<p>This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). The use, distribution or reproduction in other forums is permitted, provided the original author(s) or licensor are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.</p>
+				</license>
+			</permissions>
+			<abstract>
+				<p>The main aim of our work was to check whether powers of jets in FR II radio galaxies (RGs) and quasars (QSOs) can be reproduced by the Magnetically Arrested Disc (MAD) scenario. Assuming that established in the recent numerical simulations of the MAD scenario the (<italic>H</italic>/<italic>R</italic>)<sup>2</sup> dependence of the jet production efficiency is correct, we demonstrate that in order to reproduce the observed jet powers in FR II sources: (i) accretion discs must be geometrically much thicker than the standard ones; (ii) and/or that the jet production is strongly modulated.</p>
+			</abstract>
+			<contract-num rid="cn001">2013/09/B/ST9/00026</contract-num>
+			<contract-num rid="cn001">2016/21/B/ST9/01620</contract-num>
+			<contract-num rid="cn002">RADIOLIFE-320745</contract-num>
+			<contract-sponsor id="cn001">Narodowe Centrum Nauki<named-content content-type="fundref-id">10.13039/501100004281</named-content>
+			</contract-sponsor>
+			<contract-sponsor id="cn002">FP7 Ideas: European Research Council<named-content content-type="fundref-id">10.13039/100011199</named-content>
+			</contract-sponsor>
+		</article-meta>
+	</front>
+</article>

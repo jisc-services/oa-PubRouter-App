@@ -1,0 +1,124 @@
+{
+    "DOI": "10.3892/ijo.2019.4739",
+    "ISSN": [
+        "1019-6439",
+        "1791-2423"
+    ],
+    "URL": "http://dx.doi.org/10.3892/ijo.2019.4739",
+    "author": [
+        {
+            "affiliation": [
+                {
+                    "name": "Department of Biochemistry and Genetics, University of Navarra School of Sciences, 31008 Pamplona, Spain"
+                }, {
+                    "name": "University of Navarra School of Sciences",
+                    "id": [{
+                            "id": "https://ror.org/02rxc7m23",
+                            "id-type": "ror",
+                            "asserted-by": "publisher"
+                        }
+                    ],
+                    "department": ["Department of Biochemistry and Genetics"],
+                    "place": ["Pamplona", "Spain"]
+                }, {
+                    "id": [{
+                            "id": "https://ror.org/02rxc7m23",
+                            "id-type": "ror",
+                            "asserted-by": "publisher"
+                        }
+                    ]
+                }
+            ],
+            "family": "Urdiciain",
+            "given": "Alejandro",
+            "sequence": "first"
+        }
+    ],
+    "container-title": [
+        "International Journal of Oncology"
+    ],
+    "content-domain": {
+        "crossmark-restriction": false,
+        "domain": []
+    },
+    "created": {
+        "date-parts": [
+            [
+                2019,
+                3,
+                1
+            ]
+        ],
+        "date-time": "2019-03-01T12:06:16Z",
+        "timestamp": 1551441976000
+    },
+    "deposited": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                13
+            ]
+        ],
+        "date-time": "2020-07-13T19:03:55Z",
+        "timestamp": 1594667035000
+    },
+    "indexed": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                18
+            ]
+        ],
+        "date-time": "2020-07-18T09:23:29Z",
+        "timestamp": 1595064209223
+    },
+    "is-referenced-by-count": 1,
+    "issn-type": [
+        {
+            "type": "print",
+            "value": "1019-6439"
+        },
+        {
+            "type": "electronic",
+            "value": "1791-2423"
+        }
+    ],
+    "issued": {
+        "date-parts": [
+            [
+                2019,
+                3,
+                1
+            ]
+        ]
+    },
+    "member": "2249",
+    "prefix": "10.3892",
+    "published-online": {
+        "date-parts": [
+            [
+                2019,
+                3,
+                1
+            ]
+        ]
+    },
+    "publisher": "Spandidos Publications",
+    "reference-count": 52,
+    "references-count": 52,
+    "score": 1.0,
+    "short-container-title": [
+        "Int J Oncol"
+    ],
+    "source": "Crossref",
+    "subject": [
+        "Cancer Research",
+        "Oncology"
+    ],
+    "title": [
+        "Tubastatin, an inhibitor of HDAC6, enhances temozolomide‑induced apoptosis and reverses the malignant phenotype of glioblastoma cells"
+    ],
+    "type": "journal-article"
+}

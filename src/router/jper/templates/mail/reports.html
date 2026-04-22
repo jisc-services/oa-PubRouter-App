@@ -1,0 +1,10 @@
+<div>
+	<p>Please find attached the Publications Router monthly volumetrics reports. The data has been updated to include last month's figures.</p>
+	{% for report_type in report_types %}
+	    {% include "mail/reports_inc/" + report_type + ".html" %}
+	{% endfor %}
+</div>
+<div>
+	<p>Regards,</p>
+	<p><i>Publications Router automated reports process</i></p>
+</div>

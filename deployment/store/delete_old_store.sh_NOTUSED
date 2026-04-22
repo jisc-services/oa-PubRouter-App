@@ -1,0 +1,36 @@
+#!/bin/bash
+#---------------------------------------------------------------------------------
+# Deletes items from PubRouter 'store' that are older than specified number of days
+#
+# Params:
+#       $1 = Days to keep, defaults to 92 days, value must be >= 30 
+#       $2 = Email address(es) for errors, separated by comma.  Defaults to XXXX.YYYY@YYYY.ac.uk
+# Returns:
+#       0 - no problems
+#       1 or other non-zero - some other OS error
+# Output:
+#       Log info written to stdout
+#       Any errors are written to a mail message and appended to stdout
+#---------------------------------------------------------------------------------
+
+
+#### Use supplied parameter values or apply defaults ####
+# Set Days to keep to $1, or default to 92
+# 3 months ago in days - this won't always be 92, but 92 is the maximum number 3 months ago can be.
+# (July, August, September) -> (31, 31, 30) -> 92 days.
+DAYS_TO_KEEP=${1-92}
+
+#### Constants ####
+MIN_DAYS_TO_KEEP=30
+# Store directory is currently configured in store/app.py.
+STORE_DIR="/Incoming/store"
+
+# Call script that does the deletion
+source /usr/local/PubRouter/deployment/delete_files.sh $0 $STORE_DIR $MIN_DAYS_TO_KEEP $DAYS_TO_KEEP $2
+RET_CODE=$?
+
+# Print the space usage
+df -H /Incoming
+
+exit $RET_CODE
+# End #

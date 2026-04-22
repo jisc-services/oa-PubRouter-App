@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Miscellaneous administration</h1>
+<br>
+<div class="row">
+	<div class="span-12 cms">
+		<div class="box box--padding-large box--brd-mgreyblue cms">
+			<h2>Institution identifiers</h2>
+			<p>You can <a href="{{url_for('admin.identifiers')}}">download a CSV file</a> of the currently stored Jisc and CORE identifiers.</p>
+		{% if curr_user_is_not_readonly %}
+			{% from "helpers/field_render.html" import render_field %}
+			<h3>Load Identifiers</h3>
+			<p>Jisc or CORE identifiers are loaded from CSV file here. The file must contain at least 2 columns (Name and ID) - <b>columns can be in any order:</b></p>
+			<ul>
+				<li>Institution name</li>
+				<li>Numeric Identifier (contains only digits)</li>
+				<li>Identifier type ("CORE" or "JISC" - must be upper-case) - OPTIONAL.</li>
+			</ul>
+			<p>NOTE that all existing identifiers of the selected type will be replaced by the contents of the CSV file.</p>
+			<form method="POST" id="update_identifiers_list" action="{{ url_for('admin.identifiers') }}" class="form" enctype="multipart/form-data">
+				<ul class="form-fields">
+					<li class="form__item" >
+						{{render_field(form.choices,'form__item','form__label')}}
+					</li>
+					<li class="form__item" >
+						{{render_field(form.csv_file,'','form__label')}}
+					</li>
+				</ul>
+				<button type="submit" class="btn btn--3d btn--primary">Load identifiers</button>
+			</form>
+		{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

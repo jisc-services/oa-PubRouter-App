@@ -1,0 +1,126 @@
+<article xsi:noNamespaceSchemaLocation="http://jats.nlm.nih.gov/publishing/1.1/xsd/JATS-journalpublishing1-mathml3.xsd" dtd-version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="publisher-id">ABB</journal-id>
+			<journal-title-group>
+				<journal-title>Applied Bionics and Biomechanics</journal-title>
+			</journal-title-group>
+			<issn pub-type="epub">1754-2103</issn>
+			<issn pub-type="ppub">1176-2322</issn>
+			<publisher>
+				<publisher-name>Hindawi Publishing Corporation</publisher-name>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-id pub-id-type="doi">10.1155/2016/2386982</article-id>
+			<article-id pub-id-type="publisher-id">2386982</article-id>
+			<article-categories>
+				<subj-group subj-group-type="heading">
+					<subject>Research Article</subject>
+				</subj-group>
+			</article-categories>
+			<title-group>
+				<article-title>Applications and Engineering Analysis of Lotus Roots under External Water Pressure</article-title>
+			</title-group>
+			<contrib-group>
+				<contrib contrib-type="author" id="U16212458" corresp="yes">
+					<contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-3598-1406</contrib-id>
+					<name>
+						<surname>Zhu</surname>
+						<given-names>Yiyun</given-names>
+					</name>
+					<xref ref-type="aff" rid="I1">
+						<sup>1</sup>
+					</xref>
+				</contrib>
+				<contrib contrib-type="author" id="U45893764">
+					<name>
+						<surname>Wang</surname>
+						<given-names>Chang Jiang</given-names>
+					</name>
+					<xref ref-type="aff" rid="I2">
+						<sup>2</sup>
+					</xref>
+				</contrib>
+				<contrib contrib-type="author" id="U45640512">
+					<name>
+						<surname>Mynors</surname>
+						<given-names>Diane</given-names>
+					</name>
+					<xref ref-type="aff" rid="I2">
+						<sup>2</sup>
+					</xref>
+				</contrib>
+				<contrib contrib-type="Academic Editor" id="U21498042">
+					<name>
+						<surname>Gracia</surname>
+						<given-names>Luis</given-names>
+					</name>
+				</contrib>
+			</contrib-group>
+			<aff id="I1">
+				<sup>1</sup>
+				<addr-line>School of Civil Engineering and Architecture</addr-line>
+				<addr-line>Xian University of Technology</addr-line>
+				<addr-line>No. 5 Jinhua South Road</addr-line>
+				<addr-line>Xian</addr-line>
+				<addr-line>Shaanxi 710048</addr-line>
+				<country>China</country>
+				<ext-link ext-link-type="domain-name">xaut.edu.cn</ext-link>
+			</aff>
+			<aff id="I2">
+				<sup>2</sup>
+				<addr-line>School of Engineering and Informatics</addr-line>
+				<addr-line>University of Sussex</addr-line>
+				<addr-line>Brighton BN1 9QJ</addr-line>
+				<country>UK</country>
+				<ext-link ext-link-type="domain-name">sussex.ac.uk</ext-link>
+			</aff>
+			<pub-date pub-type="publication-year">
+				<year>2016</year>
+			</pub-date>
+			<pub-date date-type="pub" publication-format="electronic">
+				<day>29</day>
+				<month>12</month>
+				<year>2016</year>
+			</pub-date>
+			<volume>2016</volume>
+			<history>
+				<date date-type="received">
+					<day>15</day>
+					<month>09</month>
+					<year>2016</year>
+				</date>
+				<date date-type="accepted">
+					<day>15</day>
+					<month>12</month>
+					<year>2016</year>
+				</date>
+				<date date-type="published" publication-format="electronic">
+					<day>29</day>
+					<month>12</month>
+					<year>2016</year>
+				</date>
+				<date date-type="pub" publication-format="print">
+					<day>15</day>
+					<month>01</month>
+					<year>2017</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-year>2016</copyright-year>
+				<copyright-holder> Copyright &#xa9; 2016 Yiyun Zhu et al.</copyright-holder>
+				<license xlink:href="http://creativecommons.org/licenses/by/4.0/">
+					<license-p>This is an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.</license-p>
+				</license>
+			</permissions>
+			<abstract>
+				<p>Blah blah blah.</p>
+			</abstract>
+			<counts>
+				<ref-count count="22" />
+				<page-count count="8" />
+			</counts>
+		</article-meta>
+	</front>
+</article>

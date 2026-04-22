@@ -1,0 +1,155 @@
+<header class="masthead" role="banner" data-mobilemenu="">
+	<div class="masthead__top">
+		<div class="inner">
+			<a id="skiplinks" class="visuallyhidden focusable" href="#main">
+				<span>Skip to main content</span>
+			</a>
+			<a class="masthead__logo" href="//jisc.ac.uk">
+				<img alt="Jisc logo" src="/static/css/img/jisc-logo.svg">
+			</a>
+			<nav class="masthead__topnav" aria-label="Masthead menu listing related sites">
+				<ul id="nav" class="topnav__list">
+					<li class="topnav__item ">
+						<a href="https://www.jisc.ac.uk/research-management">Research management</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="masthead__main">
+		<div class="inner">
+			<h1 class="masthead__title masthead__title--short">
+				<a href="/">Publications Router</a>
+			</h1>
+			<!-- Main menu -->
+			<div id="menu" class="nav-wrapper" data-mobilemenu="">
+				<div class="credentials">
+			{% if curr_user_is_anon %}
+					<span class="credentials__no_name">&nbsp;</span>
+					<a class="btn btn--rounded" href="{{ url_for('account.login') }}" role="button" aria-label="Log in">
+						<span class="black">Log in</span>
+					</a>
+			{% else %}
+					<a class="credentials__name" href="{{url_for('account.user_account', org_uuid=curr_org_uuid, user_uuid=curr_user_acc.uuid)}}">{{curr_user_acc.forename}} {{curr_user_acc.surname}}</a>
+					<a class="btn btn--rounded btn--outline" href="{{ url_for('account.logout') }}" role="button" aria-label="Log out">Log out</a>
+			{% endif %}
+				</div>
+				<nav class="masthead__nav header___nav--primary" role="navigation" aria-label="Main menu for the site">
+					<ul>
+						<li class="nav__item has-popup {% if request.path.startswith(url_for('about.index')) %}is-active{% endif %}" >
+							<a href="{{ url_for('about.index') }}">About</a>
+							<div class="submenu submenu--left">
+								<ul>
+									<li><a href="{{ url_for('about.index', _anchor='') }}">Overview</a></li>
+									<li><a href="{{ url_for('about.institutions') }}">Information for institutions</a></li>
+									<li><a href="{{ url_for('about.startupguide') }}">Start up guide for institutions</a></li>
+									<li><a href="{{ url_for('about.publishers') }}">Information for publishers</a></li>
+									<li><a href="{{ url_for('about.resources') }}">Technical information</a></li>
+									<li><a href="{{ url_for('about.providerlist') }}">List of Router content providers </a></li>
+									<li><a href="{{ url_for('about.recipientlist') }}">List of participating institutions </a></li>
+								</ul>
+							</div>
+						</li>
+					{# set up account url variable for repeated use in account headers #}
+				{% if not curr_user_is_anon %}
+					{% set org_acc_url = url_for('account.disp_org_acc', org_uuid=curr_org_uuid) %}
+						<li class="nav__item has-popup {% if 'account' in request.path and curr_org_uuid in request.path %}is-active{% endif %}" >
+							<a href="{{ org_acc_url }}">My Account</a>
+							<div class="submenu submenu--left" >
+								<ul>
+									<li><a href="{{org_acc_url}}">Organisation account</a></li>
+					{% if curr_user_org_acc.is_repository %}
+									<li><a href="{{ url_for('account.notifications', repo_uuid=curr_org_uuid) }}">Matched notifications</a></li>
+									<li><a href="{{ url_for('account.view_match_params', repo_uuid=curr_org_uuid) }}">Matching parameters</a></li>
+									<li><a href="{{ org_acc_url }}#manage_sources">Sources settings</a></li>
+									<li><a href="{{ org_acc_url }}#manage_connection">Connection settings</a></li>
+									<li><a href="{{ org_acc_url }}#manage_account">Account settings</a></li>
+					{% elif curr_user_org_acc.is_publisher %}
+									<li><a href="{{ url_for('account.deposit_history', pub_uuid=curr_org_uuid) }}">Daily deposit summary</a></li>
+									<li><a href="{{ url_for('account.deposits', pub_uuid=curr_org_uuid) }}">Matched deposit history</a></li>
+									<li><a href="{{ org_acc_url }}#manage_defaults">Default settings</a></li>
+									<li><a href="{{ org_acc_url }}#manage_account">Account settings</a></li>
+									<li><a href="{{ org_acc_url }}#manage_testing">Automated test emails</a></li>
+									<li><a href="{{ url_for('account.test_history', pub_uuid=curr_org_uuid) }}">Automated test history</a></li>
+									<li><a href="{{ org_acc_url }}#ftp_help">Help connecting to Router</a></li>
+					{% endif %}
+									<li class="menu-sep"><a href="{{url_for('account.user_account', org_uuid=curr_org_uuid, user_uuid=curr_user_acc.uuid)}}">User account</a></li>
+
+					{% if curr_user_is_admin and curr_user_is_not_readonly %}
+									<li><a href="{{ url_for('account.list_org_users', org_uuid=curr_org_uuid)}}">List users</a></li>
+									<li><a href="{{ url_for('account.add_user_acc', org_uuid=curr_org_uuid) }}">Add user</a></li>
+					{% endif %}
+								</ul>
+							</div>
+						</li>
+					{% if curr_org_is_super %}
+						<li class="nav__item has-popup {% if curr_org_uuid not in request.path and request.path.startswith(url_for('account.index')) %}is-active{% endif %}" >
+							<a href="{{ url_for('account.index') }}">Admin</a>
+							<div class="submenu submenu--left">
+								<ul>
+									{% if curr_user_is_not_readonly %}<li><a href="{{ url_for('account.register') }}">Add organisation</a></li>{% endif %}
+									<li><a href="{{ url_for('account.recent_errors', pub_or_repo='repository')}}">Recent repository errors</a></li>
+									<li><a href="{{ url_for('account.recent_errors', pub_or_repo='publisher')}}">Recent publisher errors</a></li>
+									<li class="menu-sep"><a href="{{ url_for('account.index')}}">Manage all organisations</a></li>
+									<li><a href="{{ url_for('account.manage_repositories')}}">Manage repositories</a></li>
+									<li><a href="{{ url_for('account.manage_publishers')}}">Manage publishers</a></li>
+									<li><a href="{{ url_for('account.test_overview')}}">Publisher auto-test overview</a></li>
+									<li><a href="{{ url_for('account.match_params_summary')}}">Repository matching params</a></li>
+									<li class="menu-sep"><a href="{{ url_for('account.list_all_users')}}">List users</a></li>
+									<li><a href="{{ url_for('account.org_user_count')}}">Organisation user count</a></li>
+									<li class="menu-sep"><a href="{{ url_for('account.bulk_email')}}">Bulk email</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav__item has-popup {% if request.path.startswith(url_for('reports.index')) %}is-active{% endif %}" >
+							<a href="{{ url_for('reports.index') }}" >Reports</a>
+							<div class="submenu submenu--left">
+								<ul>
+									<li><a href="{{ url_for('reports.index', _anchor='')}}">All reports</a></li>
+									<li><a href="{{ url_for('reports.institutions') }}">Live institution reports</a></li>
+									<li><a href="{{ url_for('reports.test_institutions') }}">Test institution reports</a></li>
+									<li><a href="{{ url_for('reports.publishers') }}">Publisher reports</a></li>
+									<li><a href="{{ url_for('reports.harvester') }}">Harvester reports</a></li>
+									<li><a href="{{ url_for('reports.dup_submission_reports') }}">Duplicate submissions reports</a></li>
+									<li><a href="{{ url_for('reports.past_misc_reports') }}">Ad hoc miscellaneous reports</a></li>
+									<li class="menu-sep"><a href="{{ url_for('reports.routed_in_period') }}">Articles in period</a></li>
+									<li><a href="{{ url_for('reports.adhoc_duplicate_submissions') }}">Ad hoc duplicate submissions</a></li>
+									<li><a href="{{ url_for('reports.misc_reports') }}">Run miscellaneous report</a></li>
+								</ul>
+							</div>
+						</li>
+						{% set harv_root = '/' + url_for('harvester.webservice').split('/')[1] %}
+						<li class="nav__item has-popup {% if request.path.startswith(harv_root) %}is-active{% endif %}" >
+							<a href="{{ url_for('harvester.webservice') }}">Harvester</a>
+							<div class="submenu">
+								<ul>
+									{% if curr_user_is_not_readonly %}<li><a href="{{ url_for('harvester.manage') }}">Add harvester</a></li>{% endif %}
+									<li><a href="{{ url_for('harvester.webservice', _anchor='') }}">All harvesters</a></li>
+									<li><a href="{{ url_for('harvester.history') }}">Harvester history</a></li>
+									<li><a href="{{ url_for('harvester.error') }}">Harvester errors</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav__item has-popup {% if request.path.startswith(url_for('admin.index')) %}is-active{% endif %}" >
+							<a href="{{ url_for('admin.index') }}">Misc</a>
+							<div class="submenu submenu--left">
+								<ul>
+									<li><a href="{{ url_for('admin.index') }}">Institution identifiers</a></li>
+									{% if curr_user_is_not_readonly %}<li><a href="{{ url_for('admin.manage_content') }}">Manage content</a></li>{% endif %}
+									<li><a href="{{ url_for('admin.schedule') }}">Batch schedule</a></li>
+									<li><a href="{{ url_for('admin.metrics') }}">Batch process metrics</a></li>
+									{% if curr_user_acc.is_developer -%}
+                                        <li><a href="{{ url_for('admin.json_rec') }}">JSON record</a></li>
+                                        <li><a href="{{ url_for('admin.version_info') }}">Version information</a></li>
+                                    {%- endif %}
+								</ul>
+							</div>
+						</li>
+					{% endif %}
+				{% endif %}
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>

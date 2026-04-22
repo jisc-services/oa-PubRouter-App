@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD with OASIS Tables with MathML3 v1.1 20151215//EN" "JATS-archive-oasis-article1-mathml3.dtd">
+<article article-type="review-article" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="publisher-id">TEST</journal-id>
+			<journal-title-group>
+				<journal-title>Test Journal TItle</journal-title>
+			</journal-title-group>
+			<issn pub-type="ppub">2059-4755</issn>
+			<issn pub-type="epub">2059-4763</issn>
+			<publisher>
+				<publisher-name>Test publisher</publisher-name>
+				<publisher-loc>London, UK</publisher-loc>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-id pub-id-type="doi">10.2217/test-aff</article-id>
+			<title-group>
+				<article-title>Test permutations of author affiliations</article-title>
+			</title-group>
+			<contrib-group>
+				<!-- Contrib group 1: Aff's within this group, including an aff-alternative -->
+				<contrib contrib-type="author">
+					<collab>Collab one (contrib group 1, Author-1): XAff-1</collab>
+					<xref ref-type="aff" rid="AFF1"><sup>1</sup></xref>
+				</contrib>
+				<contrib contrib-type="author">
+					<name>
+						<given-names>Contrib group 1</given-names>
+						<surname>Author-2: XAff-2</surname>
+					</name>
+					<xref ref-type="aff" rid="AFF2"><sup>2</sup></xref>
+				</contrib>
+				<contrib contrib-type="author" corresp="yes">
+					<string-name>
+						<given-names>Contrib group 1</given-names>
+						<surname>Author-3: LAff-A, XAff-2</surname>
+						<suffix>Snr.</suffix>
+					</string-name>
+					<xref ref-type="corresp" rid="COR1">*</xref>
+					<xref ref-type="aff" rid="AFF2"><sup>2</sup></xref>
+					<aff>
+						Local Aff-A locally defined affiliation.</aff>
+				</contrib>
+				<contrib contrib-type="author">
+					<collab>Collab two (contrib group 1, Author-4): LAff-B</collab>
+					<aff>
+						<sup>1</sup>
+						<institution>Local
+Aff-B</institution>
+locally defined affiliation.
+						<country country="GB">United Kingdom</country>
+						<postal-code>TW11 0LW</postal-code>
+						<email>author4@email.com</email>
+					</aff>
+				</contrib>
+				<aff id="AFF1"><sup>1</sup>Xref
+affiliation #1</aff>
+				<aff-alternatives id="AFF2">
+					<sup>3</sup>
+					<aff><institution xml:lang="ja-Jpan">国立民族学博物館博物館民族学研究部</institution></aff>
+					<aff><institution xml:lang="en">Xref aff-alternative #2</institution></aff>
+				</aff-alternatives>
+			</contrib-group>
+			<contrib-group>
+				<!-- Contrib group 2: 1 Xref-aff within this group; one author WITHOUT an Aff -->
+				<contrib contrib-type="author">
+					<name>
+						<given-names>Contrib group 2</given-names>
+						<surname>Author-5: XAff-4</surname>
+					</name>
+					<xref ref-type="aff" rid="AFF4"><sup>4</sup></xref>
+					<xref ref-type="aff" rid="EXAFF5"><sup>5</sup></xref>
+				</contrib>
+				<contrib contrib-type="author" corresp="yes">
+					<name>
+						<given-names>Contrib group 2</given-names>
+						<surname>Author-6: LAff-C</surname>
+					</name>
+					<aff>
+						<sup>1</sup>START
+						<institution-wrap>
+							<institution-id institution-id-type="grid">grid.aff.c</institution-id>
+							<institution content-type="edu"><bold>Local Aff-C</bold> <ital>locally</ital>
+								defined affiliation</institution>,
+							<institution content-type="office">Dean's
+							
+Office</institution>,
+							<institution content-type="dept">Chemistry
+	Dept</institution>,
+							<institution-id institution-id-type="ror">https://ror.org/aff-c</institution-id>
+						</institution-wrap>
+						<addr-line>33 Hampton Road</addr-line>,
+						<addr-line>Somewhere</addr-line>,
+						<city>Teddington</city>,
+						<state>Greater London</state>,
+						<xxx>  Random
+						
+			element</xxx>,
+						<yyy>YYY</yyy>,
+						<country country="GB">United Kingdom</country>,
+						<zzz>ZZZ <bold>bold</bold> element</zzz>,
+						<postal-code>TW11 0LW</postal-code>,
+						The Universe
+					</aff>
+					DON'T CAPTURE
+				</contrib>
+				<contrib contrib-type="author" corresp="yes">
+					<!-- This simulates American Chemical Society where there may be an external affiliation
+						(within contrib-group) that has an ID but is NOT cross-referenced by individual contributors.
+						 In this case we expect "Xref affiliation #4" to be associated with this author -->
+					<name>
+						<given-names>Contrib group 2</given-names>
+						<surname>Author-7: NO Aff</surname>
+					</name>
+				</contrib>
+				<contrib contrib-type="author" corresp="yes">
+					<name>
+						<given-names>Contrib group 2</given-names>
+						<surname>Author-11: LAff-E</surname>
+					</name>
+					<aff>
+						<sup>11</sup>START
+						<institution-wrap>
+							<institution content-type="edu"><bold>Local Aff-E</bold>
+								<ital>locally</ital> defined affiliation</institution>,
+							<institution content-type="org-division">Chemistry
+							Dept</institution>,
+							<institution-id institution-id-type="grid">grid.aff.e</institution-id>
+							<institution-id institution-id-type="ror">https://ror.org/aff-e</institution-id>
+						</institution-wrap>
+						<addr-line>33e Hampton Road</addr-line>,
+						<addr-line content-type="city">Teddington</addr-line>,
+						<addr-line content-type="state">Greater London</addr-line>,
+						<addr-line content-type="country">England</addr-line>,
+						<addr-line content-type="postal-code">TW11 0LW</addr-line>,
+					</aff>
+					DON'T CAPTURE
+				</contrib>
+				<aff id="AFF4"><sup>4</sup>Xref
+affiliation
+	#4<email>AFF4@email.com</email></aff>
+			</contrib-group>
+			<contrib-group>
+				<!-- Contrib group 3: 1 Xref-aff OUTSIDE of group; Aff (not-xref) within group;  one author WITHOUT an Aff -->
+				<contrib contrib-type="author">
+					<name>
+						<given-names>Contrib group 3</given-names>
+						<surname>Author-8: EXAff-5</surname>
+					</name>
+					<xref ref-type="aff" rid="EXAFF5"><sup>5</sup></xref>
+				</contrib>
+				<contrib contrib-type="author">
+					<name>
+						<given-names>Contrib group 3</given-names>
+						<surname>Author-9: LAff-D, EXAFF-6, EXAFF-7</surname>
+					</name>
+					<aff>Local Aff-D locally defined affiliation.</aff>
+					<xref ref-type="aff" rid="EXAFF6"><sup>6</sup></xref>
+					<xref ref-type="aff" rid="EXAFF7">><sup>7</sup></xref>
+				</contrib>
+				<contrib contrib-type="author">
+					<name>
+						<given-names>Contrib group 3</given-names>
+						<surname>Author-10: NO Aff</surname>
+					</name>
+				</contrib>
+				<aff>  <sup>9</sup>Group affiliation #9  </aff>
+				<aff-alternatives>
+					<sup>10</sup>
+					<aff><institution xml:lang="ja-Jpan">国立民族学博物館博物館民族学研究部</institution></aff>
+					<aff><institution xml:lang="en">Group aff-alternative #10</institution></aff>
+				</aff-alternatives>
+				<aff-alternatives>
+					<sup>11</sup>
+					<aff><institution xml:lang="ja-Jpan">国立民族学博物館博物館民族学研究部</institution></aff>
+					<aff><institution xml:lang="fra">SHOULD BE IGNORED - xml:lang NOT 'en'!!! #11</institution></aff>
+				</aff-alternatives>
+			</contrib-group>
+			<contrib-group>
+				<contrib contrib-type="author">
+					<name>
+						<given-names>Contrib group 4</given-names>
+						<surname>Author-12: NO Aff</surname>
+					</name>
+				</contrib>
+				<contrib contrib-type="author">
+					<name>
+						<given-names>Contrib group 4</given-names>
+						<surname>Author-13: NO Aff</surname>
+					</name>
+				</contrib>
+				<aff id="AFF4.1"><sup>4.1</sup>Contrib Group 4 affiliation #1<email>AFF4.1@email.com</email></aff>
+				<aff id="AFF4.2"><sup>4.2</sup>Contrib Group 4
+affiliation #2</aff>
+			</contrib-group>
+			<aff id="EXAFF5"><sup>5</sup>External
+Xref affiliation #5<email>EXAFF5-one@email.com</email><email>EXAFF5-two@email.com</email></aff>
+			<aff-alternatives id="EXAFF6">
+				<sup>6</sup>
+				<aff xml:lang="ja-Jpan"><institution>国立民族学博物館博物館民族学研究部</institution></aff>
+				<aff xml:lang="en"><institution>External Xref
+aff-alternative
+					#6</institution></aff>
+			</aff-alternatives>
+			<aff id="EXAFF7"><label>1</label>
+				Prefix text
+				<institution-wrap> X <institution content-type="dept">Department of EXAFF7</institution> <i>ITALIC <b>X</b>Y</i>Z<institution-id institution-id-type="grid">grid.exaff7</institution-id></institution-wrap>,
+				<institution-wrap><institution content-type="university">University of <bold>BOLD <i>ITALIC</i> </bold>EXAFF7</institution></institution-wrap>, <city>Bristol</city>, BS2 9XX, UK <phone content-type="primary">447421723316</phone>LAST
+			</aff>
+			<aff-alternatives>
+				<sup>7</sup>
+				<aff xml:lang="ja-Jpan"><institution>国立民族学博物館博物館民族学研究部</institution></aff>
+				<aff xml:lang="fr"><institution>SHOULD BE IGNORED - xml:lang NOT 'en'!!! #11</institution></aff>
+			</aff-alternatives>
+			<pub-date pub-type="epub">
+				<month>January</month>
+				<year>2018</year>
+			</pub-date>
+			<volume>2</volume>
+			<issue>1</issue>
+			<fpage>35</fpage>
+			<lpage>41</lpage>
+			<history>
+				<date date-type="received">
+					<day>07</day>
+					<month>09</month>
+					<year>2017</year>
+				</date>
+				<date date-type="accepted">
+					<day>16</day>
+					<month>11</month>
+					<year>2017</year>
+				</date>
+				<date date-type="online">
+					<day>15</day>
+					<month>12</month>
+					<year>2017</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-statement>© 2017 Future Medicine Ltd</copyright-statement>
+				<copyright-year>2018</copyright-year>
+			</permissions>
+			<self-uri content-type="pdf" xlink:title="pdf" xlink:href="3dp-2017-9917.pdf"/>
+			<abstract>
+				<p>JATS with various permutations of affiliations, including: (1) Aff within a contrib; (2) Aff within contrib-group; (3) Xref-Aff within contrib-group; (4) Xref-Aff outside contrib-group; (5) Aff-alternatives </p>
+			</abstract>
+		</article-meta>
+	</front>
+</article>

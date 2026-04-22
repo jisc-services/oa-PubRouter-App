@@ -1,0 +1,64 @@
+{% extends "base.html" %}a
+{% block content %}
+
+<div class="row cms">
+	<h1 id="stickme">Repository matching parameters</h1>
+	<p class="info-note">Matching parameters are listed for selected type of accounts; those that are currently Off (not operational) are listed in lighter font.</p>
+	<div class="col span-12 cms">
+		<form id="radio-btn-form" method="GET" action="">
+			{# JQuery code below causes form to be submitted whenever any radio button is changed. #}
+			<fieldset class="form">
+				<legend class="visuallyhidden">Show all or only live accounts</legend>
+				<input id="r1" type="radio" name="status" value="1" {{'checked' if only_on else ''}}>
+				<label for="r1" class="strong" title="Show only live accounts">Active accounts (ON only)</label>
+				<input id="r2" class="gap-left-15" type="radio" name="status" value="0" {{'' if only_on else 'checked'}}>
+				<label for="r2" class="strong" title="Show running schedule">All accounts (ON & OFF)</label>
+			</fieldset>
+		</form>
+
+		<table data-rwdtable-sortable data-sortable-col-zero  class="content-table" id="org_acs">
+			<thead>
+				<tr class="no-decoration">
+					<th data-sort-default class="persist essential">Organisation Name</th>
+					<th class="persist essential" title="Account status">Status</th>
+					<th class="persist essential" title="View matching parameters">Current Params</th>
+					<th class="essential" title="Last updated (hover over date for full timestamp)">Updated</th>
+					<th class="persist essential" title="Name variants currently include regex">Regex</th>
+					<th class="persist essential" title="Name variants previously included regex">Prev. Regex </th>
+					<th class="essential" title="Number of archived matching parameter records">Archived</th>
+					<th class="persist essential" title="Compare current with archived matching parameters">Compare</th>
+					<th class="optional" title="Organisation record ID">ID</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for org_name, ac_id, ac_uuid, status, updated, has_regex, had_regex, archived_count in ac_data %}
+				<tr{% if status == 0 %} class="acc-off"{% endif %}>
+					<td data-sort-value="{{org_name.upper()}}"><a title="Manage organisation" href="{{url_for('account.disp_org_acc', org_uuid=ac_uuid)}}">{{org_name}}</a></td>
+					<td>{{"On" if status else "Off"}}</td>
+					{% set view_params_url = url_for('account.view_match_params', repo_uuid=ac_uuid) %}
+					<td><a title="View matching parameters" href="{{view_params_url}}#curr_params">View</a><a class="gap-left" title="Update matching parameters" href="{{view_params_url}}#manage_matching">Update</a></td>
+					<td data-sort-value="{{updated.strftime('%Y%m%d%H%M%S')}}" title="{{updated.strftime('%d/%m/%Y %H:%M:%S')}}">{{updated.strftime('%d/%m/%Y')}}</td>
+					<td>{% if has_regex %}Yes{% endif %}</td>
+					<td>{% if had_regex %}Yes{% endif %}</td>
+					<td data-sort-value="{{archived_count}}">{{archived_count}}</td>
+					<td>{% if archived_count %}<a title="Compare current with archived matching parameters" href="{{url_for('account.compare_match_params', repo_uuid=ac_uuid)}}">Compare</a>{% endif %}</td>
+					<td data-sort-value="{{ac_id}}">{{ac_id}}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %} 
+{% block extra_js_bottom %}
+<script>
+$(document).ready(function(){
+	/**
+	*	Code to submit form if any radio button changes
+	**/
+	$form = $("#radio-btn-form");
+	$form.on("change", function(e){ $form.submit(); });
+});
+</script>
+
+{% endblock extra_js_bottom %}

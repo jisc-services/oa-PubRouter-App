@@ -1,0 +1,107 @@
+{
+    "DOI": "10.26434/chemrxiv.12646919.v1",
+    "URL": "http://dx.doi.org/10.26434/chemrxiv.12646919.v1",
+    "abstract": "<jats:p>Chemists are always seeking new methods to construct porous lattice frameworks</jats:p>",
+    "author": [
+        {
+            "affiliation": [],
+            "family": "Wei",
+            "given": "Peifa",
+            "sequence": "first"
+        }
+    ],
+    "content-domain": {
+        "crossmark-restriction": false,
+        "domain": []
+    },
+    "created": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ],
+        "date-time": "2020-07-14T10:29:59Z",
+        "timestamp": 1594722599000
+    },
+    "deposited": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ],
+        "date-time": "2020-07-14T10:29:59Z",
+        "timestamp": 1594722599000
+    },
+    "indexed": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ],
+        "date-time": "2020-07-14T11:10:19Z",
+        "timestamp": 1594725019614
+    },
+    "is-referenced-by-count": 0,
+    "issued": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ]
+    },
+    "license": [
+        {
+            "URL": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+            "content-version": "unspecified",
+            "delay-in-days": 0,
+            "start": {
+                "date-parts": [
+                    [
+                        2020,
+                        7,
+                        14
+                    ]
+                ],
+                "date-time": "2020-07-14T00:00:00Z",
+                "timestamp": 1594684800000
+            }
+        }
+    ],
+    "link": [
+        {
+            "URL": "https://ndownloader.figshare.com/files/23820809",
+            "content-type": "unspecified",
+            "content-version": "vor",
+            "intended-application": "similarity-checking"
+        }
+    ],
+    "member": "316",
+    "posted": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ]
+    },
+    "prefix": "10.26434",
+    "publisher": "American Chemical Society (ACS)",
+    "reference-count": 0,
+    "references-count": 0,
+    "score": 1.0,
+    "source": "Crossref",
+    "subtype": "preprint",
+    "title": [
+        "Robust Supramolecular Nano-Tunnels Built from Molecular Bricks"
+    ],
+    "type": "posted-content"
+}

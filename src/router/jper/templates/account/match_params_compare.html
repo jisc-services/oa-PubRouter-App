@@ -1,0 +1,147 @@
+{% from "helpers/field_render.html" import render_field %}
+
+{% extends "base.html" %}
+
+{% block content %}
+
+{# Macro to display table of particular matching parameters #}
+{% macro render_orig_params_table(match_params, id, heading, body_id) %}
+	<table {% if id %}id="{{id}}"{% endif %}>
+		{% if heading %}
+		<thead>
+			<tr><th class="can-wrap">{{heading | safe}}</th></tr>
+		</thead>
+		{% endif %}
+		<tbody {% if body_id %}id="{{body_id}}"{% endif %}>
+		{% for param in match_params %}
+			{# pipe through filter than converts particular chars into HTML entities #}
+			<tr><td>{{param | escape}}</td></tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endmacro %}
+
+{# Macro to display Accordion containing a table of particular matching parameters #}
+{% macro render_params(match_params, id, title, heading) %}
+	{% if match_params %}
+		<section class="is-collapsible show_hide__container is-collapsible--button show_hide--is-expanded" data-collapsible>
+			<h3 class="show_hide__trigger">{{title}} <span class="smaller">(x{{match_params|length}})</span></h3>
+			<div class="show_hide__target no-pad">
+				{{render_orig_params_table(match_params, id, heading, '')}}
+			</div>
+			</section>
+	{% endif %}
+{% endmacro %}
+
+<div class="row cms">
+	<h1 id="pg-h1">Compare match params{% if curr_org_is_super %}<span class="h_small"><a id="stickme" href="{{url_for('account.disp_org_acc', org_uuid=org_acc.uuid)}}">{{org_acc.org_name}}</a></span>{% endif %}</h1>
+{##
+	<div class="accordion cms">
+		<p>You can compare current and previous matching parameters.</p>
+	</div>
+##}
+
+	{% set archive_pkid = archived_params.pkid %}
+	<form id="select-form" class="gap-vert" method="GET">
+		{{render_field(compare_form.prev_param,'form__item','gap-right strong')}}
+		{# ## Submit is handled by JQuery - see below ## <button class="btn btn--3d btn--primary gap-left-15" type="submit">Select</button> #}
+		<p class="info-note under">The timestamps shown above are when the records were archived.</p>
+	</form>
+	<br>
+	<div class="col span-6">
+		<div class="pad-right">
+			<h2>Current parameters<br><span class="smaller">{{matching_params.last_updated_formatted()}}&nbsp; (id {{matching_params.id}})</span></h2>
+		{% if matching_params %}
+			{{render_params(matching_params.name_variants, 'name_variants', 'Name Variants', 'Variants of the name of your institution (may contain Regex input by YOUR-ORG staff)')}}
+			{{render_params(matching_params.formatted_org_ids, 'org_ids', 'Organisation identifiers', 'Organisation identifiers for your institution <span class="smaller gap-left help-cursor" title="Note GRID &amp; RINGGOLD do not have links.">(links open in new tab)</span>')}}
+			{{render_params(matching_params.domains, 'domains', 'Domains', 'Domains that your institution owns or operates under, in either URLs or email addresses')}}
+			{{render_params(matching_params.postcodes, 'postcodes', 'Postcodes', 'Postcodes of your sites which may appear in author affiliations')}}
+			{{render_params(matching_params.grants, 'grants', 'Grant Numbers', 'Research grant numbers which may be referenced in publications')}}
+			{{render_params(matching_params.author_emails, 'emails', 'Author Emails', 'Researcher non-institutional email addresses (those NOT containing domains listed in the Domains section above)')}}
+			{{render_params(matching_params.author_orcids, 'orcids', 'ORCIDs', 'ORCIDS of researchers affiliated with your institution')}}
+			{% if curr_user_acc.is_developer %}
+			<br>
+			<p><a class="download" href="{{url_for('account.match_params_as_json', org_uuid=org_acc.uuid)}}">Download as JSON file</a> <span class="smaller">(dev only).</span></p>
+			{% endif %}
+			{% if curr_org_is_super and (matching_params.has_regex or matching_params.had_regex) %}
+				<br>
+			  {% set orig_name_vars = matching_params.orig_name_variants %}
+			  {% if orig_name_vars %}
+			    {% if not matching_params.has_regex %}
+				<p class="info-note">Matching parameters previously contained RegEx, although the current set does not.</p>
+				{% endif %}
+
+				<div class="title-accordion cms">
+					<p>Name variants before RegEx was first added</p>
+					<button class="copy btn btn--3d gap-vert do_action" type="button" data-action="clipboard" data-function="copy_table" data-target="#orig_name_variants" title="Copy to clipboard">Copy values</button>
+					{{render_orig_params_table(orig_name_vars, '', 'Original name variants', 'orig_name_variants')}}
+					<button class="copy btn btn--3d small-gap-after do_action" type="button" data-action="clipboard" data-function="copy_table" data-target="#orig_name_variants" title="Copy to clipboard">Copy values</button>
+				</div>
+			  {% else %}
+				<p class="info-note">Name variants {{'currently include' if matching_params.has_regex else 'previously included'}} RegEx. Original name variants are unknown.</p>
+			  {% endif %}
+			{% endif %}
+		{% endif %}
+		</div>
+	</div>
+	<div class="col span-6">
+		<div class="pad-left">
+		{% if archived_params %}
+			{% set archive_datetime = archived_params.archived_datetime_str() %}
+			<h2>Archived parameters<br><span class="smaller">{{archive_datetime}}&nbsp; (pkid {{archive_pkid}})</span></h2>
+			{{render_params(archived_params.name_variants, 'name_variants_2', 'Name Variants', 'Variants of the name of your institution (may contain Regex input by Jisc staff)')}}
+			{{render_params(archived_params.formatted_org_ids, 'org_ids_2', 'Organisation identifiers', 'Organisation identifiers for your institution <span class="smaller gap-left help-cursor" title="Note GRID &amp; RINGGOLD do not have links.">(links open in new tab)</span>')}}
+			{{render_params(archived_params.domains, 'domains_2', 'Domains', 'Domains that your institution owns or operates under, in either URLs or email addresses')}}
+			{{render_params(archived_params.postcodes, 'postcodes_2', 'Postcodes', 'Postcodes of your sites which may appear in author affiliations')}}
+			{{render_params(archived_params.grants, 'grants_2', 'Grant Numbers', 'Research grant numbers which may be referenced in publications')}}
+			{{render_params(archived_params.author_emails, 'emails_2', 'Author Emails', 'Researcher non-institutional email addresses (those NOT containing domains listed in the Domains section above)')}}
+			{{render_params(archived_params.author_orcids, 'orcids_2', 'ORCIDs', 'ORCIDS of researchers affiliated with your institution')}}
+		  {% if curr_user_acc.is_developer %}
+			<br>
+			<p><a class="download" href="{{url_for('account.archived_match_params_json', org_uuid=org_acc.uuid, pkid=archived_params.pkid)}}">Download as JSON file</a> <span class="smaller">(dev only).</span></p>
+		  {% endif %}
+		  {% if curr_user_is_not_readonly %}
+			<form id="revert-form" method="POST" action="{{ url_for('account.revert_match_params', repo_uuid=org_acc.uuid, pkid=archive_pkid) }}" class="form">
+				<button type="submit" name="submit" class="btn btn--3d btn--primary do_action" value="revert" data-action="confirm" data-msg="Current parameters will be overwritten by those with PKID {{archive_pkid}} that were archived on {{archive_datetime}}">Revert to params shown above with PKID {{archive_pkid}}</button>
+				<b class="warning utf8-icon gap-left">Caution!</b>
+			</form>
+		  {% endif %}
+
+		{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script type="text/javascript" src="/static/js/ajax_helpers.js"></script>
+<script type="text/javascript" src="/static/js/org_id_match_params.js"></script>
+<script>
+$(document).ready(function(){
+	/**
+	* Code for Info accordion
+	**/
+	initInfoAccordion();
+
+	/**
+	*	Initialisation used in conjunction with functions in org_id_match_params.js (for Org Id selection)
+	**/
+	const rorNameType = "ror_display";   // Change to "label" if non-default Org-name (different language) is required
+	const rorLangCode = "en";	// Org-name language code (ignored if rorNameType is "ror_display")
+	// Create clickable links for existing Org-Ids
+	embellishOrgIds($("#org_ids,#org_ids_2", rorNameType, rorLangCode));
+
+	/**
+	* Set various button press/click handlers on elements with one of the specified classes
+	**/
+	setActionClickHandlers("body", ".do_action");
+
+	/**
+	*	Code to submit form if drop-down changes
+	**/
+	$form = $("#select-form");
+	$form.on("change", function(e){ $form.submit(); });
+
+});
+</script>
+{% endblock extra_js_bottom %}

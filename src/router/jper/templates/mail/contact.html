@@ -1,0 +1,70 @@
+{# General contact email - includes functionality to add formatted error messages into the email  #}
+{% from "helpers/err_display_macros.html" import embed_download_link %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+    html {
+      font-size: 100%;
+      margin: 1rem;
+    }
+    body, p, li, small {
+      font-family: "Tahoma", "Verdana", "HelveticaNeue", "Helvetica Neue", Arial, sans-serif;
+      font-weight: normal;
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+    small, small * {
+      font-size: 0.82rem;
+    }
+    h1, h2, h3 {
+      font-family: "Tahoma", "Verdana", "HelveticaNeue", "Helvetica Neue", Arial, sans-serif;
+      font-weight: bold;
+      margin: 2rem 0 1rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+    }
+    h3 {
+      font-size: 1.05rem;
+    }
+    ul, ol {
+      margin-bottom: 1.7rem;
+    }
+    /* No automatic quotation marks */
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, q:before {
+      content: open-quote;
+    }
+    blockquote:after, q:after {
+      content: close-quote;
+    }
+    blockquote {
+      font-style: normal;
+      margin: 2rem 3rem 2rem 1.5rem;
+      padding-left: 1.5rem;
+      border-left: 0.5rem solid #ddd;
+    }
+    </style>
+</head>
+<body>
+<div>
+    {{ msg | replace("\n", "<br>") | safe }}
+{% if error_msg_tuples|length > 0 %}
+    <h3>Error{% if error_msg_tuples|length > 1 %}s{% endif %}</h3>
+    {% for err_date, err_msg in error_msg_tuples %}
+      <p>✦ {{err_date}} • {{embed_download_link(content_href, err_msg)}}</p>
+    {% endfor %}
+{% endif %}
+    <br>
+    <p><i>YOUR-ORG Publications Router Support Team</i></p>
+    <br>
+</div>
+</body>
+</html>

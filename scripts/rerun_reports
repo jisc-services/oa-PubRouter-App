@@ -1,0 +1,192 @@
+#!/usr/bin/env python
+"""
+This is a report generation script to invoke manually.
+
+IMPORTANT: Before running this utility you must activate Python virtual machine context by using command:
+    source /usr/local/PubRouter/app/bin/activate
+
+It will ignore monthtracker.cfg generate the report for the year passed by params
+
+e.g. $ python rerunreport_test_Live.py -y 2017
+
+params:
+    -y -> year number (obligatory)
+    -m -> Month number (for DOI & Duplicates reports)
+    -d -> debug mode True/False (optional)
+    -doi -> Run DOI report
+    -dup -> Run Duplicates report
+    -c -> add additional configuration (optional)
+    -i -> run institution reports (live & test)
+    -p -> run publisher report
+    -o -> run publisher DOI reports (all publishers)
+    -harv -> run harvester report
+    -all -> run all ANNUAL reports
+    -e -> email reports (only with -all)
+    -r -> Recreate statistics records for specified Month.
+
+NOTE: Any change here should be replicated in scheduler.py (monthly_reporting)
+"""
+import os
+from datetime import date
+from dateutil.relativedelta import relativedelta
+from octopus.core import add_config_from_module
+from router.jper.scheduler import _send_report_emails, _generate_pub_doi_reports, app
+from router.jper import reports
+
+
+def run_publisher_report(year, first_date, last_date, reportsdir):
+    publisher_reportsdir = f"{reportsdir}/publishers"
+    publisher_report_file = f"{publisher_reportsdir}/monthly_notifications_from_publishers_{year}.csv"
+    if not os.path.exists(publisher_reportsdir):
+        os.makedirs(publisher_reportsdir)
+    reports.generate_publisher_report(first_date, last_date, publisher_report_file)
+    return publisher_report_file
+
+
+def run_harvester_reports(year, first_date, last_date, reportsdir):
+    harvester_reportsdir = f"{reportsdir}/publishers"
+    harvester_report_file = f"{harvester_reportsdir}/monthly_notifications_from_harvester_{year}.csv"
+    if not os.path.exists(harvester_reportsdir):
+        os.makedirs(harvester_reportsdir)
+    reports.generate_harvester_report(first_date, last_date, harvester_report_file)
+    return harvester_report_file
+
+
+def run_institution_reports(year, first_date, last_date, reportsdir):
+    # ############## LIVE REPORT #####################
+    report_file_live = f"{reportsdir}/LIVE_monthly_notifications_to_institutions_{year}.csv"
+    reports.generate_institutions_report(first_date, last_date, report_file_live, live_file=True)
+
+    # ############## TEST REPORT #####################
+    report_file_test = f"{reportsdir}/TEST_monthly_notifications_to_institutions_{year}.csv"
+    reports.generate_institutions_report(first_date, last_date, report_file_test, live_file=False)
+
+    return report_file_live, report_file_test
+
+
+def run_dup_submission_report(year, month, reportsdir):
+    start_date = date(year, month, 1)
+    dup_reports_dir = f"{reportsdir}/dup_submission"
+    if not os.path.exists(dup_reports_dir):
+        os.makedirs(dup_reports_dir)
+    csv_filename = f"{dup_reports_dir}/duplicate_submissions_{start_date.strftime('%Y-%m')}.csv"
+    reports.generate_duplicate_submissions_report(start_date.strftime("%Y-%m-%d"),
+                                                  (start_date + relativedelta(day=31)).strftime("%Y-%m-%d"),
+                                                  csv_filename)
+    return csv_filename
+
+
+def run_annual_reports(year, first_date, last_date, reportsdir, email=False):
+    # runs ALL report types, then if the email parameter is passed, also produces email addresses for these emails
+
+    report_file_live, report_file_test = run_institution_reports(year, first_date, last_date, reportsdir)
+    harvester_report_file = run_harvester_reports(year, first_date, last_date, reportsdir)
+    publisher_report_file = run_publisher_report(year, first_date, last_date, reportsdir)
+    if email:
+        kwargs = {
+            app.config.get("LIVE_INSTITUTION_REPORTS"): report_file_live,
+            app.config.get("TEST_INSTITUTION_REPORTS"): report_file_test,
+            app.config.get("HARVESTER_REPORTS"): harvester_report_file,
+            app.config.get("PUBLISHER_REPORTS"): publisher_report_file
+            }
+        _send_report_emails(year, "", **kwargs)
+
+
+def recreate_statistics_records(year, month):
+    month_first_date = date(year, month, 1)
+    month_last_date = month_first_date + relativedelta(day=31)
+    print(f"\n*** Recreating Statistics Records for month beginning: {month_first_date.strftime('%d/%m/%Y')} ***\n")
+    # Delete records for specified month
+    total_recs = 0
+    total_recs += reports.MonthlyInstitutionStats.delete_by_query(month_first_date, del_name="for_month")
+    total_recs += reports.MonthlyPublisherStats.delete_by_query(month_first_date, del_name="for_month")
+    total_recs += reports.MonthlyHarvesterStats.delete_by_query(month_first_date, del_name="for_month")
+    print(f"\n** Total of {total_recs} statistics records DELETED (before re-creating new ones). **\n")
+
+    # Re-create statistics records
+    try:
+        total_recs = 0
+        num_recs = reports.MonthlyInstitutionStats.create_monthly_stats_records(month_first_date, month_last_date)
+        print(f"\n * {num_recs} Institution statistics records created.")
+
+        total_recs += num_recs
+        num_recs = reports.MonthlyPublisherStats.create_monthly_stats_records(month_first_date, month_last_date)
+        print(f"\n * {num_recs} Publisher statistics records created.")
+        total_recs += num_recs
+
+        num_recs = reports.MonthlyHarvesterStats.create_monthly_stats_records(month_first_date, month_last_date)
+        print(f"\n * {num_recs} Harvester statistics records created.")
+        total_recs += num_recs
+        print(f"\n** Total of {total_recs} statistics records CREATED. **\n")
+    except Exception as e:
+        print(f"\n\n!!! ERROR while creating monthly statistics - {repr(e)} !!!\n")
+        exit(1)
+
+
+if __name__ == "__main__":
+    # when main is run (whenever the script is run), collect all arguments passed to script run,
+    # depending on these values the script executes differently
+    import argparse
+    parser = argparse.ArgumentParser()
+
+    # set up the argument parser with various different argument options
+    parser.add_argument("-doi", "--doireport", action="store_true", help="Produce & email publisher DOI distribution reports (you must also specify MONTH)")
+    parser.add_argument("-dup", "--dupsubmission", action="store_true", help="Produce duplicate submission report (you must also specify MONTH)")
+    parser.add_argument("-c", "--config", help="additional configuration to load (e.g. for testing)")
+    parser.add_argument("-p", "--publisher", action="store_true", help="Produce publisher reports")
+    parser.add_argument("-harv", "--harvester", action="store_true", help="Produce harvester reports")
+    parser.add_argument("-i", "--institution", action="store_true", help="Produce institution reports")
+    parser.add_argument("-e", "--email", action="store_true", help="Send test emails (only works when run with --all)")
+    parser.add_argument("-r", "--recreate", action="store_true", help="Recreate statistics records for specified month")
+    parser.add_argument("-m", "--month", help="Month to run the report (REQUIRED for Monthly statistics records recreation, Publisher DOI report & Duplicate submissions report only)")
+    parser.add_argument("-y", "--year", help="Year to run the report")
+    parser.add_argument("-all", "--all", action="store_true", help="Produce all annual reports, possibly send emails.")
+
+    args = parser.parse_args()
+
+    with app.app_context():
+        # if we wish to manually change configuration, change config here
+        if args.config:
+            add_config_from_module(app, args.config)
+
+        if not args.year:
+            print("\n*** You must provide YEAR value.\n")
+            exit(0)
+
+        if (args.doireport or args.dupsubmission or args.recreate) and not args.month:
+            print("\n*** You must provide MONTH value.\n")
+            exit(0)
+
+        year = int(args.year)
+        first_date = date(year, 1, 1)
+        last_date = date(year, 12, 1)
+        month = int(args.month) if args.month else None
+
+        reportsdir = app.config.get('REPORTSDIR', '/var/pubrouter/reports')
+
+        if args.recreate:
+            recreate_statistics_records(year, month)
+
+        if args.publisher:
+            pub_report_file = run_publisher_report(year, first_date, last_date, reportsdir)
+            print("\n---- Publisher report file: ", pub_report_file)
+
+        if args.harvester:
+            harv_report_file = run_harvester_reports(year, first_date, last_date, reportsdir)
+            print("\n---- Harvester report file: ", harv_report_file)
+
+        if args.institution:
+            report_file_live, report_file_test = run_institution_reports(year, first_date, last_date, reportsdir)
+            print("\n---- Institution Live report file: ", report_file_live)
+            print("---- Institution Test report file: ", report_file_test)
+
+        if args.dupsubmission:
+            dup_submission_file = run_dup_submission_report(year, month, reportsdir)
+            print("\n---- Duplicate submissions report file: ", dup_submission_file)
+
+        if args.all:
+            run_annual_reports(year, first_date, last_date, reportsdir, args.email)
+
+        if args.doireport:
+            for_month = date(year, month, 1)
+            _generate_pub_doi_reports(for_month, reportsdir)

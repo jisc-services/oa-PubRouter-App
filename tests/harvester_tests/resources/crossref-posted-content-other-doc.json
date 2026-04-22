@@ -1,0 +1,89 @@
+{
+    "DOI": "10.5194/gi-2020-16-rc1",
+    "URL": "http://dx.doi.org/10.5194/gi-2020-16-rc1",
+    "author": [
+        {
+            "affiliation": [],
+            "family": "Anonymous",
+            "sequence": "first"
+        }
+    ],
+    "content-domain": {
+        "crossmark-restriction": false,
+        "domain": []
+    },
+    "created": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ],
+        "date-time": "2020-07-14T11:00:25Z",
+        "timestamp": 1594724425000
+    },
+    "deposited": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ],
+        "date-time": "2020-07-14T11:00:28Z",
+        "timestamp": 1594724428000
+    },
+    "group-title": "Signal processing/gi-2020-16",
+    "indexed": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ],
+        "date-time": "2020-07-14T11:40:31Z",
+        "timestamp": 1594726831568
+    },
+    "is-referenced-by-count": 0,
+    "issued": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ]
+    },
+    "member": "3145",
+    "posted": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ]
+    },
+    "prefix": "10.5194",
+    "publisher": "Copernicus GmbH",
+    "reference-count": 0,
+    "references-count": 0,
+    "relation": {
+        "is-comment-on": [
+            {
+                "asserted-by": "subject",
+                "id": "10.5194/gi-2020-16",
+                "id-type": "doi"
+            }
+        ]
+    },
+    "score": 1.0,
+    "source": "Crossref",
+    "subtype": "other",
+    "title": [
+        "electromagnetic signals"
+    ],
+    "type": "posted-content"
+}

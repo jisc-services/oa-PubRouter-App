@@ -1,0 +1,23 @@
+{# Publisher Go-live panel #}
+{% set account_is_live = org_acc.live_date is not none %}
+<div id="make_live" class="box box--padding-large box--brd-mgreyblue">
+    <h3>{% if account_is_live %}Account is Live{% else %}Make account Live{% endif %}</h3>
+{% if account_is_live %}
+    <p>Notifications are being routed to ALL repositories.</p>
+    <div class="form__item">
+        <label class="form__label" for="live_date">Live date</label>
+        <input class="form__item" id="live_date" type="date" value="{{live_date}}" disabled>
+    </div>
+    <br>
+{% else %}
+    <p>Notifications from this Test publisher account are being routed ONLY to Test repositories.</p>
+    <p class="info-note">To route its notifications to ALL repositories you must make the publisher Live, this requires Service Manager authorisation.</p>
+    {% if env != 'production' %}<p><b>IMPORTANT:</b> In this test environment <b>external publishers should NEVER be set to Live</b>. The only Live publisher account in test should be one that Jisc uses for manual deposits.</p>{% endif %}
+  {% if curr_user_is_not_readonly %}
+    <form method="post" action="{{ url_for('account.golive', org_uuid=org_acc.uuid) }}" class="form">
+        <button type="submit" class="btn btn--3d btn--primary do_action" data-action="confirm" data-msg="Go live cannot be undone">Go Live </button>
+        &nbsp; &nbsp;<span class="warning utf8-icon">This step is irreversible; afterwards notifications will go to ALL repositories.</span>
+    </form>
+  {% endif %}
+{% endif %}
+</div>

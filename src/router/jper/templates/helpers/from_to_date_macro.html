@@ -1,0 +1,22 @@
+{#
+    Macros to display `From-date` field, `To-date` field, & `Submit` button.
+
+    Parameters determine displayed text.
+
+    NOTE that {{- and -}} are used to remove surplus whitespace
+#}
+{## Display From / To date form ##}
+{% macro from_to_date(from_date, to_date, from_label=None, to_label=None, submit_label=None, spinner=None) %}
+    <form id="from_to_dates" class="form" action="" method="GET">
+        <label class="form_fields-same-line">
+            {{from_label or "From"}}:<input class="" type="date" name="from_date" placeholder="from date" value="{{from_date}}">
+        </label>
+        <label class="form_fields-same-line">
+            {{to_label or "To"}}:<input class="" type="date" name="to_date" placeholder="to date" value="{{to_date}}">
+        </label>
+        <button class="btn btn--3d btn--primary" type="submit">{{submit_label or "Submit"}}</button>
+      {% if spinner %}
+        <span class="gap-left-15 spinner"></span>
+      {% endif %}
+    </form>
+{% endmacro %}

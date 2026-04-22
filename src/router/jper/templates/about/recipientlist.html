@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<div class="row cms">
+	<div id="institutions" class="col span-11 cms">
+		<h1>Participating institutions</h1>
+		<p>The following {{repositories|length}} institutions are currently in receipt of feeds from Publications Router to their live systems.</p>
+		<br>
+		<h2>Institutions</h2>
+		<table class="std-txt">
+			<thead>
+				<tr><th>Name</th></tr>
+			</thead>
+			<tbody>
+			{% for repo in repositories -%}
+				<tr><td>{{repo}}</td></tr>
+			{% endfor %}
+			</tbody>
+		</table>		
+		<br>
+		<p class="note">This page last updated {{last_updated}}.</p>
+	</div>
+</div>
+
+{% endblock %}
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}
+

@@ -1,0 +1,79 @@
+	<div id="manage_testing" class="box box--padding-large box--brd-mgreyblue">
+		<h3>Submission Testing
+			{%- if form_pub_test.in_test.data %} 🞄 In Progress
+				{%- if form_pub_test.route_note_checkbox.data %} 🞄 Routing{% endif -%}
+			<span class="small gap-left">(Notifications are being validated;
+				{%- if form_pub_test.route_note_checkbox.data %} AND created/routed{% else %} NOT saved or routed{% endif %}.)</span>
+			{%- else %}{% if form_pub_test.test_end.data %} 🞄 Completed{% endif %}{% endif %}</h3>
+		<div class="accordion cms">
+			<h4>Further information</h4>
+			<p>New publishers will need to successfully complete a period of validation testing of their submissions to Publications Router (by SFTP or API) before their account will be made live.</p>
+			<p>An automated process will check each submission and a report of errors and issues encountered will be produced and emailed to the publisher's nominated email addresses.</p>
+			<p>Files submitted by SFTP will be processed sooner if the SFTP client disconnects after a batch of files has been deposited. While an SFTP connection remains active, Router waits at least 30 minutes to process a file to avoid handling it while it is still being deposited.</p>
+			<p class="warning utf8-icon">During automated testing, notifications will only be validated and NOT processed as normal UNLESS the <i>Route notifications</i> checkbox is ticked.</p>
+			<p class="info utf8-icon">When <i>Route notifications</i> is active then submissions which are free of severe errors will be saved and <b>routed to Jisc-auto test repositories</b> (those with Organisation name starting "Jisc-auto"), but they will NOT be recorded in the Publisher's statistics or submission history.</p>
+		</div>
+		<form method="post" action="{{url_for('account.update_pub_test', org_uuid=org_acc.uuid)}}#manage_testing" class="form">
+			<div>
+				<ul class="form-fields">
+					<li class="form__item-select">
+						{{render_field(form_pub_test.test_type, 'form__item', 'form__label required')}}
+					</li>
+					<li class="form__item">
+						{{render_field(form_pub_test.test_report_emails, 'form__item', 'form__label')}}
+						<span class="info-note"><p>Results will be emailed after each test.</p>
+							<p>Separate email addresses by space, comma or semicolon.</p></span>
+					</li>
+					<li class="form__item-checkbox">
+						{{render_field(form_pub_test.start_checkbox, 'form__item', 'form__label')}}
+						{{render_field(form_pub_test.test_start, 'form__item dmy-width', None)}}
+					</li>
+					<li class="form__item-checkbox">
+						{{render_field(form_pub_test.end_checkbox, 'form__item', 'form__label')}}
+						{{render_field(form_pub_test.test_end, 'form__item dmy-width', None)}}
+						{% if form_pub_test.test_end.data %}
+						<span class="info-note wide">Unchecking the tick-box will restart testing.</span>
+						{% endif %}
+					</li>
+					<li class="form__item-checkbox">
+						{{render_field(form_pub_test.route_note_checkbox, 'form__item', 'form__label')}}
+					{% if form_pub_test.in_test.data -%}
+						<span class="info-note top">
+						Submissions without fatal errors will be routed to <i>Jisc-auto</i> test repositories only.
+						<p>Tick only when you are confident most notifications are OK.</p>
+					{%- else -%}
+						<span class="info-note wide">
+						Available when auto-testing is in progress.
+					{%- endif %}
+						</span>
+					</li>
+				</ul>
+				{% if curr_user_is_not_readonly %}<button class="gap-vert btn btn--3d btn--primary" id="update_test" type="submit">Update</button>{% endif %}
+			</div>
+			<hr class="gap-vert">
+			<h3>Testing progress</h3>
+			<div>
+				<ul class="form-fields">
+					<li class="form__item">
+						{{render_field(form_pub_test.num_err_tests, 'form__item dmy-width', 'form__label')}}
+						{{render_field(form_pub_test.last_error, 'form__item dmy-width', 'form__label')}}
+					</li>
+					<li class="form__item">
+						{{render_field(form_pub_test.num_ok_tests, 'form__item dmy-width', 'form__label')}}
+						{{render_field(form_pub_test.last_ok, 'form__item dmy-width', 'form__label')}}
+					</li>
+					<li class="form__item">
+						{{render_field(form_pub_test.num_ok_since_last_err, 'form__item dmy-width', 'form__label')}}
+					</li>
+				</ul>
+			</div>
+			<div>
+				<p>
+					<br>
+					<a target="_blank" href="{{url_for('account.test_history', pub_uuid=org_acc.uuid)}}">View test history</a>
+					<span class="open-new"></span>
+				</p>
+
+			</div>
+		</form>
+	</div>

@@ -1,0 +1,201 @@
+{% extends "base.html" %}a
+{% block content %}
+
+<div class="row cms">
+	<h1 id="stickme">{{title}}</h1>
+	<div class="col span-12 cms">
+		<div class="row">
+			<form id="filters" method="GET" action="" class="form">
+				<p class="info-note">Select different options to change the listed users (hover over the labels for more information).</p>
+				<div class="col span-2 small-gap-vert">
+					{# Checkboxes for controlling Org Roles to list #}
+					<fieldset class="form">
+						<legend class="visuallyhidden">Organisation Types</legend>
+						<input id="ot1" type="checkbox" name="org_types" value="R">
+						<label for="ot1" class="txt-bottom" title="Include users of repository organisations">Repository</label><br>
+						<input id="ot2" class="" type="checkbox" name="org_types" value="P">
+						<label for="ot2" class="txt-bottom" title="Include users of publisher organisations">Publisher</label><br>
+						<input id="ot3" class="" type="checkbox" name="org_types" value="A">
+						<label for="ot3" class="txt-bottom" title="Include users of YOUR-ORG admin organisation">Admin org</label>
+					</fieldset>
+				</div>
+				<div class="col span-2 small-gap-vert">
+					{# Checkboxes for controlling Live or Test Orgs to list #}
+					<fieldset class="form">
+						<legend class="visuallyhidden">Live or Test</legend>
+						<input id="lt1" type="checkbox" name="live_test" value="L">
+						<label for="lt1" class="txt-bottom" title="Include users of Live organisation accounts">Org Live</label><br>
+						<input id="lt2" class="" type="checkbox" name="live_test" value="T">
+						<label for="lt2" class="txt-bottom" title="Include users of Test organisation accounts">Org Test</label>
+					</fieldset>
+				</div>
+				<div class="col span-2 small-gap-vert">
+					{# Checkbox buttons for controlling On/OFf/Deleted #}
+					<fieldset class="form">
+						<legend class="visuallyhidden">On or Off or Deleted</legend>
+						<input id="doo1" type="checkbox" name="del_on_off" value="O">
+						<label for="doo1" class="txt-bottom" title="Include users of organisation accounts switched ON">Org On</label><br>
+						<input id="doo2" class="" type="checkbox" name="del_on_off" value="F">
+						<label for="doo2" class="txt-bottom" title="Include users of organisation accounts switched OFF">Org Off</label><br>
+						<input id="doo3" class="" type="checkbox" name="del_on_off" value="D">
+						<label for="doo3" class="txt-bottom" title="Include deleted users">User Deleted</label>
+					</fieldset>
+				</div>
+				<div class="col span-2 small-gap-vert">
+					{# Checkboxes for controlling user roles to list #}
+					<fieldset class="form">
+						<legend class="visuallyhidden">User roles</legend>
+						<input id="rc1" type="checkbox" name="role_codes" value="R">
+						<label for="rc1" class="txt-bottom" title="Include read-only users">Read-only</label><br>
+						<input id="rc2" class="" type="checkbox" name="role_codes" value="S">
+						<label for="rc2" class="txt-bottom" title="Include standard users">Standard</label><br>
+						<input id="rc3" class="" type="checkbox" name="role_codes" value="A">
+						<label for="rc3" class="txt-bottom" title="Include organisation admin users">Org admin</label><br>
+						<input id="rc4" class="" type="checkbox" name="role_codes" value="J">
+						<label for="rc4" class="txt-bottom" title="Include YOUR-ORG admin users (only for Admin org)">YOUR-ORG admin</label><br>
+						<input id="rc5" class="" type="checkbox" name="role_codes" value="D">
+						<label for="rc5" class="txt-bottom" title="Include Jisc developer users (only for Admin org)">Developer</label>
+					</fieldset>
+				</div>
+				<button class="small-gap-vert btn btn--3d btn--primary" type="submit">Refresh</button>
+			</form>
+		</div>
+		{% if user_acs %}
+		<div>
+			<a class="btn btn--3d btn--primary no-underline download" href="{{csv_link}}" role="button" title="CSV fields:   Org type,  Org status,  Org name,  Live date,  Surname,  Firstname,  User's role,  Email,  Router role,  Deleted timestamp.">Download CSV file of {{user_acs|length}} users listed below</a>
+		</div>
+		{% endif %}
+
+		<table data-rwdtable-sortable data-sortable-col-zero class="content-table" id="user_acs">
+			<thead>
+				<tr class="no-decoration">
+					<th data-sort-default class="persist essential">Org Type</th>
+					<th class="persist essential">Status</th>
+					<th class="persist essential">Organisation</th>
+					<th class="optional">Org Live Date</th>
+					<th class="persist essential">User Type</th>
+					<th class="persist essential">User's Name</th>
+					<th class="optional">User's Role</th>
+					<th class="persist essential">Username</th>
+					<th class="optional">User Email</th>
+					<th class="optional" title="User ID">ID</th>
+					<th class="optional">User UUID</th>
+					<th class="optional">User Deleted</th>
+					<th class="optional">Last login</th>
+					<th class="optional">Last failed login</th>
+					<th class="optional">Failed tries</th>
+					<th class="persist essential">Manage</th>
+				</tr>
+			</thead>
+
+			<tbody>
+			{% for user in user_acs %}
+				{% set org_acc = user.acc_org %}
+				{% set org_name = org_acc.org_name | string %}
+				{% set org_raw_role = org_acc.raw_role %}
+				{% set live_date = org_acc.live_date %}
+				{% set surname = user.surname %}
+				{% set org_status = "Deleted" if org_acc.deleted_date else "Off" if org_acc.status == 0 else "On" %}
+				{% set user_deleted = user.deleted_date or "" %}
+				{% set sort_str = make_sortable_str(org_name, surname, lengths=[30, 12]) %}
+				<tr class="">
+					<td data-sort-value="{{org_raw_role + sort_str}}">{{org_acc.role_short_desc(org_raw_role)}}</td>
+					<td data-sort-value="{{org_status[1] + sort_str}}">{{org_status}}</td>
+					<td data-sort-value="{{sort_str}}">{{org_name}}</td>
+					<td>{{live_date[:10] if live_date else "Test"}}</td>
+					<td class="no-wrap" data-sort-value="{{user.role_code + sort_str}}">{{user.role_short_desc}}</td>
+					<td>{{user.forename}} {{surname}}</td>
+					<td>{{user.org_role}}</td>
+					<td>{{user.username}}</td>
+					<td>{{user.get_email()}}</td>
+					<td data-sort-value="{{user.id}}">{{user.id}}</td>
+					<td>{{user.uuid}}</td>
+					<td>{{user_deleted[:10]}}</td>
+					<td>{{user.last_login_datetime_str}}</td>
+					<td>{{user.last_failed_login_datetime_str}}</td>
+					<td>{{user.failed_login_count}}</td>
+					<td><a class="nav-btn btn--3d" title="Manage user" href="{{url_for('account.user_account', org_uuid=org_acc.uuid, user_uuid=user.uuid)}}" role="button">View</a>&nbsp;<a class="gap-left-5 nav-btn btn--3d" title="Display organisation users" href="{{url_for('account.list_org_users', org_uuid=org_acc.uuid)}}" role="button">U</a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{% if user_acs %}
+		<div>
+			<a class="btn btn--3d btn--primary no-underline download" href="{{csv_link}}" role="button" >Download CSV file of {{user_acs|length}} users listed above</a>
+			<p class="info-note under">CSV fields:&nbsp; Org type,&nbsp; Org status,&nbsp; Org name,&nbsp; Live date,&nbsp; Surname,&nbsp; Firstname,&nbsp; User's role,&nbsp; Email,&nbsp; Router role,&nbsp; Deleted timestamp.</p>
+		</div>
+		{% else %}
+		<p>No users matched the selected options.</p>
+		{% endif %}
+
+	</div>
+</div>
+{% endblock %} 
+{% block extra_js_bottom %}
+<script type="text/javascript" >
+	const $filterForm = $("#filters");
+	const urlObj = window.location;
+	const parts = urlObj.href.split('?');
+	const url = parts[0];
+	// Defaults
+	const defaultObj = {
+		del_on_off: 'O',
+		role_codes: 'RSA',
+		org_types: 'RP',
+		live_test: 'LT'
+	}
+	/**
+	*	Initialise filtersObj from passed URL query params
+	**/
+	let filtersObj = structuredClone(defaultObj);
+	// If we have query string, split it into separate param segments & create object from parameters
+	if (parts.length > 1) {
+		// split query string on each '&'
+		for(const q of parts[1].split('&')){
+			param = q.split('=');
+			filtersObj[param[0]] = param[1];
+		}
+	}
+
+	/**
+	*	Set filter checkboxes
+	**/
+	$filterForm.find("input:checkbox").each(function(){
+		if(filtersObj[this.name].includes(this.value)) {
+			this.checked = true;
+		}
+	});
+	/** -- Commented OUT
+	*	Set filter radio buttons
+	$filterForm.find("input:radio").each(function(){
+	 	if(this.value == filtersObj[this.name]) {
+	 		this.checked = true;
+	 	}
+	});
+	**/
+
+
+	/**
+	*	Code to Submit the filters form
+	**/
+	$filterForm.on("submit", function(e){
+		e.preventDefault();		// Don't perform default Form submission
+
+		filtersObj = {del_on_off: "", role_codes: "", org_types: "", live_test: ""};
+		$filterForm.find("input:checked").each(function(){
+			filtersObj[this.name] += this.value;
+		});
+		// Set defaults if nothing checked
+		for(let k of ['del_on_off', 'role_codes', 'org_types', 'live_test']) {
+			// console.log(k, "->", filtersObj[k], "def:", defaultObj[k]);
+		    if (filtersObj[k] === ''){
+		    	filtersObj[k] = defaultObj[k];
+		    }
+		}
+		const newURL = url + "?" + $.param(filtersObj);
+		// Default behaviour of form is to not re-submit if nothing has changed
+		(newURL === url) ? window.location.reload() : window.location.replace(newURL);
+	});
+
+</script>
+{% endblock extra_js_bottom %}

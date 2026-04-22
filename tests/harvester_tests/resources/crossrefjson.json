@@ -1,0 +1,601 @@
+{
+	"indexed": {
+		"date-parts": [[2017, 4, 3]],
+		"date-time": "2017-04-03T10:13:47Z",
+		"timestamp": 1491214427656
+	},
+	"reference-count": 51,
+	"publisher": "Wiley-Blackwell",
+	"license": [{
+			"URL": "http://doi.wiley.com/10.1002/tdm_license_1",
+			"start": {
+				"date-parts": [[2017, 1, 1]],
+				"date-time": "2017-01-01T00:00:00Z",
+				"timestamp": 1483228800000
+			},
+			"delay-in-days": 0,
+			"content-version": "tdm"
+		}, {
+			"URL": "http://creativecommons.org/licenses/by/4.0/",
+			"start": {
+				"date-parts": [[2017, 3, 11]],
+				"date-time": "2017-03-11T00:00:00Z",
+				"timestamp": 1489190400000
+			},
+			"delay-in-days": 69,
+			"content-version": "vor"
+		}
+	],
+	"funder": [{
+			"DOI": "10.13039/501100000270",
+			"name": "Natural Environment Research Council",
+			"doi-asserted-by": "publisher",
+			"award": ["NE/L005212/1", "NE/L005212/2"]
+		}
+	],
+	"content-domain": {
+		"domain": [],
+		"crossmark-restriction": false
+	},
+	"short-container-title": ["Geophys. Res. Lett."],
+	"published-print": {
+		"date-parts": [[2017]]
+	},
+	"DOI": "10.1002/2017gl072514",
+	"type": "journal-article",
+	"created": {
+		"date-parts": [[2017, 3, 1]],
+		"date-time": "2017-03-01T09:56:44Z",
+		"timestamp": 1488362204000
+	},
+	"source": "Crossref",
+	"is-referenced-by-count": 0,
+	"title": ["The sensitivity of West Antarctica to the submarine melting feedback"],
+	"abstract": "<jats:title>Abstract</jats:title><jats:p> <jats:bold>Objectives:</jats:bold> The Addenbrooke’s Cognitive Examination (ACE) is a common cognitive screening test for dementia. Here, we examined the relationship between the most recent version (ACE-III) and its predecessor (ACE-R), determined ACE-III cutoff scores for the detection of dementia, and explored its relationship with functional ability. <jats:bold>Methods:</jats:bold> Study 1 included 199 dementia patients and 52 healthy controls who completed the ACE-III and ACE-R. ACE-III total and domain scores were regressed on their corresponding ACE-R values to obtain conversion formulae. Study 2 included 331 mixed dementia patients and 87 controls to establish the optimal ACE-III cutoff scores for the detection of dementia using receiver operator curve analysis. Study 3 included 194 dementia patients and their carers to investigate the relationship between ACE-III total score and functional ability. <jats:bold>Results:</jats:bold> Study 1: ACE-III and ACE-R scores differed by ≤1 point overall, the magnitude varying according to dementia type. Study 2: a new lower bound cutoff ACE-III score of 84/100 to detect dementia was identified (compared with 82 for the ACE-R). The upper bound cutoff score of 88/100 was retained. Study 3: ACE-III scores were significantly related to functional ability on the Clinical Dementia Rating Scale across all dementia syndromes, except for semantic dementia. <jats:bold>Conclusions:</jats:bold> This study represents one of the largest and most clinically diverse investigations of the ACE-III. Our results demonstrate that the ACE-III is an acceptable alternative to the ACE-R. In addition, ACE-III performance has broader clinical implications in that it relates to carer reports of functional impairment in most common dementias. (<jats:italic>JINS</jats:italic>, 2018, <jats:italic>24</jats:italic>, 854–863)</jats:p>",
+	"prefix": "10.1002",
+	"author": [{
+			"ORCID": "http://orcid.org/0000-0002-3762-8219",
+			"authenticated-orcid": false,
+			"given": "Robert J.",
+			"family": "Arthern",
+			"affiliation": [{
+					"name": "British Antarctic Survey; Natural Environment Research Council; Cambridge UK"
+				}
+			]
+		}, {
+			"ORCID": "http://orcid.org/0000-0002-8131-4946",
+			"authenticated-orcid": false,
+			"given": "C. Rosie",
+			"family": "Williams",
+			"affiliation": [{
+					"name": "British Antarctic Survey; Natural Environment Research Council; Cambridge UK"
+				}
+			]
+		}
+	],
+	"member": "311",
+	"published-online": {
+		"date-parts": [[2017, 3, 11]]
+	},
+	"reference": [{
+			"issue": "7",
+			"key": "10.1002/2017GL072514-BIB0001|grl55603-cit-0001",
+			"first-page": "549",
+			"DOI": "10.1038/ngeo2731",
+			"article-title": "Southern Ocean warming delayed by circumpolar upwelling and equatorward transport",
+			"volume": "9",
+			"author": "Armour",
+			"year": "2016",
+			"journal-title": "Nat. Geosci."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0002|grl55603-cit-0002",
+			"author": "Arthern",
+			"volume": "111",
+			"year": "2006",
+			"article-title": "Antarctic snow accumulation mapped using polarization of 4.3-cm wavelength microwave emission",
+			"journal-title": "J. Geophys. Res.",
+			"DOI": "10.1029/2004JD005667"
+		}, {
+			"issue": "229",
+			"key": "10.1002/2017GL072514-BIB0003|grl55603-cit-0003",
+			"first-page": "947",
+			"DOI": "10.3189/2015JoG15J050",
+			"article-title": "Exploring the use of transformation group priors and the method of maximum relative entropy for Bayesian glaciological inversions",
+			"volume": "61",
+			"author": "Arthern",
+			"year": "2015",
+			"journal-title": "J. Glaciol."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0004|grl55603-cit-0004",
+			"first-page": "1171",
+			"DOI": "10.1002/2014JF003239",
+			"article-title": "Flow speed within the Antarctic ice sheet and its controls inferred from satellite observations",
+			"volume": "120",
+			"author": "Arthern",
+			"year": "2015",
+			"journal-title": "J. Geophys. Res. Earth Surface"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0005|grl55603-cit-0005",
+			"first-page": "9859",
+			"DOI": "10.5194/gmdd-8-9859-2015",
+			"article-title": "Experimental design for three interrelated marine ice-sheet and ocean model intercomparison projects",
+			"volume": "8",
+			"author": "Asay-Davis",
+			"year": "2015",
+			"journal-title": "Geosci. Model Dev. Discuss."
+		}, {
+			"issue": "4",
+			"key": "10.1002/2017GL072514-BIB0006|grl55603-cit-0006",
+			"first-page": "424",
+			"DOI": "10.1038/nclimate1778",
+			"article-title": "An expert judgement assessment of future sea level rise from the ice sheets",
+			"volume": "3",
+			"author": "Bamber",
+			"year": "2013",
+			"journal-title": "Nat. Clim. Change"
+		}, {
+			"issue": "5929",
+			"key": "10.1002/2017GL072514-BIB0007|grl55603-cit-0007",
+			"first-page": "901",
+			"DOI": "10.1126/science.1169335",
+			"article-title": "Reassessment of the potential sea-level rise from a collapse of the West Antarctic Ice Sheet",
+			"volume": "324",
+			"author": "Bamber",
+			"year": "2009",
+			"journal-title": "Science"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0008|grl55603-cit-0008",
+			"first-page": "37",
+			"DOI": "10.1017/jog.2016.7",
+			"article-title": "The control of an uncharted pinning point on the flow of an Antarctic ice shelf",
+			"volume": "62",
+			"author": "Berger",
+			"year": "2016",
+			"journal-title": "J. Glaciol."
+		}, {
+			"issue": "138",
+			"key": "10.1002/2017GL072514-BIB0009|grl55603-cit-0009",
+			"first-page": "333",
+			"article-title": "Velocity and stress-fields in grounded glaciers-A simple algorithm for including deviatoric stress gradients",
+			"volume": "41",
+			"author": "Blatter",
+			"year": "1995",
+			"journal-title": "J. Glaciol."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0010|grl55603-cit-0010",
+			"author": "Bueler",
+			"volume": "114",
+			"year": "2009",
+			"article-title": "Shallow shelf approximation as a “sliding law” in a thermomechanically coupled ice sheet model",
+			"journal-title": "J. Geophys. Res.",
+			"DOI": "10.1029/2008JF001179"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0011|grl55603-cit-0011",
+			"author": "Church",
+			"year": "2013",
+			"volume-title": "Sea Level Change. In Climate Change 2013: The Physical Science Basis. Contribution of Working Group I to the Fifth Assessment Report of the Intergovernmental Panel on Climate Change"
+		}, {
+			"issue": "2",
+			"key": "10.1002/2017GL072514-BIB0012|grl55603-cit-0012",
+			"first-page": "1887",
+			"DOI": "10.5194/tcd-9-1887-2015",
+			"article-title": "Century-scale simulations of the response of the West Antarctic Ice Sheet to a warming climate",
+			"volume": "9",
+			"author": "Cornford",
+			"year": "2015",
+			"journal-title": "Cryosphere Discuss."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0013|grl55603-cit-0013",
+			"first-page": "591",
+			"article-title": "Contribution of Antarctica to past and future sea-level rise",
+			"volume": "531",
+			"author": "DeConto",
+			"year": "2016",
+			"journal-title": "Nature"
+		}, {
+			"issue": "7469",
+			"key": "10.1002/2017GL072514-BIB0014|grl55603-cit-0014",
+			"first-page": "89",
+			"DOI": "10.1038/nature12567",
+			"article-title": "Calving fluxes and basal melt rates of Antarctic ice shelves",
+			"volume": "502",
+			"author": "Depoorter",
+			"year": "2013",
+			"journal-title": "Nature"
+		}, {
+			"issue": "2",
+			"key": "10.1002/2017GL072514-BIB0015|grl55603-cit-0015",
+			"first-page": "117",
+			"DOI": "10.1038/nclimate2094",
+			"article-title": "Retreat of Pine Island Glacier controlled by marine ice-sheet instability",
+			"volume": "4",
+			"author": "Favier",
+			"year": "2014",
+			"journal-title": "Nat. Clim. Change"
+		}, {
+			"issue": "46",
+			"key": "10.1002/2017GL072514-BIB0016|grl55603-cit-0016",
+			"first-page": "14,191",
+			"DOI": "10.1073/pnas.1512482112",
+			"article-title": "Collapse of the West Antarctic Ice Sheet after local destabilization of the Amundsen Basin",
+			"volume": "112",
+			"author": "Feldmann",
+			"year": "2015",
+			"journal-title": "Proc. Natl. Acad. Sci. U.S.A."
+		}, {
+			"issue": "1",
+			"key": "10.1002/2017GL072514-BIB0017|grl55603-cit-0017",
+			"first-page": "375",
+			"DOI": "10.5194/tc-7-375-2013",
+			"article-title": "Bedmap2: Improved ice bed, surface and thickness datasets for Antarctica",
+			"volume": "7",
+			"author": "Fretwell",
+			"year": "2013",
+			"journal-title": "Cryosphere"
+		}, {
+			"issue": "5",
+			"key": "10.1002/2017GL072514-BIB0018|grl55603-cit-0018",
+			"first-page": "479",
+			"article-title": "The safety band of Antarctic ice shelves",
+			"volume": "6",
+			"author": "Fürst",
+			"year": "2016",
+			"journal-title": "Nat. Clim. Change"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0019|grl55603-cit-0019",
+			"author": "Gagliardini",
+			"volume": "14",
+			"year": "2010",
+			"article-title": "Coupling of ice-shelf melting and buttressing is a key process in ice-sheets dynamics",
+			"journal-title": "Geophys. Res. Lett.",
+			"DOI": "10.1029/2010GL043334"
+		}, {
+			"issue": "60",
+			"key": "10.1002/2017GL072514-BIB0020|grl55603-cit-0020",
+			"first-page": "97",
+			"DOI": "10.3189/2012AoG60A148",
+			"article-title": "Resolution requirements for grounding-line modelling: Sensitivity to basal drag and ice-shelf buttressing",
+			"volume": "53",
+			"author": "Gladstone",
+			"year": "2012",
+			"journal-title": "Ann. Glaciol."
+		}, {
+			"issue": "201",
+			"key": "10.1002/2017GL072514-BIB0021|grl55603-cit-0021",
+			"first-page": "157",
+			"article-title": "A variationally derived, depth-integrated approximation to a higher-order glaciological flow model",
+			"volume": "57",
+			"author": "Goldberg",
+			"year": "2011",
+			"journal-title": "J. Glaciol."
+		}, {
+			"issue": "7573",
+			"key": "10.1002/2017GL072514-BIB0022|grl55603-cit-0022",
+			"first-page": "421",
+			"DOI": "10.1038/nature15706",
+			"article-title": "The multi-millennial Antarctic commitment to future sea-level rise",
+			"volume": "526",
+			"author": "Golledge",
+			"year": "2015",
+			"journal-title": "Nature"
+		}, {
+			"issue": "6",
+			"key": "10.1002/2017GL072514-BIB0023|grl55603-cit-0023",
+			"first-page": "1497",
+			"DOI": "10.5194/tc-6-1497-2012",
+			"article-title": "The stability of grounding lines on retrograde slopes",
+			"volume": "6",
+			"author": "Gudmundsson",
+			"year": "2012",
+			"journal-title": "The Cryosphere"
+		}, {
+			"issue": "7397",
+			"key": "10.1002/2017GL072514-BIB0024|grl55603-cit-0024",
+			"first-page": "225",
+			"DOI": "10.1038/nature11064",
+			"article-title": "Twenty-first-century warming of a large Antarctic ice-shelf cavity by a redirected coastal current",
+			"volume": "485",
+			"author": "Hellmer",
+			"year": "2012",
+			"journal-title": "Nature"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0025|grl55603-cit-0025",
+			"first-page": "1409",
+			"DOI": "10.1002/grl.50287",
+			"article-title": "Southern Ocean bottom water characteristics in CMIP5 models",
+			"volume": "40",
+			"author": "Heuz",
+			"year": "2013",
+			"journal-title": "Geophys. Res. Lett."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0026|grl55603-cit-0026",
+			"author": "Jaynes",
+			"year": "2003",
+			"volume-title": "Probability Theory : The Logic of Science"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0027|grl55603-cit-0027",
+			"author": "Joughin",
+			"volume": "37",
+			"year": "2010",
+			"article-title": "Sensitivity of 21st century sea level to ocean-induced thinning of Pine Island Glacier, Antarctica",
+			"journal-title": "Geophys. Res. Lett.",
+			"DOI": "10.1029/2010GL044819"
+		}, {
+			"issue": "6185",
+			"key": "10.1002/2017GL072514-BIB0028|grl55603-cit-0028",
+			"first-page": "735",
+			"DOI": "10.1126/science.1249055",
+			"article-title": "Marine ice sheet collapse potentially under way for the Thwaites Glacier Basin, West Antarctica",
+			"volume": "344",
+			"author": "Joughin",
+			"year": "2014",
+			"journal-title": "Science"
+		}, {
+			"issue": "111",
+			"key": "10.1002/2017GL072514-BIB0029|grl55603-cit-0029",
+			"first-page": "267",
+			"article-title": "Stress-gradient coupling in glacier flow: I. Longitudinal averaging of the influence of ice thickness and surface slope",
+			"volume": "32",
+			"author": "Kamb",
+			"year": "1986",
+			"journal-title": "J. Glaciol."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0030|grl55603-cit-0030",
+			"author": "Khazendar",
+			"volume": "7",
+			"year": "2016",
+			"article-title": "Rapid submarine ice melting in the grounding zones of ice shelves in West Antarctica",
+			"journal-title": "Nat. Commun."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0031|grl55603-cit-0031",
+			"first-page": "247",
+			"article-title": "An improved Antarctic dataset for high resolution numerical ice sheet models (ALBMAP v1)",
+			"volume": "2",
+			"author": "Le Brocq",
+			"year": "2010",
+			"journal-title": "Earth Syst. Sci. Data"
+		}, {
+			"issue": "6",
+			"key": "10.1002/2017GL072514-BIB0032|grl55603-cit-0032",
+			"first-page": "1786",
+			"DOI": "10.1073/pnas.0705414105",
+			"article-title": "Tipping elements in the Earth's climate system",
+			"volume": "105",
+			"author": "Lenton",
+			"year": "2008",
+			"journal-title": "Proc. Natl. Acad. Sci."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0033|grl55603-cit-0033",
+			"first-page": "638",
+			"DOI": "10.1002/jgrf.20044",
+			"article-title": "Dynamic (in)stability of Thwaites Glacier, West Antarctica",
+			"volume": "118",
+			"author": "Parizek",
+			"year": "2013",
+			"journal-title": "J. Geophys. Res. Earth Surface"
+		}, {
+			"issue": "162",
+			"key": "10.1002/2017GL072514-BIB0034|grl55603-cit-0034",
+			"first-page": "467",
+			"DOI": "10.3189/172756502781831278",
+			"article-title": "Transient glacier response with a higher-order numerical ice-flow model",
+			"volume": "48",
+			"author": "Pattyn",
+			"year": "2002",
+			"journal-title": "J. Glaciol."
+		}, {
+			"issue": "3-4",
+			"key": "10.1002/2017GL072514-BIB0035|grl55603-cit-0035",
+			"first-page": "451",
+			"DOI": "10.1016/j.epsl.2010.04.025",
+			"article-title": "Antarctic subglacial conditions inferred from a hybrid ice sheet/ice stream model",
+			"volume": "295",
+			"author": "Pattyn",
+			"year": "2010",
+			"journal-title": "Earth Planet. Sci. Lett."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0036|grl55603-cit-0036",
+			"first-page": "F02004",
+			"DOI": "10.1029/2005JF000394",
+			"article-title": "Role of transition zones in marine ice sheet dynamics",
+			"volume": "111",
+			"author": "Pattyn",
+			"year": "2006",
+			"journal-title": "J. Geophys. Res."
+		}, {
+			"issue": "59",
+			"key": "10.1002/2017GL072514-BIB0037|grl55603-cit-0037",
+			"first-page": "410",
+			"DOI": "10.3189/2013JoG12J129",
+			"article-title": "Grounding-line migration in plan-view marine ice-sheet models: Results of the ice2sea MISMIP3d intercomparison",
+			"volume": "215",
+			"author": "Pattyn",
+			"year": "2013",
+			"journal-title": "J. Glaciol."
+		}, {
+			"issue": "7395",
+			"key": "10.1002/2017GL072514-BIB0038|grl55603-cit-0038",
+			"first-page": "502",
+			"article-title": "Antarctic ice-sheet loss driven by basal melting of ice shelves",
+			"volume": "484",
+			"author": "Pritchard",
+			"year": "2012",
+			"journal-title": "Nature"
+		}, {
+			"issue": "7266",
+			"key": "10.1002/2017GL072514-BIB0039|grl55603-cit-0039",
+			"first-page": "971",
+			"DOI": "10.1038/nature08471",
+			"article-title": "Extensive dynamic thinning on the margins of the Greenland and Antarctic ice sheets",
+			"volume": "461",
+			"author": "Pritchard",
+			"year": "2009",
+			"journal-title": "Nature"
+		}, {
+			"issue": "6048",
+			"key": "10.1002/2017GL072514-BIB0040|grl55603-cit-0040",
+			"first-page": "1427",
+			"DOI": "10.1126/science.1208336",
+			"article-title": "Ice flow of the Antarctic ice sheet",
+			"volume": "333",
+			"author": "Rignot",
+			"year": "2011",
+			"journal-title": "Science"
+		}, {
+			"issue": "6143",
+			"key": "10.1002/2017GL072514-BIB0041|grl55603-cit-0041",
+			"first-page": "266",
+			"DOI": "10.1126/science.1235798",
+			"article-title": "Ice-shelf melting around Antarctica",
+			"volume": "341",
+			"author": "Rignot",
+			"year": "2013",
+			"journal-title": "Science"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0042|grl55603-cit-0042",
+			"first-page": "3502",
+			"DOI": "10.1002/2014GL060140",
+			"article-title": "Widespread, rapid grounding line retreat of Pine Island, Thwaites, Smith, and Kohler glaciers, West Antarctica, from 1992 to 2011",
+			"volume": "41",
+			"author": "Rignot",
+			"year": "2014",
+			"journal-title": "Geophys. Res. Lett."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0043|grl55603-cit-0043",
+			"first-page": "115",
+			"DOI": "10.1038/nature16147",
+			"article-title": "Potential sea-level rise from Antarctic ice-sheet instability constrained by observations",
+			"volume": "528",
+			"author": "Ritz",
+			"year": "2015",
+			"journal-title": "Nature"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0044|grl55603-cit-0044",
+			"first-page": "27",
+			"DOI": "10.1017/S0022112006003570",
+			"article-title": "Marine ice-sheet dynamics. Part 1. The case of rapid sliding",
+			"volume": "573",
+			"author": "Schoof",
+			"year": "2007a",
+			"journal-title": "J. Fluid Mech."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0045|grl55603-cit-0045",
+			"author": "Schoof",
+			"volume": "112",
+			"year": "2007b",
+			"article-title": "Ice sheet grounding line dynamics: Steady states, stability, and hysteresis",
+			"journal-title": "J. Geophys. Res.",
+			"DOI": "10.1029/2006JF000664"
+		}, {
+			"issue": "1",
+			"key": "10.1002/2017GL072514-BIB0046|grl55603-cit-0046",
+			"first-page": "73",
+			"DOI": "10.1093/qjmam/hbp025",
+			"article-title": "Thin-Film Flows with Wall Slip: An asymptotic analysis of higher order glacier flow models",
+			"volume": "63",
+			"author": "Schoof",
+			"year": "2010",
+			"journal-title": "Q. J. Mech. Appl. Math."
+		}, {
+			"issue": "6",
+			"key": "10.1002/2017GL072514-BIB0047|grl55603-cit-0047",
+			"first-page": "2075",
+			"DOI": "10.5194/tc-8-2075-2014",
+			"article-title": "Hydrostatic grounding line parameterization in ice sheet models",
+			"volume": "8",
+			"author": "Seroussi",
+			"year": "2014",
+			"journal-title": "The Cryosphere"
+		}, {
+			"issue": "7635",
+			"key": "10.1002/2017GL072514-BIB0048|grl55603-cit-0048",
+			"first-page": "77",
+			"article-title": "Sub-ice-shelf sediments record history of twentieth-century retreat of pine island glacier",
+			"volume": "541",
+			"author": "Smith",
+			"year": "2017",
+			"journal-title": "Nature"
+		}, {
+			"issue": "2",
+			"key": "10.1002/2017GL072514-BIB0049|grl55603-cit-0049",
+			"first-page": "412",
+			"DOI": "10.1016/j.jcp.2004.12.013",
+			"article-title": "An adaptive multilevel wavelet collocation method for elliptic problems",
+			"volume": "206",
+			"author": "Vasilyev",
+			"year": "2005",
+			"journal-title": "J. Comp. Phys."
+		}, {
+			"key": "10.1002/2017GL072514-BIB0050|grl55603-cit-0050",
+			"author": "Walker",
+			"volume": "35",
+			"year": "2008",
+			"article-title": "Effects of basal-melting distribution on the retreat of ice-shelf grounding lines",
+			"journal-title": "Geophys. Res. Lett.",
+			"DOI": "10.1029/2008GL034947"
+		}, {
+			"key": "10.1002/2017GL072514-BIB0051|grl55603-cit-0051",
+			"first-page": "3",
+			"article-title": "Stability of the junction between an ice sheet and an ice shelf",
+			"volume": "13",
+			"author": "Weertman",
+			"year": "1974",
+			"journal-title": "J. Glaciol."
+		}
+	],
+	"container-title": ["Geophysical Research Letters"],
+	"original-title": [],
+	"link": [{
+			"URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2F2017GL072514",
+			"content-type": "application/pdf",
+			"content-version": "vor",
+			"intended-application": "text-mining"
+		}
+	],
+	"deposited": {
+		"date-parts": [[2017, 3, 12]],
+		"date-time": "2017-03-12T00:22:43Z",
+		"timestamp": 1489278163000
+	},
+	"score": 1,
+	"subtitle": ["WEST ANTARCTIC SUBMARINE MELT FEEDBACK"],
+	"short-title": [],
+	"issued": {
+		"date-parts": [[2017]]
+	},
+	"references-count": 51,
+	"URL": "http://dx.doi.org/10.1002/2017gl072514",
+	"archive": ["Portico"],
+	"relation": {
+		"cites": []
+	},
+	"ISSN": ["0094-8276"],
+	"issn-type": [{
+			"value": "0094-8276",
+			"type": "print"
+		}
+	],
+	"subject": ["Earth and Planetary Sciences(all)", "Geophysics"],
+	"assertion": [
+		{
+		"value": "2017-01-22",
+		"order": 1,
+		"name": "accepted",
+		"label": "Accepted",
+		"group": {
+			"name": "publication_history",
+			"label": "Publication History"
+		}
+		},
+		{
+		"value": "2017-03-11",
+		"order": 2,
+		"name": "published",
+		"label": "Published",
+		"group": {
+			"name": "publication_history",
+			"label": "Publication History"
+		}
+		}
+	]
+}

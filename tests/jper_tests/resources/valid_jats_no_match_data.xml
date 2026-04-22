@@ -1,0 +1,169 @@
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.1d2 20140930//EN" "JATS-archivearticle1.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" article-type="review-article">
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="nlm-ta">Front Chem</journal-id>
+			<journal-id journal-id-type="iso-abbrev">Front Chem</journal-id>
+			<journal-id journal-id-type="publisher-id">Front. Chem.</journal-id>
+			<journal-title-group>
+				<journal-title>Frontiers in Chemistry</journal-title>
+			</journal-title-group>
+			<issn pub-type="epub">2296-2646</issn>
+			<publisher>
+				<publisher-name>Frontiers Media S.A.</publisher-name>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-id pub-id-type="pmcid">4365737</article-id>
+			<article-id pub-id-type="doi">10.3389/fchem.2015.00017</article-id>
+			<article-categories>
+				<subj-group subj-group-type="heading">
+					<subject>Chemistry</subject>
+					<subj-group>
+						<subject>Mini Review</subject>
+					</subj-group>
+				</subj-group>
+			</article-categories>
+			<title-group>
+				<article-title>The elusive nature and diagnostics of misfolded A&#x003b2; oligomers</article-title>
+			</title-group>
+			<contrib-group>
+				<contrib contrib-type="author" corresp="yes">
+					<name>
+						<surname>Asoli</surname>
+						<given-names>Eleonora</given-names>
+					</name>
+				</contrib>
+				<contrib contrib-type="editor">
+					<name>
+						<surname>Beebee</surname>
+						<given-names>Jane with local xref</given-names>
+					</name>
+					<aff>
+						<sup>99</sup>Beebee's very own Affiliation</aff>
+					<email>j.beebee@frontiersin.org</email>
+					<contrib-id contrib-id-type="orcid" authenticated="true">http://orcid.org/0000-0002-1825-8888</contrib-id>
+					<contrib-id contrib-id-type="scopus">123456</contrib-id>
+				</contrib>
+				<contrib contrib-type="author">
+					<name>
+						<surname>Ceecee</surname>
+						<given-names>Bob with global xref</given-names>
+					</name>
+				</contrib>
+			</contrib-group>
+			<contrib-group>
+				<contrib contrib-type="author">
+					<name>
+						<surname>Cerasoli</surname>
+						<given-names>Eleonora</given-names>
+					</name>
+				</contrib>
+				<contrib contrib-type="an author">
+					<name>
+						<surname>Ryadnov</surname>
+						<given-names>Maxim G.</given-names>
+					</name>
+				</contrib>
+				<contrib contrib-type="assisting author">
+					<name>
+						<surname>Austen</surname>
+						<given-names>Brian M.</given-names>
+					</name>
+				</contrib>
+			</contrib-group>
+			<pub-date pub-type="epub">
+				<day>19</day>
+				<month>3</month>
+				<year>2015</year>
+			</pub-date>
+			<pub-date pub-type="collection">
+				<year>2015</year>
+			</pub-date>
+			<volume>3</volume>
+			<elocation-id>17</elocation-id>
+			<history>
+				<date date-type="received">
+					<day>15</day>
+					<month>12</month>
+					<year>2014</year>
+				</date>
+				<date date-type="accepted">
+					<day>24</day>
+					<month>2</month>
+					<year>2015</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-statement>Copyright &#x000a9; 2015 Cerasoli, Ryadnov and Austen.</copyright-statement>
+				<copyright-year>2015</copyright-year>
+				<license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+					<license-p>This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). <sup>SOME SUP</sup> The use, distribution or reproduction in other forums is permitted, provided the original author(s) or licensor are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.</license-p>
+				</license>
+				<license>
+					<ali:license_ref start_date="2017-05-02">http://some-url/ok</ali:license_ref>
+				</license>
+				<ali:free_to_read start_date="2017-05-15" end_date="2017-09-15"/>
+			</permissions>
+			<abstract>
+				<p>Amyloid-beta (A&#x003b2;) peptide oligomers are believed to be the causative agents of Alzheimer's disease (AD). Though post-mortem examination shows that insoluble fibrils are deposited in the brains of AD patients in the form of intracellular (tangles) and extracellular (plaques) deposits, it has been observed that cognitive impairment is linked to synaptic dysfunction in the stages of the illness well before the appearance of these mature deposits. Increasing evidence suggests that the most toxic forms of A&#x003b2; are soluble low-oligomer ligands whose amounts better correlate with the extent of cognitive loss in patients than the amounts of fibrillar insoluble forms. Therefore, these ligands hold the key to a better understanding of AD prompting the search for clearer correlations between their structure and toxicity. The importance of such correlations and their diagnostic value for the early diagnosis of AD is discussed here with a particular emphasis on the transient nature and structural plasticity of misfolded A&#x003b2; oligomers.</p>
+			</abstract>
+			<kwd-group>
+				<kwd>A&#x003b2; oligomers</kwd>
+				<kwd>neurodegeneration</kwd>
+				<kwd>protein misfolding</kwd>
+				<kwd>fibrillogenesis</kwd>
+				<kwd>Alzheimer's disease</kwd>
+			</kwd-group>
+			<counts>
+				<fig-count count="2"/>
+				<table-count count="0"/>
+				<equation-count count="0"/>
+				<ref-count count="71"/>
+				<page-count count="6"/>
+				<word-count count="4976"/>
+			</counts>
+			<funding-group>
+				<award-group id="nih-509">
+					<funding-source country="US">NIH</funding-source>
+					<principal-award-recipient>Stanford</principal-award-recipient>
+				</award-group>
+			</funding-group>
+			<funding-group>
+				<award-group id="nsf-510">
+					<funding-source country="US">NSF</funding-source>
+					<principal-award-recipient>Berkeley</principal-award-recipient>
+				</award-group>
+				<award-group id="arda-511"  award-type="contract">
+					<funding-source country="US">ARDA ACQUAINT</funding-source>
+					<principal-award-recipient>Berkeley</principal-award-recipient>
+				</award-group>
+				<award-group id="geneentech-512" award-type="gift">
+					<funding-source country="US">Genentech Corp.</funding-source>
+					<principal-award-recipient>Berkeley</principal-award-recipient>
+				</award-group>
+			</funding-group>
+		</article-meta>
+	</front>
+	<body>
+	</body>
+	<back>
+		<glossary>
+			<def-list>
+				<title>Abbreviations</title>
+				<def-item>
+					<term>AD</term>
+					<def>
+						<p>Alzheimer's disease</p>
+					</def>
+				</def-item>
+				<def-item>
+					<term>APP</term>
+					<def>
+						<p>amyloid precursor protein</p>
+					</def>
+				</def-item>
+			</def-list>
+		</glossary>
+	</back>
+</article>

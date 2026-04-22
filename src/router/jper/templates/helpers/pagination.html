@@ -1,0 +1,76 @@
+{# Macro to render page numbers as per Jisc style #}
+{# Pagination only shown if 2 or more pages. If more than 10 pages, will get ellipsis inserted. #}
+
+{# Output <li> elements #}
+{% macro output_li(start, end, num_pages, page_num, url) %}
+	{# Set the class(es) to add to the element corresponding to the currently selected page #}
+	{% if num_pages == page_num %}
+		{% set curr_class = "pag_item--current  pag_item--last" %}
+	{% else %}
+		{% set curr_class = "pag_item--current" %}
+	{% endif %}
+
+	{% for x in range(start, end + 1) %}
+		<li class="pag_item {% if x == page_num  %}{{curr_class}}{% endif %}">
+			<a href="{{url}}&page={{x}}" aria-label="Go to page {{x}}" >{{x}}</a>
+		</li>
+	{% endfor %}
+{% endmacro %}
+
+{% macro render_pagination(num_pages, page_num, url) %}
+{% if (1 < num_pages) %}
+	<div class="pagination pag-pages">
+	  <ul class="pagination-container">
+	{% if(page_num >= 2 ) %}
+		<li class="pag_item pag_item--previous">
+		  <a href="{{ url }}&page={{page_num - 1}}" aria-label="Previous page">
+			<span class="icon icon-chevron-left icon--heavy"></span>
+			<span class="pagination__text">Previous</span>
+		  </a>
+		</li>
+	{% endif  %}
+
+	{# Output the first 2 <li> elements #}
+	{{ output_li(1, 2, num_pages, page_num, url) }}
+
+	{# Fewer than 10 pages - all page numbers are shown #}
+	{% if num_pages < 10 %}
+		{% set last_start = 3 %}
+	{% else %} {# More than 10 pages - special display with ellipses #}
+		{% set last_start = num_pages - 1 %}
+		{% if (page_num <= 5) %}
+			{% set start = 3 %}
+			{% set end = 7 %}
+		{% else %}
+			<li class="pag_item pag_item--space">&hellip;</li>
+			{% if page_num <= num_pages - 5 %}
+				{% set start = page_num - 2 %}
+				{% set end = page_num + 2 %}
+			{% else %}
+				{% set start = num_pages - 6 %}
+				{% set end = num_pages - 2 %}
+			{% endif %}
+		{% endif %}
+
+		{{ output_li(start, end, num_pages, page_num, url) }}
+
+		{% if page_num <= num_pages - 5 %}
+			<li class="pag_item pag_item--space">&hellip;</li>
+		{% endif %}
+	{% endif %}
+
+	{# Output the last elements (if any) #}
+	{{ output_li(last_start, num_pages, num_pages, page_num, url) }}
+
+	{% if (page_num < num_pages) %}
+		<li class="pag_item pag_item--next">
+		  <a href="{{ url }}&page={{ page_num + 1 }}" aria-label="Next page">
+			<span class="pagination__text">Next</span>
+			<span class="icon icon-chevron-right icon--heavy"></span>
+		  </a>
+		</li>
+	{% endif  %}
+	  </ul>
+	</div>
+{% endif  %}
+{% endmacro %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}a
+{% block content %}
+
+<div class="row cms">
+	<h1 id="stickme">Users <span class="smaller">for <a href="{{url_for('account.disp_org_acc', org_uuid=org_acc.uuid)}}">{{org_acc.org_name}}</a></span></h1>
+
+	<a class="nav-btn btn btn--3d btn--large" href="{{ url_for('account.add_user_acc', org_uuid=org_acc.uuid) }}" role="button">Add user</a>
+
+	<div class="col span-12 cms">
+		<table data-rwdtable-sortable data-sortable-col-zero class="content-table" id="user_acs">
+			<thead>
+				<tr class="no-decoration">
+					<th {% if sort_col == 1 %}data-sort-default {% endif %}class="persist essential">User Type</th>
+					<th {% if sort_col == 2 %}data-sort-default {% endif %}class="persist essential">Name</th>
+					<th class="persist essential">Username</th>
+					<th class="optional">Contact Email</th>
+					<th class="optional">ID</th>
+					<th class="optional hidden">UUID</th>
+					<th class="persist essential">Last login</th>
+					<th class="optional">Last failed login</th>
+					<th class="optional">Failed tries</th>
+					<th class="persist essential">Manage</th>
+				</tr>
+			</thead>
+
+			<tbody>
+			{% for user in user_acs %}
+				<tr class="">
+					<td>{{user.role_short_desc}}</td>
+					<td>{{user.forename}} {{user.surname}}</td>
+					<td>{{user.username}}</td>
+					<td>{{user.get_email()}}</td>
+					<td data-sort-value="{{user.id}}">{{user.id}}</td>
+					<td>{{user.uuid}}</td>
+					<td>{{user.last_login_datetime_str}}</td>
+					<td>{{user.last_failed_login_datetime_str}}</td>
+					<td>{{user.failed_login_count}}</td>
+					<td><a class="nav-btn btn--3d" href="{{url_for('account.user_account', org_uuid=org_acc.uuid, user_uuid=user.uuid)}}" role="button">Manage</a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %} 
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

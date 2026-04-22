@@ -1,0 +1,96 @@
+{# Publisher auto-testing results email template #}
+
+{% macro create_numbered_list(title, num, results_list, msg) %}
+    {% if num > 0 %}
+        <h2>{{title}}</h2>
+        <ol>
+        {% for result in results_list %}
+            <li> {{result}}</li>
+        {% endfor %}
+        </ol>
+        {% if msg %}<p>{{msg | safe}}</p>{% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro bold_num_label(num, label) %}
+    <b>{{num}} {{label}}{% if num != 1 %}s{% endif %}</b>
+{% endmacro %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+    html {
+      font-size: 100%;
+      margin: 1rem;
+    }
+    body, p, li {
+      font-family: "Tahoma", "Verdana", "HelveticaNeue", "Helvetica Neue", Arial, sans-serif;
+      font-weight: normal;
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+    h1, h2, h3 {
+      font-family: "Tahoma", "Verdana", "HelveticaNeue", "Helvetica Neue", Arial, sans-serif;
+      font-weight: bold;
+      margin: 2rem 0 1rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+    }
+    h3 {
+      font-size: 1.05rem;
+    }
+    ul, ol {
+      margin-bottom: 1.7rem;
+    }
+    /* No automatic quotation marks */
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, q:before {
+      content: open-quote;
+    }
+    blockquote:after, q:after {
+      content: close-quote;
+    }
+    blockquote {
+      font-style: normal;
+      margin: 2rem 3rem 2rem 1.5rem;
+      padding-left: 1.5rem;
+      border-left: 0.5rem solid #ddd;
+    }
+    </style>
+</head>
+<body>
+{% set num_errs = errors|length %}
+{% set num_issues = issues|length %}
+<div>
+    <h1>Validation Results {% if file_and_doi %}for {{file_and_doi}}{% endif %}</h1>
+    <p>Publications Router has validated your submission and found {{bold_num_label(num_errs, "error")}} and {{bold_num_label(num_issues, "issue")}}.</p>
+  {% if num_errs or num_issues %}
+    {{create_numbered_list("Errors", num_errs, errors, "Please aim to eliminate all errors listed above.")}}
+    {{create_numbered_list("Issues", num_issues, issues, "Please minimize the listed issues as far as possible. Although Publications Router can successfully process items with remaining issues, minimizing them will greatly improve institutions' experience.")}}
+    <br>
+    {% if route == "ftp" %}
+    <p>The error/issue descriptions above reference Publication Router's internal metadata «field.names» using dot notation.  These fields are populated from the JATS XML metadata that you have sent us. The mapping of JATS XML to Router's internal data-model is described on our <a href="https://github.com/jisc-services/Public-Documentation/blob/master/PublicationsRouter/JATS/README.md#mapping-to-routers-data-model-from-jats">JATS page</a>.</p>
+    {% endif %}
+    <p>Further information on error messages may be found on our <a href="https://github.com/jisc-services/Public-Documentation/blob/master/PublicationsRouter/api/v4/Validation.md">Validation page</a>.</p>
+  {% else %}
+    <h2>Success</h2>
+  {% endif %}
+    <br>
+    <p>Link to the <a href="{{url_for('account.test_record', pub_uuid=pub_uuid, rec_id=rec_id, api_key=api_key, _external=True)}}">online test record</a>, which includes the metadata that was captured.</p>
+    <br>
+    <p>Link to your <a href="{{url_for('account.test_history', pub_uuid=pub_uuid, api_key=api_key, _external=True)}}">submission test history</a>.</p>
+    <br>
+	<p>Regards,</p>
+    <p><i>YOUR-ORG Publications Router automated submission test process</i></p>
+    <br>
+</div>
+</body>
+</html>

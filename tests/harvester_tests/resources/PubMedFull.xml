@@ -1,0 +1,282 @@
+<PubmedArticleSet>
+	<PubmedArticle>
+		<MedlineCitation Owner="NLM" Status="In-Data-Review">
+			<PMID Version="1">26723004</PMID>
+			<DateCreated>
+				<Year>2016</Year>
+				<Month>02</Month>
+				<Day>12</Day>
+			</DateCreated>
+			<DateRevised>
+				<Year>2016</Year>
+				<Month>02</Month>
+				<Day>14</Day>
+			</DateRevised>
+			<Article PubModel="Print-Electronic">
+				<Journal>
+					<JournalIssue CitedMedium="Internet">
+						<Volume>77</Volume>
+						<PubDate>
+							<Year>2016</Year>
+							<Month>Feb</Month>
+							<Day>1</Day>
+						</PubDate>
+					</JournalIssue>
+					<Title>Behaviour research and therapy</Title>
+					<ISOAbbreviation>Behav Res Ther</ISOAbbreviation>
+				</Journal>
+				<ArticleTitle>The effects of prolonged exposure and sertraline on emotion regulation in individuals with posttraumatic stress disorder.</ArticleTitle>
+				<Pagination>
+					<StartPage>S122</StartPage>
+                    <EndPage>S125</EndPage>
+                    <MedlinePgn>S122-5</MedlinePgn>
+				</Pagination>
+				<ELocationID EIdType="doi" ValidYN="Y">10.1016/j.brat.2015.12.002</ELocationID>
+				<ELocationID EIdType="pii" ValidYN="Y">S122</ELocationID>
+				<Abstract>
+					<AbstractText>The effects of current posttraumatic stress disorder (PTSD) interventions on emotion regulation are relatively unknown. Many conceptualize PTSD as a disorder of emotion dysregulation, and clinicians often fear that emotion regulation impairments will not change with stand-alone PTSD treatments, particularly for individuals with pre-existing emotion regulation difficulties. The present study examined changes in emotion regulation (expressive suppression, cognitive reappraisal, negative mood regulation) with prolonged exposure (PE) therapy or sertraline, specifically examining whether those with higher pre-existing emotion regulation difficulties improved over treatment on these indices. Individuals with chronic PTSD (N = 200) received 10 weeks of PE or sertraline and were followed through 6-month follow-up. Emotion regulation was assessed at pre- and post-treatment and at 3- and 6-month follow-up. Individuals with poorer initial emotion regulation showed greater improvement on all indices of emotion regulation, regardless of which treatment they received. Changes occurred during active treatment and were maintained over follow-up. These findings have both theoretical and clinical implications, arguing that emotion regulation is not impaired across all individuals with PTSD and that PE and sertraline effectively address emotion regulation difficulties.</AbstractText>
+					<CopyrightInformation>Published by Elsevier Ltd.</CopyrightInformation>
+				</Abstract>
+				<AuthorList CompleteYN="Y">
+					<Author ValidYN="Y">
+						<LastName>Jerud</LastName>
+						<ForeName>Alissa B</ForeName>
+						<Initials>AB</Initials>
+						<AffiliationInfo>
+							<Affiliation>Department of Psychology, University of Washington, Guthrie Hall, Box 351525, Seattle, WA 98195-1525, United States. Electronic address: aworly@u.washington.edu.</Affiliation>
+						</AffiliationInfo>
+					</Author>
+					<Author ValidYN="Y">
+						<LastName>Pruitt</LastName>
+						<ForeName>Larry D</ForeName>
+						<Initials>LD</Initials>
+						<AffiliationInfo>
+							<Affiliation>Department of Psychology, University of Washington, Guthrie Hall, Box 351525, Seattle, WA 98195-1525, United States.</Affiliation>
+						</AffiliationInfo>
+					</Author>
+					<Author ValidYN="Y">
+						<LastName>Zoellner</LastName>
+						<ForeName>Lori A</ForeName>
+						<Initials>LA</Initials>
+						<AffiliationInfo>
+							<Affiliation>Department of Psychology, University of Washington, Guthrie Hall, Box 351525, Seattle, WA 98195-1525, United States.</Affiliation>
+						</AffiliationInfo>
+					</Author>
+					<Author ValidYN="Y">
+						<LastName>Feeny</LastName>
+						<ForeName>Norah C</ForeName>
+						<Initials>NC</Initials>
+						<Identifier Source="Test">TestId</Identifier>
+						<AffiliationInfo>
+							<Affiliation>Department of Psychological Sciences, Case Western Reserve University, Mather Memorial 103, 10900 Euclid Ave., Cleveland, OH 44106-7123, United States.</Affiliation>
+						</AffiliationInfo>
+					</Author>
+				</AuthorList>
+				<Language>eng</Language>
+				<GrantList CompleteYN="Y">
+					<Grant>
+						<GrantID>R01 MH066347</GrantID>
+						<Acronym>MH</Acronym>
+						<Agency>NIMH NIH HHS</Agency>
+						<Country>United States</Country>
+					</Grant>
+					<Grant>
+						<GrantID>R01 MH066348</GrantID>
+						<Acronym>MH</Acronym>
+						<Agency>NIMH NIH HHS</Agency>
+						<Country>United States</Country>
+					</Grant>
+				</GrantList>
+				<PublicationTypeList>
+					<PublicationType UI="D016428">Journal Article</PublicationType>
+				</PublicationTypeList>
+				<ArticleDate DateType="Electronic">
+					<Year>2015</Year>
+					<Month>12</Month>
+					<Day>10</Day>
+				</ArticleDate>
+			</Article>
+			<MedlineJournalInfo>
+				<Country>England</Country>
+				<MedlineTA>Behav Res Ther</MedlineTA>
+				<NlmUniqueID>0372477</NlmUniqueID>
+				<ISSNLinking>0005-7967</ISSNLinking>
+			</MedlineJournalInfo>
+			<CitationSubset>IM</CitationSubset>
+			<CommentsCorrectionsList>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>J Anxiety Disord. 2009 Jun;23(5):591-9</RefSource>
+					<PMID Version="1">19233609</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>CNS Neurosci Ther. 2009 Fall;15(3):255-63</RefSource>
+					<PMID Version="1">19691545</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Biol Psychiatry. 2009 Oct 1;66(7):656-64</RefSource>
+					<PMID Version="1">19589502</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Anxiety Stress Coping. 2009 Oct;22(5):571-86</RefSource>
+					<PMID Version="1">19381989</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Anxiety Stress Coping. 2010 Jan;23(1):101-18</RefSource>
+					<PMID Version="1">19326269</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Behav Ther. 2010 Sep;41(3):350-63</RefSource>
+					<PMID Version="1">20569784</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Am J Psychiatry. 2010 Aug;167(8):915-24</RefSource>
+					<PMID Version="1">20595411</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>J Trauma Stress. 2000 Apr;13(2):181-91</RefSource>
+					<PMID Version="1">10838669</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Am J Psychiatry. 2001 Dec;158(12):1982-8</RefSource>
+					<PMID Version="1">11729013</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Aust N Z J Psychiatry. 2002 Apr;36(2):198-204</RefSource>
+					<PMID Version="1">11982540</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>J Consult Clin Psychol. 2002 Oct;70(5):1067-74</RefSource>
+					<PMID Version="1">12362957</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>J Pers Soc Psychol. 2003 Aug;85(2):348-62</RefSource>
+					<PMID Version="1">12916575</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>J Pers Assess. 1990 Summer;54(3-4):546-63</RefSource>
+					<PMID Version="1">2348341</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>J Trauma Stress. 1995 Jan;8(1):75-90</RefSource>
+					<PMID Version="1">7712061</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>J Abnorm Psychol. 1997 Feb;106(1):95-103</RefSource>
+					<PMID Version="1">9103721</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Arch Gen Psychiatry. 2005 Jun;62(6):593-602</RefSource>
+					<PMID Version="1">15939837</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Ann N Y Acad Sci. 2006 Jul;1071:110-24</RefSource>
+					<PMID Version="1">16891566</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Behav Ther. 2007 Sep;38(3):303-13</RefSource>
+					<PMID Version="1">17697854</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Behav Res Ther. 2008 Jan;46(1):5-27</RefSource>
+					<PMID Version="1">18005936</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Behav Res Ther. 2008 Sep;46(9):993-1000</RefSource>
+					<PMID Version="1">18687419</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Neuroreport. 2009 Mar 4;20(4):414-8</RefSource>
+					<PMID Version="1">19223791</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Behav Ther. 2010 Dec;41(4):587-98</RefSource>
+					<PMID Version="1">21035621</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Cogn Behav Ther. 2012;41(1):5-14</RefSource>
+					<PMID Version="1">22074329</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>Drug Alcohol Depend. 2013 Feb 1;128(1-2):45-51</RefSource>
+					<PMID Version="1">22917752</PMID>
+				</CommentsCorrections>
+				<CommentsCorrections RefType="Cites">
+					<RefSource>J Consult Clin Psychol. 2014 Aug;82(4):721-30</RefSource>
+					<PMID Version="1">24708349</PMID>
+				</CommentsCorrections>
+			</CommentsCorrectionsList>
+			<OtherID Source="NLM">NIHMS747729 [Available on 02/01/17]</OtherID>
+			<OtherID Source="NLM">PMC4752860 [Available on 02/01/17]</OtherID>
+			<KeywordList Owner="NOTNLM">
+				<Keyword MajorTopicYN="N">Emotion regulation</Keyword>
+				<Keyword MajorTopicYN="N">PTSD</Keyword>
+				<Keyword MajorTopicYN="N">Prolonged exposure</Keyword>
+				<Keyword MajorTopicYN="N">Sertraline</Keyword>
+				<Keyword MajorTopicYN="N">Treatment</Keyword>
+			</KeywordList>
+			<MeshHeadingList>
+				<MeshHeading>TestKeyWord</MeshHeading>
+			</MeshHeadingList>
+		</MedlineCitation>
+		<PubmedData>
+			<History>
+				<PubMedPubDate PubStatus="received">
+					<Year>2015</Year>
+					<Month>3</Month>
+					<Day>6</Day>
+				</PubMedPubDate>
+				<PubMedPubDate PubStatus="revised">
+					<Year>2015</Year>
+					<Month>11</Month>
+					<Day>23</Day>
+				</PubMedPubDate>
+				<PubMedPubDate PubStatus="accepted">
+					<Year>2015</Year>
+					<Month>12</Month>
+					<Day>2</Day>
+				</PubMedPubDate>
+				<PubMedPubDate PubStatus="aheadofprint">
+					<Year>2015</Year>
+					<Month>12</Month>
+					<Day>10</Day>
+				</PubMedPubDate>
+				<PubMedPubDate PubStatus="entrez">
+					<Year>2016</Year>
+					<Month>1</Month>
+					<Day>2</Day>
+					<Hour>6</Hour>
+					<Minute>0</Minute>
+				</PubMedPubDate>
+				<PubMedPubDate PubStatus="pubmed">
+					<Year>2016</Year>
+					<Month>1</Month>
+					<Day>2</Day>
+					<Hour>6</Hour>
+					<Minute>0</Minute>
+				</PubMedPubDate>
+				<PubMedPubDate PubStatus="medline">
+					<Year>2016</Year>
+					<Month>1</Month>
+					<Day>2</Day>
+					<Hour>6</Hour>
+					<Minute>0</Minute>
+				</PubMedPubDate>
+				<PubMedPubDate PubStatus="pmc-release">
+					<Year>2017</Year>
+					<Month>2</Month>
+					<Day>1</Day>
+					<Hour>0</Hour>
+					<Minute>0</Minute>
+				</PubMedPubDate>
+			</History>
+			<PublicationStatus>ppublish</PublicationStatus>
+			<ArticleIdList>
+				<ArticleId IdType="pubmed">26723004</ArticleId>
+				<ArticleId IdType="pii">S0005-7967(15)30065-6</ArticleId>
+				<ArticleId IdType="doi">10.1016/j.brat.2015.12.002</ArticleId>
+				<ArticleId IdType="pmc">PMC4752860</ArticleId>
+				<ArticleId IdType="mid">NIHMS747729</ArticleId>
+			</ArticleIdList>
+		</PubmedData>
+	</PubmedArticle>
+</PubmedArticleSet>

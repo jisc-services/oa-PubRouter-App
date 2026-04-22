@@ -1,0 +1,143 @@
+{# Email template for sending duplicate submission details to a repository account email address #}
+
+{% macro display_list(items) %}
+  {%- if items -%}
+    <p>{{caller()}}:</p>
+    <ul>
+    {% for item in items -%}
+        <li>{{item}}</li>
+    {% endfor -%}
+    </ul>
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro format_date_time(date_time, join_with) -%}
+{# Convert a date_time like "2021-04-06T10:16:50Z" into "06/04/2021...10:15:50" where ... is value of join_with #}
+{{-"{}/{}/{}".format(date_time[8:10], date_time[5:7], date_time[0:4])}}{{join_with}}{{date_time[11:19]-}}
+{%- endmacro %}
+
+{% macro list_differences(diffs_dict, version) %}
+  {%- if diffs_dict -%}
+    <h2>Comparison with {{version}} dated {{format_date_time(diffs_dict.old_date, " ")}}</h2>
+    <p>We only check for the presence/absence of metadata, so other than the variations described below, there may be differences in the actual values of metadata, so inspection is advised.</p>
+   {% if diffs_dict.new or diffs_dict.increased -%}
+    <h3>Better</h3>
+    {% call display_list(diffs_dict.new) %}This notification has the following fields present which were not in the {{version}}{% endcall %}
+    {% call display_list(diffs_dict.increased) %}Compared to the {{version}} this notification has{% endcall %}
+   {%- endif %}
+   {% if diffs_dict.lost or diffs_dict.decreased -%}
+    <h3>Worse</h3>
+    {% call display_list(diffs_dict.lost) %}This notification is missing the following fields which were present in the {{version}}{% endcall %}
+    {% call display_list(diffs_dict.decreased) %}Compared to the {{version}} this notification has{% endcall %}
+   {%- endif %}
+  {%- else -%}
+    <p>This notification has the same set of metadata as the {{version}} version dated {{format_date_time(diffs_dict.old_date, " ")}}, however there may be differences in the content, so inspection is advised.</p>
+  {%- endif -%}
+{% endmacro %}
+
+{%- macro date_and_content_text(prefix, deposit_date, edit_iri, content_status) -%}
+    <p>{{prefix}} was sent on {{format_date_time(deposit_date, " at ")}}
+        {%- if edit_iri == "email" %} by email{% elif edit_iri %} and saved as <a href="{{edit_iri}}">{{edit_iri}}</a>{% endif -%}
+        . That notification had {% if content_status is none %}no article file (it was metadata only){% else %}an article file{% if content_status == 0 %} but it failed to deposit (so only the metadata was saved){% else %} attached{% endif %}{% endif %}.</p>
+{%- endmacro %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+    html {
+        font-size: 100%;
+        margin: 10px;
+    }
+    body, h1, h2, h3, p, li, th, td {
+      font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Arial, sans-serif;
+      font-weight: normal;
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+    li {
+        margin: 0.5rem 0;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 2rem 0 1.5rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 2.5rem 0 1rem;
+    }
+    h3 {
+      font-weight: bold;
+    }
+    ul, ol {
+    margin-bottom: 1.7rem;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      display: table-cell;
+      padding: .8rem;
+      border: 1px solid #ccc;
+      vertical-align: middle;
+    }
+    th {
+      white-space: nowrap;
+      text-align: left;
+    }
+    tr.hi th, span.hi {
+      font-weight: bold;
+      color: green;
+    }
+    tr.hi td {
+      color: green;
+    }
+    td > br {
+      display: block;
+      content: " ";
+      height: 0.3rem;
+    }
+    td > hr {
+       margin: 0 0 1.3rem 0;
+       border-style: none;
+    }
+    .smaller {
+      font-size: smaller;
+    }
+    </style>
+</head>
+<body>
+    <h1>Duplicate article with DOI: '{{doi}}', title: '{{title}}'</h1>
+    <p>This email describes an article with DOI '{{doi}}' {% if source.route == "harvester" %}harvested{% else %}received directly{% endif %} from {{source.name}} which has been seen in {{num_prev_notes}} notifications previously sent to you.</p>
+    {{date_and_content_text("The first", orig_deposit_date, orig_deposit_edit_iri, orig_deposit_content)}}
+    {{date_and_content_text("The most recent notification", last_deposit_date, last_deposit_edit_iri, last_deposit_content)}}
+    {{list_differences(orig_deposit_diffs, "original notification")}}
+    {% if cum_deposit_diffs -%}
+        {{list_differences(cum_deposit_diffs, "previous accumulated notifications")}}
+    {%- endif %}
+    {% if download_link -%}
+    <h2>Article PDF{% if is_package %} <span class="smaller">&nbsp; (90 day download limit)</span>{% endif %}</h2>
+    <p>Click to <a href="{{download_link}}">download the
+        {%- if is_package %} zip file</a> containing the article (and related files). IMPORTANT: this file is available from Publications Router for ONLY 90 days.{%- else -%}PDF file</a>.{% endif -%}
+    </p>
+    {%- endif %}
+    <h2>Metadata <span class="smaller">&nbsp;({{meta_format}} format)</span></h2>
+    {% if meta_format == "Text" -%}
+    <p>Metadata that is new or has increased counts, compared with {% if cum_deposit_diffs %}previous accumulated notifications{% else %}original notification{% endif %}, is <span class="hi">highlighted</span> in the table below.</p>
+    {{metadata|safe}}
+    {%- else -%}
+<pre>
+{{metadata}}
+</pre>
+    {%- endif %}
+    <br>
+    <p>You have received this notification because your account is set to receive {{dup_level_info|safe}}.   From your Publications Router account your administrator can change the types of duplicates you receive, the delivery mechanism: directly into your repository or by email, if the latter you can choose Text (table), XML or JSON for metadata presentation.</p>
+    <br>
+	<p>Regards,</p>
+    <p><i>Jisc Publications Router duplicate handling process</i></p>
+    <br>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{% from "helpers/field_render.html" import render_field %}
+
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">Run miscellaneous reports</h1>
+		<div class="title-accordion cms">
+			<p>Available reports</p>
+			<br>
+			<ul>
+				{% for v in report_form.report_info.values() %}
+				<li><span class="strong">{{v[0]}}</span>:<br>{{v[1]|safe}}&nbsp; {{v[2]|safe}}</li>
+				{% endfor %}
+			</ul>
+			<p>After Router has produced the selected report it will either be emailed to you (if a long running report) or a download link will be provided in the information box on this screen.</p>
+			<p>You can download previously run reports <a href="{{url_for('reports.past_misc_reports')}}">listed here</a>.</p>
+		</div>
+		<form id="report-form" class="form" method="GET">
+			<br>
+			<ul class="form-fields form">
+				<li>
+					{{render_field(report_form.report_selector,'form__item','form__label')}}
+					<br><span class="form__label"></span>
+					<span id="info" class="form_fields-text-block light">Previously run reports are available <a href="{{url_for('reports.past_misc_reports')}}">here</a>.</span>
+				</li>
+				<li>
+					<span class="form__label"></span>
+					<button class="btn btn--3d btn--primary" type="submit">Run report</button>
+					<span class="gap-left-15 spinner"></span>
+					<span class="info-note under">Long running reports run as background jobs and will be emailed to you.</span>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+
+		/**
+		* 	Code for Info accordion
+		**/
+		initInfoAccordion();
+
+		/**
+		*	Code to update info element to display information about selected item
+		**/
+		const $info = $("#info");
+		const $sel = $("#report_selector");
+		$sel.on('change', function(e){
+			const optionSelected = $("option:selected", this)[0];
+			$info.html(optionSelected.title + '<br>' + (optionSelected.dataset?.info ?? ''));
+		});
+
+		/**
+		*	Code to display the spinner & timer when the form is submitted & prevent repeated button clicks
+		**/
+		const $form = $("#report-form");
+		const showSpinnerStartTimerFn = addSpinnerTimer();
+
+		$form.on("submit", function(e){
+			// If selected option has no value, then do nothing
+			if (! $sel.children("option:selected").val()){
+				e.preventDefault();
+				return;
+			}
+			// Prevent further presses of submit btn
+			$form.find("button[type='submit']").prop("disabled", true);   
+			showSpinnerStartTimerFn();
+		});
+	});
+</script>
+{% endblock extra_js_bottom %}

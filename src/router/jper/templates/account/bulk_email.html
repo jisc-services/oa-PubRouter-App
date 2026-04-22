@@ -1,0 +1,227 @@
+{% extends "base.html" %}a
+{% block content %}
+
+<div class="row cms">
+	<h1>Bulk email <span class="bulk_title lower">{{ac_desc}}</span> accounts</h1>
+	{#-- CONTACT (Notes/Emails) panel - relies upon Javascript - see foot of this file #}
+	{#-- NB. IDs based around bulk are needed by javascript shared with recent_errors.html #}
+	<div id="bulk" class="box box--padding-medium box--brd-mgreyblue">
+		<div class="accordion cms">
+			<p>You can select which accounts emails are sent to (default is <b>all</b> listed accounts).  Any accounts that are currently <span class="bold-italic">Off</span> (not operational) are listed in lighter font, with "(off)" appended to the Live/Test indicator.</p>
+			<p>For convenience publisher/institution email addresses are displayed on the form below in the protected <i>To (bcc)</i> and <i>Cc (bcc)</i> fields.  However, they are actually put in the email's <b>BCC</b> field when sending so that recipients will NOT see them.</p>
+			<p>Any email addresses entered in the <i>Cc</i> field will populate the email's actual <b>CC</b> address field.</p>
+			<p>Emails are sent from account: <b>XXXX.YYYY@YYYY.ac.uk</b>, and this same email address is the only one that will appear in the email's <b>To</b> address field.</p>
+			<p>Historic emails marked as deleted are purged from database if they are at least 12 months old.</p>
+		</div>
+
+		<div id="bulk-target_ac" class="gap-vert">
+			{# Radio buttons for controlling types of accounts to list #}
+			<fieldset class="form">
+				<legend class="visuallyhidden">Types of account to display</legend>
+				<input id="t2" type="radio" name="target_ac" value="P" data-action="list_ac" {% if ac_type == "P" %}checked{% endif %} title="List only publishers">
+				<label for="t2" class="txt-bottom">Publishers</label>
+				<input id="t3" type="radio" name="target_ac" value="R" data-action="list_ac" {% if ac_type == "R" %}checked{% endif %} title="List only institutions">
+				<label for="t3" class="txt-bottom">Repositories</label>
+				<input id="t1" type="radio" name="target_ac" value="A" data-action="list_ac" {% if ac_type == "A" %}checked{% endif %} title="List both publishers & institutions">
+				<label for="t1" class="txt-bottom">All accounts</label>
+			</fieldset>
+		</div>
+		{# Account table section #}
+		<div id="bulk-target">
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+			<h2 class="like_h4"><span class="bulk_title">{{ac_desc}}</span> Accounts
+				<button id="bulk-accounts_showhide" type="button" class="on nav-btn btn btn--3d gap-left-15" data-action="showhide" data-target="#bulk-accounts_tbl" data-text="accounts">Hide accounts</button>
+				&nbsp;&nbsp;<span class="info-note wide">Emails will be sent to contacts of the selected accounts.</span>
+			</h2>
+			{# The following DIV is populated by javascript (via AJAX call) #}
+			<div id="bulk-accounts_tbl"></div>
+			<div type="button" class="hide flash small-gap-vert box--padding-small box--success"></div>
+		</div>
+		<hr>
+		{# Email form section #}
+		<h2 class="like_h4">Email Selected <span class="bulk_title">{{ac_desc}}</span> Contacts
+			<button id="bulk-form_showhide" type="button" class="on nav-btn btn btn--3d gap-left-15" data-action="showhide" data-target="#bulk-form" data-text="email form">Hide email form</button>
+		</h2>
+		<div id="bulk-form">
+			{# Flash-message div associated with form #}
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+
+			{# Note/email entry form #}
+			{% set title_prefix = "For each selected organisation (above) add their " %}
+			<ul class="form-fields form">
+				<li id="to_bcc_addr">
+					{% set title_suffix = " to the To email address field" %}
+					<label class="form__label required" for="to_bcc">To (bcc)</label>
+					{# To (BCC) addr - Email types selection checkboxes #}
+					<div class="inline">
+						<fieldset class="inline form__item">
+							<legend class="visuallyhidden">Types of email addresses to include in To (BCC) field</legend>
+							<input id="tb1" type="checkbox" name="to_bcc" value="C" title="{{title_prefix}}organisation contacts{{title_suffix}}">
+							<label for="tb1" class="txt-bottom">Organisation contacts</label>
+							<input id="tb2" class="gap-left" type="checkbox" name="to_bcc" value="T" title="{{title_prefix}}organisation technical contacts{{title_suffix}}">
+							<label for="tb2" class="txt-bottom">Org. Technical contacts</label>
+							<br>
+							<input id="tb3" type="checkbox" name="to_bcc" value="A" title="{{title_prefix}}admin user emails{{title_suffix}}">
+							<label for="tb3" class="txt-bottom">Admin users</label>
+							<input id="tb4" class="gap-left" type="checkbox" name="to_bcc" value="S" title="{{title_prefix}}standard user emails{{title_suffix}}">
+							<label for="tb4" class="txt-bottom">Standard users</label>
+							<input id="tb5" class="gap-left" type="checkbox" name="to_bcc" value="R" title="{{title_prefix}}read-only user emails{{title_suffix}}">
+							<label for="tb5" class="txt-bottom">Readonly users</label>
+						</fieldset>
+						<div class="inline gap-left-15">
+							<button class="btn-small btn--3d gap-left-5" type="button" name="to_bcc" data-action="set_addr_checkboxes" value="1" title="Select all types of email address to include in the To address field">All</button>
+							<button class="btn-small btn--3d gap-left-5" type="button" name="to_bcc" data-action="set_addr_checkboxes" value="0" title="Clear all checkboxes related to the To address field">None</button>
+						</div>
+					</div>
+					<br>
+					{# Text Field - To(bcc) addr #}
+					<span class="form__label"></span>
+					<textarea id="to_bcc" class="input form__item wide-text small-gap-vert" name="to_bcc_addr" rows="4"  title="To (bcc) email addresses - will actually be placed in BCC field" disabled></textarea>
+				</li><li id="cc_bcc_addr">
+					{% set title_suffix = " to the CC email address field" %}
+					<label class="form__label" for="cc_bcc">Cc (bcc)</label>
+					{# Cc (BCC) addr - Email types selection checkboxes #}
+					<div class="inline">
+						<fieldset class="inline form__item">
+							<legend class="visuallyhidden">Types of email addresses to include in Cc (bcc) field</legend>
+							<input id="cb1" type="checkbox" name="cc_bcc" value="C" title="{{title_prefix}}organisation contacts{{title_suffix}}">
+							<label for="cb1" class="txt-bottom">Organisation contacts</label>
+							<input id="cb2" class="gap-left" type="checkbox" name="cc_bcc" value="T" title="{{title_prefix}}organisation technical contacts{{title_suffix}}">
+							<label for="cb2" class="txt-bottom">Org. Technical contacts</label>
+							<br>
+							<input id="cb3" type="checkbox" name="cc_bcc" value="A" title="{{title_prefix}}admin user emails{{title_suffix}}">
+							<label for="cb3" class="txt-bottom">Admin users</label>
+							<input id="cb4" class="gap-left" type="checkbox" name="cc_bcc" value="S" title="{{title_prefix}}standard user emails{{title_suffix}}">
+							<label for="cb4" class="txt-bottom">Standard users</label>
+							<input id="cb5" class="gap-left" type="checkbox" name="cc_bcc" value="R" title="{{title_prefix}}read-only user emails{{title_suffix}}">
+							<label for="cb5" class="txt-bottom">Readonly users</label>
+						</fieldset>
+						<div class="inline gap-left-15">
+							<button class="btn-small btn--3d gap-left-5" type="button" name="cc_bcc" data-action="set_addr_checkboxes" value="1" title="Select all types of email address to include in the CC address field">All</button>
+							<button class="btn-small btn--3d gap-left-5" type="button" name="cc_bcc" data-action="set_addr_checkboxes" value="0" title="Clear all checkboxes related to the CC address field">None</button>
+						</div>
+					</div>
+					<br>
+					{# Text Field - Cc(bcc) addr #}
+					<span class="form__label"></span>
+					<textarea id="cc_bcc" class="form__item wide-text small-gap-vert" name="cc_bcc_addr" rows="4" title="Cc (bcc) email addresses - will actually be placed in BCC field" disabled></textarea>
+				</li><li>
+					{# Text Field - Cc #}
+					<label class="form__label" for="cc_addr">Cc</label>
+					<textarea id="cc_addr" class="input form__item wide-text" name="cc_addr" rows="1" placeholder="Additional CC email addresses - Separated by space, comma or semicolon." title="Additional CC email addresses - separate by space, comma or semicolon">{{cc_emails}}</textarea>
+					<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="#cc_addr"></button>
+				</li><li>
+					{# Text Field - Subject #}
+					<label class="form__label required" for="subject">Subject</label>
+					<textarea id="subject" class="input form__item wide-text" maxlength="120" minlength="2" name="subject" rows="1" title="Email subject text"></textarea>
+					<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="#subject"></button>
+				</li><li>
+					{# Text Field - Body #}
+					<label class="form__label required" for="body">Message</label>
+					<textarea id="body" class="input form__item wide-text" name="body" rows="8" maxlength="8000" title="Email message body text"></textarea>
+					<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="#body"></button>
+					<span class="info-note under">Can include HTML markup (see tips below). 8000 chars max.<button type="button" class="off nav-btn btn btn--3d gap-left-15" data-action="showhide" data-target="#preview" data-text="preview" data-trigger_on="#render">Show preview</button></span>
+				</li><li id="preview" class="visuallyhidden">
+					{# Text Field - Preview #}
+					<span class="form__label">Preview
+					<br><button id="render" type="button" class="btn btn--3d small-gap-vert" title="Update preview box with changes made to message text above." data-action="set_html" data-source="#body" data-target="#preview_box">Refresh</button>
+					</span>
+					<div id="preview_box" class="simple-disp shaded_box form__item wide-text" title="Press 'Render' button to see preview of HTML markup."></div>
+				</li>
+		{% if curr_user_is_not_readonly %}
+				<li>
+					<span class="form__label"></span>
+					<button type="button" class="btn btn--3d btn--primary small-gap-vert" data-action="submit" data-func="send_email">Send Email</button>
+					<span class="info-note under">Emails are sent from account: <b>XXXX.YYYY@YYYY.ac.uk</b> with all account email addresses<br>(shown in the shaded, protected fields above) in the BCC field.<br>Any duplicate email addresses will be removed before sending.</span>
+				</li>
+		{% endif %}
+			</ul>
+			{# Click for more information accordion panel #}
+			{% include 'html_tips_accordion.html' %}
+
+			{# Flash-message div associated with form #}
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+		</div>
+		<hr>
+		{# Historic emails section #}
+		<h2 class="like_h4"><span class="bulk_title">{{ac_desc}}</span> Historic Emails
+			<button id="bulk-hist_toggle" type="button" class="off nav-btn btn btn--3d gap-left-15" data-action="showhide" data-target="#bulk-hist" data-text="history">Show history</button>
+			<button type="button" class="on nav-btn btn btn--3d gap-left" data-action="showhide" data-target="#bulk-hist_filters" data-text="filters">Hide filters</button>
+		</h2>
+		<div id="bulk-hist" class="visuallyhidden">
+			<div id="bulk-hist_filters" class="row">
+				<div class="col span-4">
+					{# Radio buttons for controlling number of historic emails to list #}
+					<fieldset class="form">
+						<legend class="visuallyhidden">Number of historic emails to display</legend>
+						<input id="r1" type="radio" name="hist_num" value="5" checked>
+						<label for="r1" class="txt-bottom">Show last 5</label>
+						<br><input id="r2" type="radio" name="hist_num" value="10">
+						<label for="r2" class="txt-bottom">Show last 10</label>
+						<br><input id="r3" type="radio" name="hist_num" value="">
+						<label for="r3" class="txt-bottom">Show all</label>
+					</fieldset>
+				</div>
+                <div class="col span-4">
+                    {# Checkboxes for controlling type of recs (all, pub, repo) to list #}
+                    <fieldset class="form">
+						<legend class="visuallyhidden">Type of organisations emails to display</legend>
+                        <input id="ct1" type="checkbox" name="hist_type" value="A">
+                        <label for="ct1" class="txt-bottom">Publisher & Repository</label>
+                        <br><input id="ct2" type="checkbox" name="hist_type" value="P">
+                        <label for="ct2" class="txt-bottom">Publisher only</label>
+                        <br><input id="ct3" type="checkbox" name="hist_type" value="R">
+                        <label for="ct3" class="txt-bottom">Repository only</label>
+                    </fieldset>
+                </div>
+                <div class="col span-4">
+					{# Checkboxes for controlling status of recs to list #}
+					<fieldset class="form">
+						<legend class="visuallyhidden">Status of emails to display</legend>
+						<input id="cs1" type="checkbox" name="hist_status" value="H" checked>
+						<label for="cs1" class="txt-bottom">Pinned</label>
+						<br><input id="cs2" type="checkbox" name="hist_status" value="N" checked>
+						<label for="cs2" class="txt-bottom">Standard</label>
+						<br><input id="cs4" type="checkbox" name="hist_status" value="D">
+						<label for="cs4" class="txt-bottom">Deleted</label>
+					</fieldset>
+				</div>
+			</div>
+
+			{# flash-message div associated with history table #}
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+
+			{# The following DIV is populated by javascript (via AJAX call) #}
+			<div id="bulk-hist_tbl"></div>
+
+			{# flash-message div associated with history table #}
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+		</div>
+	</div>
+
+</div>
+{% endblock %} 
+{% block extra_js_bottom %}
+{# >>>> The 3 script blocks below relate to Bulk Email panel functionality #}
+<script type="text/javascript" src="/static/js/ajax_helpers.js"></script>
+<script type="text/javascript" src="/static/js/bulk_email.js"></script>
+<script>
+	$(document).ready(function(){
+		/**
+		*	Initialisation used in conjunction with functions in note_email.js (for Contact panel)
+		**/
+		// Set click handlers
+		initAndSetEventHandlers(
+			"{{url_for('account.bulk_email_ajax')}}",
+			"{{ac_type}}"
+		);
+
+{# <<<< End of Bulk Email panel functionality #}
+
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+	});
+</script>
+{% endblock extra_js_bottom %}

@@ -1,0 +1,150 @@
+{% from "helpers/field_render.html" import render_field, render_hidden_field %}
+{% extends "base.html" %}
+{% set ws_is_live = form.live_date.data is not none %}
+
+{% block content %}
+	<div class="row cms">
+		{% if form.name.data %}
+			<h1 id="stickme">{{form.name.data}} harvester {% if not ws_is_live %}test {% endif %}</h1>
+		{% else %}
+			<h1>New harvester</h1>
+		{% endif %}
+
+		<div id="edit_webservice" class="box box--padding-large box--brd-mgreyblue">
+			<h2 class="like_h3">Edit harvester</h2>
+			<form method=post action="#" class="form">
+				<ul class="form-fields">
+					<li>
+						{{ render_field(form.id,'form__item','form__label') }}
+					</li><li>
+						{{ render_field(form.name,'form__item','form__label') }}
+					</li><li class="form__item-select">
+						{{ render_field(form.engine, 'form__item', 'form__label',
+						title="The harvesting engine that is used to execute this harvester.") }}
+					</li><li>
+						{{ render_field( form.notes, 'form__item wide-text', 'form__label', rows="5",
+						title="Information about this harvester instance." ) }}
+					</li><li>
+						{{ render_field( form.url, 'form__item wide-text', 'form__label', rows="5",
+						title="The query will normally require at least {start_date} and {end_date} place holders." ) }}
+					</li><li>
+						{{ render_field( form.query, 'form__item wide-text', 'form__label', rows="5",
+						title="Elastic search query to further filter results that are returned by the harvester API call." ) }}
+					</li><li>
+						{{ render_field( form.end_date, 'form__item', 'form__label',
+						title="The 'start date' is automatically updated each time the harvester is run." ) }}
+					</li><li>
+						{{ render_field( form.wait_window, 'form__item', 'form__label',
+						title=("Pause period, needed when harvest query uses 'last changed date', "
+								"to avoid harvesting notifications which may be undergoing frequent updates. "
+								"The value is subtracted from today's date to give a query 'end date'.")) }}
+					</li><li class="form__item-select">
+						{{ render_field( form.frequency, 'form__item-select', 'form__label',
+						title="How frequently the harvester is run." ) }}
+					</li><li class="form__item-checkbox">
+						{{ render_field( form.publisher, 'form__item', 'form__label',
+							title="Make the harvester appear as a Publisher on the repository account 'Manage notification sources' panel." )}}
+					</li><li class="form__item-checkbox">
+						{{ render_field( form.auto_enable, 'form__item', 'form__label',
+							title="Harvester is automatically enabled as a notification source for new Repository accounts." )}}
+						<span class="info-note">If checked, this harvester will be set as a data source for new repo accounts.</span>
+					</li>
+     			{% if curr_user_is_not_readonly %}
+					<li class="form__item-checkbox">
+						{{ render_field( form.active, 'form__item', 'form__label',
+						title="Indicates whether the harvester is active (runs automatically) or not.") }}
+					</li><li>
+						{# Need to render 'live_date' date as hidden so that when record is saved, the current date value is not changed #}
+						{{render_hidden_field(form.live_date,'live') }}
+						<br>
+						<span class="form__label"></span>
+						<span class="form__item">
+							<button type="submit" name="save" id="save" class="btn btn--3d btn--primary">Save</button> &nbsp;
+							<input type="button" class="btn btn--3d btn--primary gap-left" value="Cancel" onclick="history.back();">
+						</span>
+					</li>
+				{% endif %}
+				</ul>
+			</form>
+		</div>
+
+{% if curr_user_is_not_readonly and form.id.data %}
+		{# ORIG: The select/deselect button is only available for Test harvester where ALL or None of repositories are using the service #}
+		{# ORIG: set select_deselect = not ws_is_live and (select_form.num_using.data == 0 or select_form.num_using.data == select_form.total_repos.data) #}
+		{# The select/deselect button is only available where ALL or None of repositories are using the service #}
+		{% set select_deselect = (select_form.num_using.data == 0 or select_form.num_using.data == select_form.total_repos.data) %}
+		{#
+			This panel shown ONLY for where either No or All repos are set to use the harvester. This is
+			so that the service can be selected/de-selected for ALL repositories
+		#}
+		{# Panel: Select / deselect harvester for all repositories #}
+		<div id="remove_webservice_from_repos" class="box box--padding-large box--brd-mgreyblue">
+			<h2 class="like_h3">{% if select_deselect %}Select or deselect harvester as a notification source for ALL repositories{% else %}Repositories using this harvester as a notification source{% endif %}</h2>
+			{# Form: Show the total number of repositories, and the that have selected this harvester #}
+			<form class="form">
+				<ul class="form-fields">
+					<li>{{ render_field(select_form.total_repos,'form__item','form__label') }}</li>
+					<li>{{ render_field(select_form.num_using,'form__item','form__label') }}</li>
+				</ul>
+			</form>
+		{% if select_deselect %}
+			{# Form: Select / deselect harvester for all repositories #}
+			<br>
+			<p>Each repository account has a panel for selecting whether a harvester source is used or not.<br>Here you can change the usage setting for this harvester across ALL repositories. Use with caution!</p>
+			<form class="form" method="POST" action="{{ url_for('harvester.select_or_not', webservice_id=form.id.data) }}#remove_webservice_from_repos">
+			{% set rep_settings_msg = "This will change repository account settings (which will be logged)" %}
+			{% if select_form.num_using.data == 0 %}
+				<button  type="submit" name="action" value="select" class="btn btn--3d btn--primary do_action" data-action="confirm" data-msg="{{rep_settings_msg}}">Add this harvester as a notification source for ALL repo accounts</button>
+			{% elif select_form.num_using.data == select_form.total_repos.data %}
+				<button  type="submit" name="action" value="deselect"  class="btn btn--3d btn--primary do_action" data-action="confirm" data-msg="{{rep_settings_msg}}">Remove this harvester as a notification source for ALL repo accounts</button>
+			{% endif %}
+			{# &nbsp;<span class="info-note">Feature only available before going Live.</span> #}
+			</form>
+		{% endif %}
+		</div>
+
+		{# Panel: Make harvester harvester live #}
+		<div id="harv_live" class="box box--padding-large box--brd-mgreyblue">
+			<h2 class="like_h3">{% if ws_is_live %}Harvester is Live{% else %}Make Live{% endif %}</h2>
+		{% if ws_is_live %}
+			<p>Notifications are being routed to ALL repositories.</p>
+			<div class="form__item">
+				<label class="form__label" for="live_date">Live date</label>
+				<input class="form__item" id="live_date" type="date" value="{{form.live_date.data}}" disabled>
+			</div>
+			<br>
+		{% else %}
+			<p>Notifications from this Test harvester are being routed ONLY to Test repositories.</p>
+			<p class="info-note">To route its notifications to ALL repositories you must make the harvester Live, this requires Service Manager authorisation.</p>
+			<form method="post" action="{{url_for('harvester.golive', webservice_id=form.id.data)}}#harv_live" class="form">
+				<button type="submit" class="btn btn--3d btn--primary do_action" data-action="confirm" data-msg="Go live cannot be undone">Go Live</button>
+				&nbsp; &nbsp;<span class="warning utf8-icon">This step is irreversible - afterwards notifications will go to ALL repositories.</span>
+			</form>
+		{% endif %}
+		</div>
+
+		{# Panel: Delete harvester #}
+		<div id="delete_webservice" class="box box--padding-large box--brd-mgreyblue">
+			<h2 class="like_h3">Delete harvester</h2>
+			<p>IMPORTANT: This harvester may be cross-referenced by Repository accounts. &nbsp;Note that deletion cannot be reverted unless a database restore is performed.</p>
+			<form  class="form" method="POST" action="{{ url_for('harvester.delete', webservice_id=form.id.data) }}">
+				<button type="submit" name="delete" value="delete" class="btn btn--3d btn--primary do_action" data-action="confirm" data-msg="Immediate deletion from the database will occur & cannot be undone">Delete this harvester</button>
+				&nbsp; &nbsp;<span class="warning utf8-icon">CAUTION: Irreversible action - the record will be permanently deleted.</span>
+			</form>
+		</div>
+{% endif %}
+
+	</div>
+
+{% endblock %}
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Set various button press/click handlers on elements with one of the specified classes
+		**/
+		setActionClickHandlers("body", ".do_action");
+    });
+</script>
+
+{% endblock extra_js_bottom %}

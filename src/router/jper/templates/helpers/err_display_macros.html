@@ -1,0 +1,39 @@
+{# Macros for Displaying errors #}
+{# NOTE that {{- and -}} are used to remove surplus whitespace #}
+
+{## Display error with an embedded link if relevant ##}
+{% macro embed_download_link(content_href, error) %}
+	{% set end_pos = -1 %}
+	{% if error.startswith("Content error") %}
+		{## Set start & end offsets for the Notification ID ##}
+		{% set start_id = error.find("[", 14) + 2 %}
+		{% set end_pos = error.find(" ", start_id) %}
+		{% set note_id = error[start_id:end_pos] %}
+		{% set iri_start = end_pos + 3 %}
+		{## We expect edit_iri to start with http: ##}
+		{% if error[iri_start] == 'h' %}
+			{% set end_pos = error.find(" ", iri_start)%}
+			{% set edit_iri = error[iri_start:end_pos] %}
+			{## Look for last '/' char in edit_iri, and if found set repo_num to the repository entry ID ##}
+			{% set repo_num = edit_iri[edit_iri.rfind("/") + 1:] %}
+		{% else %}
+			{% set edit_iri = '' %}
+		{% endif %}
+	{% endif %}
+	{% if end_pos > -1 %}
+		{## Determine if error relates to a downloadable file - search error from offset ']'+ 48 to ']'+110 ##}
+		{% set end_bracket = error.find("]", end_pos) %}
+		{% set url_start = error.find("rom: http", end_bracket + 48 , end_bracket + 110) %}
+		{% if url_start > -1 %}
+            {% set url_start = url_start + 5 %}
+			{% set url_end = error.find(" ", url_start + 40) %}
+			{% set content_url = error[url_start:url_end] %}
+		{% else %}
+			{% set content_url = content_href.format(note_id) %}
+		{% endif %}
+		{{-error[:start_id]}}<a href="{{content_url}}">article file</a> ({{note_id}})
+		{%- if edit_iri %} • <a href="{{edit_iri}}">repo entry</a> ({{repo_num}}){% endif %}{{error[end_pos:]-}}
+	{% else %}
+		{{-error}}
+	{% endif %}
+{% endmacro %}

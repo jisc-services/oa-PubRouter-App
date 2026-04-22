@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row cms">
+	<h1>Harvesters (web services) list</h1>
+	<div class="col span-11">
+		<div>
+			<a class="nav-btn btn btn--3d btn--large" href="{{ url_for('harvester.manage') }}" role="button">Add harvester</a>
+		</div>
+		<table data-rwdtable-sortable data-sortable-col-zero class="data-table" id="webservices-list">
+			<thead>
+				<tr>
+					<th scope="col" class="persist essential" id="co-1">Harvester name</th>
+					<th scope="col" class="persist essential" id="co-2">Engine</th>
+					<th scope="col" class="optional" id="co-3">Frequency</th>
+					<th scope="col" class="persist essential" id="co-4" title="Harvester is automatically enabled as a notification source for new repo accounts">Auto<br>enable</th>
+					<th scope="col" class="persist essential" id="co-5">Service status</th>
+					<th scope="col" class="persist essential" id="co-6">Live / Test</th>
+					<th scope="col" class="persist essential" id="co-7">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for webservice in webservice_list %}
+				{% if webservice['active'] %}
+					{% set active_button_state, a_pressed, a_label = 'on', 'true', 'Deactivate harvester' %}
+				{% else %}
+					{% set active_button_state, a_pressed, a_label = 'off', 'false', 'Activate harvester' %}
+				{% endif %}
+				{% if webservice['live_date'] %}
+					{% set visibility_btn_state = 'live' %}
+				{% else %}
+					{% set visibility_btn_state = 'test' %}
+				{% endif %}
+				<tr>
+					<td headers="co-1" class="no-wrap">{{webservice['name']}}</td>
+					<td headers="co-2" >{{webservice['engine']}}</td>
+					<td headers="co-3" >{{webservice['frequency']}}</td>
+					<td headers="co-4" ><span class="show-{% if webservice['auto_enable'] %}yes{% else %}no{% endif %}"></span></td>
+					<td headers="co-5" ><span class="harvester-toggle-button harvester-{{active_button_state}}" data-url="{{url_for('harvester.activate', webservice_id=webservice['id']) }}" role="button" tabindex="0" aria-pressed="{{a_pressed}}" aria-label="{{a_label}}"></span></td>
+					<td headers="co-6" ><span class="harvester-live-btn harvester-{{visibility_btn_state}}"></span></td>
+					<td headers="co-7" class="no-wrap">
+						<a class="nav-btn btn--3d" href="{{ url_for('harvester.manage', webservice_id=webservice['id']) }}" role="button">Manage</a>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		<p class="info-note">Live harvesters are visible to All repository users, Test harvesters are hidden from repository users.</p>
+	</div>
+</div>
+
+{% endblock %}
+{% block extra_js_bottom %}
+<script type="text/javascript" src="/static/js/harvester.js"></script>
+{% endblock extra_js_bottom %}

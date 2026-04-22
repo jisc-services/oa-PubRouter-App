@@ -1,0 +1,342 @@
+{#
+Show problem accounts, together with their recent errors from past X days (default 7) plus a panel foreach account
+showing history of notes/emails sent & a form for entering/sending a new note/email, including attaching error
+messages to the email.
+#}
+
+{% extends "base.html" %}
+{% from "helpers/err_display_macros.html" import embed_download_link %}
+{% from "helpers/account_macros.html" import on_off_button_span, row_status_class %}
+
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+	{% set is_repository = pub_or_repo_ind == "R" %}
+		<h1 id="pg-h1">{{title}}<span class="h_small">(past {{past_days}} days)</span></h1>
+		<p class="info-note">Change number of past days by appending <code>/x</code> to URL, where <b><i>x</i></b> is number of days.
+		{% if is_repository %}<br>Append <code>/all</code> to URL to retrieve errors for <b>all</b> repo accounts (by default only accounts with failing or error status are listed).{% endif %}</p>
+	{% for acc_id, acc_uuid, api_key, org_name, live_test, contact_email, tech_contact_emails, status, metadata_err_note_id in ac_details %}
+		{% set accid = acc_id | string %}
+		{% set accid_str = "a" + accid %}
+		{% set target_base = "#" + accid_str %}
+		{% set acc_url = url_for('account.disp_org_acc', org_uuid=acc_uuid) %}
+		<div id="{{accid_str}}" data-apikey="{{api_key}}">
+			<h2><a href="{{acc_url}}">{{org_name}} ‧ {{live_test}}</a> &nbsp; <button class="show_hide on nav-btn btn btn--3d gap-left" data-target="{{target_base}}-main" data-text="errors">Hide errors</button></h2>
+			<div id="{{accid_str}}-main">
+				<div class="pale-bkgnd">
+					<div class="row">
+						{# Status & On/Off indicators/controls #}
+						<div class="col span-3">
+							<table class="cell-border compressed white-back no-gap">
+								{# hidden header provided for accessibility #}
+								<thead class="visuallyhidden"><tr>{% if is_repository %}<th>Status</th>{% endif %}<th>On/Off</th></tr></thead>
+								<tbody class="user_tbody">
+									<tr class="{{row_status_class(status)}}" data-ajax_url="{{url_for('account.admin_ajax', org_id=acc_id)}}">
+										{% if is_repository %}
+										<td>
+											<span class="repo-status"></span><span class="toggle-repo" role="button"></span>
+										</td>
+										{% endif %}
+										<td>
+											{{on_off_button_span(status)}}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col span-9 cms">
+							<dl class="dl-horiz dl-horiz--spaced-small">
+								<dt>Contact:</dt>
+								<dd>{{contact_email}}</dd>
+								<dt>Technical:</dt>
+								<dd>{{tech_contact_emails}}</dd>
+							</dl>
+						</div>
+					</div>
+				  {% if is_repository %}
+					<div class="row">
+						<a target="_blank" href="{{acc_url}}#manage_connection">Repo settings</a> <span class="smaller">(new window)</span>
+					</div>
+				    {# For repositories, with at least 3 failures to deposit metadata for the first notification listed: display panel for SKIPPING the notification  #}
+				    {% if metadata_err_note_id and status == "failing" %}
+					<br>
+					<div class="skip_it small-gap-vert box--warning box--padding-medium">
+						<p>
+						A metadata error has occurred at least 3 times for notification ID {{metadata_err_note_id}} (see error table below).  If the problem is insurmountable &amp; arising from some aspect of the metadata itself, hence blocking further deposits, then you can skip this notification.
+						</p>
+						{# `data-err_id` (set to `err_details_dict[acc_id][0][2]`) is SWORD-deposit-record ID of the FIRST error listed for the account #}
+						<span class="form__label"><button class="skip_note btn btn--3d bold-hov" data-func="skip_blocking_note" data-note_id="{{metadata_err_note_id}}" data-err_id="{{err_details_dict[acc_id][0][2]}}">Skip failing notification</button></span>
+						<span class="info-note wide-text">Notification {{metadata_err_note_id}} will be marked as processed & an email sent to the institution with details including the DOI, so they may create an entry in their repository if they wish.</span>
+					</div>
+					<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+			  	    {% endif %}
+				  {% endif %}
+				</div>
+
+				{# Button to control display of Note/Email panel (History & Entry form) - clicking this btn triggers creation of note/email stuff #}
+				<button type="button" class="note_email off nav-btn btn btn--3d gap-vert" data-target="{{target_base}}-notes" data-text="email/note panel"  data-accid="{{accid}}" >Show email/note panel</button><br>
+				<div id="{{accid_str}}-notes" class="visuallyhidden pale-bkgnd">
+					<br>
+					<h3>Historic Emails/Notes/ToDos
+						<button type="button" class="on nav-btn btn btn--3d gap-left-15" data-action="showhide" data-target="{{target_base}}-hist" data-text="history panel">Hide history panel</button>
+						<button type="button" class="on nav-btn btn btn--3d gap-left" data-action="showhide" data-target="{{target_base}}-hist_filters" data-text="filters">Hide filters</button></h3>
+					<div id="{{accid_str}}-hist" class="push-1 span-10">
+						<div id="{{accid_str}}-hist_filters" class="row no-label-pointer">
+							<div class="col span-4">
+								{# Radio buttons for controlling number of historic notes/emails to list #}
+								<fieldset class="form">
+									<legend class="visuallyhidden">Number to show</legend>
+									<label class="txt-bottom"><input type="radio" name="hist_num-{{accid}}" value="5" checked>
+									Show last 5</label>
+									<br><label class="txt-bottom"><input type="radio" name="hist_num-{{accid}}" value="10">
+									Show last 10</label>
+									<br><label class="txt-bottom"><input type="radio" name="hist_num-{{accid}}" value="">
+									Show all</label>
+								</fieldset>
+							</div>
+							<div class="col span-4">
+								{# Checkboxes for controlling type of recs (emails, notes, todos) to list #}
+								<fieldset class="form">
+									<legend class="visuallyhidden">What to show</legend>
+									<label class="txt-bottom"><input type="checkbox" name="hist_type-{{accid}}" value="N" checked>
+									Notes</label>
+									<br><label class="txt-bottom"><input type="checkbox" name="hist_type-{{accid}}" value="E" checked>
+									Emails</label>
+									<br><label class="txt-bottom"><input type="checkbox" name="hist_type-{{accid}}" value="B">
+									Bulk emails</label>
+									<br><label class="txt-bottom"><input type="checkbox" name="hist_type-{{accid}}" value="T" >
+									ToDos</label>
+								</fieldset>
+							</div>
+							<div class="col span-4">
+								{# Checkboxes for controlling status of recs to list #}
+								<fieldset class="form">
+									<legend class="visuallyhidden">Item Status</legend>
+									<label class="txt-bottom"><input type="checkbox" name="hist_status-{{accid}}" value="H" checked>
+									Pinned</label>
+									<br><label class="txt-bottom"><input type="checkbox" name="hist_status-{{accid}}" value="N" checked>
+									Standard</label>
+									<br><label class="txt-bottom"><input type="checkbox" name="hist_status-{{accid}}" value="R" checked>
+									Resolved</label>
+									<br><label class="txt-bottom"><input type="checkbox" name="hist_status-{{accid}}" value="D">
+									Deleted</label>
+								</fieldset>
+							</div>
+						</div>
+						<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+						{# The following DIV is populated by javascript (via AJAX call) #}
+						<div id="{{accid_str}}-hist_tbl"></div>
+						<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+					</div>
+				{% if curr_user_is_not_readonly %}
+					{% set user_email_details = accuser__pull_user_email_details_by_org_id_n_role(acc_id) %}
+					<hr>
+					<h3>Add new note / send email</h3>
+					<div id="{{accid_str}}-form">
+						<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+						{# Note/email entry form #}
+						<ul class="form-fields form">
+							<li>
+								<label class="form__label" for="{{accid_str}}-subject">Subject</label>
+								<textarea class="input form__item" id="{{accid_str}}-subject" maxlength="100" minlength="2" name="subject" rows="2">Publications Router: problem with {% if is_repository %}repository{% else %}file{% endif %} deposit</textarea>
+								<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="{{target_base}}-subject"></button>
+								<span class="info-note">Required for email.<button type="button" class="gap-left btn btn--3d" data-action="clear" data-target="{{target_base}}-subject">Clear subject</button></span>
+							</li><li>
+								<label class="form__label required" for="{{accid_str}}-body">Message</label>
+								<textarea class="input form__item" id="{{accid_str}}-body" name="body" rows="6" maxlength="8000"></textarea>
+								<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="{{target_base}}-body"></button>
+								<span class="info-note">Can include HTML markup.<br>8000 chars max.<br><button type="button" class="off nav-btn btn btn--3d small-gap-vert" data-action="showhide" data-target="#{{accid_str}}-preview" data-text="preview" data-trigger_on="#{{accid_str}}-render">Show preview</button></span>
+							</li><li id="{{accid_str}}-preview" class="visuallyhidden">
+								<span class="form__label" for="{{accid_str}}-preview_box">Preview
+								<br><button id="{{accid_str}}-render" type="button" class="btn btn--3d small-gap-vert" title="Update preview box with changes made to message text above." data-action="set_html" data-source="#{{accid_str}}-body" data-target="#{{accid_str}}-preview_box">Refresh</button></span>
+								<div id="{{accid_str}}-preview_box" class="simple-disp shaded_box form__item wide-text" title="Press 'Render' button to see preview of HTML markup."></div>
+							</li><li>
+								<label class="form__label" for="{{accid_str}}-pin">Pin (highlight)</label>
+								<input class="form__item" id="{{accid_str}}-pin" name="pin" type="checkbox">
+							</li><li class="overlay-container">
+								<span class="form__label"></span>
+								<button type="button" class="btn btn--3d btn--primary small-gap-vert" data-action="submit" data-func="save_note">Save Note</button>
+								<button type="button" class="gap-left-15 btn btn--3d btn--primary small-gap-vert" data-action="submit" data-func="save_todo">Save ToDo</button>
+								<button type="button" class="gap-left-15 btn btn--3d" data-action="clear" data-target="{{target_base}}-subject">Clear default subject before saving</button>
+								{#--- Users email selection panel ---#}
+								<div id="{{accid_str}}-user_emails" class="overlay-wide box box--padding-large box--brd-mgreyblue box--shadow">
+									<button class="overlay-x" data-action="email_func" data-func="close_cancel" title="Close overlay without changing email address fields in underlying form"></button>
+									<h3>Email address selection <span class="small"> (add emails to the To or CC address fields - duplicates will be removed)</span></h3>
+									{# <p class="info-note">Add selected emails to the To or CC address fields (duplicates will be removed automatically before sending).</p>
+									#}
+									<table class="compressed no-border">
+										{# NB. Table may have multiple <tbody></tbody> elemnents #}
+										{# All checkboxes are initially UNCHECKED #}
+										<tbody class="grey-border">
+											<tr><th colspan="3">Organisation & Technical contacts<span class="float-right">
+												<button class="btn-small" type="button" data-action="email_func" data-func="set_checkboxes" value="1" title="Select all organisation & technical contact emails">All</button>
+												<button class="btn-small" type="button" data-action="email_func" data-func="set_checkboxes" value="0" title="Deselect all organisation & technical contact emails">None</button>
+												</span></th></tr>
+											<tr><td colspan="2">Organisation contact email addresses</td><td>{{contact_email}} <input class="float-right" type="checkbox" name="org_email" value="{{contact_email}}" aria-label="Organisation contact email address"></td></tr>
+										{% if tech_contact_emails %}
+											<tr><td colspan="2">Technical contact email addresses</td><td>{{tech_contact_emails | replace("; ", "<br>") | safe}} <input class="float-right" type="checkbox" name="org_email" value="{{tech_contact_emails}}" aria-label="Organisation technical contact email addresses"></td></tr>
+										{% endif %}
+										</tbody>
+										<tbody class="table-gap"></tbody>
+									  {% for role in ("Org admin", "Standard", "Read-only") %}
+									  	{% set user_details = user_email_details.get(role) %}
+										{% if user_details %}
+										<tbody class="grey-border">
+											<tr><th colspan="3">{{role}} users<span class="float-right">
+												<button class="btn-small" type="button" data-action="email_func" data-func="set_checkboxes" value="1" title="Select all {{role}} users email addresses">All</button>
+												<button class="btn-small" type="button" data-action="email_func" data-func="set_checkboxes" value="0" title="Deselect all {{role}} users email addresses">None</button>
+												</span>
+											</th></tr>
+										  {% for detail_dict in user_details %}
+											<tr><td>{{detail_dict.name}}</td><td>{{detail_dict.org_role}}</td><td>{{detail_dict.email}} <input class="float-right" type="checkbox" name="user_email" value="{{detail_dict.email}}" aria-label="Email address for {{role}} user: {{detail_dict.name}} ({{detail_dict.org_role}})"></td></tr>
+										  {% endfor %}
+										</tbody>
+										{% endif %}
+									  {% endfor %}
+									</table>
+									<div class="row">
+										<span class="bold">Selected emails</span>
+										<button class="gap-left btn-small btn--3d small-gap-after" data-action="email_func" data-func="select_all" title="Select all emails">Select all above</button>
+										<button class="gap-left-5 btn-small btn--3d small-gap-after" data-action="email_func" data-func="clear_selected" title="Clear all selected emails">Clear</button>
+										<span class="info-note wide">Email addresses for adding to the To or Cc address fields below.</span>
+										<textarea class="full-width" rows="3" aria-label="Selected emails" placeholder="These email addresses will be added to an address field below when the 'Add selected' button is pressed. Duplicates will be removed automatically." title="These email addresses will be added to an address field below when the 'Add selected' button is pressed. Duplicates will be removed automatically."></textarea>
+										<button type="button" class="clear-it" data-action="email_func" data-func="clear_selected" title="Clear all selected emails"></button>
+										<br/>
+										<br/>
+										<div class="col span-6">
+											<span class="bold">To address</span>
+											<button class="gap-left btn-small btn--3d small-gap-after" data-action="email_func" data-func="add_to_addr" value="to_addr" title="Add selected emails to the To address field">Add selected</button>
+											<button type="button" class="gap-left-5 btn-small btn--3d small-gap-after" data-action="clear_near" data-target="textarea" title="Clear To address field">Clear</button>
+											<textarea class="full-width form__item" name="to_addr" rows="4" aria-label="To address" placeholder="Send To email addresses separated by space, comma or semicolon." title="Send To email addresses separated by space, comma or semicolon"></textarea>
+											<button type="button" class="clear-it" data-action="clear_near" data-target="textarea" title="Clear To address field"></button>
+										</div>
+										<div class="col span-6">
+											<span class="bold">Cc address</span>
+											<button class="gap-left btn-small btn--3d small-gap-after" data-action="email_func" data-func="add_to_addr" value="cc_addr" title="Add selected emails to the Cc address field">Add selected</button>
+											<button type="button" class="gap-left-5 btn-small btn--3d small-gap-after" data-action="clear_near" data-target="textarea" title="Clear CC address field">Clear</button>
+											<textarea class="full-width form__item" name="cc_addr" rows="4" aria-label="CC address" placeholder="Cc email addresses separated by space, comma or semicolon." title="Cc email addresses separated by space, comma or semicolon"></textarea>
+											<button type="button" class="clear-it" data-action="clear_near" data-target="textarea" title="Clear CC address field"></button>
+										</div>
+									</div>
+									<br/>
+									<button class="btn btn--3d btn--medium" data-action="email_func" data-func="close_n_update_user_emails" title="Update email address fields in underlying form & close overlay">Update & Close</button>
+									<button class="btn btn--3d btn--medium gap-left-15" data-action="email_func" data-func="close_cancel" title="Close overlay without changing email address fields in underlying form">Cancel</button>
+								</div>
+								{#- END Users email selection panel -#}
+							</li><li>
+								<label class="form__label required" for="{{accid_str}}-to_addr"><button type="button" class="float-left nav-btn btn btn--3d" data-action="email_func" data-func="show_user_emails" title="Open email selection panel">Select user emails</button>To</label>
+								<textarea class="input form__item" id="{{accid_str}}-to_addr" name="to_addr" rows="3" placeholder="Separate emails by space, comma or semicolon." title="Separate email addresses by space, comma or semicolon">{{tech_contact_emails or contact_email}}</textarea>
+								<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="{{target_base}}-to_addr"></button>
+								<span class="info-note">Default: {% if tech_contact_emails %}Technical contact(s){% else %}Organisation Contact email{% endif %}.</span>
+							</li><li>
+								<label class="form__label" for="{{accid_str}}-cc_addr"><button type="button" class="float-left nav-btn btn btn--3d" data-action="email_func" data-func="show_user_emails" title="Open email selection panel">Select user emails</button>Cc</label>
+								<textarea class="input form__item" id="{{accid_str}}-cc_addr" name="cc_addr" rows="3" placeholder="Separate emails by space, comma or semicolon." title="Separate email addresses by space, comma or semicolon">
+								{# If tech-contact-emails exist, they are shown in the To field (previous <li>) and so we want to show the contact-email in this CC field  #}
+								{% if tech_contact_emails %}{{contact_email}}{% endif %} {{cc_emails}}</textarea>
+								<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="{{target_base}}-cc_addr"></button>
+							    {% if tech_contact_emails %} <span class="info-note">Default: Organisation Contact email.</span>{% endif %}
+							</li><li>
+								<span class="info-note under"><b>If emailing, you can select errors below to include after the message.<br>(These are added when the email is sent).
+								</b><br>Emails automatically include footer: <i>Jisc Publications Router Support Team</i> and are sent from: <i>XXXX.YYYY@YYYY.ac.uk</i>.</span>
+								<span class="form__label"></span>
+								<button type="button" class="btn btn--3d btn--primary small-gap-vert" data-action="submit" data-func="send_email">Send Email</button>
+							</li>
+						</ul>
+						<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+					</div>
+				{% endif %}
+				</div>
+
+
+				{# Table displaying recent errors #}
+				<table>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Errors for <em class="bold">{{org_name}}</em></th>
+							<th>Already<br>Emailed</th>
+							<th>Email ?</th>
+						</tr>
+					</thead>
+					<tbody id="{{accid_str}}-err_tbl" class="err_tbl">
+				{% for err_date, err_msg, err_id, err_emailed in err_details_dict[acc_id] %}
+					{% set hili = "hili" if err_emailed else "" %}
+						<tr>
+							<td class="no-wrap {{hili}}">{{err_date}}</td>	{# Date #}
+							<td>{{embed_download_link(content_href + api_key, err_msg)}}</td> {# Error text #}
+							{# Indicates if error previously sent email #}
+							<td class="{{hili}}">{% if err_emailed %}Yes<br>{{err_id}}{% endif %}</td>
+							{# The checkbox is used for selecting errors to include in an email #}
+							<td><input type="checkbox" name="email_sent" value="{{err_id}}" aria-label="Include error" title="Tick to add error to email"></td>
+						</tr>
+				{% endfor %}
+					</tbody>
+				</table>
+				<br>
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script type="text/javascript" src="/static/js/ajax_helpers.js"></script>
+<script type="text/javascript" src="/static/js/service_accounts.js"></script>
+<script type="text/javascript" src="/static/js/note_email.js"></script>
+<script>
+$(document).ready(function(){
+
+	$('.show_hide').on("click", function(event){
+		event.stopPropagation();
+		doShowHide($(event.target));
+	});
+
+	// Email / Note initialisation for particular account
+	$('.note_email').on("click", function(event){
+		event.stopPropagation();
+		let $panelBtnEl = $(event.target);
+		// If email/notes form NOT yet initialised, then do so
+		if($panelBtnEl.data("init_done") !== true) {
+			// Set click handlers on form buttons
+			initAndSetEmailNoteEventHandlers(
+				"{{url_for('account.note_email_ajax')}}",
+				"{{pub_or_repo_ind}}",		// 1 Char indicator "P": publisher; "R": repository
+				$panelBtnEl.data("accid"));
+
+			// Set data attribute on button element to indicate that form has been created
+			$panelBtnEl.data("init_done", true);
+		}
+
+		// Toggle button text
+		doShowHide($panelBtnEl);
+	});
+
+	// Handlers for Skip Notification button
+	$('.skip_note').on("click", function(event){
+		event.stopPropagation();
+		const ok = confirm("\nSkipping cannot be undone.\n\nAre you sure?");
+		if (ok) {
+			const $btn = $(this);
+			// Need to find the <tr> in the grey panel that contains the ajax_url data element
+			const $grey_box = $btn.closest('div.pale-bkgnd');
+			const $tr = $grey_box.find('tbody tr');
+			const flash = new FlashMsg($grey_box.find(".flash"), 15);
+			doAjaxPost($tr.data("ajax_url"),
+					   $btn.data(),	// Pass data from buttons data- values
+					   function(retData){	// Success function
+							// Reset row class value and change toggle-button text
+							$tr.attr("class", "acc-" + retData.status);
+							setTextAndAriaForRepoStatus($tr.find('.toggle-repo'), retData.status);
+							$grey_box.find(".skip_it").hide();
+							flash.msg($grey_box, "s", "Success: " + retData.msg + ".");
+					   },
+					   function(errMsg) {	// Error function
+					   		flash.msg($grey_box, "e", "Failure: " + errMsg + ".");
+					   }
+					   );
+		}
+	});
+});
+</script>
+{% endblock extra_js_bottom %}

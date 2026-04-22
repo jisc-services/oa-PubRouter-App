@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.1 20151215//EN" "JATS-archivearticle1.dtd">
+<!-- UPDATE: eLife is updating to the most recent version of JATS, 1.1
+UPDATE: this XML will be used to creat 4 templates for Magazine (Feature) content: Ediotiral, Insight, Feature 1a and Feature 1b-->
+<article article-type="article-commentary" dtd-version="1.1"
+    xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- 
+article-commentary - Insight
+UPDATE: xmlns:ali="http://www.niso.org/schemas/ali/1.0/" this name space is added in order to add the new license information (see permissions section)
+-->
+    <front>
+        <journal-meta>
+            <!-- journal-meta is standard for all articles published by eLife. Can be boilerplate text as this will not change from article to article.
+UPDATE: <journal-id journal-id-type="hwp">eLife</journal-id> has been removed - we are no longer hosted by HighWirePress so this is not required -->
+            <journal-id journal-id-type="nlm-ta">elife</journal-id>
+            <journal-id journal-id-type="publisher-id">eLife</journal-id>
+            <journal-title-group>
+                <journal-title>eLife</journal-title>
+            </journal-title-group>
+            <issn pub-type="epub" publication-format="electronic">2050-084X</issn>
+            <publisher>
+                <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
+            </publisher>
+        </journal-meta>
+        <article-meta>
+            <article-id pub-id-type="publisher-id">00777</article-id>
+            <article-id pub-id-type="doi">10.7554/eLife.00777</article-id>
+            <article-categories>
+                <subj-group subj-group-type="heading">
+                    <subject>Computational and Systems Biology</subject>
+                </subj-group>
+                <subj-group subj-group-type="heading">
+                    <subject>Genomics and Evolutionary Biology</subject>
+                </subj-group>
+                <!-- @subj-group-type "sub-display-channel" - This is the editorially defined header for this article and it is not from a predefined list. 
+        It is displayed in all caps on the PDF above the title. On the website it prefixes the article title, followed by a colon.-->
+                <subj-group subj-group-type="sub-display-channel">
+                    <subject>Bioinformatics</subject>
+                </subj-group>
+                <!-- @subj-group-type "display-channel" - eLife-defined article type, controlled list: Insight, Editorial, Feature-->
+                <subj-group subj-group-type="display-channel">
+                    <subject>Insight</subject>
+                </subj-group>
+            </article-categories>
+            <title-group>
+                <article-title>Selecting against accidental RNA interactions</article-title>
+            </title-group>
+            <!-- contrib group tagging now to mirror research content exactly, with the exception of new bio section-->
+            <contrib-group>
+                <contrib contrib-type="author" corresp="yes" id="author-65580">
+                    <name>
+                        <surname>Corley</surname>
+                        <given-names>Meredith</given-names>
+                    </name>
+                    <contrib-id contrib-id-type="orcid" authenticated="true">http://orcid.org/0000-0002-4485-5663</contrib-id>
+                    <email>mcorley@email.unc.edu</email>
+                    <xref ref-type="aff" rid="aff1"/>
+                    <xref ref-type="fn" rid="fn1">&#x2a;</xref>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <!-- bio has been added so the features team have a location to place the textual description of the author, role, affiliation and any thing else. 
+        This will require a new filed in Kriya for them to edit-->
+                    <bio>
+                        <p>Meredith Corley is in the Department of Biology, University of North
+                            Carolina, Chapel Hill, United States. She also likes knitting and has a
+                            dog.</p>
+                    </bio>
+                </contrib>
+                <contrib contrib-type="author" corresp="yes" id="author-54862">
+                    <name>
+                        <surname>Laderach</surname>
+                        <given-names>Alain</given-names>
+                    </name>
+                    <contrib-id contrib-id-type="orcid"
+                        authenticated="true">http://orcid.org/0000-0002-5088-9907</contrib-id>
+                    <email>alain@unc.edu</email>
+                    <!-- The <role> tag is used to indicate authors who are eLife Deputy, Senior or Reviewing editors, or members of the eLife staff -->
+                    <role>Reviewing Editor</role>
+                    <xref ref-type="aff" rid="aff1"/>
+                    <xref ref-type="aff" rid="aff2"/>
+                    <xref ref-type="fn" rid="conf2"/>
+                    <!-- bio has been added so the features team have a location to place the textual description of the author, role, affiliation and any thing else. 
+        This will require a new filed in Kriya for them to edit. All <x> tags and punctiation outside the tags has been removed-->
+                    <bio>
+                        <p>Alain Laderach is an eLife Reviewing Editor and is in the Departments of Biology and Chemistry, University
+                            of North Carolina, Chapel Hill, United States. He's chair of something
+                            very important.</p>
+                    </bio>
+                </contrib>
+               <!-- 1) equal-contrib="yes" - can only be used if an author contributed equally with another author and this attribute must be present on both their contribs.
+                There is no limit on the number authors who can have equal contributions and there can be separate groups of equal contribution.
+                This is linked to a footnote via an xref.
+                UPDATE: The rid should be equal-contrib1, equal-contrib2 etc to indicate which equal contrib group each author is part of. Even if there is only one
+                group, the number suffix is still required.-->
+                <contrib contrib-type="author" id="author-1032" equal-contrib="yes">
+                    <name>
+                        <surname>Schekman</surname>
+                        <given-names>Randy</given-names>
+                    </name>
+                    <role>Editor-in-Chief</role>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="aff" rid="aff1"/>
+                    <xref ref-type="fn" rid="equal-contrib1">&#x2020;</xref>
+                    <bio>
+                        <p>Randy Schekman is eLife's Editor-In-Chief and a Howard Hughes Medical Institute investigator.</p>
+                    </bio>
+                </contrib>
+                <contrib contrib-type="author" corresp="yes" id="author-17333" equal-contrib="yes">
+                    <name>
+                        <surname>Teare</surname>
+                        <given-names>M Dawn</given-names>
+                    </name>
+                    <email>m.d.teare@sheffield.ac.uk</email>
+                    <role>Reviewing Editor</role>
+                    <xref ref-type="aff" rid="aff1"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="fn" rid="equal-contrib1">&#x2020;</xref>
+                    <!-- bio has been added so the features team have a location to place the textual description of the author, role, affiliation and any thing else. 
+        This will require a new filed in Kriya for them to edit. All <x> tags and punctiation outside the tags has been removed-->
+                    <bio>
+                        <p>M Dawn Teare is an eLife Reviewing Editor and is in Sheffield School of
+                            Health and Related Research, University of Sheffield, Sheffield, United
+                            Kingdom.</p>
+                    </bio>
+                </contrib>
+                <aff id="aff1">
+                    <institution content-type="dept">Department of Biology</institution>
+                    <institution>University of North Carolina</institution>
+                    <addr-line>
+                        <named-content content-type="city">Chapel Hill</named-content>
+                    </addr-line>
+                    <country>United States</country>
+                </aff>
+                <aff id="aff2">
+                    <institution content-type="dept">Department of Chemistry</institution>
+                    <institution>University of North Carolina</institution>
+                    <addr-line>
+                        <named-content content-type="city">Chapel Hill</named-content>
+                    </addr-line>
+                    <country>United States</country>
+                </aff>
+            </contrib-group>
+            <author-notes>
+                <fn fn-type="con" id="equal-contrib1">
+                <label>&#x2020;</label>
+                <p>These authors contributed equally to this work</p>
+            </fn>
+                <fn fn-type="fn" id="fn1">
+                    <label>&#x2a;</label>
+                    <p>A free text footnote for this author</p>
+                </fn>
+            </author-notes>
+            <pub-date date-type="pub" publication-format="electronic">
+                <day>20</day>
+                <month>09</month>
+                <year>2016</year>
+            </pub-date>
+            <pub-date pub-type="collection">
+                <year>2016</year>
+            </pub-date>
+            <volume>5</volume>
+            <elocation-id>e00777</elocation-id>
+            <history>
+                <date date-type="received" iso-8601-date="2016-09-07">
+                    <day>07</day>
+                    <month>09</month>
+                    <year>2016</year>
+                </date>
+                <date date-type="accepted" iso-8601-date="2016-09-07">
+                    <day>07</day>
+                    <month>09</month>
+                    <year>2016</year>
+                </date>
+            </history>
+            <permissions>
+                <copyright-statement>&#x00A9; 2016, Corley and Laderach</copyright-statement>
+                <copyright-year>2016</copyright-year>
+                <copyright-holder>Corley Laderach</copyright-holder>
+                <ali:free_to_read/>
+                <license>
+                    <ali:license_ref>http://creativecommons.org/licenses/by/license_ref</ali:license_ref>
+                    <license-p>Paragraph 1</license-p>
+                    <license-p>Paragraph 2</license-p>
+                </license>
+            </permissions>
+            <self-uri content-type="pdf" xlink:href="elife-00777.pdf"/>
+            <related-article ext-link-type="doi" id="ra1" related-article-type="commentary-article"
+                xlink:href="10.7554/eLife.00666"/>
+            <!-- Abstracts do not have DOIs -->
+            <abstract>
+                <p>Random base-pairing interactions between messenger RNAs and noncoding RNAs can
+                    reduce translation efficiency.</p>
+            </abstract>
+            <kwd-group kwd-group-type="author-keywords">
+                <title>Author Keywords</title>
+                <kwd>ncRNA</kwd>
+                <kwd>Archaea</kwd>
+                <kwd>Bacteria</kwd>
+                <kwd>gene expression</kwd>
+                <kwd>bioinformatics</kwd>
+            </kwd-group>
+            <kwd-group kwd-group-type="research-organism">
+                <kwd>
+                    <italic>E. coli</italic>
+                </kwd>
+                <kwd>Other</kwd>
+            </kwd-group>
+        </article-meta>
+    </front>
+</article>
+

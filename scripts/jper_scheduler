@@ -1,0 +1,108 @@
+#!/usr/bin/env python
+"""
+Script for running scheduler functions on demand rather than waiting for the schedule
+
+Usage:
+    jper_scheduler route - Check the unrouted index for matches
+    jper_scheduler move_ftp process_ftp - Move ftp files from jail to temp and then process them into unrouted
+    jper_scheduler full_ftp - PerformesL move_ftp, process_ftp and then finally check the unrouted index for matches.
+
+
+IMPORTANT: Before running this utility you must activate Python virtual machine context by using command:
+    source /usr/local/PubRouter/app/bin/activate
+"""
+import pdb
+from argparse import ArgumentParser, RawTextHelpFormatter
+from octopus.core import initialise
+from router.jper.scheduler import master_process_map, app, app_decorator
+
+
+print("------JPER Scheduler script------")
+
+# Dictionary of arguments for the command line script.
+argument_dict = master_process_map.copy()
+
+
+def do_full_ftp_scheduler_process():
+    """
+    Do the entire FTP scheduler process
+
+    Will execute move_ftp_from_jail_to_temp, processftp and then route in that order.
+    """
+    print("Executing moveftp")
+    execute(argument_dict["move_ftp"])
+    print("Executing processftp")
+    execute(argument_dict["process_ftp"])
+    print("Executing route")
+    execute(argument_dict["route"])
+
+
+# the 'full' argument will execute the entire FTP process - and also do the unrouted check.
+argument_dict["full_ftp"] = do_full_ftp_scheduler_process
+
+description = (
+    "Command line script for running methods in jper.scheduler.\n"
+    "Example usage:\n"
+    "\tjper_scheduler move_ftp process_ftp\n"
+    "\tjper_scheduler full_ftp\n"
+    "\tjper_scheduler route\n"
+)
+
+
+@app_decorator
+def execute(func, debug=False):
+    """
+    Execute a function.
+
+    :param func: func to execute
+    :param debug: Whether to start debugger before executing the function
+    """
+    if debug:
+        pdb.set_trace()
+    # Run function
+    func()
+
+
+# Need RawTextHelpFormatter so we can add new lines in to help text
+parser = ArgumentParser(
+    prog="jper_scheduler",
+    description=description,
+    formatter_class=RawTextHelpFormatter
+)
+
+
+command_help_text = (
+    "List of commands to execute; either one or more of [move_ftp, process_ftp, route, route_harv] or\n"
+    "full_ftp which executes move_ftp, process_ftp, route in the correct order.)."
+)
+
+
+# The nargs argument allows multiple command parameters to be entered
+# (without this only one parameter would be permitted)
+parser.add_argument(
+    "commands",
+    nargs="+",
+    help=command_help_text,
+    choices=list(argument_dict.keys())
+)
+parser.add_argument(
+    "--debug",
+    help="Start debugger before executing",
+    dest="debug",
+    default=False,
+    const=True,
+    action='store_const'
+)
+
+parsed_args = parser.parse_args()
+
+# Set the logfile and initialise so we actually set up the logfile
+with app.app_context():
+    app.config["LOGFILE"] = app.config["SCHEDULER_LOGFILE"]
+    initialise()
+
+for arg in parsed_args.commands:
+    method = argument_dict.get(arg)
+    if method:
+        print("Executing {}".format(arg))
+        execute(method, parsed_args.debug)

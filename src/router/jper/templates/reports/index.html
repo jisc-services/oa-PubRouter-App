@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% macro create_report_list(reports, report_title, path_prefix=None) %}
+	{# #####		
+	Create a listing for a given set of reports, consisting of:
+		<h2>Sub-heading</h2>
+		<p><a ...>Report filename</a></p>
+		... repeating ...
+
+	:param reports: List of report filenames
+	:param report_title: Title of this list (like Live Institution Reports)
+	:param path_prefix: Prefix for a path. This needs to be set for publisher and harvester reports
+	as they are in a different folder then the normal institution reports.
+	##### #}
+
+	<h2 class="like_h3">{{report_title}}</h2>
+	<ul>
+	{% for report in reports %}
+		{% set path = "{}/{}".format(path_prefix, report) if path_prefix else report %}
+		<li class="gap-vert gap-left-15"><a href="{{url_for('reports.serve_report', path=path)}}">{{report}}</a></li>
+	{% else %}
+		<li class="gap-vert gap-left-15">No reports found</li>
+	{% endfor %}
+	</ul>
+	<br>
+{% endmacro %}
+
+
+{% block content %}
+<div class="row cms">
+	<h1>All reports</h1>
+	<div class="col">
+		{{create_report_list(live_institution_reports, "Live institution reports")}}
+		{{create_report_list(test_institution_reports, "Test institution reports")}}
+		{{create_report_list(publisher_reports, "Publisher reports", "publishers")}}
+		{{create_report_list(harvester_reports, "Harvester reports", "publishers")}}
+		{{create_report_list(duplicate_reports, "Duplicate submissions reports", "dup_submission")}}
+		{{create_report_list(misc_reports, "Ad hoc miscellaneous reports", "misc")}}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

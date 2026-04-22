@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD with OASIS Tables with MathML3 v1.1 20151215//EN" "JATS-archive-oasis-article1-mathml3.dtd">
+<article article-type="review-article" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:oasis="http://www.niso.org/standards/z39-96/ns/oasis-exchange/table" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="publisher-id">3DP</journal-id>
+			<journal-title-group>
+				<journal-title>Journal of 3D printing in medicine</journal-title>
+				<abbrev-journal-title abbrev-type="publisher">J. 3D Print. Med.</abbrev-journal-title>
+				<abbrev-journal-title abbrev-type="pubmed">Journal of 3D printing in medicine</abbrev-journal-title>
+			</journal-title-group>
+			<issn pub-type="ppub">2059-4755</issn>
+			<issn pub-type="epub">2059-4763</issn>
+			<publisher>
+				<publisher-name>Future Medicine Ltd</publisher-name>
+				<publisher-loc>London, UK</publisher-loc>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-id pub-id-type="doi">10.2217/3dp-2017-9917</article-id>
+			<article-categories>
+				<subj-group subj-group-type="heading">
+					<subject>Review</subject>
+				</subj-group>
+			</article-categories>
+			<title-group>
+				<article-title>Auricular reconstruction from rib to 3D printing</article-title>
+			</title-group>
+			<contrib-group>
+				<contrib contrib-type="author">
+					<string-name>
+						<given-names>Chelsea L</given-names>
+						<x> </x>
+						<surname>Reighard</surname>
+					</string-name>
+					<x>, </x>
+					<xref ref-type="aff" rid="AFF1">
+						<sup>1</sup>
+					</xref>
+				</contrib>
+				<contrib contrib-type="an author">
+					<string-name>
+						<given-names>Scott J</given-names>
+						<x> </x>
+						<surname>Hollister</surname>
+					</string-name>
+					<x> &amp; </x>
+					<xref ref-type="aff" rid="AFF2">
+						<sup>2</sup>
+					</xref>
+				</contrib>
+				<contrib contrib-type="author" corresp="yes">
+					<string-name>
+						<given-names>David A</given-names>
+						<x> </x>
+						<surname>Zopf</surname>
+					</string-name>
+					<xref ref-type="corresp" rid="COR1">*</xref>
+					<xref ref-type="aff" rid="AFF3">
+						<sup>3</sup>
+					</xref>
+					<xref ref-type="aff" rid="AFF4">
+						<sup>4</sup>
+					</xref>
+				</contrib>
+				<contrib contrib-type="editor">
+					<string-name>
+						<given-names>Isa</given-names>
+						<surname>Editor</surname>
+					</string-name>
+				</contrib>
+
+				<aff id="AFF1">
+					<sup>1</sup>Medical School, University of Michigan, Ann Arbor, MI, USA</aff>
+				<aff id="AFF2">
+					<sup>2</sup>Department of Biomedical Engineering, Georgia Institute of Technology, Atlanta, GA, USA</aff>
+				<aff id="AFF3">
+					<sup>3</sup>Otolaryngology – Head &amp; Neck Surgery, Pediatric Division, University of Michigan Health Systems, CS Mott Children's Hospital, Ann Arbor, MI, USA</aff>
+				<aff id="AFF4">
+					<sup>4</sup>Department of Biomedical Engineering, University of Michigan, Ann Arbor, MI, USA</aff>
+			</contrib-group>
+			<author-notes>
+				<corresp id="COR1">
+					<label>*</label>Author for correspondence: <email xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="mailto:davidzopf@med.umich.edu">davidzopf@med.umich.edu</email>
+					<email xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="mailto:anotherperson@med.umich.edu">anotherperson@med.umich.edu</email>
+				</corresp>
+			</author-notes>
+			<pub-date pub-type="ppub">
+				<month>January</month>
+				<year>2018</year>
+			</pub-date>
+			<volume>2</volume>
+			<issue>1</issue>
+			<fpage>35</fpage>
+			<lpage>41</lpage>
+			<history>
+				<date date-type="received">
+					<day>07</day>
+					<month>09</month>
+					<year>2017</year>
+				</date>
+				<date date-type="accepted">
+					<day>16</day>
+					<month>11</month>
+					<year>2017</year>
+				</date>
+				<date date-type="online">
+					<day>15</day>
+					<month>12</month>
+					<year>2017</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-statement>© 2017 Future Medicine Ltd</copyright-statement>
+				<copyright-year>2018</copyright-year>
+			</permissions>
+			<self-uri content-type="pdf" xlink:title="pdf" xlink:href="3dp-2017-9917.pdf"/>
+			<abstract>
+				<p>The human ear imparts critical form and function and remains one of the most challenging facial features to reconstruct. Over the past century, surgeons have developed numerous techniques and materials for total auricular reconstruction. Refined costal cartilage techniques have remained the gold standard for the past half-century. Recent advancements with novel materials, tissue engineering and 3D printing provide immense potential; however, prohibitive costs and regulatory steps remain as barriers to clinical translation.</p>
+			</abstract>
+			<kwd-group kwd-group-type="author">
+				<title>Keywords:</title>
+				<kwd>3D printing</kwd>
+				<kwd>auricular reconstruction</kwd>
+				<kwd>bioscaffold</kwd>
+				<kwd>ear reconstruction</kwd>
+				<kwd>tissue engineering</kwd>
+			</kwd-group>
+			<counts>
+				<page-count count="8"/>
+			</counts>
+		</article-meta>
+	</front>
+	<body>
+		<p>The form and function of the human ear impart a critical component to the entirety of a child's face and remain one of the most challenging features to reconstruct due to its complex 3D geometry. Auricular deformities drastically affect the sensory and social development of a child. As the ear canal and middle ear ossicular chain develops in parallel with that of the external ear pinna, aural atresia and a maximal conductive hearing loss often accompanies the external ear malformation [<xref ref-type="bibr" rid="B1">1</xref>]. Additionally, the external ear provides functional support for prescription glasses. Patients with microtia often have poor, misaligned support for their glasses, failing to aid in vision [<xref ref-type="bibr" rid="B2">2</xref>]. Children with auricular malformations develop self-awareness of their differences at approximately 4 years of age. Failure to restore the size, shape and function of the ear can result in traumatic bullying and teasing by peers, which becomes more psychologically damaging as the child ages [<xref ref-type="bibr" rid="B3">3</xref>].</p>
+		<p>Over the past century, surgeons have devised techniques and materials to progress total auricular reconstruction in cases of congenital malformations and trauma. Although technological advances provide promise for improved patient outcomes, several challenges to widespread implementation remain. In this review, we aim to highlight the contributions that have led to current reconstructive techniques. We then look ahead to where the future of auricular reconstruction lies and challenges preventing near future translation.</p>
+		<sec id="S0001">
+			<title>Seminal techniques</title>
+			<p>The earliest techniques for whole ear reconstruction in the 20th century utilized homologous cartilage grafts or molds. Gillies pioneered a series of reconstructions with cartilage grafts from patients’ mothers [<xref ref-type="bibr" rid="B4">4</xref>]. Young introduced the use of precast fibrocartilage, where the diced strips of cartilage were encased in an auricle-shaped mold, buried in abdominal subcutaneous tissue for 3 months and transplanted for use in ear reconstruction [<xref ref-type="bibr" rid="B5">5</xref>]. Aufricht and Peer further applied this technique [<xref ref-type="bibr" rid="B6">6</xref>,<xref ref-type="bibr" rid="B7">7</xref>]. Both of these types of implants did not maintain shape under the taught auricular skin grafts and experienced progressive resorption and distortion [<xref ref-type="bibr" rid="B8">8</xref>,<xref ref-type="bibr" rid="B9">9</xref>].</p>
+		</sec>
+	</body>
+	<back>
+		<ack>
+			<title>
+				<bold>Financial &amp; competing interests disclosure</bold>
+			</title>
+			<p>Grant funding provided by NIH T32 DC005356. The authors have no other relevant affiliations or financial involvement with any organization or entity with a financial interest in or financial conflict with the subject matter or materials discussed in the manuscript apart from those disclosed.</p>
+			<p>No writing assistance was utilized in the production of this manuscript.</p>
+		</ack>
+		<ref-list>
+			<title>References</title>
+			<p>Papers of special note have been highlighted as: • of interest</p>
+			<ref id="B1">
+				<label>1.</label>
+				<mixed-citation publication-type="book">
+					<person-group person-group-type="author">
+						<string-name>
+							<surname>Flint</surname>
+							<x> </x>
+							<given-names>PW</given-names>
+						</string-name>
+						<x>, </x>
+						<string-name>
+							<surname>Haughey</surname>
+							<x> </x>
+							<given-names>BH</given-names>
+						</string-name>
+						<x>, </x>
+						<string-name>
+							<surname>Robbins</surname>
+							<x> </x>
+							<given-names>KT</given-names>
+						</string-name>
+					</person-group>
+					<etal/>
+					<source>
+						<italic>Cummings Otolaryngology: Head and Neck Surgery</italic>
+					</source>. <publisher-name>Elsevier Health Sciences</publisher-name>, <publisher-loc>PA, USA</publisher-loc>, <fpage>2998</fpage>–<lpage>3005</lpage> (<year>2014</year>).</mixed-citation>
+			</ref>
+			<ref id="B2">
+				<label>2.</label>
+				<mixed-citation publication-type="journal">
+					<person-group person-group-type="author">
+						<string-name>
+							<surname>Eng</surname>
+							<x> </x>
+							<given-names>H</given-names>
+						</string-name>
+						<x>, </x>
+						<string-name>
+							<surname>Chiu</surname>
+							<x> </x>
+							<given-names>RS</given-names>
+						</string-name>
+					</person-group>. <article-title>Spectacle fitting with ear, nose and face deformities or abnormalities</article-title>. <source>
+						<italic>Clin. Exp. Optom.</italic>
+					</source>
+					<volume>85</volume>(<issue>6</issue>), <fpage>389</fpage>–<lpage>391</lpage> (<year>2002</year>).</mixed-citation>
+			</ref>
+		</ref-list>
+	</back>
+</article>

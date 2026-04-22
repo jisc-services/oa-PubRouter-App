@@ -1,0 +1,26 @@
+Name Variants,Domains,Postcodes,Grant Numbers,ORCIDs,Author Emails,Organisation Identifiers
+University of Somewhere,uni-example.ac.uk,ZZ9 9XX,SOME/34/number,aaaa-bbbb-cccc-dddd,author-name@uni-example.ac.uk,ISNI: 0009 0001 0002 0003
+,,,,,,isn:0009000100020003
+,,,,,,http://isni.org/isni/0009000100020003
+,,,,,,ror:0524sp257
+,,,,,,https://ror.org/0524sp257
+,,,,,,RIN: 1234
+,,,,,,RINGGOLD: 4567
+**GUIDANCE**,,,,,,
+Before using this template DELETE everything except for the headings in Row 1 of those parameters you want to submit.,,,,,,
+"It is IMPORTANT that the file contains column headings of ONLY the parameters you want to change, because ",,,,,,
+if you have a heading with an otherwise empty column then Router will delete all existing parameters of that type.,,,,,,
+"If a heading is omitted from the file, then any existing matching parameters of that type will remain unaffected.",,,,,,
+,,,,,,
+The number of columns and order of columns is flexible.,,,,,,
+,,,,,,
+"You could choose to submit a single CSV file containing all the parameter types you wish to load or, ",,,,,,
+"alternatively you could submit separate CSV files, each containing a single parameter type; or some other variation",,,,,,
+"such as one file containing 3 types of parameter (e.g. Name variants, Domains, Postcodes, Organisation identifiers) and ",,,,,,
+a separate file for ORCIDs.,,,,,,
+,,,,,,
+(Rows 2 to 8 above show example data.  Note the various options for Organisation Identifiers. These are case insensitive and ,,,,,,
+"can be entered as either URLs or ""type: value"" strings; also, labels for ISNI and RINGGOLD can be shortened to ISN and RIN).",,,,,,
+,,,,,,
+** For MORE INFORMATION on how to enter matching parameters see the Excel version of this file: ,,,,,,
+https://pubrouter.jisc.ac.uk/static/csvtemplate_router_matching_params_XLS_FORMAT.xlsx,,,,,,

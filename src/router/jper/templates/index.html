@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{# Home page for Publications Router #}
+
+{# Set the page title. Other pages can use base.html and pass in the 'title', but here we want to
+   set one without '- YOUR-ORG Publications Router' being added to the end. #}
+{% block title %}YOUR-ORG Publications Router{% endblock %}
+{% block content %}
+
+{{information_block | safe}}
+<div class="row cms">
+	<div class="col span-7">
+		<h1 class="like_h2">Populating repositories automatically</h1>
+		<p>Publications Router gathers information from content providers such as publishers and passes it on to institutions
+			to help them capture their research articles onto their systems, such as their repositories or CRISs.
+			The service is used by institutions that have full Jisc HE membership and <a href="./about/start-up-guide-for-institutions/#compatible-systems">compatible systems</a>.
+		</p>
+		<ul>
+			<li><a href="{{ url_for('about.index') }}">Read more about the benefits of Publications Router</a><br><br></li>
+			<li><a href="{{ url_for('about.providerlist') }}">See the list of participating publishers and other content providers</a><br><br></li>
+			<li><a href="https://www.jisc.ac.uk/rd/projects/publications-router">Read about the development of this project</a></li>
+		</ul>
+		<br><br>
+		<div class="box--padding-medium box--brd-mgreyblue">
+			<div class="box__inner">
+				<p>Find out how to get started if you're an <a	href="{{ url_for('about.institutions') }}">institution</a> or <a href="{{ url_for('about.publishers') }}">publisher</a>.</p>
+			</div>
+		</div>
+		<p></p>
+ 	</div>
+	<div class="col span-4 push-1">
+		<article class="teaser ">
+			<div class="teaser__copy">
+				<h2 class="like_h3">Recently added partners</h2>
+				<dl>
+					<dt><a href="{{ url_for('about.providerlist') }}">Publishers</a></dt>
+					{{publiser_names_block | safe}}
+				</dl>
+				<dl>
+					<dt><a href="{{ url_for('about.recipientlist') }}">Institutions</a></dt>
+					{% for repo in repo_org_names %}
+						<dd>{{repo}}</dd>
+					{% endfor %}
+				</dl>
+			</div>
+		</article>
+	</div>
+</div>
+</div>
+</div>
+
+<div class="inner l-pull-left">
+	<div class="l-centre-offset">
+		<div class="row">
+			<section id='other' class="region region--3-up" data-equal-height="">
+				<div class="block block-1">
+					<article class="teaser has-media has-media--two-thirds">
+						<span class="marker">Services</span>
+						<div class="teaser__copy">
+							<h2 class="teaser__title">
+								<a href="https://jisc.ac.uk/open-research">Research management services from Jisc</a>
+							</h2>
+						</div>
+					</article>
+				</div>
+				<div class="block block-2">
+					<article class="teaser has-media has-media--two-thirds">
+						<span class="marker" >News</span>
+						<div class="teaser__copy">
+							<h2 class="teaser__title" >
+								<a href="{{blog_post.url}}">{{blog_post.title}}</a>
+							</h2>
+						</div>
+					</article>
+				</div>
+				<div class="block block-3">
+                    {% if blog_post.old_url %}
+					<article class="teaser has-media has-media--two-thirds">
+						<span class="marker" >Blog</span>
+						<div class="teaser__copy">
+							<h2 class="teaser__title" >
+								<a href="{{blog_post.old_url}}" title="Due to limitations of the 'Way Back Machine' you must page through the blog to find relevant Router articles, as search does not work.">Publications Router historical posts</a>
+							</h2>
+						</div>
+					</article>
+                    {% endif %}
+
+				</div>
+			</section>
+		</div>
+{% endblock %}
+{# ---- Comment out JS section -----
+{% block extra_js_bottom %}
+	In case we ever want to use an ajax solution for latest blog post again
+	<script>
+		$(document).ready(function(){
+			//Find other section
+			const $section = $('#other');
+			const $news = $('#news');
+			const $newsLink = $news.find('a');
+			$.get("/blogpost", function(data){
+				// Change the link's url and title
+				$newsLink.attr("href", data.url);
+				$newsLink.text(data.title);
+				// Grab teaserblock widget - part of ux.jisc.ac.uk
+				const sectionWidget= $section.data().uiTeaserblocks;
+				// Run reset_heights and resize_header to equal the height of the blocks manually
+				sectionWidget._reset_heights();
+				sectionWidget._resize_header($section.find('.block'));
+			})
+		})
+	</script>
+{% endblock %}
+#}

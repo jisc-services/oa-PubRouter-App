@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">Batch process metrics</h1>
+		<div class="accordion cms">
+			<p>The page displays batch process metrics:</p>
+			<ul>
+				<li>Date - Process start date</li>
+				<li>Start time - Process start time (GMT)</li>
+				<li>Server - Server on which process ran</li>
+				<li>Process - Name of process</li>
+				<li>Measure - What items are being counted</li>
+				<li>Count - Number of items processed</li>
+				<li>Seconds - Duration of batch process in seconds (3 decimal places)</li>
+				<li>Minutes - Duration in minutes (to 1 decimal place).</li>
+			</ul>
+			<p>The page displays metrics data in descending datetime order according to the specified parameters, except for the special case where process <span class="italic">*MAX Duration for All*</span> is selected.  In that case other parameters are ignored and the maximum duration recorded for each process is shown in descending duration order.</p>
+			<p>Date range: If none set then all records will be shown. If only the From-date is set, then Until-date is set far into the future (01-01-2050); conversely if only the Until-date is set, then From-date is set to 01-01-2020.</p>
+		</div>
+		<form id="params" class="form" action="#pg-h1" method="GET">
+			<label class="form_fields-same-line">
+				Show from: <input class="" type="date" name="from_date" placeholder="from date" value="{{form_metrics.from_date.data or ''}}">
+			</label>
+			<label class="form_fields-same-line">
+				To: <input class="" type="date" name="to_date" placeholder="to date" value="{{form_metrics.to_date.data or ''}}">
+			</label>
+			<br>
+			<label class="form_fields-same-line" for="proc_name">Show for process: &nbsp;
+			{{ form_metrics.proc_name(class_="", placeholder=form_metrics.proc_name.description) | safe }}
+			</label>
+			<label class="form_fields-same-line" for="min_count">Minimum count:
+			{{ form_metrics.min_count(class_="", placeholder=form_metrics.min_count.description) | safe }}
+			</label>
+			<p class="info-note">Process <span class="italic strong">*MAX Duration for All*</span> is a special case which shows the maximum duration for each of the batch processes (minimum count parameter ignored). **This query can take a while to complete.**</p>
+			<button class="btn btn--3d btn--primary" type="submit">Refresh</button>
+			<span class="gap-left-15 spinner"></span>
+		</form>
+
+		<div class="row">
+			<div class="pagination"></div>
+			<table data-rwdtable-sortable data-sortable-col-zero class="content-table" id="data_table">
+				<thead>
+					<tr>
+						<th class="persist essential wide-8rem" title="Date on which the process started">Date</th>
+						<th class="persist essential wide-8rem" title="Time (GMT) that the process started">Start time</th>
+						<th class="optional" title="Server on which the proces ran">Server</th>
+						<th class="persist essential" title="Name of the process">Process</th>
+						<th class="persist essential" title="What is being counted (in next column)">Measure</th>
+						<th class="persist essential" title="Number of items processed">Count</th>
+						<th class="persist essential" title="Duration of the process in Seconds (to 3 decimal places)">Seconds</th>
+						<th class="persist essential" title="Duration of the process in Minutes (to 1 decimal place)">Minutes</th>
+						<th class="optional" title="Additional statistics">Extra info</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for rec in recs_list %}
+					<tr>
+						<td data-sort-value="{{rec[0]}}">{{rec[0][:10]}}</td> {# extract date from YYYY-MM-DD HH:MM:SS #}
+						<td data-sort-value="{{rec[0]}}">{{rec[0][11:]}}</td> {# extract time from YYYY-MM-DD HH:MM:SS #}
+						<td data-sort-value="{{rec[1]|string + rec[0]}}">{{rec[1]}}</td>
+						<td data-sort-value="{{rec[2] + rec[0]}}">{{rec[2]}}</td>
+						<td>{{rec[3]}}s</td>
+						<td class="align-right">{{rec[4]}}</td>
+						<td class="align-right">{{'%0.3f' % rec[5]}}</td>	{# format secs to 3 decimal places #}
+						<td class="align-right">{{rec[6]}}</td>
+						{# rec[7] may contain dict of extra values. Display as "key: value"<br>, unless value is "", in which case just display "key"<br> #}
+						<td>{% for k, v in rec[7].items() %}{{k}}{% if v != '' %}: {{v}}{% endif %}<br>{% endfor %}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+			<p class="info-note">Times are always shown as GMT (i.e. not adjusted for summer time).</p>
+			<div class="pagination"></div>
+		</div>
+		{##############
+		{% if recs_list %}
+		<p class="no-underline">
+			<a class="btn btn--3d btn--primary download" href="{{csv_link}}&page={{page_num}}" role="button" >Download CSV - This page</a>
+			{% if num_of_pages > 1 %}
+			<a class="gap-left btn btn--3d btn--primary download" href="{{csv_link}}" role="button" >Download CSV - All pages</a>
+			{% endif %}
+		</p>
+		{% endif %}
+		#############}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+
+	$(document).ready(function(){
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+
+		/**
+		* Add page numbers
+		**/
+		showPageNumbers($("div.pagination"), {{num_of_pages}}, {{page_num}});
+
+		const anchor = "#pg-h1"
+		const urlObj = window.location;
+		const url = urlObj.href;
+		const queryPath = url.split('?')[0] + "?";
+		/**
+		*	Code to handle Page Number key press
+		**/
+		$(".pagination").on("click", "a", function(e){
+			e.stopPropagation();
+			e.preventDefault();		// Don't perform normal action on clicking an <a> link
+			const pgBtnData = this.dataset;
+			let queryString = new URLSearchParams(urlObj.search);	// Get current query string
+			queryString.set(pgBtnData.param, pgBtnData.value);	// Add clicked page number as param to existing params
+			window.location.replace(queryPath + queryString.toString() + anchor);  // Redisplay page with new params
+		});
+
+		/**
+		*	Code to Submit the parameter form & show spinner with timer
+		**/
+		const $form = $("#params");
+		const showSpinnerStartTimerFn = addSpinnerTimer();
+
+		$form.on("submit", function(e){
+			e.preventDefault();		// Don't perform default Form submission
+			showSpinnerStartTimerFn();
+
+			const newURL = queryPath + $form.serialize() + anchor;
+			// Default behaviour of form is to not re-submit if nothing has changed, but we want to be able to because
+			// metrics may have changed in the background
+			(newURL === url) ? window.location.reload() : window.location.replace(newURL);
+		});
+
+	});
+</script>
+{% endblock extra_js_bottom %}

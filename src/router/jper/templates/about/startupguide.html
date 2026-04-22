@@ -1,0 +1,93 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="row">
+	<div class="col span-11 cms">
+		<h1>How to start using the service - for institutions</h1>
+
+		<h2>Who can join?</h2>
+		<p>Publications Router is now scheduled for closure on 1 July 2026, so it is no longer possible to join. It was for institutions with an active programme of research whose authors publish their outputs in research journals. It was only available to UK institutions who are full HE members of Jisc, for whom there was no additional charge.</p>
+
+		<h2 id="compatible-systems">Which repositories or CRISs can Router work with?</h2>
+		<p>Publications Router is currently interoperable with these platforms:</p>
+		<ul>
+			<li>DSpace</li>
+			<li>EPrints</li>
+			<li>Pure</li>
+			<li>Symplectic Elements (when connected via its RT2 module to either EPrints or DSpace)</li>
+			<li>Worktribe.</li>
+		</ul>
+
+		<h2>What will I receive into my repository or CRIS?</h2>
+		<p>See our <a href="{{url_for('about.providerlist')}}">current content providers page</a> for a summary of Router's sources, together with what each of them delivers and when.</p>
+
+		<h2>What's involved?</h2>
+		<p>Publications Router delivers metadata and, if available, article PDF and related files, that populate new records created automatically in your repository or CRIS. The metadata provides most of the key information you will need, including licensing and any embargo end-dates (where applicable) from some providers. Note that Router can only pass on what providers supply, which may differ between providers and individual articles.</p>
+		<h3>Repositories</h3>
+		<p>Technically, Router sends notifications directly into your repository via the SWORD v2 protocol, available in EPrints v3.3 onwards and DSpace v4.x onwards.</p>
+		<p>There are two repository types currently receiving Publications Router notifications:</p>
+		
+		<section class="is-collapsible show_hide__container is-collapsible--button" data-collapsible="">
+			<h2 class="show_hide__trigger ">EPrints</h2>
+			<div class="cms show_hide__target">
+				<p>There are two connection options for EPrints repositories:</p>
+				<ul>
+					<li><strong>Basic connection</strong><br>
+						This simple approach sees Router connect to your EPrints repository, requiring no plugin and minimal configuration on the EPrints side. This results in deposits with a basic set of metadata and, if available, article PDFs and related files. There are some limitations on populating particular metadata fields, such as an attached document's Licence terms. However, in these cases the relevant information is captured in the EPrints "Additional Information" field.</li>
+					<li><strong>Jisc Publications Router RIOXXplus Connector plugin</strong><br>
+						For EPrints repositories that already have the RIOXX2 plugin installed, there is the option of an enhanced Router feed if the RIOXXplus Connector plugin is also installed. This enables Router to populate the RIOXX metadata profile and will also populate other fields that the basic connection has to work around. It also attaches document files where available. For this option the RIOXXplus Connector plugin must be downloaded from <a href="https://bazaar.eprints.org/id/epm/pubrouter_rioxx_importer">the EPrints Bazaar</a> and configured, which your repository administrator will be able to do (following the clear guidance in the plugin documentation).</li>
+				</ul>
+				<p>Router will send its feed to a repository account specified by you. You may find it works best if this has a generic username rather than a personal one, so that any relevant members of your team can access and use it as your "Router review queue" - the place to check for Router deposits, before deciding whether to make them live or edit them first. Alternatively, you can send your deposits directly to a "manage deposits" queue. </p>
+			</div>
+		</section>
+		
+		<section class="is-collapsible show_hide__container is-collapsible--button" data-collapsible="">
+			<h2 class="show_hide__trigger ">DSpace</h2>
+			<div class="cms show_hide__target">
+				<p>There are two connection options for DSpace repositories:</p>
+				<ul>
+					<li><strong>Basic connection</strong><br>
+						SWORD v2 is enabled by default in DSpace repositories (versions 1.x+). However, some configuration might be required depending on the customisation in your repository. This connection will result in deposits with a basic set of metadata and, if available, article PDFs and related files. There are some limitations on populating particular metadata fields; in these cases the relevant information is captured in the DSpace "dc.description" field.</li>
+					<li><strong>DSpace RIOXX patch</strong><br>
+						There is a patch available for DSpace repositories (versions 5.7+ and 6.3+) that provides RIOXX specific functionality and allows Router to automatically populate RIOXX fields in addition to standard fields, as well as depositing PDFs (when available). Different versions of the patch are needed for different versions of DSpace as shown in the table below.
+						<table class="std-txt">
+							<thead>
+							<tr><th>DSpace v5.10+ and DSpace v6.3+</th><th>DSpace v5.7 and v5.8</th></tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td>If you have DSpace v5.10 upwards, or are planning to upgrade, then contact 4Science at <a href="mailto:info@4science.it?subject=DSpace RIOXX Patch">info@4science.it</a> for the patch and relevant instructions. Alternatively, see the <a href="https://github.com/4Science/rioxxintegration">4Science GitHub repository for the RIOXX patch</a>.<br><br>
+									This version of the patch also integrates the REF patch, making support for both RIOXX and REF considerably easier to achieve.</td>
+								<td>Contact Atmire at <a href="mailto:info@atmire.com?subject=DSpace RIOXX Patch">info@atmire.com</a> for the patch and relevant instructions. Alternatively, see the <a href="https://github.com/atmire/RIOXX">Atmire GitHub repository for the RIOXX patch</a>.</td>
+							</tr>
+							</tbody>
+						</table>
+						<p class="small">* Note: DSpace v5.9 users will need to upgrade to v5.10 or v6.3 to take advantage of the patch.</p></li>
+				</ul>
+			</div>
+		</section>
+		<br>
+		<p>Note that SWORD may require a user account with certain administrative privileges in your repository. So for security reasons, it is strongly recommended that your repository is accessible via HTTPS protocol (which encrypts traffic) rather than HTTP (which does not).</p>
+		<h3>CRISs</h3>
+		<p>Publications Router is also integrated with the following platforms via Router’s API:</p>
+		<ul>
+			<li>Pure</li>
+			<li>Worktribe.</li>
+		</ul>
+		<p>Your CRIS supplier will configure your CRIS with your institution's Router API Key (provided by us), and it will then be able to retrieve notifications (metadata and article files) that have been matched to your institution.</p>
+		<h2>Legal agreement</h2>
+		<p>To use the service, your institution will need to sign an agreement with us. Among other things, for any publishers that supply embargoed full text via Publications Router, you will need to commit to respect the embargo period set out in an embargoed article's metadata. The agreement also sets out the service levels you can expect from us.</p>
+
+		<h2>Getting the right content for your institution</h2>
+		<p>To enable Router to send you the right notifications - about articles co-authored by your researchers - you'll need complete a spreadsheet setting out some parameters that will enable it to make the right matches. You can download the <a href="/static/csvtemplate_router_matching_params_XLS_FORMAT.xlsx">matching parameters template</a>, which includes instructions for completing it. Please contact us if there is anything you'd like to know more about.</p>
+
+		<h2>Can we try it out?</h2>
+		<p>As Publications Router is now scheduled for closure, you can no longer sign up for a test feed. If your institution is currently taking a test feed, you can no longer progress to live and your test feed will come to an end when Router closes. </p>
+
+		<h2>Further information</h2>
+		<p>As noted above, Publications Router is now scheduled for closure on 1 July 2026. If you would like to get in touch about this, please contact us at <a href="mailto:XXXX@YYYY.ac.uk">XXXX@YYYY.ac.uk</a> mentioning Publications Router in the subject line.</p>
+	</div>
+</div>
+
+{% endblock %}
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

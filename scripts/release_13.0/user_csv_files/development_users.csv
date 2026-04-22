@@ -1,0 +1,13 @@
+Type,Organisation name,Organisation ID,Account status,Admin user's email address,User type (S=standard),Last name,First name,Role in organisation,Comments
+D,Jisc Admin,1,test,binklewinkle@bpn.com,A,Bartle,Fartle,role,
+D,Jisc Admin,1,test,standard@bpn.com,S,User,Standard,role,
+R,live_Org_e26532dc,2,live,,A,last,first,role,
+A,Harvester Publisher,11,test,test@test.ac.uk,A,last,first,role,
+P,Test new publisher,12,test,newpub@nowhere.com,A,last,first,role,
+R,Test Repo xxx,65,test,deleted-1@test.com,A,last,first,role,
+A,Test admin,66,test,deleted-2@test.com,A,last,first,role,
+P,test publisher,67,test,admin@test.com,A,last,first,role,
+R,Test repo for provider settings,116,test,test111@here.com,A,last,first,role,
+P,Test Pub 111,117,test,testpub111@here.com,A,last,first,role,
+P,New PUb,118,test,AAA@TEST.COM,A,last,first,role,
+P,Bomble,119,test,xxx@yyy.com,A,last,first,role,

@@ -1,0 +1,43 @@
+	<div id="pub_reports" class="box box--padding-large box--brd-mgreyblue">
+		<h3>Reporting</h3>
+		<p>Monthly article distribution report, showing all the institutions that an article has been matched to.</p>
+		<div class="accordion cms">
+			<h4>Further information</h4>
+			<p>A report is available as a CSV file that shows which of your deposited articles (identified by DOI) have been matched (routed) to particular institutions.  The report has 4 columns:</p>
+			<ul>
+				<li>Date the article was processed by Router</li>
+				<li>DOI</li>
+				<li>Number of institutions to which the article was matched</li>
+				<li>Names of recipient institutions.</li>
+			</ul>
+			<p>For the report to be generated you must select one of the format options:</p>
+			<ol>
+				<li>One row per article, with the names of the matched institutions concatenated into a single field, semicolon separated</li>
+				<li>As #1, but institution names concatenated with semicolon, followed by newline</li>
+				<li>Separate rows for each institution that an article is matched to, with all columns populated (number of institutions set to 1 for each row)</li>
+				<li>Separate rows for each institution that an article is matched to, with other columns populated only for each new DOI<br>(E.g. if an article is matched to 3 institutions, this will generate 3 rows of data, but only the first row will show the Date, DOI, and Number of institutions; while for the following 2 rows only the institution name column will be populated, and the first 3 columns will be blank).</li>
+			</ol>
+			<p>Sample layouts for each option are shown in this <a href="/static/sample_publisher_doi_distribution_report.xlsx" download="">spreadsheet</a>.</p>
+			<p>To automatically receive the report each month you must enter recipient email addresses (separated by space or comma or semicolon) in the box below.</p>
+			<p>Previously generated reports can be downloaded at any time via the <i>List reports</i> link below.</p>
+		</div>
+		<form method="post" action="{{url_for('account.update_pub_reports', org_uuid=org_acc.uuid)}}#pub_reports" class="form">
+			<div>
+				<ul class="form-fields">
+					<li class="form__item-select">
+						{{render_field(form_pub_reports.report_format, 'form__item', 'form__label required')}}
+						<span class="info-note">Click for more information above</span>
+					</li>
+					<li class="form__item">
+						{{render_field(form_pub_reports.report_emails, 'form__item', 'form__label')}}
+						<span class="info-note"><p>Report will be mailed each month.</p>
+							<p>Separate email addresses by space, comma or semicolon.</p></span>
+					</li>
+				</ul>
+				{% if curr_user_is_not_readonly %}<button class="gap-vert btn btn--3d btn--primary" id="update_reports" type="submit">Update</button>{% endif %}
+			</div>
+		</form>
+
+		<hr class="gap-vert">
+		<p><a target="_blank" href="{{url_for('account.list_publisher_reports', pub_uuid=org_acc.uuid)}}">List reports</a> for download<span class="open-new"></span>.</p>
+	</div>

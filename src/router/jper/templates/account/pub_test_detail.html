@@ -1,0 +1,80 @@
+{% macro create_numbered_list(results_list) %}
+    {% if results_list %}
+        <ol>
+        {% for result in results_list %}
+            <li>{{result}}.</li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p style="margin-left:2rem">None</p>
+    {% endif %}
+{% endmacro %}
+
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">Test record{% if curr_org_is_super %}<span class="h_small"><a id="stickme" href="{{url_for('account.disp_org_acc', org_uuid=pub_acc.uuid)}}#manage_testing">{{pub_acc.org_name}}</a></span>{% endif %}</h1>
+        <div class="row">
+            <div class="col span-6 cms">
+                <dl class="dl-horiz dl-horiz--spaced">
+                    {% set date_, time_ = record.date_time_tuple() %}
+                    <dt>Test time</dt><dd>{{date_}} &nbsp; {{time_}}</dd>
+                    <dt>DOI</dt><dd>{{record.doi}}</dd>
+                    <dt>File name</dt><dd>{{record.filename}}</dd>
+                    <dt>Route</dt><dd>{{record.route}}</dd>
+                </dl>
+            </div>
+            <div class="col span-6 cms">
+                <dl class="dl-horiz dl-horiz--spaced">
+                    <dt>Status</dt><dd>{% if record.valid %}Success{% else %}Error{% endif %}</dd>
+                    <dt>Error count</dt><dd>{{record.errors|length}}</dd>
+                    <dt>Issue count</dt><dd>{{record.issues|length}}</dd>
+                </dl>
+            </div>
+        </div>
+
+        {% if record.errors|length or record.issues|length %}
+        <div class="accordion cms">
+          {% if record.route == "ftp" %}
+			<p>The error/issue descriptions below reference Publication Router's internal metadata <code>«field.names»</code> using dot notation. These fields are populated from the JATS XML metadata that you have sent us.</p>
+            <p>The mapping of JATS XML to Router's internal data-model is described on our <a href="https://github.com/jisc-services/Public-Documentation/blob/master/PublicationsRouter/JATS/README.md#mapping-to-routers-data-model-from-jats">JATS page</a>.</p>
+          {% endif %}
+            <p>Further information on error messages may be found on our <a href="https://github.com/jisc-services/Public-Documentation/blob/master/PublicationsRouter/api/v4/Validation.md">Validation page</a>.</p>
+		</div>
+        {% endif %}
+        <h2>Errors</h2>
+        {{create_numbered_list(record.errors)}}
+        <h2>Issues</h2>
+        {{create_numbered_list(record.issues)}}
+        <p>Note: issues indicated as desirable should ideally be addressed, however in practice a submission with issues would be processed successfully by Publications Router.</p>
+        <div id="metadata">
+        <h2>Metadata</h2>
+        <p class="info-note">Click the arrows to show/hide parts of the structure, or the buttons to expand/collapse it all.</p>
+        <div class="gap-vert">
+            <div id="json"></div>
+        </div>
+        </div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+    $(document).ready(function(){
+        /**
+        * Code for Info accordion
+        **/
+        initInfoAccordion();
+    });
+</script>
+
+<script type="text/javascript" src="/static/js/json-viewer.min.js"></script>
+
+<script>
+	/**
+	*	Functions to handle display of JSON Metadata
+	**/
+	const json_node = new JSONViewer($('#json')[0], JSON.parse( {{json_note|tojson}} ), 1);
+</script>
+{% endblock extra_js_bottom %}

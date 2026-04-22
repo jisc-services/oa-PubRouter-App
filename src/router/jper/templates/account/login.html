@@ -1,0 +1,70 @@
+{% extends "base.html" %} 
+{% block content %}
+
+
+<div class="row cms">
+	<div class="col span-11">
+		<h1>Login to Publications Router</h1>
+		<p>Two stage authentication is now in effect, which involves an access code being emailed to you.</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col span-9">
+		<form id="login_form" method="post" action="" class="form box box--padding-large box--padding-bottom-none box--brd-vlgreyblue box--bg-vlgreyblue">
+			<fieldset>
+				<legend class="visuallyhidden">Enter username and password</legend>
+				<ul class="form-fields">
+					<li>
+						<label class="form__label" for="username">Username/Email</label>
+						<input class="form__item" id="username" type="text" name="username">
+					</li>
+					<li>
+						<label class="form__label" for="password">Password</label>
+						<input class="form__item" id="password" type="password" name="password">
+					</li>
+					<li class="form__item-checkbox">
+						<label class="form__label" for="remember" title="Tick to avoid re-entering credentials on your next visit.">Stay logged in</label>
+						<input class="form__item" id="remember" type="checkbox" name="remember" checked title="Tick to avoid re-entering credentials on your next visit.">
+						<span class="info-note" style="width:60%">Tick to stay logged in for 90 days after browser closes, otherwise you will be logged out.</span>
+					</li>
+					<li>
+						<span class="form__label"></span>
+						<button class="btn btn--3d btn--primary" id="login" type="submit">Log in</button>
+						<span id="msg" class="gap-left-15 hili"></span>
+					</li>
+				</ul>
+				<p class="info-note smaller"><a href="{{url_for('account.reset_token')}}">Forgotten your password?</a></p>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+
+	/*** Code to show delay count-down if too many failed password attempts ***/
+	let delay={{delay}};
+	if (delay) {
+		const $msg = $("#msg");
+		function dispDelay() {
+			$msg.text(`You can try again in ${delay} seconds.`);
+			delay -= 1;
+		}
+		const $submit = $("#login");
+
+		$submit.prop("disabled", true);
+		dispDelay();
+		let delayTimer = setInterval(function(){
+			if(delay <= 0){
+				clearInterval(delayTimer);
+				$submit.prop("disabled", false);
+				$msg.empty();
+			} else {
+				dispDelay();
+			}
+			}, 1000);
+	}
+</script>
+{% endblock extra_js_bottom %}

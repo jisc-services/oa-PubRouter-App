@@ -1,0 +1,9 @@
+{# SWORD deposit history panel #}
+<div id="sword_history" class="box box--padding-large box--brd-mgreyblue">
+    <h3>SWORD deposit history</h3>
+    <p>View and download a report of deposits into the repository made using the SWORD protocol.</p>
+    <p>
+        <a target="_blank" href="{{url_for('account.sword_deposit_history',repo_uuid=org_acc.uuid)}}">View deposit history</a>
+        <span class="open-new"></span>
+    </p>
+</div>

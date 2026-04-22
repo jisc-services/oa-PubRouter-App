@@ -1,0 +1,2969 @@
+{
+    "status": "ok",
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "message": {
+        "facets": {},
+        "total-results": 30,
+        "next-cursor": "fakecursor_0",
+        "items": [
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:21:38Z",
+                    "timestamp": 1525749698413
+                },
+                "reference-count": 45,
+                "publisher": "Royal Society of Chemistry (RSC)",
+                "issue": "1",
+                "license": [
+                    {
+                        "URL": "http://rsc.li/journals-terms-of-use",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    10,
+                                    25
+                                ]
+                            ],
+                            "date-time": "2018-10-25T00:00:00Z",
+                            "timestamp": 1540425600000
+                        },
+                        "delay-in-days": 297,
+                        "content-version": "am"
+                    }
+                ],
+                "funder": [
+                    {
+                        "DOI": "10.13039/501100001809",
+                        "name": "National Natural Science Foundation of China",
+                        "doi-asserted-by": "publisher",
+                        "award": [
+                            "21203058",
+                            "21571042",
+                            "61705063",
+                            "21371040"
+                        ]
+                    }
+                ],
+                "content-domain": {
+                    "domain": [
+                        "rsc.org"
+                    ],
+                    "crossmark-restriction": true
+                },
+                "short-container-title": [
+                    "Inorg. Chem. Front."
+                ],
+                "abstract": "<p>It is a potential way to enhance the performance of the DSSCs by constructing a GO-TiO<sub>2</sub> composited photoanode with graphene oxide.</p>",
+                "DOI": "10.1039/c7qi00503b",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T04:32:55Z",
+                    "timestamp": 1508905975000
+                },
+                "page": "54-62",
+                "update-policy": "http://dx.doi.org/10.1039/rsc_crossmark_policy",
+                "source": "Crossref",
+                "is-referenced-by-count": 0,
+                "title": [
+                    "Enhanced performance of the dye-sensitized solar cells by the introduction of graphene oxide into the TiO2 photoanode"
+                ],
+                "prefix": "10.1039",
+                "volume": "5",
+                "author": [
+                    {
+                        "ORCID": "http://orcid.org/0000-0001-5350-7874",
+                        "authenticated-orcid": false,
+                        "given": "Liguo",
+                        "family": "Wei",
+                        "sequence": "first",
+                        "affiliation": [
+                            {
+                                "name": "College of Environmental and Chemical Engineering"
+                            },
+                            {
+                                "name": "Heilongjiang University of Science and Technology"
+                            },
+                            {
+                                "name": "Harbin 150022"
+                            },
+                            {
+                                "name": "P.R. China"
+                            },
+                            {
+                                "name": "Precious Tyrone New Materials Co."
+                            }
+                        ]
+                    },
+                    {
+                        "given": "Ping",
+                        "family": "Wang",
+                        "sequence": "additional",
+                        "affiliation": [
+                            {
+                                "name": "MIIT Key Laboratory of Critical Materials Technology for New Energy Conversion and Storage"
+                            },
+                            {
+                                "name": "School of Chemistry and Chemical Engineering"
+                            },
+                            {
+                                "name": "Harbin Institute of Technology"
+                            },
+                            {
+                                "name": "Harbin 150001"
+                            },
+                            {
+                                "name": "P.R. China"
+                            }
+                        ]
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-2108-662X",
+                        "authenticated-orcid": false,
+                        "given": "Yulin",
+                        "family": "Yang",
+                        "sequence": "additional",
+                        "affiliation": [
+                            {
+                                "name": "MIIT Key Laboratory of Critical Materials Technology for New Energy Conversion and Storage"
+                            },
+                            {
+                                "name": "School of Chemistry and Chemical Engineering"
+                            },
+                            {
+                                "name": "Harbin Institute of Technology"
+                            },
+                            {
+                                "name": "Harbin 150001"
+                            },
+                            {
+                                "name": "P.R. China"
+                            }
+                        ]
+                    },
+                    {
+                        "given": "Zhaoshun",
+                        "family": "Zhan",
+                        "sequence": "additional",
+                        "affiliation": [
+                            {
+                                "name": "College of Environmental and Chemical Engineering"
+                            },
+                            {
+                                "name": "Heilongjiang University of Science and Technology"
+                            },
+                            {
+                                "name": "Harbin 150022"
+                            },
+                            {
+                                "name": "P.R. China"
+                            }
+                        ]
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-5188-0883",
+                        "authenticated-orcid": false,
+                        "given": "Yongli",
+                        "family": "Dong",
+                        "sequence": "additional",
+                        "affiliation": [
+                            {
+                                "name": "College of Environmental and Chemical Engineering"
+                            },
+                            {
+                                "name": "Heilongjiang University of Science and Technology"
+                            },
+                            {
+                                "name": "Harbin 150022"
+                            },
+                            {
+                                "name": "P.R. China"
+                            }
+                        ]
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0001-9662-1992",
+                        "authenticated-orcid": false,
+                        "given": "Weina",
+                        "family": "Song",
+                        "sequence": "additional",
+                        "affiliation": [
+                            {
+                                "name": "College of Environmental and Chemical Engineering"
+                            },
+                            {
+                                "name": "Heilongjiang University of Science and Technology"
+                            },
+                            {
+                                "name": "Harbin 150022"
+                            },
+                            {
+                                "name": "P.R. China"
+                            }
+                        ]
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-5461-9672",
+                        "authenticated-orcid": false,
+                        "given": "Ruiqing",
+                        "family": "Fan",
+                        "sequence": "additional",
+                        "affiliation": [
+                            {
+                                "name": "MIIT Key Laboratory of Critical Materials Technology for New Energy Conversion and Storage"
+                            },
+                            {
+                                "name": "School of Chemistry and Chemical Engineering"
+                            },
+                            {
+                                "name": "Harbin Institute of Technology"
+                            },
+                            {
+                                "name": "Harbin 150001"
+                            },
+                            {
+                                "name": "P.R. China"
+                            }
+                        ]
+                    }
+                ],
+                "member": "292",
+                "published-online": {
+                    "date-parts": [
+                        [
+                            2018
+                        ]
+                    ]
+                },
+                "reference": [
+                    {
+                        "key": "C7QI00503B-(cit1)/*[position()=1]",
+                        "author": "O'Regan",
+                        "volume": "353",
+                        "first-page": "737",
+                        "year": "1991",
+                        "journal-title": "Nature",
+                        "DOI": "10.1038/353737a0",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit2)/*[position()=1]",
+                        "author": "Grätzel",
+                        "volume": "42",
+                        "first-page": "1788",
+                        "year": "2009",
+                        "journal-title": "Acc. Chem. Res.",
+                        "DOI": "10.1021/ar900141y",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit3)/*[position()=1]",
+                        "author": "Wang",
+                        "volume": "4",
+                        "first-page": "559",
+                        "year": "2017",
+                        "journal-title": "Inorg. Chem. Front.",
+                        "DOI": "10.1039/C6QI00570E",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit4)/*[position()=1]",
+                        "author": "Guo",
+                        "volume": "4",
+                        "first-page": "1187",
+                        "year": "2017",
+                        "journal-title": "Inorg. Chem. Front.",
+                        "DOI": "10.1039/C7QI00160F",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit5)/*[position()=1]",
+                        "author": "Su",
+                        "volume": "2",
+                        "first-page": "1040",
+                        "year": "2015",
+                        "journal-title": "Inorg. Chem. Front.",
+                        "DOI": "10.1039/C5QI00095E",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit6)/*[position()=1]",
+                        "author": "Zervaki",
+                        "volume": "1",
+                        "first-page": "256",
+                        "year": "2014",
+                        "journal-title": "Inorg. Chem. Front.",
+                        "DOI": "10.1039/C3QI00095H",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit7)/*[position()=1]",
+                        "author": "Fang",
+                        "volume": "101",
+                        "first-page": "176",
+                        "year": "2014",
+                        "journal-title": "Sol. Energy",
+                        "DOI": "10.1016/j.solener.2013.12.005",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit8)/*[position()=1]",
+                        "author": "Ahmad",
+                        "volume": "77",
+                        "first-page": "89",
+                        "year": "2017",
+                        "journal-title": "Renewable Sustainable Energy Rev.",
+                        "DOI": "10.1016/j.rser.2017.03.129",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit9)/*[position()=1]",
+                        "author": "Mehmood",
+                        "volume": "140",
+                        "first-page": "174",
+                        "year": "2015",
+                        "journal-title": "Sol. Energy Mater. Sol. Cells",
+                        "DOI": "10.1016/j.solmat.2015.04.004",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit10)/*[position()=1]",
+                        "author": "Javed",
+                        "volume": "685",
+                        "first-page": "610",
+                        "year": "2016",
+                        "journal-title": "J. Alloys Compd.",
+                        "DOI": "10.1016/j.jallcom.2016.05.325",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit11)/*[position()=1]",
+                        "author": "Wang",
+                        "volume": "358",
+                        "first-page": "175",
+                        "year": "2015",
+                        "journal-title": "Appl. Surf. Sci.",
+                        "DOI": "10.1016/j.apsusc.2015.06.102",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit12)/*[position()=1]",
+                        "author": "Bae",
+                        "volume": "16",
+                        "first-page": "10495",
+                        "year": "2016",
+                        "journal-title": "J. Nanosci. Nanotechnol.",
+                        "DOI": "10.1166/jnn.2016.13183",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit13)/*[position()=1]",
+                        "author": "Jennings",
+                        "volume": "130",
+                        "first-page": "13364",
+                        "year": "2008",
+                        "journal-title": "J. Am. Chem. Soc.",
+                        "DOI": "10.1021/ja804852z",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit14)/*[position()=1]",
+                        "author": "Huang",
+                        "volume": "16",
+                        "first-page": "1477",
+                        "year": "2016",
+                        "journal-title": "J. Nanosci. Nanotechnol.",
+                        "DOI": "10.1166/jnn.2016.10760",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit15)/*[position()=1]",
+                        "author": "Mallakpour",
+                        "volume": "302",
+                        "first-page": "344",
+                        "year": "2016",
+                        "journal-title": "Chem. Eng. J.",
+                        "DOI": "10.1016/j.cej.2016.05.038",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit16)/*[position()=1]",
+                        "author": "Yang",
+                        "volume": "4",
+                        "first-page": "887",
+                        "year": "2010",
+                        "journal-title": "ACS Nano",
+                        "DOI": "10.1021/nn901660v",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit17)/*[position()=1]",
+                        "author": "Ng",
+                        "volume": "296",
+                        "first-page": "169",
+                        "year": "2015",
+                        "journal-title": "J. Power Sources",
+                        "DOI": "10.1016/j.jpowsour.2015.07.006",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit18)/*[position()=1]",
+                        "author": "Ng",
+                        "volume": "1",
+                        "first-page": "2222",
+                        "year": "2010",
+                        "journal-title": "J. Phys. Chem. Lett.",
+                        "DOI": "10.1021/jz100728z",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit19)/*[position()=1]",
+                        "author": "Nair",
+                        "volume": "320",
+                        "first-page": "1308",
+                        "year": "2008",
+                        "journal-title": "Science",
+                        "DOI": "10.1126/science.1156965",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit20)/*[position()=1]",
+                        "author": "Stankovich",
+                        "volume": "442",
+                        "first-page": "282",
+                        "year": "2006",
+                        "journal-title": "Nature",
+                        "DOI": "10.1038/nature04969",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit21)/*[position()=1]",
+                        "author": "Li",
+                        "volume": "320",
+                        "first-page": "1170",
+                        "year": "2008",
+                        "journal-title": "Science",
+                        "DOI": "10.1126/science.1158180",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit22)/*[position()=1]",
+                        "author": "Si",
+                        "volume": "8",
+                        "first-page": "1679",
+                        "year": "2008",
+                        "journal-title": "Nano Lett.",
+                        "DOI": "10.1021/nl080604h",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit23)/*[position()=1]",
+                        "author": "Williams",
+                        "volume": "2",
+                        "first-page": "1487",
+                        "year": "2008",
+                        "journal-title": "ACS Nano",
+                        "DOI": "10.1021/nn800251f",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit24)/*[position()=1]",
+                        "author": "Kazmi",
+                        "volume": "691",
+                        "first-page": "659",
+                        "year": "2017",
+                        "journal-title": "J. Alloys Compd.",
+                        "DOI": "10.1016/j.jallcom.2016.08.319",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit25)/*[position()=1]",
+                        "author": "Tang",
+                        "volume": "234",
+                        "first-page": "60",
+                        "year": "2013",
+                        "journal-title": "J. Power Sources",
+                        "DOI": "10.1016/j.jpowsour.2013.01.130",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit26)/*[position()=1]",
+                        "author": "Xiang",
+                        "volume": "2",
+                        "first-page": "1234",
+                        "year": "2014",
+                        "journal-title": "ACS Sustainable Chem. Eng.",
+                        "DOI": "10.1021/sc5000732",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit27)/*[position()=1]",
+                        "author": "Shan",
+                        "volume": "4",
+                        "first-page": "3297",
+                        "year": "2016",
+                        "journal-title": "J. Mater. Chem. A",
+                        "DOI": "10.1039/C5TA10601J",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit28)/*[position()=1]",
+                        "author": "Singh",
+                        "volume": "7",
+                        "first-page": "1863",
+                        "year": "2015",
+                        "journal-title": "Sci. Adv. Mater.",
+                        "DOI": "10.1166/sam.2015.2438",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit29)/*[position()=1]",
+                        "author": "Song",
+                        "volume": "9",
+                        "first-page": "8090",
+                        "year": "2014",
+                        "journal-title": "Int. J. Electrochem. Sci."
+                    },
+                    {
+                        "key": "C7QI00503B-(cit30)/*[position()=1]",
+                        "author": "Raja",
+                        "volume": "21",
+                        "first-page": "891",
+                        "year": "2017",
+                        "journal-title": "J. Solid State Electrochem.",
+                        "DOI": "10.1007/s10008-016-3437-7",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit31)/*[position()=1]",
+                        "author": "Kim",
+                        "volume": "483",
+                        "first-page": "124",
+                        "year": "2009",
+                        "journal-title": "Chem. Phys. Lett.",
+                        "DOI": "10.1016/j.cplett.2009.10.066",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit32)/*[position()=1]",
+                        "author": "Motlak",
+                        "volume": "268",
+                        "first-page": "153",
+                        "year": "2015",
+                        "journal-title": "Chem. Eng. J.",
+                        "DOI": "10.1016/j.cej.2015.01.065",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit33)/*[position()=1]",
+                        "author": "Agarwal",
+                        "volume": "4",
+                        "first-page": "M64",
+                        "year": "2015",
+                        "journal-title": "ECS J. Solid State Sci. Technol.",
+                        "DOI": "10.1149/2.0161509jss",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit34)/*[position()=1]",
+                        "author": "Song",
+                        "volume": "77",
+                        "first-page": "1020",
+                        "year": "2014",
+                        "journal-title": "Carbon",
+                        "DOI": "10.1016/j.carbon.2014.06.018",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit35)/*[position()=1]",
+                        "author": "Reddy",
+                        "volume": "46",
+                        "first-page": "373",
+                        "year": "2007",
+                        "journal-title": "Angew. Chem., Int. Ed.",
+                        "DOI": "10.1002/anie.200603098",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit36)/*[position()=1]",
+                        "author": "Dikin",
+                        "volume": "448",
+                        "first-page": "457",
+                        "year": "2007",
+                        "journal-title": "Nature",
+                        "DOI": "10.1038/nature06016",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit37)/*[position()=1]",
+                        "author": "Lim",
+                        "volume": "39",
+                        "first-page": "6647",
+                        "year": "2013",
+                        "journal-title": "Ceram. Int.",
+                        "DOI": "10.1016/j.ceramint.2013.01.102",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit38)/*[position()=1]",
+                        "author": "Siokou",
+                        "volume": "257",
+                        "first-page": "9785",
+                        "year": "2011",
+                        "journal-title": "Appl. Surf. Sci.",
+                        "DOI": "10.1016/j.apsusc.2011.06.017",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit39)/*[position()=1]",
+                        "author": "Fan",
+                        "volume": "22",
+                        "first-page": "17027",
+                        "year": "2012",
+                        "journal-title": "J. Mater. Chem.",
+                        "DOI": "10.1039/c2jm33104g",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit40)/*[position()=1]",
+                        "author": "Hagfeldt",
+                        "volume": "110",
+                        "first-page": "6595",
+                        "year": "2010",
+                        "journal-title": "Chem. Rev.",
+                        "DOI": "10.1021/cr900356p",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit41)/*[position()=1]",
+                        "author": "Kuang",
+                        "volume": "47",
+                        "first-page": "1923",
+                        "year": "2008",
+                        "journal-title": "Angew. Chem., Int. Ed.",
+                        "DOI": "10.1002/anie.200705225",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit42)/*[position()=1]",
+                        "author": "Lim",
+                        "volume": "5",
+                        "first-page": "44398",
+                        "year": "2015",
+                        "journal-title": "RSC Adv.",
+                        "DOI": "10.1039/C5RA06220A",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit43)/*[position()=1]",
+                        "author": "Lim",
+                        "volume": "4",
+                        "first-page": "48236",
+                        "year": "2014",
+                        "journal-title": "RSC Adv.",
+                        "DOI": "10.1039/C4RA09775K",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit44)/*[position()=1]",
+                        "author": "Zaban",
+                        "volume": "4",
+                        "first-page": "859",
+                        "year": "2003",
+                        "journal-title": "ChemPhysChem",
+                        "DOI": "10.1002/cphc.200200615",
+                        "doi-asserted-by": "crossref"
+                    },
+                    {
+                        "key": "C7QI00503B-(cit45)/*[position()=1]",
+                        "author": "Zaban",
+                        "volume": "101",
+                        "first-page": "7985",
+                        "year": "1997",
+                        "journal-title": "J. Phys. Chem. B",
+                        "DOI": "10.1021/jp971857u",
+                        "doi-asserted-by": "crossref"
+                    }
+                ],
+                "container-title": [
+                    "Inorganic Chemistry Frontiers"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://pubs.rsc.org/en/content/articlepdf/2018/QI/C7QI00503B",
+                        "content-type": "unspecified",
+                        "content-version": "vor",
+                        "intended-application": "similarity-checking"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1,
+                            16
+                        ]
+                    ],
+                    "date-time": "2018-01-16T17:14:45Z",
+                    "timestamp": 1516122885000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018
+                        ]
+                    ]
+                },
+                "references-count": 45,
+                "journal-issue": {
+                    "published-print": {
+                        "date-parts": [
+                            [
+                                2018
+                            ]
+                        ]
+                    },
+                    "issue": "1"
+                },
+                "URL": "http://dx.doi.org/10.1039/c7qi00503b",
+                "relation": {
+                    "cites": []
+                },
+                "ISSN": [
+                    "2052-1553"
+                ],
+                "issn-type": [
+                    {
+                        "value": "2052-1553",
+                        "type": "electronic"
+                    }
+                ],
+                "assertion": [
+                    {
+                        "value": "This document is Similarity Check deposited",
+                        "name": "similarity_check",
+                        "explanation": {
+                            "URL": "https://www.crossref.org/services/similarity-check/"
+                        },
+                        "group": {
+                            "name": "similarity_check",
+                            "label": "SIMILARITY CHECK"
+                        }
+                    },
+                    {
+                        "value": "Liguo Wei (ORCID)",
+                        "URL": "http://orcid.org/0000-0001-5350-7874",
+                        "name": "identifier",
+                        "group": {
+                            "name": "author_identifiers",
+                            "label": "IDENTIFIERS"
+                        }
+                    },
+                    {
+                        "value": "Yulin Yang (ORCID)",
+                        "URL": "http://orcid.org/0000-0002-2108-662X",
+                        "name": "identifier",
+                        "group": {
+                            "name": "author_identifiers",
+                            "label": "IDENTIFIERS"
+                        }
+                    },
+                    {
+                        "value": "Yongli Dong (ORCID)",
+                        "URL": "http://orcid.org/0000-0002-5188-0883",
+                        "name": "identifier",
+                        "group": {
+                            "name": "author_identifiers",
+                            "label": "IDENTIFIERS"
+                        }
+                    },
+                    {
+                        "value": "Weina Song (ORCID)",
+                        "URL": "http://orcid.org/0000-0001-9662-1992",
+                        "name": "identifier",
+                        "group": {
+                            "name": "author_identifiers",
+                            "label": "IDENTIFIERS"
+                        }
+                    },
+                    {
+                        "value": "Ruiqing Fan (ORCID)",
+                        "URL": "http://orcid.org/0000-0002-5461-9672",
+                        "name": "identifier",
+                        "group": {
+                            "name": "author_identifiers",
+                            "label": "IDENTIFIERS"
+                        }
+                    },
+                    {
+                        "value": "Single-blind",
+                        "order": 2,
+                        "name": "peer_review_method",
+                        "group": {
+                            "name": "peer_review_method",
+                            "label": "PEER REVIEW METHOD"
+                        }
+                    },
+                    {
+                        "value": "Received 21 August 2017; Accepted 25 October 2017;  Accepted Manuscript published 25 October 2017;  Advance Article published 7 November 2017;  Version of Record published 16 January 2018",
+                        "order": 1,
+                        "name": "history",
+                        "group": {
+                            "name": "publication_history",
+                            "label": "PUBLICATION HISTORY"
+                        }
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:21:45Z",
+                    "timestamp": 1525749705850
+                },
+                "reference-count": 9,
+                "publisher": "Elsevier BV",
+                "license": [
+                    {
+                        "URL": "http://www.elsevier.com/tdm/userlicense/1.0/",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    2,
+                                    1
+                                ]
+                            ],
+                            "date-time": "2018-02-01T00:00:00Z",
+                            "timestamp": 1517443200000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "tdm"
+                    }
+                ],
+                "content-domain": {
+                    "domain": [
+                        "clinicalkey.jp",
+                        "clinicalkey.com",
+                        "clinicalkey.es",
+                        "clinicalkey.com.au",
+                        "clinicalkey.fr",
+                        "goldjournal.net",
+                        "elsevier.com",
+                        "sciencedirect.com"
+                    ],
+                    "crossmark-restriction": true
+                },
+                "short-container-title": [
+                    "Urology"
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            2
+                        ]
+                    ]
+                },
+                "DOI": "10.1016/j.urology.2017.10.016",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T05:01:07Z",
+                    "timestamp": 1508907667000
+                },
+                "page": "29-32",
+                "update-policy": "http://dx.doi.org/10.1016/elsevier_cm_policy",
+                "source": "Crossref",
+                "is-referenced-by-count": 0,
+                "title": [
+                    "Gene Expression Correlates of Site-specific Metastasis Among Men With Lymph Node Positive Prostate Cancer Treated With Radical Prostatectomy: A Case Series"
+                ],
+                "prefix": "10.1016",
+                "volume": "112",
+                "author": [
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-4715-5451",
+                        "authenticated-orcid": false,
+                        "given": "Vidit",
+                        "family": "Sharma",
+                        "sequence": "first",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Kasra",
+                        "family": "Yousefi",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Zaid",
+                        "family": "Haddad",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Christine",
+                        "family": "Buerki",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Robert B.",
+                        "family": "Jenkins",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Elai",
+                        "family": "Davicioni",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "R. Jeffrey",
+                        "family": "Karnes",
+                        "sequence": "additional",
+                        "affiliation": []
+                    }
+                ],
+                "member": "78",
+                "container-title": [
+                    "Urology"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S0090429517310993?httpAccept=text/xml",
+                        "content-type": "text/xml",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    },
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S0090429517310993?httpAccept=text/plain",
+                        "content-type": "text/plain",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2018,
+                            3,
+                            12
+                        ]
+                    ],
+                    "date-time": "2018-03-12T11:22:36Z",
+                    "timestamp": 1520853756000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            2
+                        ]
+                    ]
+                },
+                "references-count": 9,
+                "alternative-id": [
+                    "S0090429517310993"
+                ],
+                "URL": "http://dx.doi.org/10.1016/j.urology.2017.10.016",
+                "ISSN": [
+                    "0090-4295"
+                ],
+                "issn-type": [
+                    {
+                        "value": "0090-4295",
+                        "type": "print"
+                    }
+                ],
+                "assertion": [
+                    {
+                        "value": "Elsevier",
+                        "name": "publisher",
+                        "label": "This article is maintained by"
+                    },
+                    {
+                        "value": "Gene Expression Correlates of Site-specific Metastasis Among Men With Lymph Node Positive Prostate Cancer Treated With Radical Prostatectomy: A Case Series",
+                        "name": "articletitle",
+                        "label": "Article Title"
+                    },
+                    {
+                        "value": "Urology",
+                        "name": "journaltitle",
+                        "label": "Journal Title"
+                    },
+                    {
+                        "value": "http://dx.doi.org/10.1016/j.urology.2017.10.016",
+                        "name": "articlelink",
+                        "label": "CrossRef DOI link to publisher maintained version"
+                    },
+                    {
+                        "value": "article",
+                        "name": "content_type",
+                        "label": "Content Type"
+                    },
+                    {
+                        "value": "© 2017 Elsevier Inc. All rights reserved.",
+                        "name": "copyright",
+                        "label": "Copyright"
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:21:51Z",
+                    "timestamp": 1525749711800
+                },
+                "reference-count": 41,
+                "publisher": "Elsevier BV",
+                "license": [
+                    {
+                        "URL": "http://www.elsevier.com/tdm/userlicense/1.0/",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    1,
+                                    1
+                                ]
+                            ],
+                            "date-time": "2018-01-01T00:00:00Z",
+                            "timestamp": 1514764800000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "tdm"
+                    }
+                ],
+                "funder": [
+                    {
+                        "name": "German Federal Ministry of Education and Research (BMBF)",
+                        "award": [
+                            "01QE1208"
+                        ]
+                    }
+                ],
+                "content-domain": {
+                    "domain": [
+                        "elsevier.com",
+                        "sciencedirect.com"
+                    ],
+                    "crossmark-restriction": true
+                },
+                "short-container-title": [
+                    "Journal of Invertebrate Pathology"
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "DOI": "10.1016/j.jip.2017.10.005",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T05:33:04Z",
+                    "timestamp": 1508909584000
+                },
+                "page": "7-13",
+                "update-policy": "http://dx.doi.org/10.1016/elsevier_cm_policy",
+                "source": "Crossref",
+                "is-referenced-by-count": 0,
+                "title": [
+                    "Agrotis segetum nucleopolyhedrovirus but not Agrotis segetum granulovirus replicate in AiE1611T cell line of  Agrotisipsilon"
+                ],
+                "prefix": "10.1016",
+                "volume": "151",
+                "author": [
+                    {
+                        "given": "Gianpiero",
+                        "family": "Gueli Alletti",
+                        "sequence": "first",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Eric B.",
+                        "family": "Carstens",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Birgit",
+                        "family": "Weihrauch",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-8143-7743",
+                        "authenticated-orcid": false,
+                        "given": "Johannes A.",
+                        "family": "Jehle",
+                        "sequence": "additional",
+                        "affiliation": []
+                    }
+                ],
+                "member": "78",
+                "container-title": [
+                    "Journal of Invertebrate Pathology"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S002220111730304X?httpAccept=text/xml",
+                        "content-type": "text/xml",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    },
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S002220111730304X?httpAccept=text/plain",
+                        "content-type": "text/plain",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2018,
+                            2,
+                            2
+                        ]
+                    ],
+                    "date-time": "2018-02-02T15:32:44Z",
+                    "timestamp": 1517585564000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "references-count": 41,
+                "alternative-id": [
+                    "S002220111730304X"
+                ],
+                "URL": "http://dx.doi.org/10.1016/j.jip.2017.10.005",
+                "ISSN": [
+                    "0022-2011"
+                ],
+                "issn-type": [
+                    {
+                        "value": "0022-2011",
+                        "type": "print"
+                    }
+                ],
+                "assertion": [
+                    {
+                        "value": "Elsevier",
+                        "name": "publisher",
+                        "label": "This article is maintained by"
+                    },
+                    {
+                        "value": "Agrotis segetum nucleopolyhedrovirus but not Agrotis segetum granulovirus replicate in AiE1611T cell line of Agrotisipsilon",
+                        "name": "articletitle",
+                        "label": "Article Title"
+                    },
+                    {
+                        "value": "Journal of Invertebrate Pathology",
+                        "name": "journaltitle",
+                        "label": "Journal Title"
+                    },
+                    {
+                        "value": "http://dx.doi.org/10.1016/j.jip.2017.10.005",
+                        "name": "articlelink",
+                        "label": "CrossRef DOI link to publisher maintained version"
+                    },
+                    {
+                        "value": "article",
+                        "name": "content_type",
+                        "label": "Content Type"
+                    },
+                    {
+                        "value": "© 2017 Elsevier Inc. All rights reserved.",
+                        "name": "copyright",
+                        "label": "Copyright"
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:21:54Z",
+                    "timestamp": 1525749714241
+                },
+                "reference-count": 52,
+                "publisher": "Elsevier BV",
+                "license": [
+                    {
+                        "URL": "http://www.elsevier.com/tdm/userlicense/1.0/",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    1,
+                                    1
+                                ]
+                            ],
+                            "date-time": "2018-01-01T00:00:00Z",
+                            "timestamp": 1514764800000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "tdm"
+                    }
+                ],
+                "funder": [
+                    {
+                        "DOI": "10.13039/501100004007",
+                        "name": "Instituto Nazionale di Fisica Nucleare",
+                        "doi-asserted-by": "publisher",
+                        "award": []
+                    }
+                ],
+                "content-domain": {
+                    "domain": [
+                        "elsevier.com",
+                        "sciencedirect.com"
+                    ],
+                    "crossmark-restriction": true
+                },
+                "short-container-title": [
+                    "Atmospheric Environment"
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "DOI": "10.1016/j.atmosenv.2017.10.038",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T05:46:02Z",
+                    "timestamp": 1508910362000
+                },
+                "page": "168-176",
+                "update-policy": "http://dx.doi.org/10.1016/elsevier_cm_policy",
+                "source": "Crossref",
+                "is-referenced-by-count": 1,
+                "title": [
+                    "Tailored coefficients in the algorithm to assess reconstructed light extinction at urban sites: A comparison with the IMPROVE revised approach"
+                ],
+                "prefix": "10.1016",
+                "volume": "172",
+                "author": [
+                    {
+                        "ORCID": "http://orcid.org/0000-0003-4085-023X",
+                        "authenticated-orcid": false,
+                        "given": "S.",
+                        "family": "Valentini",
+                        "sequence": "first",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "V.",
+                        "family": "Bernardoni",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "D.",
+                        "family": "Massabò",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "P.",
+                        "family": "Prati",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "G.",
+                        "family": "Valli",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-1666-1802",
+                        "authenticated-orcid": false,
+                        "given": "R.",
+                        "family": "Vecchi",
+                        "sequence": "additional",
+                        "affiliation": []
+                    }
+                ],
+                "member": "78",
+                "container-title": [
+                    "Atmospheric Environment"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S1352231017307008?httpAccept=text/xml",
+                        "content-type": "text/xml",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    },
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S1352231017307008?httpAccept=text/plain",
+                        "content-type": "text/plain",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2017,
+                            12,
+                            1
+                        ]
+                    ],
+                    "date-time": "2017-12-01T01:19:45Z",
+                    "timestamp": 1512091185000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "references-count": 52,
+                "alternative-id": [
+                    "S1352231017307008"
+                ],
+                "URL": "http://dx.doi.org/10.1016/j.atmosenv.2017.10.038",
+                "ISSN": [
+                    "1352-2310"
+                ],
+                "issn-type": [
+                    {
+                        "value": "1352-2310",
+                        "type": "print"
+                    }
+                ],
+                "assertion": [
+                    {
+                        "value": "Elsevier",
+                        "name": "publisher",
+                        "label": "This article is maintained by"
+                    },
+                    {
+                        "value": "Tailored coefficients in the algorithm to assess reconstructed light extinction at urban sites: A comparison with the IMPROVE revised approach",
+                        "name": "articletitle",
+                        "label": "Article Title"
+                    },
+                    {
+                        "value": "Atmospheric Environment",
+                        "name": "journaltitle",
+                        "label": "Journal Title"
+                    },
+                    {
+                        "value": "http://dx.doi.org/10.1016/j.atmosenv.2017.10.038",
+                        "name": "articlelink",
+                        "label": "CrossRef DOI link to publisher maintained version"
+                    },
+                    {
+                        "value": "article",
+                        "name": "content_type",
+                        "label": "Content Type"
+                    },
+                    {
+                        "value": "© 2017 Elsevier Ltd. All rights reserved.",
+                        "name": "copyright",
+                        "label": "Copyright"
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:21:55Z",
+                    "timestamp": 1525749715578
+                },
+                "reference-count": 5,
+                "publisher": "Elsevier BV",
+                "license": [
+                    {
+                        "URL": "http://www.elsevier.com/tdm/userlicense/1.0/",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    3,
+                                    1
+                                ]
+                            ],
+                            "date-time": "2018-03-01T00:00:00Z",
+                            "timestamp": 1519862400000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "tdm"
+                    }
+                ],
+                "content-domain": {
+                    "domain": [
+                        "elsevier.com",
+                        "sciencedirect.com"
+                    ],
+                    "crossmark-restriction": true
+                },
+                "short-container-title": [
+                    "Blood Cells, Molecules, and Diseases"
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            3
+                        ]
+                    ]
+                },
+                "DOI": "10.1016/j.bcmd.2017.10.002",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T05:31:44Z",
+                    "timestamp": 1508909504000
+                },
+                "page": "101",
+                "update-policy": "http://dx.doi.org/10.1016/elsevier_cm_policy",
+                "source": "Crossref",
+                "is-referenced-by-count": 0,
+                "title": [
+                    "Prospective studies of the incidence of pediatric arterial ischaemic stroke"
+                ],
+                "prefix": "10.1016",
+                "volume": "69",
+                "author": [
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-5882-8076",
+                        "authenticated-orcid": false,
+                        "given": "Andrew A.",
+                        "family": "Mallick",
+                        "sequence": "first",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Finbar J.",
+                        "family": "O'Callaghan",
+                        "sequence": "additional",
+                        "affiliation": []
+                    }
+                ],
+                "member": "78",
+                "container-title": [
+                    "Blood Cells, Molecules, and Diseases"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S1079979617303972?httpAccept=text/xml",
+                        "content-type": "text/xml",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    },
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S1079979617303972?httpAccept=text/plain",
+                        "content-type": "text/plain",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2018,
+                            2,
+                            6
+                        ]
+                    ],
+                    "date-time": "2018-02-06T01:48:22Z",
+                    "timestamp": 1517881702000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            3
+                        ]
+                    ]
+                },
+                "references-count": 5,
+                "alternative-id": [
+                    "S1079979617303972"
+                ],
+                "URL": "http://dx.doi.org/10.1016/j.bcmd.2017.10.002",
+                "ISSN": [
+                    "1079-9796"
+                ],
+                "issn-type": [
+                    {
+                        "value": "1079-9796",
+                        "type": "print"
+                    }
+                ],
+                "assertion": [
+                    {
+                        "value": "Elsevier",
+                        "name": "publisher",
+                        "label": "This article is maintained by"
+                    },
+                    {
+                        "value": "Prospective studies of the incidence of pediatric arterial ischaemic stroke",
+                        "name": "articletitle",
+                        "label": "Article Title"
+                    },
+                    {
+                        "value": "Blood Cells, Molecules, and Diseases",
+                        "name": "journaltitle",
+                        "label": "Journal Title"
+                    },
+                    {
+                        "value": "http://dx.doi.org/10.1016/j.bcmd.2017.10.002",
+                        "name": "articlelink",
+                        "label": "CrossRef DOI link to publisher maintained version"
+                    },
+                    {
+                        "value": "simple-article",
+                        "name": "content_type",
+                        "label": "Content Type"
+                    },
+                    {
+                        "value": "© 2017 Elsevier Inc. All rights reserved.",
+                        "name": "copyright",
+                        "label": "Copyright"
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:21:55Z",
+                    "timestamp": 1525749715902
+                },
+                "reference-count": 34,
+                "publisher": "Elsevier BV",
+                "license": [
+                    {
+                        "URL": "http://www.elsevier.com/tdm/userlicense/1.0/",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    1,
+                                    1
+                                ]
+                            ],
+                            "date-time": "2018-01-01T00:00:00Z",
+                            "timestamp": 1514764800000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "tdm"
+                    }
+                ],
+                "funder": [
+                    {
+                        "name": "Ministry of Education",
+                        "award": [
+                            "NRF-2017R1A2B4011920",
+                            "NRF-2017R1D1A3B03031021"
+                        ]
+                    },
+                    {
+                        "name": "Korean Government",
+                        "award": [
+                            "2014R1A5A2010008"
+                        ]
+                    }
+                ],
+                "content-domain": {
+                    "domain": [
+                        "clinicalkey.jp",
+                        "clinicalkey.com",
+                        "sleep-journal.com",
+                        "clinicalkey.es",
+                        "clinicalkey.fr",
+                        "clinicalkey.com.au",
+                        "elsevier.com",
+                        "sciencedirect.com"
+                    ],
+                    "crossmark-restriction": true
+                },
+                "short-container-title": [
+                    "Sleep Medicine"
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "DOI": "10.1016/j.sleep.2017.09.031",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T05:32:00Z",
+                    "timestamp": 1508909520000
+                },
+                "page": "1-8",
+                "update-policy": "http://dx.doi.org/10.1016/elsevier_cm_policy",
+                "source": "Crossref",
+                "is-referenced-by-count": 0,
+                "title": [
+                    "Diurnal variation of default mode network in patients with restless legs syndrome"
+                ],
+                "prefix": "10.1016",
+                "volume": "41",
+                "author": [
+                    {
+                        "given": "Jeonghun",
+                        "family": "Ku",
+                        "sequence": "first",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Yeong Seon",
+                        "family": "Lee",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Hyuk Won",
+                        "family": "Chang",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Christopher J.",
+                        "family": "Earley",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Richard P.",
+                        "family": "Allen",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-6127-1045",
+                        "authenticated-orcid": false,
+                        "given": "Yong Won",
+                        "family": "Cho",
+                        "sequence": "additional",
+                        "affiliation": []
+                    }
+                ],
+                "member": "78",
+                "container-title": [
+                    "Sleep Medicine"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S1389945717304057?httpAccept=text/xml",
+                        "content-type": "text/xml",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    },
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S1389945717304057?httpAccept=text/plain",
+                        "content-type": "text/plain",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2018,
+                            3,
+                            17
+                        ]
+                    ],
+                    "date-time": "2018-03-17T00:44:06Z",
+                    "timestamp": 1521247446000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "references-count": 34,
+                "alternative-id": [
+                    "S1389945717304057"
+                ],
+                "URL": "http://dx.doi.org/10.1016/j.sleep.2017.09.031",
+                "ISSN": [
+                    "1389-9457"
+                ],
+                "issn-type": [
+                    {
+                        "value": "1389-9457",
+                        "type": "print"
+                    }
+                ],
+                "assertion": [
+                    {
+                        "value": "Elsevier",
+                        "name": "publisher",
+                        "label": "This article is maintained by"
+                    },
+                    {
+                        "value": "Diurnal variation of default mode network in patients with restless legs syndrome",
+                        "name": "articletitle",
+                        "label": "Article Title"
+                    },
+                    {
+                        "value": "Sleep Medicine",
+                        "name": "journaltitle",
+                        "label": "Journal Title"
+                    },
+                    {
+                        "value": "http://dx.doi.org/10.1016/j.sleep.2017.09.031",
+                        "name": "articlelink",
+                        "label": "CrossRef DOI link to publisher maintained version"
+                    },
+                    {
+                        "value": "article",
+                        "name": "content_type",
+                        "label": "Content Type"
+                    },
+                    {
+                        "value": "© 2017 Elsevier B.V. All rights reserved.",
+                        "name": "copyright",
+                        "label": "Copyright"
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:21:56Z",
+                    "timestamp": 1525749716380
+                },
+                "reference-count": 29,
+                "publisher": "Elsevier BV",
+                "issue": "2",
+                "license": [
+                    {
+                        "URL": "http://www.elsevier.com/tdm/userlicense/1.0/",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    4,
+                                    1
+                                ]
+                            ],
+                            "date-time": "2018-04-01T00:00:00Z",
+                            "timestamp": 1522540800000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "tdm"
+                    }
+                ],
+                "funder": [
+                    {
+                        "DOI": "10.13039/100007889",
+                        "name": "Centro de Investigação em Materiais Cerâmicos e Compósitos",
+                        "doi-asserted-by": "publisher",
+                        "award": [
+                            "UID/CTM/50011/2013"
+                        ]
+                    },
+                    {
+                        "DOI": "10.13039/501100001871",
+                        "name": "Fundação para a Ciência e a Tecnologia",
+                        "doi-asserted-by": "publisher",
+                        "award": []
+                    },
+                    {
+                        "DOI": "10.13039/501100008530",
+                        "name": "European Regional Development Fund",
+                        "doi-asserted-by": "publisher",
+                        "award": []
+                    },
+                    {
+                        "name": "CIIMAR",
+                        "award": [
+                            "UID/Multi/04423/2013"
+                        ]
+                    },
+                    {
+                        "name": "CESAM",
+                        "award": [
+                            "UID/AMB/50017/2013"
+                        ]
+                    },
+                    {
+                        "name": "MARE",
+                        "award": [
+                            "UID/MAR/04292/2013"
+                        ]
+                    },
+                    {
+                        "name": "MAVA Foundation",
+                        "award": []
+                    },
+                    {
+                        "name": "FCT",
+                        "award": [
+                            "SFRH/BPD/84237/2012",
+                            "SFRH/BPD/102637/2014",
+                            "SFRH/BD/108535/2015"
+                        ]
+                    }
+                ],
+                "content-domain": {
+                    "domain": [
+                        "elsevier.com",
+                        "sciencedirect.com"
+                    ],
+                    "crossmark-restriction": true
+                },
+                "short-container-title": [
+                    "Marine Pollution Bulletin"
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            4
+                        ]
+                    ]
+                },
+                "DOI": "10.1016/j.marpolbul.2017.10.007",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T06:00:18Z",
+                    "timestamp": 1508911218000
+                },
+                "page": "829-834",
+                "update-policy": "http://dx.doi.org/10.1016/elsevier_cm_policy",
+                "source": "Crossref",
+                "is-referenced-by-count": 0,
+                "title": [
+                    "Major, minor, trace and rare earth elements in sediments of the Bijagós archipelago, Guinea-Bissau"
+                ],
+                "prefix": "10.1016",
+                "volume": "129",
+                "author": [
+                    {
+                        "given": "Lina",
+                        "family": "Carvalho",
+                        "sequence": "first",
+                        "affiliation": []
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0001-5728-9675",
+                        "authenticated-orcid": false,
+                        "given": "Paula",
+                        "family": "Figueira",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0003-4910-7282",
+                        "authenticated-orcid": false,
+                        "given": "Rui",
+                        "family": "Monteiro",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Ana Teresa",
+                        "family": "Reis",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-0949-6351",
+                        "authenticated-orcid": false,
+                        "given": "Joana",
+                        "family": "Almeida",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Teresa",
+                        "family": "Catry",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Pedro Miguel",
+                        "family": "Lourenço",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Paulo",
+                        "family": "Catry",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Castro",
+                        "family": "Barbosa",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Inês",
+                        "family": "Catry",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Eduarda",
+                        "family": "Pereira",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "José Pedro",
+                        "family": "Granadeiro",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "Carlos",
+                        "family": "Vale",
+                        "sequence": "additional",
+                        "affiliation": []
+                    }
+                ],
+                "member": "78",
+                "container-title": [
+                    "Marine Pollution Bulletin"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S0025326X1730824X?httpAccept=text/xml",
+                        "content-type": "text/xml",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    },
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S0025326X1730824X?httpAccept=text/plain",
+                        "content-type": "text/plain",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2018,
+                            4,
+                            26
+                        ]
+                    ],
+                    "date-time": "2018-04-26T22:20:42Z",
+                    "timestamp": 1524781242000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            4
+                        ]
+                    ]
+                },
+                "references-count": 29,
+                "journal-issue": {
+                    "published-print": {
+                        "date-parts": [
+                            [
+                                2018,
+                                4
+                            ]
+                        ]
+                    },
+                    "issue": "2"
+                },
+                "alternative-id": [
+                    "S0025326X1730824X"
+                ],
+                "URL": "http://dx.doi.org/10.1016/j.marpolbul.2017.10.007",
+                "ISSN": [
+                    "0025-326X"
+                ],
+                "issn-type": [
+                    {
+                        "value": "0025-326X",
+                        "type": "print"
+                    }
+                ],
+                "assertion": [
+                    {
+                        "value": "Elsevier",
+                        "name": "publisher",
+                        "label": "This article is maintained by"
+                    },
+                    {
+                        "value": "Major, minor, trace and rare earth elements in sediments of the Bijagós archipelago, Guinea-Bissau",
+                        "name": "articletitle",
+                        "label": "Article Title"
+                    },
+                    {
+                        "value": "Marine Pollution Bulletin",
+                        "name": "journaltitle",
+                        "label": "Journal Title"
+                    },
+                    {
+                        "value": "http://dx.doi.org/10.1016/j.marpolbul.2017.10.007",
+                        "name": "articlelink",
+                        "label": "CrossRef DOI link to publisher maintained version"
+                    },
+                    {
+                        "value": "article",
+                        "name": "content_type",
+                        "label": "Content Type"
+                    },
+                    {
+                        "value": "© 2017 Elsevier Ltd. All rights reserved.",
+                        "name": "copyright",
+                        "label": "Copyright"
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:22:26Z",
+                    "timestamp": 1525749746549
+                },
+                "reference-count": 131,
+                "publisher": "Elsevier BV",
+                "license": [
+                    {
+                        "URL": "http://www.elsevier.com/tdm/userlicense/1.0/",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    1,
+                                    1
+                                ]
+                            ],
+                            "date-time": "2018-01-01T00:00:00Z",
+                            "timestamp": 1514764800000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "tdm"
+                    }
+                ],
+                "content-domain": {
+                    "domain": [
+                        "elsevier.com",
+                        "sciencedirect.com"
+                    ],
+                    "crossmark-restriction": true
+                },
+                "short-container-title": [
+                    "Environmental Impact Assessment Review"
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "DOI": "10.1016/j.eiar.2017.10.006",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T08:00:12Z",
+                    "timestamp": 1508918412000
+                },
+                "page": "49-58",
+                "update-policy": "http://dx.doi.org/10.1016/elsevier_cm_policy",
+                "source": "Crossref",
+                "is-referenced-by-count": 1,
+                "title": [
+                    "A contribution to the conceptualisation of quality in impact assessment"
+                ],
+                "prefix": "10.1016",
+                "volume": "68",
+                "author": [
+                    {
+                        "given": "A.",
+                        "family": "Bond",
+                        "sequence": "first",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "F.",
+                        "family": "Retief",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "B.",
+                        "family": "Cave",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "M.",
+                        "family": "Fundingsland",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "P.N.",
+                        "family": "Duinker",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "given": "R.",
+                        "family": "Verheem",
+                        "sequence": "additional",
+                        "affiliation": []
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-0405-7333",
+                        "authenticated-orcid": false,
+                        "given": "A.L.",
+                        "family": "Brown",
+                        "sequence": "additional",
+                        "affiliation": []
+                    }
+                ],
+                "member": "78",
+                "container-title": [
+                    "Environmental Impact Assessment Review"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S0195925517302627?httpAccept=text/xml",
+                        "content-type": "text/xml",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    },
+                    {
+                        "URL": "http://api.elsevier.com/content/article/PII:S0195925517302627?httpAccept=text/plain",
+                        "content-type": "text/plain",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2017,
+                            11,
+                            22
+                        ]
+                    ],
+                    "date-time": "2017-11-22T02:31:05Z",
+                    "timestamp": 1511317865000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "references-count": 131,
+                "alternative-id": [
+                    "S0195925517302627"
+                ],
+                "URL": "http://dx.doi.org/10.1016/j.eiar.2017.10.006",
+                "ISSN": [
+                    "0195-9255"
+                ],
+                "issn-type": [
+                    {
+                        "value": "0195-9255",
+                        "type": "print"
+                    }
+                ],
+                "assertion": [
+                    {
+                        "value": "Elsevier",
+                        "name": "publisher",
+                        "label": "This article is maintained by"
+                    },
+                    {
+                        "value": "A contribution to the conceptualisation of quality in impact assessment",
+                        "name": "articletitle",
+                        "label": "Article Title"
+                    },
+                    {
+                        "value": "Environmental Impact Assessment Review",
+                        "name": "journaltitle",
+                        "label": "Journal Title"
+                    },
+                    {
+                        "value": "http://dx.doi.org/10.1016/j.eiar.2017.10.006",
+                        "name": "articlelink",
+                        "label": "CrossRef DOI link to publisher maintained version"
+                    },
+                    {
+                        "value": "article",
+                        "name": "content_type",
+                        "label": "Content Type"
+                    },
+                    {
+                        "value": "© 2017 Elsevier Inc. All rights reserved.",
+                        "name": "copyright",
+                        "label": "Copyright"
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:22:28Z",
+                    "timestamp": 1525749748356
+                },
+                "reference-count": 6,
+                "publisher": "American Society of Civil Engineers (ASCE)",
+                "issue": "1",
+                "content-domain": {
+                    "domain": [],
+                    "crossmark-restriction": false
+                },
+                "short-container-title": [
+                    "J. Constr. Eng. Manage."
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "DOI": "10.1061/(asce)co.1943-7862.0001414",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T08:11:10Z",
+                    "timestamp": 1508919070000
+                },
+                "page": "07017001",
+                "source": "Crossref",
+                "is-referenced-by-count": 0,
+                "title": [
+                    "Discussion of “Toward Error Management in Construction: Moving beyond a Zero Vision” by Peter E.D. Love and Jim Smith"
+                ],
+                "prefix": "10.1061",
+                "volume": "144",
+                "author": [
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-9941-6596",
+                        "authenticated-orcid": true,
+                        "given": "Iris",
+                        "family": "Tommelein",
+                        "sequence": "first",
+                        "affiliation": []
+                    }
+                ],
+                "member": "30",
+                "container-title": [
+                    "Journal of Construction Engineering and Management"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "http://ascelibrary.org/doi/pdf/10.1061/%28ASCE%29CO.1943-7862.0001414",
+                        "content-type": "unspecified",
+                        "content-version": "vor",
+                        "intended-application": "similarity-checking"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T08:11:10Z",
+                    "timestamp": 1508919070000
+                },
+                "score": 1,
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            1
+                        ]
+                    ]
+                },
+                "references-count": 6,
+                "journal-issue": {
+                    "published-print": {
+                        "date-parts": [
+                            [
+                                2018,
+                                1
+                            ]
+                        ]
+                    },
+                    "issue": "1"
+                },
+                "alternative-id": [
+                    "10.1061/(ASCE)CO.1943-7862.0001414"
+                ],
+                "URL": "http://dx.doi.org/10.1061/(asce)co.1943-7862.0001414",
+                "ISSN": [
+                    "0733-9364",
+                    "1943-7862"
+                ],
+                "issn-type": [
+                    {
+                        "value": "0733-9364",
+                        "type": "print"
+                    },
+                    {
+                        "value": "1943-7862",
+                        "type": "electronic"
+                    }
+                ]
+            },
+            {
+                "indexed": {
+                    "date-parts": [
+                        [
+                            2018,
+                            5,
+                            8
+                        ]
+                    ],
+                    "date-time": "2018-05-08T03:22:32Z",
+                    "timestamp": 1525749752517
+                },
+                "reference-count": 30,
+                "publisher": "Wiley",
+                "issue": "2",
+                "license": [
+                    {
+                        "URL": "http://doi.wiley.com/10.1002/tdm_license_1.1",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    2,
+                                    13
+                                ]
+                            ],
+                            "date-time": "2018-02-13T00:00:00Z",
+                            "timestamp": 1518480000000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "tdm"
+                    },
+                    {
+                        "URL": "http://onlinelibrary.wiley.com/termsAndConditions#vor",
+                        "start": {
+                            "date-parts": [
+                                [
+                                    2018,
+                                    2,
+                                    13
+                                ]
+                            ],
+                            "date-time": "2018-02-13T00:00:00Z",
+                            "timestamp": 1518480000000
+                        },
+                        "delay-in-days": 0,
+                        "content-version": "vor"
+                    }
+                ],
+                "content-domain": {
+                    "domain": [],
+                    "crossmark-restriction": false
+                },
+                "short-container-title": [
+                    "Conservation Biology"
+                ],
+                "published-print": {
+                    "date-parts": [
+                        [
+                            2018,
+                            4
+                        ]
+                    ]
+                },
+                "DOI": "10.1111/cobi.13037",
+                "type": "journal-article",
+                "created": {
+                    "date-parts": [
+                        [
+                            2017,
+                            10,
+                            25
+                        ]
+                    ],
+                    "date-time": "2017-10-25T08:22:46Z",
+                    "timestamp": 1508919766000
+                },
+                "page": "477-483",
+                "source": "Crossref",
+                "is-referenced-by-count": 0,
+                "title": [
+                    "Estimating the extinction date of the thylacine with mixed certainty data"
+                ],
+                "prefix": "10.1111",
+                "volume": "32",
+                "author": [
+                    {
+                        "ORCID": "http://orcid.org/0000-0001-6960-8434",
+                        "authenticated-orcid": false,
+                        "given": "Colin J.",
+                        "family": "Carlson",
+                        "sequence": "first",
+                        "affiliation": [
+                            {
+                                "name": "Department of Environmental Science, Policy, and Management; University of California; Berkeley 130 Mulford Hall Berkeley CA 94720 U.S.A."
+                            }
+                        ]
+                    },
+                    {
+                        "given": "Alexander L.",
+                        "family": "Bond",
+                        "sequence": "additional",
+                        "affiliation": [
+                            {
+                                "name": "Ardenna Research; Potton Sandy Bedfordshire SG19 2QA U.K."
+                            }
+                        ]
+                    },
+                    {
+                        "ORCID": "http://orcid.org/0000-0002-8375-2501",
+                        "authenticated-orcid": false,
+                        "given": "Kevin R.",
+                        "family": "Burgio",
+                        "sequence": "additional",
+                        "affiliation": [
+                            {
+                                "name": "Department of Ecology and Evolutionary Biology; University of Connecticut; 75 N. Eagleville Road, U-3043 Storrs CT 06269 U.S.A."
+                            }
+                        ]
+                    }
+                ],
+                "member": "311",
+                "published-online": {
+                    "date-parts": [
+                        [
+                            2018,
+                            2,
+                            13
+                        ]
+                    ]
+                },
+                "reference": [
+                    {
+                        "key": "10.1111/cobi.13037-BIB0001|cobi13037-cit-0001",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "678",
+                        "DOI": "10.1111/2041-210X.12365",
+                        "article-title": "Inferring species extinction: the use of sighting records",
+                        "volume": "6",
+                        "author": "Boakes",
+                        "year": "2015",
+                        "journal-title": "Methods in Ecology and Evolution"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0002|cobi13037-cit-0002",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "923",
+                        "DOI": "10.1046/j.1523-1739.1995.09040923.x",
+                        "article-title": "Inferring threat from scientific collections",
+                        "volume": "9",
+                        "author": "Burgman",
+                        "year": "1995",
+                        "journal-title": "Conservation Biology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0003|cobi13037-cit-0003",
+                        "unstructured": "Clements C 2013a sExtinct: calculates the historic date of extinction given a series of sighting events"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0004|cobi13037-cit-0004",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "2695",
+                        "DOI": "10.1007/s10531-013-0535-z",
+                        "article-title": "Public interest in the extinction of a species may lead to an increase in donations to a large conservation charity",
+                        "volume": "22",
+                        "author": "Clements",
+                        "year": "2013b",
+                        "journal-title": "Biodiversity and Conservation"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0005|cobi13037-cit-0005",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "345",
+                        "DOI": "10.1111/1365-2656.12005",
+                        "article-title": "Experimentally testing the accuracy of an extinction estimator: Solow's optimal linear estimation model",
+                        "volume": "82",
+                        "author": "Clements",
+                        "year": "2013",
+                        "journal-title": "Journal of Animal Ecology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0006|cobi13037-cit-0006",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "117",
+                        "DOI": "10.1111/j.1461-0248.2004.00693.x",
+                        "article-title": "Mechanisms of disease-induced extinction",
+                        "volume": "8",
+                        "author": "Castro",
+                        "year": "2005",
+                        "journal-title": "Ecology Letters"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0007|cobi13037-cit-0007",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "57",
+                        "DOI": "10.1111/j.1523-1739.2011.01797.x",
+                        "article-title": "Inferring extinction of mammals from sighting records, threats, and biological traits",
+                        "volume": "26",
+                        "author": "Fisher",
+                        "year": "2012",
+                        "journal-title": "Conservation Biology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0008|cobi13037-cit-0008",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "1460",
+                        "DOI": "10.1126/science.1114103",
+                        "article-title": "Ivory-billed Woodpecker (Campephilus principalis) persists in continental North America",
+                        "volume": "308",
+                        "author": "Fitzpatrick",
+                        "year": "2005",
+                        "journal-title": "Science"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0009|cobi13037-cit-0009",
+                        "first-page": "1",
+                        "article-title": "Reports of alleged thylacine sightings in Western Australia",
+                        "volume": "5",
+                        "author": "Heberle",
+                        "year": "2004",
+                        "journal-title": "Conservation Science Western Australia"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0010|cobi13037-cit-0010",
+                        "unstructured": "Hunt E 2017 Sightings’ of extinct Tasmanian tiger prompt search in Queensland https://www.theguardian.com/environment/2017/mar/28/tasmanian-tiger-sighting-search-thylacine-queensland-australia"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0011|cobi13037-cit-0011",
+                        "unstructured": "IUCN (International Union for Conservation of Nature) 2016 The IUCN red list of threatened species http://www.iucnredlist.org"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0012|cobi13037-cit-0012",
+                        "unstructured": "James Cook University 2017 Press release: FNQ search for the Tasmanian tiger https://www.jcu.edu.au/news/releases/2017/march/fnq-search-for-the-tasmanian-tiger"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0013|cobi13037-cit-0013",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "e3663",
+                        "DOI": "10.7717/peerj.3663",
+                        "article-title": "Are extinction opinions extinct",
+                        "volume": "5",
+                        "author": "Lee",
+                        "year": "2017a",
+                        "journal-title": "PeerJ"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0014|cobi13037-cit-0014",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "621",
+                        "DOI": "10.1111/gcb.13421",
+                        "article-title": "Extinct or still out there? Disentangling influences on extinction and rediscovery helps to clarify the fate of species on the edge",
+                        "volume": "23",
+                        "author": "Lee",
+                        "year": "2017b",
+                        "journal-title": "Global Change Biology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0015|cobi13037-cit-0015",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "251",
+                        "DOI": "10.1111/1365-2664.12144",
+                        "article-title": "Inferring extinctions from sighting records of variable reliability",
+                        "volume": "51",
+                        "author": "Lee",
+                        "year": "2014",
+                        "journal-title": "Journal of Applied Ecology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0016|cobi13037-cit-0016",
+                        "unstructured": "National Audubon Society 2016 The quest for the Ivory-Billed Woodpecker heads to Cuba http://www.audubon.org/news/the-quest-ivory-billed-woodpecker-heads-cuba"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0017|cobi13037-cit-0017",
+                        "author": "Paddle",
+                        "year": "2002",
+                        "volume-title": "The last Tasmanian tiger: the history and extinction of the thylacine"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0018|cobi13037-cit-0018",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "75",
+                        "DOI": "10.7882/AZ.2012.008",
+                        "article-title": "The thylacine's last straw: epidemic disease in a recent mammalian extinction",
+                        "volume": "36",
+                        "author": "Paddle",
+                        "year": "2012",
+                        "journal-title": "Australian Zoologist"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0019|cobi13037-cit-0019",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "355",
+                        "DOI": "10.1111/1365-2656.12029",
+                        "article-title": "No need for disease: testing extinction hypotheses for the thylacine using multi-species metamodels",
+                        "volume": "82",
+                        "author": "Prowse",
+                        "year": "2013",
+                        "journal-title": "Journal of Animal Ecology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0020|cobi13037-cit-0020",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "7761",
+                        "DOI": "10.1073/pnas.1502350112",
+                        "article-title": "Mass extinction in poorly known taxa",
+                        "volume": "112",
+                        "author": "Régnier",
+                        "year": "2015",
+                        "journal-title": "Proceedings of the National Academy of Sciences"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0021|cobi13037-cit-0021",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "1291",
+                        "DOI": "10.1890/08-0316.1",
+                        "article-title": "The use of sighting records to infer species extinctions: an evaluation of different methods",
+                        "volume": "90",
+                        "author": "Rivadeneira",
+                        "year": "2009",
+                        "journal-title": "Ecology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0222|cobi13037-cit-0222",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "245",
+                        "DOI": "10.1038/426245a",
+                        "article-title": "Flightless birds: When did the dodo become extinct?",
+                        "volume": "426",
+                        "author": "Roberts",
+                        "year": "2003",
+                        "journal-title": "Nature"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0022|cobi13037-cit-0022",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "33",
+                        "DOI": "10.1093/biomet/51.1-2.33",
+                        "article-title": "Estimation of a truncation point",
+                        "volume": "51",
+                        "author": "Robson",
+                        "year": "1964",
+                        "journal-title": "Biometrika"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0023|cobi13037-cit-0023",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "102",
+                        "DOI": "10.7882/AZ.2015.023",
+                        "article-title": "A retrospective assessment of 20th century thylacine populations",
+                        "volume": "38",
+                        "author": "Sleightholme",
+                        "year": "2016",
+                        "journal-title": "Australian Zoologist"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0024|cobi13037-cit-0024",
+                        "unstructured": "Smith SJ 1981 The Tasmanian tiger, 1980: a report on an investigation of the current status of thylacine Thylacinus cynocephalus , funded by the World Wildlife Fund Australia"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0025|cobi13037-cit-0025",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "180",
+                        "DOI": "10.1111/j.1523-1739.2011.01743.x",
+                        "article-title": "Uncertain sightings and the extinction of the Ivory-Billed Woodpecker",
+                        "volume": "26",
+                        "author": "Solow",
+                        "year": "2012",
+                        "journal-title": "Conservation Biology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0026|cobi13037-cit-0026",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "962",
+                        "DOI": "10.2307/1940821",
+                        "article-title": "Inferring extinction from sighting data",
+                        "volume": "74",
+                        "author": "Solow",
+                        "year": "1993",
+                        "journal-title": "Ecology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0027|cobi13037-cit-0027",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "47",
+                        "DOI": "10.1016/j.mbs.2005.02.001",
+                        "article-title": "Inferring extinction from a sighting record",
+                        "volume": "195",
+                        "author": "Solow",
+                        "year": "2005",
+                        "journal-title": "Mathematical Biosciences"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0028|cobi13037-cit-0028",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "1119",
+                        "DOI": "10.1111/cobi.12309",
+                        "article-title": "On uncertain sightings and inference about extinction",
+                        "volume": "28",
+                        "author": "Solow",
+                        "year": "2014",
+                        "journal-title": "Conservation Biology"
+                    },
+                    {
+                        "key": "10.1111/cobi.13037-BIB0029|cobi13037-cit-0029",
+                        "doi-asserted-by": "crossref",
+                        "first-page": "411",
+                        "DOI": "10.1007/BF00897326",
+                        "article-title": "Classical confidence intervals and Bayesian probability estimates for ends of local taxon ranges",
+                        "volume": "21",
+                        "author": "Strauss",
+                        "year": "1989",
+                        "journal-title": "Mathematical Geology"
+                    }
+                ],
+                "container-title": [
+                    "Conservation Biology"
+                ],
+                "language": "en",
+                "link": [
+                    {
+                        "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1111%2Fcobi.13037",
+                        "content-type": "application/pdf",
+                        "content-version": "vor",
+                        "intended-application": "text-mining"
+                    },
+                    {
+                        "URL": "http://onlinelibrary.wiley.com/wol1/doi/10.1111/cobi.13037/fullpdf",
+                        "content-type": "unspecified",
+                        "content-version": "vor",
+                        "intended-application": "similarity-checking"
+                    }
+                ],
+                "deposited": {
+                    "date-parts": [
+                        [
+                            2018,
+                            4,
+                            6
+                        ]
+                    ],
+                    "date-time": "2018-04-06T00:31:46Z",
+                    "timestamp": 1522974706000
+                },
+                "score": 1,
+                "subtitle": [
+                    "The Extinct Thylacine"
+                ],
+                "issued": {
+                    "date-parts": [
+                        [
+                            2018,
+                            2,
+                            13
+                        ]
+                    ]
+                },
+                "references-count": 30,
+                "journal-issue": {
+                    "published-print": {
+                        "date-parts": [
+                            [
+                                2018,
+                                4
+                            ]
+                        ]
+                    },
+                    "issue": "2"
+                },
+                "URL": "http://dx.doi.org/10.1111/cobi.13037",
+                "archive": [
+                    "Portico"
+                ],
+                "relation": {
+                    "cites": []
+                },
+                "ISSN": [
+                    "0888-8892"
+                ],
+                "issn-type": [
+                    {
+                        "value": "0888-8892",
+                        "type": "print"
+                    }
+                ]
+            }
+        ],
+        "items-per-page": 10,
+        "query": {
+            "start-index": 0,
+            "search-terms": null
+        }
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "id": 1,
+    "created": "2020-07-23T09:39:59Z",
+    "type": "R",
+    "vers": "4",
+    "metadata": {
+      "journal": {
+        "publisher": [
+          "Wageningen Economic Research"
+        ]
+      },
+      "article": {
+        "title": "Marktwaarde van dieren bij dierziektebestrijding",
+        "type": "report",
+        "identifier": [
+          {
+            "type": "doi",
+            "id": "10.18174/520051"
+          }
+        ]
+      },
+      "publication_date": {
+        "publication_format": "print",
+        "year": "2020"
+      },
+      "author": [
+        {
+          "affiliations": [{"raw": "LEI Innovation, Risk and Information Management"}],
+          "name": {
+            "firstname": "R.H.M.",
+            "surname": "Bergevoet",
+            "fullname": "R.H.M. Bergevoet"
+          }
+        },
+        { },
+        {
+          "affiliations": [{"raw": "LEI Innovation, Risk and Information Management"}],
+          "name": {
+            "firstname": "L.",
+            "surname": "Puister-Jansen",
+            "fullname": "L. Puister-Jansen"
+          }
+        }
+      ],
+      "contributor": [ ]
+    },
+    "provider": {
+      "agent": "Crossref",
+      "harv_id": 2,
+      "ref": "10.18174/520051",
+      "route": "harvester",
+      "id": 1
+    }
+}

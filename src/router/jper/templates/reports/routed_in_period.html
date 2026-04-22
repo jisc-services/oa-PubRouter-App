@@ -1,0 +1,57 @@
+{% from "helpers/from_to_date_macro.html" import from_to_date %}
+
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">Unique items (by DOI) routed in period</h1>
+		<div class="accordion">
+			<p>This report shows the number of unique items (deduplicated by DOI) from publishers and harvested sources that were routed to at least one live repository account within the selected period.</p>
+			<p>Note: inaccuracies will arise where a duplicate DOI was routed within the date range, but the DOI was first seen before the <i>from-date</i> and last seen after the <i>to-date</i>. This is because only 2 dates are stored for each DOI: the first date and last date it was seen by Router, hence the last receipt masks any intermediate receipts that occurred within the specified range.</p>
+			<p>If only the <i>from-date</i> is set, then the <i>to-date</i> defaults to 1 year later.<br>
+				If only the <i>to-date</i> is set, then the <i>from-date</i> defaults to 1 year before.</p>
+			<p>Data is retrieved for all dates in the specified range (including the <i>from</i> & <i>to</i> dates).</p>
+			<p>The earliest date that can be reported on is {{earliest_date_dmy}}.</p>
+		</div>
+		{# Date range #}
+		{{from_to_date(from_date, to_date)}}
+
+		{# Report table #}
+		<div class="row">
+			<table id="data_table" class="">
+				<thead>
+					<tr>
+						<th class="persist essential">Category</th>
+						<th class="persist essential">Num. with PDF</th>
+						<th class="persist essential">Num. Metadata only</th>
+						<th class="persist essential">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% if data %}
+					{% for rec_tuple in data %}
+					<tr>
+						<td>{{map_category_to_desc.get(rec_tuple[0], "Unknown")}}</td>
+						<td>{{rec_tuple[2]}}</td>
+						<td>{{rec_tuple[1] - rec_tuple[2]}}</td>
+						<td>{{rec_tuple[1]}}</td>
+					</tr>
+					{% endfor %}
+				{% endif %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+	});
+</script>
+{% endblock extra_js_bottom %}

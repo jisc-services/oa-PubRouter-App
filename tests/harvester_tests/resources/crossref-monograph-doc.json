@@ -1,0 +1,92 @@
+{
+    "DOI": "10.4324/9780429455629",
+    "ISBN": [
+        "9780429455629"
+    ],
+    "URL": "http://dx.doi.org/10.4324/9780429455629",
+    "author": [
+        {
+            "affiliation": [],
+            "family": "Mamukwa",
+            "given": "Elizabeth",
+            "sequence": "first"
+        }
+    ],
+    "content-domain": {
+        "crossmark-restriction": false,
+        "domain": []
+    },
+    "created": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                7
+            ]
+        ],
+        "date-time": "2020-07-07T14:01:14Z",
+        "timestamp": 1594130474000
+    },
+    "deposited": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ],
+        "date-time": "2020-07-14T10:12:57Z",
+        "timestamp": 1594721577000
+    },
+    "edition-number": "1",
+    "indexed": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ],
+        "date-time": "2020-07-14T10:40:40Z",
+        "timestamp": 1594723240442
+    },
+    "is-referenced-by-count": 0,
+    "isbn-type": [
+        {
+            "type": "electronic",
+            "value": "9780429455629"
+        }
+    ],
+    "issued": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ]
+    },
+    "member": "301",
+    "prefix": "10.4324",
+    "published-online": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                14
+            ]
+        ]
+    },
+    "publisher": "Routledge",
+    "reference-count": 0,
+    "references-count": 0,
+    "score": 1.0,
+    "source": "Crossref",
+    "subtitle": [
+        "Empowering Knowledge Communities"
+    ],
+    "title": [
+        "Integral Knowledge Creation and Innovation"
+    ],
+    "type": "monograph"
+}

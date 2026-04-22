@@ -1,0 +1,85 @@
+{
+    "DOI": "10.37766/inplasy2020.7.0050",
+    "URL": "http://dx.doi.org/10.37766/inplasy2020.7.0050",
+    "author": [
+        {
+            "affiliation": [],
+            "family": "Zhou",
+            "given": "Yang",
+            "sequence": "first"
+        },
+        {
+            "affiliation": [],
+            "family": "Wang",
+            "given": "Cong",
+            "sequence": "additional"
+        }
+    ],
+    "content-domain": {
+        "crossmark-restriction": false,
+        "domain": []
+    },
+    "created": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                13
+            ]
+        ],
+        "date-time": "2020-07-13T18:03:42Z",
+        "timestamp": 1594663422000
+    },
+    "deposited": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                13
+            ]
+        ],
+        "date-time": "2020-07-13T18:03:43Z",
+        "timestamp": 1594663423000
+    },
+    "indexed": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                13
+            ]
+        ],
+        "date-time": "2020-07-13T18:40:54Z",
+        "timestamp": 1594665654139
+    },
+    "is-referenced-by-count": 0,
+    "issued": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                13
+            ]
+        ]
+    },
+    "member": "24498",
+    "prefix": "10.37766",
+    "published-online": {
+        "date-parts": [
+            [
+                2020,
+                7,
+                13
+            ]
+        ]
+    },
+    "publisher": "INPLASY - International Platform of Registered Systematic Review and Meta-analysis Protocols",
+    "reference-count": 0,
+    "references-count": 0,
+    "score": 1.0,
+    "source": "Crossref",
+    "title": [
+        "Feasibility of Superb Microvascular Imaging for Detecting Neovascularization of Carotid Plaques: A Meta-Analysis"
+    ],
+    "type": "report"
+}

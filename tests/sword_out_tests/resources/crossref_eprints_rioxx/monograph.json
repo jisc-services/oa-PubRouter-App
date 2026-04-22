@@ -1,0 +1,64 @@
+{
+    "created" : "2020-07-22T16:24:38Z",
+    "provider" : {
+      "id" : 1,
+      "harv_id" : 2,
+      "agent" : "Crossref",
+      "ref" : "10.1142/q0268",
+      "route" : "harvester"
+    },
+    "metadata" : {
+      "history_date" : [
+        {
+          "date_type" : "epub",
+          "date" : "2021-06-05"
+        }
+      ],
+      "article" : {
+        "title" : "A Guide to Temporal Networks",
+        "type" : "monograph",
+        "identifier" : [
+          {
+            "type" : "doi",
+            "id" : "10.1142/q0268"
+          }
+        ]
+      },
+      "author" : [
+        {
+          "affiliations": [{
+                "raw": "University of Oxford, UK"
+            }],
+          "name" : {
+            "firstname" : "Renaud",
+            "fullname" : "Renaud Lambiotte",
+            "surname" : "Lambiotte"
+          }
+        }
+      ],
+      "publication_date" : {
+        "year" : "2021",
+        "date" : "2021-06-05",
+        "month" : "06",
+        "day" : "05",
+        "publication_format" : "electronic"
+      },
+      "journal" : {
+        "publisher" : [
+          "WORLD SCIENTIFIC (EUROPE)"
+        ],
+        "title" : "Series on Complexity Science",
+        "identifier" : [
+          {
+            "type" : "pissn",
+            "id" : "1755-7453"
+          }
+        ]
+      }
+    },
+    "type" : "R",
+    "repositories" : [3,4],
+    "analysis_date" : "2020-07-22T16:25:29Z",
+    "links" : [ ],
+    "id" : 1
+}

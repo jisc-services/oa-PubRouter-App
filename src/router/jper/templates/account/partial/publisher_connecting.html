@@ -1,0 +1,58 @@
+	<h2 id="ftp_help"><b>Connecting to Publications Router</b></h2>
+	<div class="box box--padding-large box--brd-mgreyblue">
+		<h3>Connecting via SFTP</h3>
+		<p>Below are the connection settings for our SFTP server.  You should configure your SFTP client to use these. &nbsp; <button class="copy btn btn--3d do_action" type="button" data-action="clipboard" data-function="copy_table" data-target="#ftp_conn" title="Copy to clipboard">Copy all connection details</button> or click any value to copy it.
+		</p>
+		<div id="ftp_conn">
+		<table>
+			<tbody>
+			<tr><th style="width:23%">SFTP Address</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover"  data-action="clipboard" data-function="copy_text">{{sftp_address}}</td></tr>
+			<tr><th>Port</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover"  data-action="clipboard" data-function="copy_text">22</td></tr>
+			<tr><th>Username (account ID)</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover"  data-action="clipboard" data-function="copy_text">{{org_acc.uuid}}</td></tr>
+			<tr><th>Password (API key)</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover"  data-action="clipboard" data-function="copy_text">{{org_acc.api_key}}</td></tr>
+			</tbody>
+		</table>
+		</div>
+		<br>
+		<h4>Optimum performance</h4>
+		<p>Files submitted by SFTP will be processed sooner if the SFTP client disconnects after a batch of files has been deposited. While an SFTP connection remains active, Router waits at least 30 minutes to process a file to avoid handling it while it is still being deposited.</p>
+
+		<h4>SFTP deposit directories</h4>
+		<p>When depositing notifications via SFTP, depending on whether you use Atypon zip format or not, you must use one of two possible target directories, <code>/atypon_xfer/</code> or <code>/xfer/</code> (both of which exist for your account). More information on supported zip file structures is available in our <a href="/static/docs/FTP_deposit_protocol_for_new_publishers.pdf">FTP Deposit Protocol document</a> (section 3) and summarized below.</p>
+		<section class="is-collapsible show_hide__container is-collapsible--button" data-collapsible="">
+			<h5 class="show_hide__trigger">xfer directory for individual notification deposits</h5>
+			<div class="show_hide__target row">
+				<p>Individual (non-Atypon) notifications should each be deposited in either a separate zip file or a separate directory under the <span class="strong icon-after icon-clipboard-after clickable-icon super-small-icon"  data-action="clipboard" data-function="copy_text">/xfer/</span> directory. &nbsp;(As a minimum the zip file or directory must contain a JATS XML file describing the article, in addition the article PDF and related files such as images may be included.)</p>
+			</div>
+		</section>
+		<section class="is-collapsible show_hide__container is-collapsible--button" data-collapsible="">
+			<h5 class="show_hide__trigger">aytpon_xfer directory for Atypon zip file deposits</h5>
+			<div class="show_hide__target row">
+				<p>Notifications submitted as Atypon zip files must be deposited in the <span class="strong icon-after icon-clipboard-after clickable-icon super-small-icon"  data-action="clipboard" data-function="copy_text">/atypon_xfer/</span> directory.&nbsp; The Atypon zip file must contain one <em>issue</em> folder, and under that there may be one or more <em>article</em> folders, each of which has a JATS XML and any PDF files (at the top level), and any additional related files (which may be in sub-directories).</p>
+			</div>
+		</section>
+		<br><br><br>
+		<h3>Connecting to the API</h3>
+		<p>To use the API for deposit, please read the <a href="{{ docu_api_url }}/Send.md">API documentation</a>. You will need the information below when using the API.
+			<button class="copy gap-left btn btn--3d do_action" type="button" data-action="clipboard" data-function="copy_table" data-target="#api_conn">Copy all to clipboard</button> or click any value to copy it.
+		</p>
+		<table>
+			<tbody id="api_conn">
+			<tr><th>Account ID</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{org_acc.uuid}}</td></tr>
+			<tr><th>API key</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover"  data-action="clipboard" data-function="copy_text">{{org_acc.api_key}}</td></tr>
+			</tbody>
+		</table>
+		{# --- SWORD-IN  #}
+		<br><br>
+		<h3>Connecting to SWORD v2 endpoint</h3>
+		<p>You should use the details below to connect to our SWORD server.
+			<button class="copy gap-left btn btn--3d do_action" type="button" data-action="clipboard" data-function="copy_table" data-target="#sword_conn">Copy all to clipboard</button> or click any value to copy it.</p>
+		<table>
+			<tbody id="sword_conn">
+			<tr><th>SWORD endpoint</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover"  data-action="clipboard" data-function="copy_text">{{sword_address}}</td></tr>
+			<tr><th>Username (account ID)</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{org_acc.uuid}}</td></tr>
+			<tr><th>Password (API key)</th><td class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover"  data-action="clipboard" data-function="copy_text">{{org_acc.api_key}}</td></tr>
+			</tbody>
+		</table>
+		{#--- #}
+	</div>

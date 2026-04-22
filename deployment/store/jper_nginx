@@ -1,0 +1,54 @@
+# IMPORTANT: Live environment NGINX config is managed by CHEF
+#
+# Jper App2 nginx configuration file
+# (To be installed via a symlink in directory '/etc/nginx/sites-available' that points to its physical location).
+#
+##########################################################
+server {
+    listen  80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    server_name localhost;
+
+    client_max_body_size 2560M;
+    proxy_read_timeout 600s;
+
+
+    # When API requests are being routed to this server
+    location /api{
+        proxy_pass http://localhost:5998;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_buffering off;
+    }
+
+    # Store requests
+    location / {
+        proxy_pass http://localhost:5999;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_buffering off;
+    }
+
+    location /sword2 {
+        # rewrite ^/sword2(.*) /$1 break;
+        proxy_pass http://localhost:5990;
+        # proxy_pass_request_headers on;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        # proxy_set_header Authorization $http_authorization;
+        # proxy_pass_header Authorization;
+        proxy_buffering off;
+    }
+
+}
+

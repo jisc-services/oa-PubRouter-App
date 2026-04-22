@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "router"
+# Version is supplied dymamically - see [tool.setuptools.dynamic] section below
+dynamic = ["version"]
+authors = [{name = "JISC", email = "XXXX.YYYY@YYYY.ac.uk"}]
+description = "PubRouter Octopus - Flask Library for PubRouter code"
+requires-python = ">=3.11"
+dependencies = [
+    "octopus==8.5.5",           # OCTOPUS LATEST VERSION
+    "python-sword2==1.6.4",     # SWORD2 LATEST VERSION
+    "email_validator==2.3.0",
+    "Flask>=3.1.3,<4.0.0",
+    "Flask-Caching~=2.3.1",
+    "Flask-Login~=0.6.3",
+    "Flask-Mail~=0.10.0",
+    "Flask-WTF~=1.2.2",
+    "Jinja2~=3.1.6",
+    "lxml~=6.0",
+    "MarkupSafe~=3.0",
+    "mysql-connector-python~=9.6.0",
+    "requests~=2.32.5",
+    "requests-toolbelt~=1.0.0",
+    # "requests-mock",
+    # "pytest",
+    # "testfixtures",
+    # "urllib3~=2.6.3",
+    "Werkzeug>=3.1.7,<4.0.0",
+    "WTForms~=3.2.1",
+    "wtforms-html5~=0.6.1"
+]
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}  # obtained from VERSION FILE
+
+[tool.setuptools]
+include-package-data = true     # This causes packaging to use MANIFEST.in which identifies non-python files to include
+
+[tool.setuptools.packages.find]
+where = ["src"]  # list of folders that contain the packages (["."] by default)
+include = ["*"]  # package names should match these glob patterns (["*"] by default)
+exclude = []    # exclude packages
+namespaces = false  # to disable scanning PEP 420 namespaces (true by default)

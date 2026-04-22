@@ -1,0 +1,48 @@
+{# Repository Go-live panel #}
+{% set account_is_live = org_acc.live_date is not none %}
+<div id="make_live" class="box box--padding-large box--brd-mgreyblue">
+    <h3>{% if account_is_live %}Account is Live{% else %}Make account Live{% endif %}</h3>
+{% if account_is_live %}
+    <p>The repository will only receive notifications from Live providers (publishers and harvesters).</p>
+    <div class="form__item">
+        <label class="form__label" for="live_date">Live date</label>
+        <input class="form__item" id="live_date" type="date" value="{{live_date}}" disabled>
+    </div>
+    <br>
+{% else %}
+    <p>Currently this Test repository will receive notifications from both Test and Live providers (publishers and harvesters).</p>
+
+  {% if env != 'production' %}
+    <p><b>IMPORTANT:</b> In this test environment <b>you should make all external (institution or CRIS) accounts Live immediately</b> so that they do NOT get notifications from Test providers (publishers or harvesters).
+    <br>Only Jisc test repositories should be left as Test accounts.</p>
+  {% endif %}
+  {% if curr_user_is_not_readonly %}
+    <section class="is-collapsible show_hide__container is-collapsible--button" data-collapsible>
+        <h4 class="show_hide__trigger">How to move from Test to Live</h4>
+        <div class="show_hide__target cms">
+        {% if org_acc.has_sword_collection() %}
+            <p>To move a repository (that uses SWORD) to live status you must obtain the following information from the institution:</p>
+            <ol class="">
+                <li>Live repository name</li>
+                <li>Live repository URL</li>
+                <li>Username of the account that will receive the deposits (via SWORD2)</li>
+                <li>Password of above account</li>
+                <li>Sword collection URL, preferably using secure <b>https</b> protocol.  For EPrints the pattern is: https://your-repository-url.ac.uk/id/contents</li>
+            </ol>
+            <p>After amending the connection settings above and clicking "Update all details", you may click "Go Live" below.</p>
+        {% else %}
+            <p>If repository is moving to live and receives notifications via the API, then simply click "Go Live" below.</p>
+        {% endif %}
+        </div>
+    </section>
+    <form method="post" action="{{ url_for('account.golive', org_uuid=org_acc.uuid) }}" class="form">
+        <br>
+      {% if org_acc.has_sword_collection() %}
+        <p class="warning utf8-icon small light">Only click the "Go Live" button once you have set <i>Repository URL</i> to point to the Live repository and changed other fields as needed, and clicked 'Update all details'.</p>
+      {% endif %}
+        <button type="submit" class="btn btn--3d btn--primary do_action" data-action="confirm" data-msg="Go live cannot be undone">Go Live</button>
+        &nbsp; &nbsp;<span class="warning utf8-icon">This step is irreversible.</span>
+    </form>
+  {% endif %}
+{% endif %}
+</div>

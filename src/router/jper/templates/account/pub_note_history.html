@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block extra_js_top %}
+	{# This can be loaded in <head> with `defer` because it is only needed when user clicks metadata link #}
+    <script defer type="text/javascript" src="/static/js/json-viewer.min.js"></script>
+{% endblock extra_js_top %}
+
+{% block content %}
+{% from "helpers/pagination.html" import render_pagination %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">Matched deposit history{% if curr_org_is_super %}<span class="h_small"><a id="stickme" href="{{url_for('account.disp_org_acc', org_uuid=uuid)}}">{{org_name}}</a></span>{% endif %}</h1>
+		<div class="accordion">
+			<p>View your deposits (made in the past 3 months) that have been matched to institutions.</p>
+			<p>You can narrow the range by setting a <em><b>From date</b></em> or by entering a <em><b>DOI</b></em>. <br>The <b><em>DOI</em></b> must be at least 8 characters long & may contain '<code>*</code>' wildcard characters.  The optional DOI domain prefix (<code>https://doi.org/</code>) will be automatically stripped if entered. A wild card prefix may be added automatically if the DOI value entered does not start with '<code>10.</code>'.</p>
+			<p>Click the <i>match</i> link to see which institutional repositories the article was matched to.</p>
+			<p>Click the <i>data</i> link to see the full metadata record in JSON format.  (When shown, use the grey arrows to expand or hide individual sections).</p>
+		</div>
+		<form class="form" action="" method="GET">
+			<label class="form_fields-same-line">From date:
+				<input type="date" name="since" value="{{since_date}}"></label>
+			<label class="gap-left">Search DOI: &nbsp;
+				<input type="search" name="doi" value="{{doi}}" minlength="8" placeholder="Minimum 8 chars, can include '*' wildcards"></label>
+			<button class="btn btn--3d btn--primary gap-left" type="submit">Submit</button>
+		</form>
+		<div class="row">
+			{{ render_pagination(num_of_pages,page_num,link) }}
+			<table id="dataAOTable">
+				<thead>
+					<tr>
+						<th title="Article DOI">DOI</th>
+						<th title="Article title">Title</th>
+						<th title="Date of deposit processing by Router">Date</th>
+						<th title="Link to show/hide the institutions that the article was matched to">Matches</th>
+						<th title="Link to show/hide article metadata in JSON format">Data</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for notification, repo_names in note_repo_name_tuples %}
+					<tr>
+						<td>{{notification.article_doi}}</td>
+						<td>{{notification.article_title}}</td>
+						<td class="no-wrap">{{notification.analysis_date_ymd()}}</td>
+						<td class="toggle toggle_show match_toggle">
+							<a tabindex="0" title="Click to show matched institutions"></a>
+						</td>
+						<td class="toggle toggle_show meta_toggle">
+							<a tabindex="0" title="Click to show metadata"></a>
+							<pre style="display: none;">{{notification.json()}}</pre>
+						</td>
+					</tr>
+					{# Initially hidden row for Matched institution info - class="std-txt" so bullets show OK #}
+					<tr class="std-txt" style="display: none;">
+						<td colspan="5">
+							<div class="bold">Matched to repositories</div>
+							<ul class="small-gap-vert">
+							  {% for name in repo_names %}<li>{{name}}</li> {% endfor %}
+							</ul>
+						</td>
+					</tr>
+					{# Initially hidden row for Metadata #}
+					<tr style="display: none;">
+						<td colspan="5">
+							<div class="bold">Metadata</div>
+							<div class="metadata row span-12" data-ix="{{loop.index0}}"></div>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{{ render_pagination(num_of_pages,page_num,link) }}
+		</div>
+		{% if num_of_pages <= page_num %}
+		<p class="info-note">Article metadata records are retained for a period of {{stored_months}} months and are then deleted.</p>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	/**
+	*	Functions to handle display of Matchinfo and Metadata when links are clicked in the table
+	*	of matched notifications.
+	**/
+	let jsonNode = {};	// Cache of PrettyJSON Node objects
+
+	// Function that creates a PrettyJSON object from JSON data and adds it to `jsonNode` cache.
+	function prettyJSON(el, numNext) {
+		const $el = $(el);
+		let $tr = $el.parent();
+		// Navigate to the DOM element containing JSON metadata
+		for(let i=0; i<numNext; i++){
+			$tr = $tr.next();
+		}
+		const $mdata = $tr.find('.metadata').first();
+		const ix = $mdata.data('ix');
+		// If we haven't previously clicked this element
+		if (! jsonNode.hasOwnProperty(ix)) {
+			// Metadata is retrieved from <pre> element
+			const $pre = $el.children("pre").first();
+			const rawJSON = JSON.parse($pre.text());
+			$pre.remove();		// Can now remove the <pre> element
+
+			const viewer = new JSONViewer($mdata[0], rawJSON, 1);
+			// Store viewer in object keyed by 'ix' value
+			jsonNode[ix] = viewer;
+		}
+	}
+
+	// Toggle for our table. Hides or shows the row which is numText number of rows below the current row.
+	function toggleTr(el, numNext, subject) {
+		const $el = $(el);
+		const showHide = ($el.attr("class").indexOf("toggle_show") === -1) ? 'show ' : 'hide ';
+		// Remove 'toggle_show' class and Add 'toggle_hide' class or vice versa (depending on which is present)
+		// Then set title on child <a> element
+		$el.toggleClass("toggle_show toggle_hide").children("a").first().attr("title", `Click to ${showHide} ${subject}`);
+		// show or hide the row which is numNext number of rows below the current row
+		let $tr = $el.parent();
+		for(let i=0; i<numNext; i++){
+			$tr = $tr.next();
+		}
+		$tr.toggle();
+	}
+
+	/*
+	* Attach click and keypress handlers to the table with id="dataAOTable"
+	*/
+	// Show/hide "matched institutions"
+	$('#dataAOTable').on('click keydown', '.match_toggle', function(e){
+		if(isClickOrAllowedKeypress(e)) {
+			// Show/hide row immediately below clicked row
+			toggleTr(this, 1, " matched institutions");
+		}
+
+	// Show/hide "metadata"
+	}).on('click keydown', '.meta_toggle', function(e){
+		if(isClickOrAllowedKeypress(e)) {
+			// Show/hide row that is 2 rows below clicked row
+			toggleTr(this, 2, " notification metadata");
+			prettyJSON(this, 2);
+		}
+	});
+
+
+	$(document).ready(function(){
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+	});
+</script>
+{% endblock extra_js_bottom %}

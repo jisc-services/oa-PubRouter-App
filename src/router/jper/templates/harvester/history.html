@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+{% from "helpers/pagination.html" import render_pagination %}
+
+<div class="row cms">
+	<h1>Harvester history</h1>
+	<p class="info-note"><b>Raw</b> - number of records harvested; <b>Filtered</b> - number of filtered records converted to unrouted notifications.</p>
+	<table class="content-table">
+		<thead>
+			<tr>
+				<th id="co-1" scope="col" class="persist essential">Execution&nbsp;Date</th>
+				<th id="co-2" scope="col" class="persist essential">Name</th>
+				<th id="co-3" scope="col" class="optional">Start&nbsp;Date</th>
+				<th id="co-4" scope="col" class="optional">End&nbsp;Date</th>
+				<th id="co-5" scope="col" class="optional">Raw</th>
+				<th id="co-6" scope="col" class="optional">Filtered</th>
+				<th id="co-7" scope="col" class="persist essential">Errors</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for id, created, name, url, start_date, end_date, num_received, num_sent, num_errors, ws_id in history_list %}
+			<tr>
+				<td headers="co-1">{{created}}</td>
+				<td headers="co-2" class="no-wrap">{{name}}</td>
+				<td headers="co-3">{{start_date}}</td>
+				<td headers="co-4">{{end_date}}</td>
+				<td headers="co-5">{{num_received}}</td>
+				<td headers="co-6">{{num_sent}}</td>
+				<td headers="co-7">{% if num_errors > 0 %}<a href="{{url_for('harvester.history_errors', history_id=id)}}" class="nav-btn btn--3d" role="button">{{num_errors}}</a>{% endif %}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="row">
+{{ render_pagination(num_of_pages,page_num,url_for('harvester.history')+'?') }}
+	</div>
+</div>
+{% endblock %}
+{% block extra_js_bottom %} {% endblock extra_js_bottom %}
