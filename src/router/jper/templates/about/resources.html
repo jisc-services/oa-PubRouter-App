@@ -1,0 +1,152 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="row">
+	<div class="col span-11 cms">
+		<h1>Technical information</h1>
+		<p>YOUR-ORG Publications Router is a messaging system that receives notifications about article publications from publishers and other sources (e.g. Europe PMC) and routes these using a matching algorithm to particular institutional repositories.  At its simplest, a notification is simply a metadata package providing details of an article that has either been accepted for publication or has been published.  The notification may also include the article text either embedded in the metadata or in associated binary files, for example PDF or WORD documents and graphics files.
+		</p>
+		<p><img src="/static/img_2.png" alt="Schematic overview of the Router's interfaces (these are described in the following text)."></p>
+		<p><b>Publishers</b> can currently provide Publications Router with notification metadata in one of two formats, either <a href="http://jats.nlm.nih.gov/publishing/">JATS-XML</a> or the Router's proprietary <a href="{{ docu_api_url }}/IncomingNotification.md">API JSON structure</a>, via any of these mechanisms:</p>
+		<ul>
+			<li><b>FTP</b> - sending JATS XML metadata plus any binary files as a zipped package (or unzipped if particular rules are followed)</li>
+			<li><b>SWORD2 deposit</b> - as per SWORD2 specification (but with some restrictions)</li>
+			<li><b>Publications Router API</b> - a REST web service  (Publications Router's JSON structure).</li>
+		</ul>
+
+		<p><b>Institutions</b> may receive the notifications directly into their repository or CRIS (if the vendor supports this) by any of these mechanisms:</p>
+		<ul>
+			<li><b>SWORD2 deposit</b> - which allows Publications Router to push the notifications to those repositories that support this protocol (such as EPrints and DSpace)</li>
+			<li><b>Publications Router API</b> - which enables repositories or CRISs to pull notifications via a REST web service.</li>
+		</ul>
+		<p>In order to use Publications Router both publishers and institutions must have completed the sign-up process which results in creation of a Publications Router account. This is used to configure and administer Publications Router settings that are necessary for inter-connection.
+		</p>
+		<p><b>Matching of notifications</b> to an institutional repository is a key function of the Publications Router. This is done using a set of matching criteria that each participating institution maintains via their administration screen.  Each notification is compared with these criteria and those that match are flagged for routing to that institution's repository.  Criteria may include any of the following:
+		</p>
+		<ul>
+			<li>Institution name variants (reflecting different ways that an institution is known)</li>
+			<li>Email or web domain names associated with the institution</li>
+			<li>Postcodes of an institution's various premises</li>
+			<li>Grant numbers</li>
+			<li>ORCIDs of authors</li>
+			<li>Email addresses of authors.</li>
+		</ul>
+		<p>Matched notifications are stored for 90 days in Publications Router.  This gives repositories and CRISs that use the API "pull" mechanism ample time to obtain the notifications.  It also allows Institutions to view the metadata of those notifications via their administration screen.
+		</p>
+		<p><img src="/static/img_3.png" alt="A complex schematic depicting aspects of the Router's key functionality and data stores which is described elsewhere on this page."></p>
+		<p>Further information on how to set-up and configure Publications Router is provided in the following sections for institutions and publishers.
+		</p>
+
+		<section id="inst_info" class="is-collapsible show_hide__container is-collapsible--button"
+			data-collapsible>
+			<h2 class="show_hide__trigger">Information for Institutions</h2>
+			<div class="show_hide__target cms">
+				<h2>Institutions</h2>
+				<h3>Getting Connected to Publications Router</h3>
+				<p>As this service is now scheduled for closure on 1 July 2026, it is no longer possible to join. If you would like any further information, please contact <a href="mailto:XXXX@YYYY.ac.uk?subject=Publications%20Router%20-%20getting%20connected%20(institution)">XXXX@YYYY.ac.uk</a>, mentioning Publications Router.</p>
+				<h3>Notification Matching Configuration</h3>
+				<p>Your account will need to be configured before your repository (or CRIS) can start receiving notifications.</p>
+				<p>A repository will only receive notifications that have been matched using a set of parameters that have been loaded into Publication Router from a CSV file. These parameters include any of the following:</p>
+				<ul>
+					<li>Institution name variants (reflecting different ways that an institution is known)</li>
+					<li>Email or web domain names associated with the institution</li>
+					<li>Postcodes of an institution's various premises</li>
+					<li>Grant numbers</li>
+					<li>ORCIDs of authors</li>
+					<li>Email addresses of authors.</li>
+				</ul>
+				<p>You can download a <a href="/static/csvtemplate.csv" download="">template CSV configuration file</a> (or, for clarity, an <a href="/static/csvtemplate_router_matching_params_XLS_FORMAT.xlsx" download="">Excel version</a>). Once the CSV file has been uploaded into the system your repository will begin to receive matching notifications. This file can be updated at any time to add / remove / amend parameters in order to fine-tune the matching process.</p>
+				<h3>Notification types</h3>
+				<p>Router can provide repositories with notifications in different formats depending on the method used to retrieve this information or the options chosen by the user. The different <a href="{{ docu_api_url }}/Packaging.md#a-guide-to-the-formats">formats</a> are:</p>
+				<ul>
+					<li>JATS XML (Journal Publishing Tag Set), identified by this URI: https://pubrouter.jisc.ac.uk/FilesAndJATS</li>
+					<li>SimpleZip, identified by this URI: http://purl.org/net/sword/package/SimpleZip</li>
+					<li>Proprietary JSON structure (this is available if retrieving notifications via the Publications Router API).</li>
+				</ul>
+				<h3>Retrieving Notifications</h3>
+				<p>Your routed notifications will be available to your repository via one of these currently available methods:</p>
+				<ul>
+					<li>SWORD2</li>
+					<li>Publications Router API.</li>
+				</ul>
+				<h3>SWORD2</h3>
+				<p>If your repository (or CRIS) has a SWORD2 interface (as do EPrints and DSpace) then Publications Router can automatically send notifications directly into it.  You will need to configure Publications Router via the Admin screen with details of your repository (e.g. its SWORD2 URL and SWORD2 account information).  Once this is done, notifications that satisfy your matching parameters will be automatically sent to and ingested by your repository.</p>
+				<h3>Retrieving Notifications via Publications Router API</h3>
+				<p>Publications Router exposes an API that enables notifications processed within the last 90 days to be retrieved.  There are two endpoints:</p>
+				<ol>
+					<li><b>Notification list feed</b> - which lists all routed notifications to your repository in date order. This provides access to a full history of notifications in "analysed_date" order, oldest first. You may list the notifications routed to your repository, or all notifications that were routed to any repository.</li>
+					<li><b>Notification endpoint</b> - is the live endpoint used to retrieve individual notifications and the binary/packaged content associated with it. This will return the <a href="{{ docu_api_url }}/OutgoingNotification.md#outgoing-notification">Outgoing Notification</a> JSON record containing metadata and possibly also one or more URL link elements which are used to retrieve any associated binary content (e.g. an article text file).</li>
+				</ol>
+				<p>See the <a href="{{ docu_api_url }}/Retrieve.md">Publications Router API documentation</a> for more information.</p>
+
+			</div>
+		</section>
+		<section id="pub_info" class="is-collapsible show_hide__container is-collapsible--button" data-collapsible>
+			<h2 class="show_hide__trigger">Information for Publishers</h2>
+			<div class="show_hide__target cms">
+				<h2>Publishers</h2>
+				<h3>Getting Connected to Publications Router</h3>
+				<p>As this service is now scheduled for closure on 1 July 2026, it is no longer possible to join. If you would like any further information, please contact <a href="mailto:XXXX@YYYY.ac.uk?subject=Publications%20Router%20-%20getting%20connected%20(institution)">XXXX@YYYY.ac.uk</a>, mentioning Publications Router.</p>
+				<h3>Notification types</h3>
+				<p>Ideally publishers will provide Router with notifications for an article on:</p>
+				<ul>
+					<li><b>Acceptance</b>, when they should contain basic (or provisional) metadata, together with the accepted manuscript, if possible.</li>
+					<li><b>Publication</b>, containing the updated complete metadata. Some publishers may feel able to include the full text of the published version of record, perhaps for selected articles.</li>
+				</ul>
+				<p>Notifications may be in any of the supported formats, currently:</p>
+				<ul>
+					<li>JATS XML (<a href="http://jats.nlm.nih.gov/publishing/">Journal Publishing Tag Set)</a></li>
+					<li>Router's proprietary API <a href="{{ docu_api_url }}/IncomingNotification.md#incoming-notification">JSON structure</a>.</li>
+				</ul>
+				<p>These notifications will be processed by Publications Router to match and forward them to the participating institutions.</p>
+				<h3>Sending Notifications</h3>
+				<p>You will be able to submit notifications via any of the available methods, currently:</p>
+				<ul>
+					<li>FTP</li>
+					<li>SWORD2</li>
+					<li>Publications Router API.</li>
+				</ul>
+
+				<h3>FTP Submission</h3>
+				<p>You will be provided with an FTP endpoint and credentials that enable you to submit notifications via SFTP (secure FTP). </p>
+				<p>There are simple rules for such submissions:</p>
+				<ul>
+					<li>Notifications should be packaged into individual  Zip files</li>
+					<li>Each notification zip file should contain a single XML document containing the article metadata in JATS-XML (<a href="http://jats.nlm.nih.gov/publishing/">Journal Publishing Tag Set</a>) format</li>
+					<li>The zip file may contain additional files containing article text and associated artefacts, such as images, in any format (e.g. PDF, WORD, JPG etc.)</li>
+					<li>Additional files may themselves be zipped (i.e. the notification zip file may contain embedded zip files)</li>
+					<li>The content of the notification zip file may be in a directory structure (i.e. if your original notification plus associated article files is in a directory structure, you may simply zip it up for transmission by FTP) or it may have a flat structure.</li>
+				</ul>
+				<p>Full technical documentation for this is available in our <a href="/static/docs/FTP_deposit_protocol_for_new_publishers.pdf">FTP Deposit Protocol document</a>.</p>
+				<p>Further information is available on request via <a href="mailto:XXXX@YYYY.ac.uk?subject=Publications%20Router%20-%20FTP%20technical%20documentation">XXXX@YYYY.ac.uk</a>; please mention Publications Router. </p>
+
+				<h3>SWORD2 submission</h3>
+				<p>Publications Router exposes a SWORD2 endpoint which you may use to send notifications which have been packaged in a zip file. This file must be of the same form specified for FTP submission - see above.</p>
+				<p>The endpoint operates in 2 ways, depending on a setting in your Router account:</p>
+				<ol>
+					<li><b>Submission testing active</b> - which is used during your initial setup and test phase to ensure that the notifications you will be sending can be satisfactorily processed.  You will receive automated feedback on issues and errors.</li>
+					<li><b>Live running (testing complete)</b> -  which is used to transmit Notifications for processing and routing to Institutions.</li>
+				</ol>
+				<p>More information about this method may be found in <a href="{{ docu_base_url }}/sword-in/README.md#jper-swordv2-deposit-endpoint">Router's SWORD Deposit documentation</a>.</p>
+
+				<h3>Submission via Publications Router API</h3>
+				<p>Publication Router's native (proprietary) API may be used to submit notifications.  In this case the notification metadata must be sent as a JSON package, optionally with article text in a binary file.</p>
+				<p>The Publications Router API exposes two endpoints:</p>
+				<ol>
+					<li><b>Validation endpoint</b> - which may be used during initial set-up and testing to confirm satisfactory integration with Publications Router</li>
+					<li><b>Notification endpoint</b> - is the live endpoint used to send notifications to Publications Router for matching and routing to Institutions.</li>
+				</ol>
+				<p>Notifications may be formatted in two ways:</p>
+				<ol>
+					<li><b>Metadata only</b> notification, sent as a Router JSON object</li>
+					<li><b>Metadata + binary package</b> notification -  which enables inclusion of additional material such as the article text (for example in PDF format). This is sent as a multi-part request combining a Router JSON object with the zipped binary file(s) in a supported <a href="{{ docu_api_url }}/Packaging.md#packaging">Packaging Format</a>.</li>
+				</ol>
+				<p>The <a href="{{ docu_api_url }}/IncomingNotification.md#incoming-notification">Router JSON object data structure</a> is described in our Incoming Notification documentation.</p>
+				<p>For more information see the <a href="{{ docu_api_url }}/Send.md">Publications Router API documentation</a>.</p>
+			</div>
+		</section>
+	</div>
+</div>
+
+{% endblock %}
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

@@ -1,0 +1,89 @@
+{% from "helpers/err_display_macros.html" import embed_download_link %}
+{% from "helpers/from_to_date_macro.html" import from_to_date %}
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">SWORD deposit history{% if curr_org_is_super %}<span class="h_small"><a id="stickme" href="{{url_for('account.disp_org_acc', org_uuid=uuid)}}">{{org_name}}</a></span>{% endif %}</h1>
+		<div class="accordion">
+			<p>The table shows the history of deposits to a repository made using the SWORD protocol.</p>
+			<p><i>Total</i> is the number of deposits made; <i>Meta ...</i> and <i>Fulltext ...</i> values indicate the number of successful or failed deposits of metadata and article files respectively (note that zero is replaced by hyphen for readability).</p>
+			<p><i>Error Messages</i> lists all errors encountered.</p>
+			<p>• <i>"Metadata error"</i> indicates that no deposit record was created in the repository;</p>
+			<p>• <i>"Content error"</i> indicates that a metadata record was created, but the article file could not be attached to it. In this case the square brackets contain:<br>
+			<b>[</b> <u>Link to article (zipfile or PDF)</u> (notification ID) • <u>Link to repository entry</u> (entry ID) • DOI of the article concerned <b>]</b>.<br>
+				You can use these links to manually download the article and attach it to your repository entry (NB. if you find the repository entry link doesn't work from your browser then can use the <i>entry ID</i> to find the record).</p>
+			<p>The last 10 days deposit history is shown by default.</p>
+		</div>
+		{{from_to_date(from_date, to_date, "Show history from", "Until", "Show history")}}
+		<div class="row">
+			{% from "helpers/pagination.html" import render_pagination %}
+			{{render_pagination(num_of_pages, page, link)}}
+			<table id="data_table" class="content-table">
+				<thead>
+					<tr>
+						<th class="persist essential wide-8rem">Date<br></th>
+						<th class="persist essential">Total</th>
+						<th class="persist essential">Meta<br>OK</th>
+						<th class="persist essential">Meta<br>Failed</th>
+						<th class="persist essential">Fulltext<br>OK</th>
+						<th class="persist essential">Fulltext<br>Failed</th>
+						<th class="optional">Error Messages <br>(click above for more information)</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% from "helpers/field_render.html" import zero_to_dash %}
+					{% if data_iterable %}
+						{{ data_iterable.execute() or '' }}	{# Execute the cursor query, prevent "None" being displayed #}
+						{% for rec_tuple in data_iterable %}
+							<tr>
+								<td>{{rec_tuple[0]}}</td>
+								<td>{{rec_tuple[1]}}</td>
+								<td>{{zero_to_dash(rec_tuple[2])}}</td>
+								<td>{{zero_to_dash(rec_tuple[3])}}</td>
+								<td>{{zero_to_dash(rec_tuple[4])}}</td>
+								<td>{{zero_to_dash(rec_tuple[5])}}</td>
+								<td>
+								{% if rec_tuple[6] %}
+									{% set err_list = rec_tuple[6].split("|") %}
+									<ul class="error">
+									{% for error in err_list %}
+										<li>✦ {{embed_download_link(content_href, error)}}</li>
+									{% endfor %}
+									</ul>
+								{% endif %}
+								</td>
+							</tr>
+						{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+			{{render_pagination(num_of_pages, page, link)}}
+		</div>
+		{% if data_iterable %}
+		<p class="no-underline">
+			<a class="btn btn--3d btn--primary download" href="{{csv_link}}&page={{page}}" role="button" >Download CSV - This page</a>
+			{% if num_of_pages > 1 %}
+			<a class="gap-left btn btn--3d btn--primary download" href="{{csv_link}}" role="button" >Download CSV - All pages</a>
+			{% endif %}
+		</p>
+		{% endif %}
+		{% if num_of_pages <= page %}
+		<p class="info-note">Deposit records are retained for a period of {{stored_months}} months and are then deleted.</p>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+	});
+</script>
+{% endblock extra_js_bottom %}

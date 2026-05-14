@@ -1,0 +1,62 @@
+{
+    "id": 1,
+    "created": "2020-07-23T10:43:59Z",
+    "type": "R",
+    "vers": "4",
+    "repositories": [3, 4, 5],
+    "analysis_date": "2020-07-23T11:20:52Z",
+    "links": [ ],
+    "metadata": {
+      "journal": {
+        "publisher": [
+          "JMIR Publications Inc."
+        ]
+      },
+      "article": {
+        "title": "Covid-19 testing strategies and lockdowns: the European closed curves",
+        "type": "article-preprint",
+        "abstract": "BACKGROUND As the number of Covid-19 infections worldwide overtakes 6 millions of Total Confirmed Cases (TCC), the data reveal almost closed outbreaks in many European countries.",
+        "identifier": [
+          {
+            "type": "doi",
+            "id": "10.2196/preprints.21269"
+          }
+        ]
+      },
+      "publication_date": {
+        "date": "2020-06-11",
+        "year": "2020",
+        "month": "06",
+        "day": "11"
+      },
+      "author": [
+        {
+          "name": {
+            "firstname": "Stefano",
+            "surname": "De Leo",
+            "fullname": "Stefano De Leo"
+          },
+          "identifier": [
+            {
+              "type": "orcid",
+              "id": "0000-0002-6276-073X"
+            }
+          ]
+        }
+      ],
+      "history_date": [
+        {
+          "date_type": "issued",
+          "date": "2020-06-11"
+        }
+      ],
+      "license_ref": [ ]
+    },
+    "provider": {
+      "agent": "Crossref",
+      "harv_id": 2,
+      "ref": "10.2196/preprints.21269",
+      "route": "harvester",
+      "id": 1
+    }
+}

@@ -1,0 +1,105 @@
+<jisc-retrieval-response xmlns="http://www.elsevier.com/xml/elsapi/article/dtd" 
+    xmlns:bk="http://www.elsevier.com/xml/bk/dtd" 
+    xmlns:cals="http://www.elsevier.com/xml/common/cals/dtd" 
+    xmlns:ce="http://www.elsevier.com/xml/common/dtd" 
+    xmlns:ja="http://www.elsevier.com/xml/ja/dtd" 
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+    xmlns:sa="http://www.elsevier.com/xml/common/struct-aff/dtd" 
+    xmlns:sb="http://www.elsevier.com/xml/common/struct-bib/dtd" 
+    xmlns:tb="http://www.elsevier.com/xml/common/table/dtd" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xmlns:xocs="http://www.elsevier.com/xml/xocs/dtd" 
+    xmlns:dc="http://purl.org/dc/elements/1.1/" 
+    xmlns:dcterms="http://purl.org/dc/terms/" 
+    xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <coredata>
+        <prism:url>https://staging.elsapi-np.elsst.com/content/article/pii/S2214629618301087</prism:url>
+        <dc:identifier>doi:10.1016/j.erss.2018.01.019</dc:identifier>
+        <eid>1-s2.0-S2214629618301087</eid>
+        <prism:doi>10.1016/j.erss.2018.01.019</prism:doi>
+        <pii>S2214-6296(18)30108-7</pii>
+        <dc:title>Article Title</dc:title>
+        <prism:publicationName>Journal Title</prism:publicationName>
+        <prism:issn>22146296</prism:issn>
+        <prism:volume>40</prism:volume>
+        <prism:startingPage>257</prism:startingPage>
+        <prism:endingPage>272</prism:endingPage>
+        <prism:pageRange>257-272</prism:pageRange>
+        <prism:coverDate>2018-06-30</prism:coverDate>
+        <prism:coverDisplayDate>June 2018</prism:coverDisplayDate>
+        <dc:description>The Abstract</dc:description>
+        <link href="https://www.sciencedirect.com/science/article/pii/S2214629618301087" rel="scidir" />
+    </coredata>
+    <xocs:doc>
+        <xocs:meta>
+            <xocs:available-online-date xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" yyyymmdd="20180312">2018-03-12</xocs:available-online-date>
+            <xocs:vor-available-online-date xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" yyyymmdd="20180312">2018-03-12</xocs:vor-available-online-date>
+            <xocs:item-stage xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd">S300</xocs:item-stage>
+            <xocs:open-access xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd">
+                <xocs:oa-article-status is-open-access="1" is-open-archive="0">None</xocs:oa-article-status>
+            </xocs:open-access>
+            <xocs:self-archiving>
+                <xocs:sa-start-date xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd">2020-03-12T00:00:00.000Z</xocs:sa-start-date>
+                <xocs:sa-user-license xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd">http://creativecommons.org/licenses/by-nc-nd/4.0/</xocs:sa-user-license>
+            </xocs:self-archiving>
+        </xocs:meta>
+        <ce:author-group>
+            <ce:author xmlns="http://www.elsevier.com/xml/ja/dtd" 
+                xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" id="aut0005" author-id="S0959440X18300186-ce8affbff56dc58e13a35051d860bc29">
+                <ce:given-name>Some</ce:given-name>
+                <ce:surname>Person</ce:surname>
+                <ce:e-address id="eadd0005" type="email" xlink:href="mailto:some@person.org">some@person.org</ce:e-address>
+                <ce:cross-ref id="crf0005" refid="aff0005">
+                    <ce:sup loc="post">1</ce:sup>
+                </ce:cross-ref>
+            </ce:author>
+            <ce:author xmlns="http://www.elsevier.com/xml/ja/dtd" 
+                xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" id="aut0010" author-id="S0959440X18300186-5f7a237040a5ef41e980f814afd39a6e">
+                <ce:given-name>Other</ce:given-name>
+                <ce:surname>Person</ce:surname>
+                <ce:cross-ref id="crf0010" refid="aff0005">
+                    <ce:sup loc="post">1</ce:sup>
+                </ce:cross-ref>
+                <ce:cross-ref id="crf0015" refid="aff0010">
+                    <ce:sup loc="post">2</ce:sup>
+                </ce:cross-ref>
+            </ce:author>
+            <ce:affiliation xmlns="http://www.elsevier.com/xml/ja/dtd" 
+                xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" id="aff0005" affiliation-id="S0959440X18300186-658718a360a8a448f9bc3809b6df735e">
+                <ce:label>1</ce:label>
+                <ce:textfn>
+                    Some
+                    <ce:italic>University</ce:italic>
+                    ,
+                    <ce:italic>United</ce:italic>
+                    <ce:italic>Kingdom</ce:italic>
+                </ce:textfn>
+                <sa:affiliation>
+                    <sa:organization>Some University</sa:organization>
+                    <sa:city>Some</sa:city>
+                    <sa:country>United Kingdom</sa:country>
+                </sa:affiliation>
+            </ce:affiliation>
+            <ce:affiliation xmlns="http://www.elsevier.com/xml/ja/dtd" 
+                xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" id="aff0010" affiliation-id="S0959440X18300186-658718a360a8a448f9bc3809b6df735e">
+                <ce:label>2</ce:label>
+                <ce:textfn>University of Other, United Kingdom</ce:textfn>
+                <sa:affiliation>
+                    <sa:organization>University of Other, United Kingdom</sa:organization>
+                    <sa:city>Other</sa:city>
+                    <sa:country>United Kingdom</sa:country>
+                </sa:affiliation>
+            </ce:affiliation>
+        </ce:author-group>
+   		<ce:grant-sponsor id="gs1" sponsor-id="https://doi.org/10.13039/501100000867">Commonwealth Scholarship Commission</ce:grant-sponsor>
+        <ce:grant-sponsor id="1" >A Sponsor</ce:grant-sponsor>
+        <ce:grant-sponsor id="2">Other Sponsor</ce:grant-sponsor>
+        <ce:grant-number refid="gs1">NGCN-2018-237</ce:grant-number>
+        <ce:grant-number refid="1">1</ce:grant-number>
+        <ce:grant-number refid="1">2</ce:grant-number>
+        <ce:grant-number refid="2">3</ce:grant-number>
+        <ce:date-accepted xmlns="http://www.elsevier.com/xml/ja/dtd" 
+            xmlns:xoe="http://www.elsevier.com/xml/xoe/dtd" day="29" month="1" year="2018" />
+    </xocs:doc>
+</jisc-retrieval-response>

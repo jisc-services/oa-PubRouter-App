@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<h1 id="pg-h1">{{'Active' if show_active else 'Configured'}} batch process schedule {% if auto_reload %}<span class="strong smallish gap-left-5">({{refresh}}s auto-refresh)</span>{% endif %}</h1>
+	<div class="span-11">
+		<br>
+		<div class="accordion cms">
+			<p>This page shows Router's batch process schedule - either the initial configuration or the active schedule obtained from the database.</p>
+			<p class="warning utf8-icon">Time values are always shown as GMT (i.e. not adjusted for summer time).</p>
+			<p>Processes are synchronised across servers and application programs.  They may run with a regular frequency and/or may be triggered (if they have a label) by the completion of another process.  Processes will wait until a conflicting process finishes running.</p>
+            <p class="info utf8-icon">You can manually trigger a process to run immediately using the '<i>run</i>' button in the last column.</p>
+            <p>The past history of process execution can be seen on the <a href="{{url_for('admin.metrics')}}">Batch Process Metrics</a> page.</p>
+			<h2 class="like_h3">Process names</h2>
+			<table class="std-txt">
+				<thead>
+					<tr><th>Process name</th><th>Metrics name</th><th>Description</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>adhoc_report</td><td>Adhoc-Report</td><td>Run a report on an adhoc basis, triggered from GUI.</td></tr>
+					<tr><td>delete_files</td><td>Delete-Files</td><td>Delete old files from server file system.</td></tr>
+					<tr><td>delete_old</td><td>Delete-Data</td><td>Delete old data from database.</td></tr>
+					<tr><td>harvest</td><td>Harvest</td><td>Run harvest process.</td></tr>
+					<tr><td>monthly_jobs</td><td>Monthly</td><td>Monthly reporting jobs (runs only on 1st of Month).</td></tr>
+					<tr><td>move_ftp</td><td>Move-FTP</td><td>Move publisher's deposited zip files to temporary central store.</td></tr>
+					<tr><td>process_ftp</td><td>Process-FTP</td><td>Convert deposited zip files into unrouted notifications.</td></tr>
+					<tr><td>route</td><td>Route-Publisher</td><td>Route (match) publisher notifications to repositories.</td></tr>
+					<tr><td>route_harv</td><td>Route-Harvested</td><td>Route (match) harvested notifications to repositories.</td></tr>
+					<tr><td>shutdown</td><td>Shutdown</td><td>Shutdown scheduler program, which should then be automatically restarted by the Linux Supervisor. (Perhaps to remediate any memory leaks etc.)</td></tr>
+					<tr><td>sword_out</td><td>SWORD-out</td><td>Send notifications via SWORD to Repositories.</td></tr>
+				</tbody>
+			</table>
+			<br>
+			<h2 class="like_h3">Status values</h2>
+			<table class="std-txt">
+				<thead>
+					<tr><th>Status</th><th>Description</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>Triggered</td><td>Process is ready to start, having been triggered by completion of another process.</td></tr>
+					<tr><td>Pending</td><td>Process is scheduled to run when its next start time is reached.</td></tr>
+					<tr><td>Waiting</td><td>Process would have started already, but is waiting until a conflicting process finishes running.</td></tr>
+					<tr><td>Running</td><td>Process is currently running.</td></tr>
+					<tr><td>Finished</td><td>Process has run and is not currently scheduled to run again, but may be triggered in the future.</td></tr>
+					<tr><td>Ended</td><td>Process cannot run as its 'latest run time' is in the past.</td></tr>
+					<tr><td>(none)</td><td>Process not scheduled, but can be triggered.</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="span-12 cms">
+		<form id="config-live-form" method="GET" action="">
+			{# JQuery code below causes form to be submitted whenever any radio button is changed. #}
+			<div class="row">
+				<div class="col span-3">
+					<fieldset class="form small-gap-vert">
+						<legend class="visuallyhidden">Show schedule config or active schedule</legend>
+						<input id="r1" type="radio" name="mode" value="config" {{'' if show_active else 'checked'}}>
+						<label for="r1" class="strong" title="Show schedule as defined in configuration">Configured schedule</label><br/>
+						<input id="r2" class="" type="radio" name="mode" value="active" {{'checked' if show_active and not auto_reload else ''}}>
+						<label for="r2" class="strong" title="Show running schedule">Active schedule</label><br/>
+						<input id="r3" class="" type="radio" name="mode" value="active_auto" {{'checked' if auto_reload else ''}}>
+						<label for="r3" class="strong" title="Show running schedule, automatically refreshed every {{refresh}} seconds">Active auto-refresh</label>
+						{% if auto_reload %}<span class="gap-left-5 countdown"></span>{% endif %}
+					</fieldset>
+				</div>
+				<div class="col span-3">
+					<fieldset class="form small-gap-vert">
+						<legend class="visuallyhidden">Show date & time or just time (without date component)</legend>
+						<input id="rf1" type="radio" name="full" value="0" {{'' if full_date else 'checked'}}>
+						<label for="rf1" class="strong" title="Show times (GMT) without date component as HH:MM:SS">Show time only</label><br/>
+						<input id="rf2"  class="" type="radio" name="full" value="1" {{'checked' if full_date else ''}}>
+						<label for="rf2" class="strong" title="Show times (GMT) with their date component as YYYY-MM-DD HH:MM:SS">Show date & time</label>
+					</fieldset>
+				</div>
+			{% if show_active %}
+				<div class="col span-3">
+					<fieldset class="form small-gap-vert">
+						<legend class="visuallyhidden">Show sort options</legend>
+						<input id="rs1" type="radio" name="sort" value="start" {{'' if sort_priority else 'checked'}}>
+						<label for="rs1" class="strong" title="Sort jobs by 'next-start', then 'priority'">Sort by next-start</label><br/>
+						<input id="rs2"  class="" type="radio" name="sort" value="priority" {{'checked' if sort_priority else ''}}>
+						<label for="rs2" class="strong" title="Sort jobs by 'priority', then 'next-start'">Sort by priority</label>
+					</fieldset>
+				</div>
+				<div class="col span-3">
+					<fieldset class="form small-gap-vert">
+						<legend class="visuallyhidden">Show all columns or only default columns</legend>
+						<input id="rc1" type="radio" name="cols" value="default" {{'' if all_cols else 'checked'}}>
+						<label for="rc1" class="strong">Show default columns</label><br/>
+						<input id="rc2"  class="" type="radio" name="cols" value="all" {{'checked' if all_cols else ''}}>
+						<label for="rc2" class="strong">Show all columns</label>
+					</fieldset>
+				</div>
+			{% endif %}
+			</div>
+		</form>
+		{% if schedule_list | length %}
+		{# Setting class to 'content-table' results in displayed table having optional column drop-down menu #}
+		<table class="{{'gap-vert' if all_cols else 'content-table'}}">
+			<thead>
+				<tr>
+					<th class="persist essential" title="An optional unique label given to the process - used for triggering">Label</th>
+					<th class="persist essential" title="Name of the process">Process</th>
+					<th class="{{'persist essential' if show_active else 'optional'}}" title="The server and program which will execute the process">Server.Program</th>
+					<th class="persist essential" title="Process priority">Priority</th>
+					<th class="persist essential" title="Process status">Status</th>
+					<th class="persist essential hili-dark" title="Time (GMT) that the process is to next run">Next start</th>
+					<th class="{{'persist essential' if show_active else 'optional'}}" title="Time (GMT) when the process was last run or, for a running process, when it started">Last run</th>
+					<th class="optional" title="The result of the last run">Last result</th>
+					<th class="{{'optional' if show_active else 'persist essential'}}" title="The earliest time (GMT) that the process can start">Earliest</th>
+					<th class="{{'optional' if show_active else 'persist essential'}}" title="Frequency with which a process repeats (presented as H:MM:SS)">Frequency</th>
+					<th class="{{'optional' if show_active else 'persist essential'}}" title="The latest time (GMT) that a process can start">Latest</th>
+					<th class="no-wrap persist essential" title="Optional list of labels of other processes that may be triggered when the current process completes.">Triggers&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					<th class="persist essential" title="List of processes which cannot run simultaneously with current process. (The current process will wait until any of these finish running)">Conflicts with</th>
+				{% if show_run_btns %}
+					<th class="optional" title="Trigger process to run ASAP">Run</th>
+				{% endif %}
+				</tr>
+			</thead>
+			<tbody id="tbl-body">
+			{% set no_wrap = "no-wrap" if full_date else "" %}
+			{% for rec_id, label, func_name, server, priority, status, earliest, periodicity, end_time, next_start, last_run, last_result, triggers, conflicts in schedule_list %}
+				{% set is_running = status == "Running" %}
+				<tr {% if is_running %}class="hili"{% endif %}>
+					<td>{{label}}</td>
+					<td>{{func_name}}</td>
+					<td>{{server}}</td>
+					<td>{{priority}}</td>
+					<td>{{status}}</td>
+					<td class="{{'hili-' if not is_running}}dark {{no_wrap}}">{{next_start}}</td>
+					<td class="{{'hili-dark ' if is_running}}{{no_wrap}}">{{last_run}}</td>
+					{# Because last_result value is updated when running job finishes, we avoid showing the previous result while job is running #}
+					<td>{%if not is_running %}{{last_result | replace("; ", ";<br/>") | safe}}{% endif %}</td>
+					<td class="{{no_wrap}}">{{earliest}}</td>
+					<td>{{periodicity}}</td>
+					<td class="{{no_wrap}}">{{end_time}}</td>
+					<td>{{triggers | replace(" ", "<br/>") | safe}}</td>
+					<td>{{conflicts | replace(" ", "<br/>") | safe}}</td>
+				{% if show_run_btns %}
+					<td>{% if status in ("", "Pending", "Finished") %}<button class="btn btn--3d xvalue-btn bold-hov" data-rec_id="{{rec_id}}" data-name="{{func_name}}" title="Run job ASAP">Run</button>{% endif %}</td>
+				{% endif %}
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		<p class="info-note">Times are always shown as GMT (i.e. not adjusted for summer time).</p>
+		{% endif %}
+	</div>
+	<div class="span-11 cms">
+	{% if info %}
+		<br>
+		<p class="box--info box--padding-small">{{info|safe}}</p>
+	{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script type="text/javascript" src="/static/js/ajax_helpers.js"></script>
+<script>
+$(document).ready(function(){
+	/**
+	*	Code for Info accordion
+	**/
+	initInfoAccordion();
+
+
+	/**
+	*	Code for countdown timer display
+	**/
+	{% if auto_reload %}
+		const showCountdownStartTimerFn = addCountdownTimer({{refresh}}, function(){window.location.reload()});
+		showCountdownStartTimerFn();
+	{% endif %}
+
+	/**
+	*	Code to submit form if any radio button changes
+	**/
+	$form = $("#config-live-form");
+	$form.on("change", function(e){ $form.submit(); });
+
+	/**
+	*	Code to trigger a job
+	**/
+	$("#tbl-body").on("click", "button", function(event){
+        event.stopPropagation();
+        const url = window.location.href.split('?')[0];		// URL of current page without any parameters
+        const data = event.target.dataset;
+        doAjaxPost(url,
+        		   {rec_id: data.rec_id, func_name: data.name},	// Pass data from buttons data- values
+        		   function(){
+        		   		window.location.reload();
+        		   	},	// Success function: Redisplay window
+        		   function(err){
+        		   		console.log("ERROR", err);
+        		   		window.location.reload();
+        		   	}	// Error function: Log error to console & redisplay screen
+        		   );
+    	});
+});
+</script>
+{% endblock extra_js_bottom %}

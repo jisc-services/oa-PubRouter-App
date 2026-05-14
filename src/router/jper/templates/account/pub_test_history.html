@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+	{% set publisher_id = pub_acc.uuid %}
+		<h1 id="pg-h1">Test history{% if curr_org_is_super %}<span class="h_small"><a id="stickme" href="{{url_for('account.disp_org_acc', org_uuid=publisher_id)}}">{{pub_acc.org_name}}</a></span>{% endif %}</h1>
+	{% set pub_data = pub_acc.publisher_data %}
+	{% if not pub_data.test_start %}
+		<p>Publisher has not started automated testing.</p>
+	{% else %}
+		<p>Summary of results since automated testing was activated on {{pub_data.ymd_to_dmy_or_empty(pub_data.test_start)}}{% if pub_data.test_end %} until it ended on {{pub_data.ymd_to_dmy_or_empty(pub_data.test_end)}}{% endif %}.</p>
+		{% if records|length %}
+		<div class="row">
+			{% from "helpers/pagination.html" import render_pagination %}
+			{{render_pagination(num_pages, page, link)}}
+			<table id="history-table" class="content-table">
+				<thead>
+					<tr>
+						<th class="persist essential dmy-width">Date</th>
+						<th class="persist essential">DOI &nbsp; <small>(click for test detail)</small></th>
+						<th class="persist essential">Filename</th>
+						<th class="persist essential">Status</th>
+						<th class="persist essential">Num errors</th>
+						<th class="persist essential">Num issues</th>
+						<th class="persist essential">Route</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for rec in records %}
+					<tr>
+						<td>{{rec.date_time_tuple()[0]}}</td>
+						<td><a href="{{url_for('account.test_record', pub_uuid=publisher_id, rec_id=rec.id)}}">{{rec.doi}}</a></td>
+						<td>{{rec.filename}}</td>
+						<td>{% if rec.valid %}Success{% else %}Error{% endif %}</td>
+						<td>{{rec.errors|length}}</td>
+						<td>{{rec.issues|length}}</td>
+						<td>{{rec.route}}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+			{{render_pagination(num_pages, page, link)}}
+		</div>
+		{% else %}
+		<p class="warning utf8-icon">No test results found.</p>
+		{% endif %}
+		{% if num_pages <= page %}
+		<p class="info-note">Test results are retained for a period of {{stored_months}} months and are then deleted.</p>
+		{% endif %}
+	{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+	});
+</script>
+{% endblock extra_js_bottom %}

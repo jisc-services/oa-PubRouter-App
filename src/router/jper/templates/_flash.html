@@ -1,0 +1,60 @@
+{### Jinja code to display flash messages ###}
+{%
+    set CATEGORY_MAP = {
+        "error" : "danger",
+        "message": "info",
+        "list": "info"
+    }
+%}
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% set html_indicator = '+html' %}
+        {% for category, message in messages %}
+            {% set msg_has_html = False %}
+            {% if category.endswith(html_indicator) %}
+                {% set category = category[:category.rfind(html_indicator)] %}
+                {% set msg_has_html = True %}
+            {% endif %}
+            {% set flash_level = CATEGORY_MAP.get(category, category) %}
+            <article  id="flash-{{loop.index}}" class="box box-cms box--padding-medium box--{{flash_level}} fade in" data-alert="alert" data-level="flash-{{flash_level}}">
+                {# A list hidden within an expandable container, will have header data, a list, maximum list length and an html partial which can be included
+                An object of type
+                (
+                    "header_data": string,
+                    "list_data": list,
+                    "partial_name": string (name of the html partial),
+                    "max_list_length": int
+                )
+                #}
+                {% if category == "list" %}
+                    <section class="is-collapsible show_hide__container is-collapsible--button show_hide--is-collapsed" data-collapsible="">
+                        <h2 class="show_hide__trigger"><span class="visuallyhidden">[Open panel below]</span>
+                        {{message.header_data}}
+                        </h2>
+                        <div class="show_hide__target" style="display: none;">
+                            {% include message.partial_name %}
+                            <ul>
+                                {% if message.listdata|length > message.max_list_length %}
+                                    {% for n in range(message.max_list_length) %}
+                                        <li>{{message.listdata[n]}}</li>
+                                    {% endfor %}
+                                    <li> And {{message.listdata|length - message.max_list_length}} others</li>
+                                {% else %}
+                                    {% for data in message.listdata %}
+                                        <li>{{data}}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </section>
+                {% else %}
+                    {% if msg_has_html %}
+                        {{ message | safe }}
+                    {% else %}
+                        {{ message }}
+                    {% endif %}
+                {% endif %}
+            </article>
+        {% endfor %}
+    {% endif %}
+{% endwith %}

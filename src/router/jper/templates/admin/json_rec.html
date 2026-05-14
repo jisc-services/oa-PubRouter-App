@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% from "helpers/field_render.html" import render_field %}
+
+{% set user_is_developer = curr_user_acc.is_developer %}
+{% block content %}
+<h1>Record administration<span class="h_small">∗developers only∗</span></h1>
+<br>
+<div class="row">
+	<div class="span-12 cms">
+		<div id="view-update" class="box box--padding-large box--brd-mgreyblue cms">
+			<h2 class="like_h3">View{% if user_is_developer %}/Update{% endif %} Record</h2>
+			<form action="{{url_for('admin.json_rec')}}#view-update" method="post" class="form">
+				<ul class="form-fields">
+					<li>
+						{{ render_field(json_rec_form.dao_name, 'form__item', 'form__label') }}
+						<span class="info-note">Composite keys are shown as <b>(K: ...)</b></span>
+					</li>
+					<li>
+						{{ render_field(json_rec_form.rec_id, 'form__item', 'form__label') }}
+						<span class="info-note under">Composite key values should be separated by comma or vertical bar (|).</span>
+					</li>
+					<li>
+						<span class="form__label"></span>
+						<button class="btn btn--3d btn--primary" id="get" type="submit" value="pull" name="action">Get</button>
+					</li>
+					<li>
+						{{ render_field(json_rec_form.json_data, 'form__item wide-text', 'form__label') }}
+						<span class="info-note under">Important: JSON <b>null</b> is converted to Python <b>None</b> and vice versa.</span>
+					</li>
+					{% if user_is_developer %}
+					<li>
+						<span class="form__label"></span>
+						<button class="btn btn--3d btn--primary" id="update_json" type="submit" value="update" name="action">Update</button>
+						<span class="gap-left"></span>
+						<b class="warning utf8-icon">CAUTION: Record updated with limited checks - ensure correct JSON!</b>
+					</li>
+					{% endif %}
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Code to determine if URL to current page contains a #reference AND if there is a flash message to display
+		* and, if so, to copy the flash message to the re-displayed panel (where, presumably, a button has just
+		* been pressed).
+		**/
+		flash_msg_at_location_href();
+	});
+</script>
+{% endblock extra_js_bottom %}

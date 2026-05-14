@@ -1,0 +1,34 @@
+{# repo_identifiers_form.html - Form for updating institution identifiers #}
+<div id="repo_ids" class="box box--padding-large box--brd-mgreyblue">
+	<h3>Update institution identifiers</h3>
+	<div class="accordion">
+		<p>Identifiers are set by selecting from a drop-down selection box which is displayed when you start typing the distinguishing part of the institution name into the empty field.  It uses a simple fuzzy matching to return a refined list as you enter more than 2 characters. A maximum of 10 matching values are returned.</p>
+		<p>For example, to get University of Exeter's identifier, simply type "<b>exe</b>".</p>
+		<p>To change an existing value, you must first delete it.</p>
+		<p><b>Note</b> that the information in the greyed fields is copied from sections above.  Any text shown to the right of the ID fields is that associated with the ID in the lookup table.</p>
+	</div>
+	<form method="POST" id="update_identifiers" action="{{url_for('account.update_identifiers', org_uuid=org_acc.uuid)}}#repo_ids" class="form">
+		<ul class="form-fields">
+			<li class="form__item">
+				<label for="org_name" class="form__label">Organization Name</label>
+				<input id="org_name" class="narrow-text form__item" type="text" value="" disabled>
+			</li>
+			<li class="form__item">
+				{# Hyphen in key prevents aria attributes being passed to field directly #}
+				{% set aria_attributes = {'aria-label': "Jisc ID name"} %}
+				{{render_field(form_ids.jisc_id, 'narrow-text', 'form__label')}}
+				{{form_ids.jisc_id_name(class_='extra-info narrow-text', disabled=True, **aria_attributes)}}
+			</li>
+			<li class="form__item">
+				<label for="repo_name" class="form__label">Repository Name</label>
+				<input id="repo_name" class="narrow-text form__item" type="text" value="" disabled>
+			</li>
+			<li class="form__item">
+				{% set aria_attributes = {'aria-label':"Core ID name"} %}
+				{{render_field(form_ids.core_id, 'narrow-text', 'form__label')}}
+				{{form_ids.core_id_name(class_='extra-info narrow-text', disabled=True, **aria_attributes)}}
+			</li>
+		</ul>
+		{% if curr_user_is_not_readonly %}<button type="submit" class="btn btn--3d btn--primary">Update all identifiers</button>{% endif %}
+	</form>
+</div>

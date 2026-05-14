@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+{% from "helpers/field_render.html" import render_field %}
+{% from "helpers/account_macros.html" import display_user_acc_form_inputs %}
+<div class="row cms">
+	<h1>Register a new organisation</h1>
+	<div class="span-12">
+		<form method="post" action="{{url_for('account.register')}}" id="registration-details" class="form">
+			<fieldset class="form__fieldset">
+				<h2 class="legend-text like_h3">Organisation</h2>
+				<ul class="form-fields">
+					<li class="form__item">
+						{{render_field(add_org_form.organisation_name,'form__item','form__label required')}}
+					</li>
+					<li class="form__item">
+						{{render_field(add_org_form.contact_email, 'form__item', 'form__label required')}}
+					</li>
+					<li class="form__item">
+						{{render_field(add_org_form.tech_contact_emails,'form__item','form__label')}}
+						<span class="info-note">Email addresses to which automated error emails will be sent, and which may be used for technical queries.  Separate each with a space, comma or semicolon.</span>
+					</li>
+					<li class="form__item">
+						{{render_field(add_org_form.note,'form__item','form__label')}}
+					</li>
+					<li class="form__item-radio">
+						{{render_field(add_org_form.role,'form__item','form__label required')}}
+					</li>
+				</ul>
+				<hr class="gap-vert">
+				<h2 class="like_h3">Organisation Administrator User</h2>
+				{{ display_user_acc_form_inputs(curr_org_is_super, curr_user_acc, add_org_form, True, True, False) }}
+			{% if curr_user_is_not_readonly %}
+				<div>
+					<br>
+					<button class="btn btn--3d btn--primary" id="register" type="submit">Add organisation & user</button>&nbsp;&nbsp;
+					<input type="button" class="btn btn--3d gap-left btn--primary" value="Cancel" onclick="history.back();">
+				</div>
+			{% endif %}
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock %} 
+
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}
+
+
+
+

@@ -1,0 +1,58 @@
+{
+    "id": 2,
+    "created": "2020-07-23T10:43:59Z",
+    "type": "U",
+    "vers": "4",
+    "metadata": {
+        "article": {
+            "identifier": [
+                {
+                    "id": "10.5194/se-2020-22-ac2",
+                    "type": "doi"
+                }
+            ],
+            "title": "Response to R2",
+            "type": "other"
+        },
+        "author": [
+            {
+                "identifier": [
+                    {
+                        "id": "0000-0001-9695-3823",
+                        "type": "orcid"
+                    }
+                ],
+                "name": {
+                    "firstname": "Bogdan",
+                    "fullname": "Bogdan Matviichuk",
+                    "surname": "Matviichuk"
+                }
+            }
+        ],
+        "contributor": [],
+        "history_date": [
+            {
+                "date": "2020-07-13",
+                "date_type": "issued"
+            }
+        ],
+        "journal": {
+            "publisher": [
+                "Copernicus GmbH"
+            ]
+        },
+        "publication_date": {
+            "date": "2020-07-13",
+            "day": "13",
+            "month": "07",
+            "year": "2020"
+        }
+    },
+    "provider": {
+        "agent": "Crossref",
+        "id": 1,
+        "harv_id": 2,
+        "ref": "10.5194/se-2020-22-ac2",
+        "route": "harvester"
+    }
+}

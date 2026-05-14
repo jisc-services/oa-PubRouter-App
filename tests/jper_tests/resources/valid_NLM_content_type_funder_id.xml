@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD Journal Publishing DTD v3.0 20080202//EN" "journalpublishing3.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" article-type="rapid-communication">
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="publisher-id">erl</journal-id>
+			<journal-id journal-id-type="coden">ERLNAL</journal-id>
+			<journal-title-group>
+				<journal-title>Environmental Research Letters</journal-title>
+				<abbrev-journal-title abbrev-type="IOP">ERL</abbrev-journal-title>
+				<abbrev-journal-title abbrev-type="publisher">Environ. Res. Lett.</abbrev-journal-title>
+			</journal-title-group>
+			<issn pub-type="epub">1748-9326</issn>
+			<publisher>
+				<publisher-name>IOP Publishing</publisher-name>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-id pub-id-type="publisher-id">erlaa9ec9</article-id>
+			<article-id pub-id-type="doi">10.1088/1748-9326/aa9ec9</article-id>
+			<article-id pub-id-type="manuscript">aa9ec9</article-id>
+			<article-id pub-id-type="other">ERL-104343.R1</article-id>
+			<article-categories>
+				<subj-group subj-group-type="article-type">
+					<subject>Letter</subject>
+				</subj-group>
+			</article-categories>
+			<title-group>
+				<article-title>Technical opportunities to reduce global anthropogenic emissions of nitrous oxide</article-title>
+				<alt-title alt-title-type="ascii">Technical opportunities to reduce global anthropogenic emissions of nitrous oxide</alt-title>
+			</title-group>
+			<contrib-group content-type="all">
+				<contrib contrib-type="author">
+					<name>
+						<surname>Winiwarter</surname>
+						<given-names>Wilfried</given-names>
+					</name>
+					<xref rid="erlaa9ec9af1" ref-type="aff">1</xref>
+					<xref rid="erlaa9ec9af2" ref-type="aff">2</xref>
+					<xref rid="erlaa9ec9af3" ref-type="aff">3</xref>
+					<xref rid="erlaa9ec9em1" ref-type="aff"/>
+					<ext-link ext-link-type="orcid">0000-0001-7131-1496</ext-link>
+				</contrib>
+				<contrib contrib-type="author">
+					<name>
+						<surname>Klimont</surname>
+						<given-names>Zbigniew</given-names>
+					</name>
+					<xref rid="erlaa9ec9af1" ref-type="aff">1</xref>
+				</contrib>
+				<contrib contrib-type="author">
+					<name>
+						<surname>Amann</surname>
+						<given-names>Markus</given-names>
+					</name>
+					<xref rid="erlaa9ec9af1" ref-type="aff">1</xref>
+				</contrib>
+				<aff id="erlaa9ec9af1">
+					<label>1</label>
+					<institution>International Institute for Applied Systems Analysis (IIASA) Schlossplatz 1</institution>, A-2361 Laxenburg, <country>Austria</country>
+				</aff>
+				<aff id="erlaa9ec9af3">
+					<label>3</label>Author to whom any correspondence should be addressed.</aff>
+				<ext-link id="erlaa9ec9em1" ext-link-type="email">winiwarter@iiasa.ac.at</ext-link>
+				<author-comment content-type="short-author-list">
+					<p>Wilfried Winiwarter <italic>et al</italic>
+					</p>
+				</author-comment>
+			</contrib-group>
+			<pub-date pub-type="ppub">
+				<month>1</month>
+				<year>2018</year>
+			</pub-date>
+			<pub-date pub-type="epub">
+				<day>9</day>
+				<month>1</month>
+				<year>2018</year>
+			</pub-date>
+			<pub-date pub-type="open-access">
+				<day>24</day>
+				<month>9</month>
+				<year>2017</year>
+			</pub-date>
+			<volume>13</volume>
+			<issue>1</issue>
+			<elocation-id content-type="artnum">014011</elocation-id>
+			<history>
+				<date date-type="received">
+					<day>24</day>
+					<month>9</month>
+					<year>2017</year>
+				</date>
+				<date date-type="revised">
+					<day>16</day>
+					<month>11</month>
+					<year>2017</year>
+				</date>
+				<date date-type="accepted">
+					<day>1</day>
+					<month>12</month>
+					<year>2017</year>
+				</date>
+				<date date-type="oa-requested">
+					<day>24</day>
+					<month>9</month>
+					<year>2017</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-year>2018</copyright-year>
+				<copyright-holder>The Author(s). Published by IOP Publishing Ltd</copyright-holder>
+				<license license-type="cc-by" xlink:href="http://creativecommons.org/licenses/by/3.0/">
+					<license-p>
+						<graphic content-type="print" xlink:href="erlaa9ec9license.eps"/>
+						<graphic content-type="online" xlink:href="erlaa9ec9license.gif"/>
+Original content from this work may be used under the terms of the <ext-link ext-link-type="uri" xlink:href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 licence</ext-link>.</license-p>
+					<license-p>Any further distribution of this work must maintain attribution to the author(s) and the title of the work, journal citation and DOI.</license-p>
+				</license>
+			</permissions>
+			<self-uri xlink:href="http://stacks.iop.org/ERL/13/014011"/>
+			<kwd-group kwd-group-type="author">
+				<kwd>greenhouse gas</kwd>
+				<kwd>climate mitigation</kwd>
+				<kwd>techno-economic analysis</kwd>
+				<kwd>N<sub>2</sub>O</kwd>
+			</kwd-group>
+			<funding-group>
+				<award-group>
+					<funding-source>Austrian Science Fund
+						<named-content content-type="funder-id">example_id</named-content>
+					</funding-source>
+					<award-id>P 29130-G27</award-id>
+				</award-group>
+			</funding-group>
+			<counts>
+				<page-count count="12"/>
+			</counts>
+			<custom-meta-group>
+				<custom-meta>
+					<meta-name>crossmark</meta-name>
+					<meta-value>yes</meta-value>
+				</custom-meta>
+			</custom-meta-group>
+		</article-meta>
+	</front>
+</article>

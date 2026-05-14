@@ -1,0 +1,156 @@
+{# Web page to display individual user details #}
+
+{% extends "base.html" %}
+
+{% set user_org_acc = user_acc.acc_org %}
+{% set user_deleted_date = user_acc.deleted_date %}
+{% set user_deleted_date = "" if user_deleted_date is none else user_deleted_date[:10] %}
+
+{% from "helpers/field_render.html" import render_field %}
+{% from "helpers/account_macros.html" import display_user_acc_form_inputs %}
+
+{% block content %}
+<!-- Right-hand floating menu -->
+<div class="float-menu">
+	<span class="float-btn"><span class="float-icon" aria-label="Side menu button">☰</span></span>
+	<div class="float-menu-txt nav-btns smaller">
+		<ul>
+			<li><a href="#top" role="button" aria-label="Jump to top">Top</a></li>
+			<li><a href="#manage_account" role="button" aria-label="Jump to account details">User details</a></li>
+		{% if curr_user_is_admin and not is_own_rec %}
+			<li><a href="#password_reset_box" role="button" aria-label="Jump to password reset">Password reset</a></li>
+			<li><a href="#delete_account" role="button" aria-label="Jump to delete account">Delete account</a></li>
+		{% endif %}
+
+		</ul>
+	</div>
+</div>
+
+<div class="row cms">
+	<h1>{% if user_deleted_date %}DELETED User account{% else %}User account - {{user_acc.role_desc}}{% endif %}</h1>
+
+	<!-- TOP GREY BOX -->
+	<section class="box box--padding-large box--padding-bottom-none box--brd-vlgreyblue box--bg-vlgreyblue">
+		<h2 id="stickme">{{user_acc.forename}} {{user_acc.surname}}{% if curr_org_is_super %} ⬩<span class="smaller-light-top"> <a href="{{url_for('account.disp_org_acc', org_uuid=user_org_acc.uuid)}}">{{user_org_acc.org_name}}</a></span>{% endif %}</h2>
+		<div class="col span-7 cms">
+			{% set u_email = user_acc.user_email %}
+			<dl class="dl-horiz dl-horiz--account-details">
+				<dt>Username</dt><dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{user_acc.username}}</dd>
+			{% if u_email %}
+				<dt>Contact</dt><dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{u_email}}</dd>
+			{% endif %}
+				<dt>User ID</dt><dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{user_acc.uuid}}</dd>
+				{# <dt>User type</dt><dd>{{user_acc.role_desc}}</dd> #}
+				<dt>Last login</dt><dd>{{user_acc.last_login_datetime_str}}</dd>
+			</dl>
+		</div>
+	{% if curr_org_is_super %}
+		<div class="col span-5 cms">
+			<dl class="dl-horiz dl-horiz--account-details">
+				<dt>Rec ID</dt><dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{user_acc.id}}</dd>
+				<dt>Org Rec ID</dt><dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{user_acc.org_id}}</dd>
+				<dt>Updated</dt><dd>{{user_acc.updated[:10]}}</dd>
+				<dt>Created</dt><dd>{{user_acc.created[:10]}}</dd>
+			</dl>
+		</div>
+	{% endif %}
+	</section>
+</div>
+<div class="row">
+	<div class="span-12 cms">
+		<!-- Account Settings Panel -->
+		<div id="manage_account" class="box box--padding-large box--brd-mgreyblue">
+			<h3>Manage {% if is_own_rec %}my account{% else %}user details{% endif %}</h3>
+			{# User details #}
+			<form method="POST" action="#manage_account" class="form">
+		{{ display_user_acc_form_inputs(curr_org_is_super, curr_user_acc, user_details_form, False, False, is_own_rec) }}
+
+        {# Only display buttons if record NOT deleted and current user is admin or own record and not API user #}
+		{% if not user_deleted_date and (curr_user_is_admin or (is_own_rec and not curr_user_acc.is_api)) %}
+				<div class="form__item gap-vert">
+					<span class="form__label"></span>
+					<button class="btn btn--3d btn--primary" id="update_general" type="submit">Update</button>
+					{# `location.replace(location.pathname)` removes "#..." fragment from URL so browser refreshes page from server #}
+					<input type="button" class="btn btn--3d btn--primary gap-left" value="Cancel" onclick="location.replace(location.pathname);">
+				</div>
+		{% endif %}
+		{% if curr_org_is_super %}
+				<hr class="gap-vert">
+				<ul class="form-fields">
+					<li class="form__item">
+						{{render_field(user_details_form.last_success,'form__item','form__label')}}
+					</li>
+					<li class="form__item">
+						{{render_field(user_details_form.last_failed,'form__item','form__label')}}
+					</li>
+					<li class="form__item">
+						{{render_field(user_details_form.num_failed,'form__item','form__label')}}
+						<span class="info-note">Count of consecutive failed logins.</span>
+					</li>
+				</ul>
+		{% endif %}
+			</form>
+		</div>
+
+		{% if curr_user_is_admin and not is_own_rec %}
+			<h2>Admin only account management</h2>
+
+			{# Password reset #}
+			<div id="password_reset_box" class="box box--padding-large box--brd-mgreyblue">
+				<h3>Password reset</h3>
+            {% if user_deleted_date %}
+                <p>Cannot reset password for a deleted account.</p>
+            {% else %}
+				{% if user_acc.valid_reset_token() %}
+					<p>A password reset has been requested for this user. The reset token expires on {{user_acc.reset_token["expiry"][:10]}}.</p>
+				    <p>You may email this <a id="pwd_reset_link" href="{{url_for('account.reset_password', user_uuid=user_acc.uuid, token_val=user_acc.reset_token['value'])}}" title='Click link to open password reset form'>new password link</a> <span class="icon-before icon-clipboard clickable-icon super-icon copy" data-action="clipboard" data-function="copy_link" data-target="#pwd_reset_link" title="Copy link to clipboard"></span> to the user at: <span id="pwd_email" class="strong">{{user_acc.get_email()}}</span>.<span class="icon-before icon-clipboard clickable-icon super-icon copy" data-action="clipboard" data-function="copy_text" data-target="#pwd_email" title="Copy email to clipboard"></span></p>
+				{% else %}
+					<form method="POST" action="{{url_for('account.admin_reset_token', org_uuid=user_org_acc.uuid, user_uuid=user_acc.uuid)}}">
+						<button class="btn btn--3d btn--primary" type="submit" name="submit_reset_token" id="submit_reset_token">Create a new reset token</button>
+					</form>
+				{% endif %}
+            {% endif %}
+			</div>
+
+			{# Delete account #}
+			<div id="delete_account" class="box box--padding-large box--brd-mgreyblue">
+                {% if user_deleted_date %}
+				<h3>Deleted account</h3>
+                <div class="form">
+                    <label class="form__label" for="del_date">Deleted date</label>
+                    <input class="form__item" id="del_date" type="text" value="{{user_deleted_date}}" disabled=>
+                </div>
+                {% else %}
+				<h3>Delete user account</h3>
+				<form method="POST" action="{{ url_for('account.delete_user_acc', org_uuid=user_org_acc.uuid, user_uuid=user_acc.uuid) }}" class="form">
+					<button type="submit" name="submit" value="delete" class="btn btn--3d btn--primary do_action" data-action="confirm" data-msg="Delete cannot be undone">Delete this account</button>&nbsp; &nbsp;<b class="warning utf8-icon">Use with caution!</b>
+				</form>
+               {% endif %}
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Set various button press/click handlers on elements with one of the specified classes
+		**/
+		setActionClickHandlers("body", ".do_action, .clickable, .clickable-icon");
+
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+
+		/**
+		* Code to determine if URL to current page contains a #reference AND if there is a flash message to display
+		* and, if so, to copy the flash message to the re-displayed panel (where, presumably, a button has just
+		* been pressed).
+		**/
+		flash_msg_at_location_href();
+	});
+</script>
+{% endblock extra_js_bottom %}

@@ -1,0 +1,93 @@
+{% from "helpers/from_to_date_macro.html" import from_to_date %}
+
+{% extends "base.html" %}
+{% block content %}
+{% set type_dict = {"A": "api", "F": "ftp", "S": "sword"} %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">Daily deposit summary{% if curr_org_is_super %}<span class="h_small"><a id="stickme" href="{{url_for('account.disp_org_acc', org_uuid=uuid)}}">{{org_name}}</a></span>{% endif %}</h1>
+		<div class="accordion">
+			<p>View and download your history of deposits here.</p>
+			<p>In the table, <i>Total</i> is the number of notifications received; <i>OK</i> is the number of the submissions ingested without error; <i>Matched</i> is the number that were matched to at least one repository (Live or Test);  <i>Matched Live</i> is the number that were matched to a Live repository; <i>Error Files</i> and <i>Error Messages</i> lists errors encountered; and <i>Type</i> describes the method of deposit (for example ftp or api).</p>
+			<p>Enter a date range (most date formats are accepted).  Defaults will apply if you leave a field blank: the <i>from date</i> defaults to 23&#8209;Nov&#8209;2017 (the date this history feature was introduced); the <i>until date</i> defaults to today's date.</p>
+		</div>
+		{{from_to_date(from_date, to_date, "Show history from", "Until", "Show history")}}
+		<div class="row">
+			{% from "helpers/pagination.html" import render_pagination %}
+			{{render_pagination(num_of_pages, page, link)}}
+			<table id="data_table" class="content-table">
+				<thead>
+					<tr>
+						<th class="persist essential wide-8rem">Date</th>
+						<th class="persist essential">Total</th>
+						<th class="persist essential">OK</th>
+						<th class="persist essential">Matched</th>
+						<th class="persist essential">Matched Live</th>
+						<th class="persist essential wide-15rem">Error Files</th>
+						<th class="persist essential">Error Messages</th>
+						<th class="optional">Type</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% if data_iterable %}
+					{{ data_iterable.execute() or '' }}	{# Execute the cursor query, prevent "None" being displayed #}
+					{% for rec_tuple in data_iterable %}
+					<tr>
+						<td>{{rec_tuple[0]}}</td>
+						<td>{{rec_tuple[2]}}</td>
+						<td>{{rec_tuple[3]}}</td>
+						<td>{{rec_tuple[4]}}</td>
+						<td>{{rec_tuple[5]}}</td>
+						<td>
+						{% if rec_tuple[6] %}
+							{% set file_list = rec_tuple[6].split("|") %}
+							<ul class="error">
+							{% for file in file_list %}
+								<li>{{file}}</li>
+							{% endfor %}
+							</ul>
+						{% endif %}
+						</td>
+						<td>
+						{%  if rec_tuple[7] %}
+							{% set err_list = rec_tuple[7].split("|") %}
+							<ul class="error">
+							{% for error in err_list %}
+								<li>✦ {{error}}</li>
+							{% endfor %}
+							</ul>
+						{% endif %}
+						</td>
+						<td>{{type_dict[rec_tuple[1]]}}</td>
+					</tr>
+					{% endfor %}
+				{% endif %}
+				</tbody>
+			</table>
+			{{render_pagination(num_of_pages, page, link)}}
+		</div>
+		{% if data_iterable %}
+		<p class="no-underline">
+			<a class="btn btn--3d btn--primary download" href="{{csv_link}}&page={{page}}" role="button">Download CSV - This page</a>
+			{% if num_of_pages > 1 %}
+			<a class="gap-left btn btn--3d btn--primary download" href="{{csv_link}}" role="button">Download CSV - All pages</a>
+			{% endif %}
+		</p>
+		{% endif %}
+		{% if num_of_pages <= page %}
+		<p class="info-note">Deposit records are retained for a period of {{stored_months}} months and are then deleted.</p>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+	});
+</script>
+{% endblock extra_js_bottom %}

@@ -1,0 +1,260 @@
+{## Macro to render notification source tables ##}
+{% macro render_source_table(curr_org_is_super, excluded_provider_ids, class_prefix, source_data, col_width) %}
+	{% set is_disabled = "" if curr_user_is_not_readonly else " disabled" %}
+	<table id="{{class_prefix}}-note-srcs">
+		<thead>
+			<tr>
+				<th style="width:{{col_width}}%">Source</th>
+				<th>Used? &nbsp; <button class="btn-small" title="Tick all checkboxes" type="button" value="on"{{is_disabled}}>All</button> <button class="btn-small" title="Clear all checkboxes" type="button" value="off"{{is_disabled}}>None</button></th>
+			{% if curr_org_is_super %}
+				<th>Active</th>
+				<th>Live (visible)</th>
+			{% endif %}
+			</tr>
+		</thead>
+
+		<tbody>
+		{% for source in source_data %}
+			{% set is_live = source['live'] %}
+			{% if is_live or curr_org_is_super %}
+			  {% set input_id = class_prefix + '-' + loop.index|string %}
+			  {% set source_id = source['id'] %}
+			<tr>
+				<td><label for="{{input_id}}">{{source['name']}}</label></td>
+				<td>
+					<input type="checkbox" name="inc-src" id="{{input_id}}" value="{{source_id}}" {{'' if source_id in excluded_provider_ids else 'checked'}}{{is_disabled}}>
+					{% if not curr_org_is_super and not source['active'] %}
+						<span class="gap-left">Temporarily out of service</span>
+					{% endif %}
+				</td>
+			  {% if curr_org_is_super %}
+				<td class="{% if source['active'] %}show-yes{% else %}show-no{% endif %}"></td>
+				<td class="{% if is_live %}show-yes{% else %}show-no{% endif %}"></td>
+			  {% endif %}
+			</tr>
+			{% endif %}
+		{% endfor %}
+		</tbody>
+	</table>
+{% endmacro %}
+
+
+	{% set test_account = org_acc.live_date is none %}
+	{% set has_sword_collection = org_acc.has_sword_collection() %}
+	<div id="manage_matching" class="box box--padding-large box--brd-mgreyblue">
+		<h3>Manage matching</h3>
+		<p>Your repository will receive notifications that have been matched to your matching parameters (<small><a target="_blank" href="{{url_for('account.view_match_params', repo_uuid=org_acc.uuid)}}">view in new window</a></small>) and which satisfy your maximum age criteria (if set).</p>
+		<h4>Maximum age (optional)</h4>
+		<div class="accordion">
+			<p>As well as notifications about newly-published articles, some Publications Router content providers, such as Crossref, occasionally provide updated metadata for articles published some time ago (possibly several years ago).</p>
+			<p>If you wish to filter your data feed to exclude notifications about older articles you may set a maximum age (in years) since article publication. This is used to calculate an <i>earliest publication date</i> by subtracting that number of years from the <i>current date</i> each time the matching process runs. Any notification with a publication date older than the <i>earliest publication date</i> will NOT be matched.</p>
+			<p>Critical updates like errata, corrigenda or retraction notices are usually given new, recent publication dates by their publishers, and so should not be affected by this filter. However, if publishers do not adopt this convention, you risk not receiving such notices when their publication date is older than the maximum age.</p>
+		</div>
+		<form class="form" method="POST" action="{{ url_for('account.update_other_match_params', org_uuid=org_acc.uuid) }}#manage_matching">
+			<ul class="form-fields">
+				<li class="form__item">
+					{{render_field(form_match.pub_years,'form__item','form__label')}}
+					{% if curr_user_is_not_readonly %}<button class="gap-left btn btn--3d btn--primary" id="max_age" type="submit">Set maximum age</button>{% endif %}
+				</li>
+			</ul>
+		</form>
+		<br>
+		<p><a target="_blank" href="{{url_for('account.view_match_params', repo_uuid=org_acc.uuid)}}">Set or view matching parameters</a><span class="open-new"></span>
+		<br><a target="_blank" href="{{url_for('account.notifications', repo_uuid=org_acc.uuid, since=since, api_key=org_acc.api_key)}}">View notifications matched to your repository</a><span class="open-new"></span></p>
+	</div>
+
+	<div id="manage_duplicates" class="box box--padding-large box--brd-mgreyblue">
+		<h3>Manage duplicate filtering</h3>
+		{% set pub_dup_level = form_repo_duplicates.dups_level_pub.data %}
+		{% set harv_dup_level = form_repo_duplicates.dups_level_harv.data %}
+		{# -- COMMENTED OUT FOR NOW - Send-duplicates-by-email may to be added in future release --
+			{%- if (pub_dup_level or harv_dup_level) and has_sword_collection and form_repo_duplicates.dups_emails.data-%}<p>Currently duplicates are being sent by email, with metadata in {{form_repo_duplicates.dups_meta_format.data|upper}} format.</p>{% endif %}
+		-- END: COMMENTED OUT -- #}
+		<div class="accordion">
+			<p>A duplicate notification has the same DOI as a notification previously routed to you.</p>
+			<p>You choose from the options below which duplicates you will receive from <b>publishers</b> and <b>secondary sources</b> (Crossref, PubMed, Europe PMC):</p>
+			<div class="cms">
+			<ul>
+			{% for desc in duplicate_desc_list %}
+				<li>{{desc}}</li>
+			{% endfor %}
+			</ul>
+			</div>
+			<p>Note: you will <b>always get the first notification from a publisher</b> regardless of the filter option selected for publisher sources.</p>
+			<p>Further explanation of these options is available on our <a href="https://github.com/jisc-services/Public-Documentation/blob/master/PublicationsRouter/institutions/DUPLICATES.md">duplicate filtering</a> page.</p>
+			{# -- COMMENTED OUT FOR NOW - Send-duplicates-by-email may to be added in future release --
+			<p>If you obtain notifications via Router API (e.g. into your CRIS) then you will also receive updates that way.</p>
+			<p>If you receive notifications into your Repository via SWORD, then duplicates will be sent in the same way UNLESS you enter one or more email addresses, in which case the notification (metadata and a link for downloading any files) will be emailed instead.
+				This means that you will not have to perform de-duplication in your repository, but you will have to manually process the emails you receive.</p>
+			<p>If you choose to receive duplicate notifications by email, then you can select whether to receive the metadata as tabular Text or XML (in the same format sent to your repository) or as JSON (which provides maximum information, but may be less readable).</p>
+			-- END: COMMENTED OUT -- #}
+			<p>If you choose NOT to receive duplicates, then you may miss updates that include additional or corrected metadata or full-text files.</p>
+			<p>(Note that notifications without a DOI are excluded from the duplicate check process).</p>
+		</div>
+
+		<form class="form" method="POST" action="{{ url_for('account.update_repo_duplicates', org_uuid=org_acc.uuid) }}#manage_duplicates">
+			<span class="info-note under gap-after">Hover over each option in the drop-downs below for additional information.</span>
+			<ul class="form-fields">
+				<li class="form__item-select">
+					{{render_field(form_repo_duplicates.dups_level_pub, 'form__item', 'form__label')}}
+					<br><span class="form__label"></span><span class="form_fields-text-block light">{{duplicate_desc_dict[pub_dup_level]}}.</span>
+				</li>
+				<li class="form__item-select">
+					{{render_field(form_repo_duplicates.dups_level_harv, 'form__item', 'form__label')}}
+					<br><span class="form__label"></span><span class="form_fields-text-block light">{{duplicate_desc_dict[harv_dup_level]}}.</span>
+				</li>
+				{# -- COMMENTED OUT FOR NOW - Send-duplicates-by-email may be added in future release --
+				<br>
+				<p class="utf8-icon warning small">The following fields apply only to SWORD users; they are ignored if you receive notifications via API.</p>
+				<li class="form__item">
+					{{render_field(form_repo_duplicates.dups_emails, 'form__item', 'form__label')}}
+					<span class="info-note">
+						{% if form_repo_duplicates.dups_emails.data -%}
+						Duplicate notifications will be sent by email.
+						<p>(Delete email addresses to receive duplicate notifications by your usual method).</p>
+						{%- else -%}
+						Enter one or more email addresses if you want to get duplicate notifications by email.
+						{%- endif %}
+						<p>Separate email addresses by space, comma or semicolon.</p></span>
+				</li>
+				<li class="form__item-select">
+					{{render_field(form_repo_duplicates.dups_meta_format, 'form__item', 'form__label')}}
+					<span class="info-note">Relevant only if you have entered an email address above & receive notifications via SWORD.</span>
+				</li>
+				-- END: COMMENTED OUT -- #}
+			</ul>
+			{% if curr_user_is_not_readonly %}<button class="btn btn--3d btn--primary" id="update_dups" type="submit">Update</button>{% endif %}
+		</form>
+	</div>
+
+	<div id="manage_sources" class="box box--padding-large box--brd-mgreyblue">
+		<h3>Manage notification sources</h3>
+		{% if curr_org_is_super %}
+			{% set span, col_width = 9, 36 %}
+		{% else %}
+			{% set span, col_width = 7, 45 %}
+		{% endif %}
+		<section class="is-collapsible show_hide__container is-collapsible--button show_hide--is-expanded" data-collapsible>
+			<h4 class="show_hide__trigger ">View / change the sources from which your repository will receive notifications</h4>
+			<div class="show_hide__target">
+				<p>You may include / exclude notification sources by ticking / un-ticking checkboxes in the tables below.</p>
+
+				<p class="info-note">Remember to save any changes made. To undo changes (before saving) reload the page.<br>Clicking the 'All' or 'None' buttons in the column heading will tick and un-tick all checkboxes in the table.</p>
+				{% if curr_org_is_super %}
+				<p class="info-note">The last 2 columns are shown only to Admins.<br>A 'No' in the <em>Active</em> column means the provider is currently disabled (harvester) or off (publisher).<br>A 'No' in the <em>Live (visible)</em> column means the provider is NOT Live and so is hidden from regular repository users and its notifications will only go to Test repositories.</p>
+				{% endif %}
+
+				{# The checkboxes are displayed OUTSIDE of the form (further down), because only the hidden field
+				   `excluded_provider_ids` (which is set via javascript in repo-form.js) must be submitted #}
+				<div class="span-{{span}} form">
+					<h5>Multi-publisher sources</h5>
+					{{render_source_table(curr_org_is_super, repoconfig.excluded_provider_ids, "harv", sources.harv_sources, col_width)}}
+
+					<h5>Publishers</h5>
+					{{render_source_table(curr_org_is_super, repoconfig.excluded_provider_ids, "pub", sources.pub_sources, col_width)}}
+				</div>
+				<form id="frm-note-srcs" class="span-{{span}} form" method="POST" action="{{url_for('account.change_sources', org_uuid=org_acc.uuid)}}#manage_sources" enctype="multipart/form-data">
+					<input aria-hidden="true" aria-label="excluded_provider_ids" tabindex="-1" class="hide" id="excluded-ids" name="excluded_provider_ids" type="text" value="{{sources.excluded_provider_ids}}">
+					{% if curr_user_is_not_readonly %}<button class="btn btn--3d btn--primary" id="save_srcs" type="submit">Save selections</button><br>&nbsp;{% endif %}
+				</form>
+			</div>
+		</section>
+	</div>
+
+	<div id="manage_connection" class="box box--padding-large box--brd-mgreyblue">
+		<h3>Manage connection settings</h3>
+	  {% if test_account %}
+		<p class="utf8-icon warning small">NOTE: These settings can only be changed by Jisc admin because the account is not yet 'Live'.</p>
+	  {% endif %}
+		<div class="accordion">
+			<div class="cms">
+				<p>Repository deposits are achieved using these mechanisms:</p>
+				<ul>
+					<li>Router API - repository pulls from Router</li>
+					<li>SWORD2 protocol - Router pushes deposits to the repository.</li>
+				</ul>
+				<h4>API</h4>
+				<p>The repository system will need your Router API-key: <span class="code icon-after icon-clipboard-after clickable-icon super-small-icon xshow-on-hover" data-action="clipboard" data-function="copy_text" title="Click to copy">{{org_acc.api_key}}</span>.</p>
+				<h4>SWORD2</h4>
+				<p>For SWORD2 deposits it is necessary to specify the repository configuration (which determines the XML structure) also the credentials for a SWORD enabled repository account and the SWORD collection URL.</p>
+				<p>These repository configurations are supported:</p>
+				<ol>
+					<li>Eprints Native - for basic Eprints implementation</li>
+					<li>Eprints RIOXXplus v2 - for Eprints with the Router RIOXXplus plugin v2 installed <sup>*</sup></li>
+					<li>Eprints RIOXXplus v1 - for Eprints with the Router RIOXXplus plugin v1 installed <sup>*</sup></li>
+					<li>DSpace Native - for basic DSpace implementation</li>
+					<li>DSpace RIOXX - for DSpace with the Router RIOXX patch installed.</li>
+					{# <li>Router Native - for Esploro (& any other repositories) that can consume Router's native XML metadata structure.</li> #}
+				</ol>
+				<h4>Hybrid</h4>
+				<p>Eprints RIOXXplus deposits are made using a hybrid approach where Router initially pushes article metadata via SWORD2, and the RIOXXplus plugin then pulls files (article PDF etc.) via the API <sup>*</sup>.</p>
+				<p>(*) Your API-key (see above) must be entered in the Eprints RIOXXplus plugin configuration file.</p>
+			</div>
+		</div>
+
+		<form method="post" action="{{url_for('account.repoinfo', org_uuid=org_acc.uuid)}}#manage_connection" class="form">
+			<ul class="form-fields">
+				<li class="form__item">
+					{{ render_field(form_repo_settings.repository_name, 'form__item', 'form__label') }}
+				</li>
+				<li class="form__item">
+					{{ render_field(form_repo_settings.repository_url, 'form__item', 'form__label') }}
+				</li>
+				<li class="form__item">
+					{{ render_field(form_repo_settings.repository_software, 'form__item', 'form__label') }}
+				</li>
+			</ul>
+				{% if curr_org_is_super %}
+					<p class="info-note">For institutions receiving notifications via API the SWORD fields below should be blank UNLESS (during testing) the institution also wants to receive notifications into both their repository via SWORD and their CRIS via API.</p>
+				{% elif test_account %}
+					<p class="info-note">The SWORD section below shows the settings being used to connect to your repository or CRIS while you are in testing mode.</p>
+				{% else %}
+					<p class="info-note">Use the SWORD section below if your repository (Dspace or Eprints) is to receive notifications from Router via the SWORD protocol; &nbsp;
+					but leave the Sword fields blank if your system receives notifications via Router’s API - e.g. if you use Pure, Haplo or Worktribe CRIS.</p>
+				{% endif %}
+	 		    {% if has_sword_collection and form_repo_settings.repository_software.data in ('haplo', 'pure', 'worktribe') %}
+				<div class="small-gap-vert flash-info border-red">
+					<p class="warning utf8-icon small light">You have indicated connection to {{form_repo_settings.repository_software.data|title}} (via API) and you also have SWORD connection settings below which will result in attempted SWORD deposits to the repository.</p>
+				</div>
+			    {% endif %}
+
+				{% set accordion_show_hide_class = "show_hide--is-expanded" if has_sword_collection or form_repo_settings.errors else "show_hide--is-collapsed" %}
+				<section id="sword_details" class="is-collapsible show_hide__container is-collapsible--button {{accordion_show_hide_class}}" data-collapsible="">
+					<h4 class="show_hide__trigger">Receive notifications directly into repository via SWORD</h4>
+					<div class="show_hide__target">
+						<ul class="form-fields">
+							<li class="form__item">
+								{{ render_field(form_repo_settings.xml_format, 'form__item', 'form__label') }}
+							</li>
+							<li class="form__item">
+								{{ render_field(form_repo_settings.target_queue, 'form__item', 'form__label') }}
+							</li>
+							<li class="form__item">
+								{{ render_field(form_repo_settings.sword_username, 'form__item', 'form__label') }}
+							</li>
+							<li class="form__item">
+								{{ render_field(form_repo_settings.sword_password, 'form__item', 'form__label') }}
+							</li>
+							<li class="form__item">
+								{{ render_field(form_repo_settings.sword_collection, 'form__item wide-text', 'form__label') }}
+								<span class="info-note under" style="width:70%">The use of secure <b>https</b> protocol is strongly recommended for the Collection URL to protect your SWORD credentials from snooping.</span>
+							</li>
+							{# hidden until more packaging preferences are made available #}
+							<li class="form__item hide">
+								{{ render_field(form_repo_settings.packaging, 'form__item', 'form__label') }}
+							</li>
+						</ul>
+					</div>
+				</section>
+		  {# In this section fields may be disabled even if curr_user_is_not_readonly, hence we don't test that here #}
+		  {% if not form_repo_settings.all_fields_disabled %}
+			<ul class="form-fields">
+				<li  class="form__item">
+					<br>
+					<button class="btn btn--3d btn--primary" id="update_conn" type="submit">Update all details</button>
+				</li>
+			</ul>
+		  {% endif %}
+		</form>
+	</div>
+			

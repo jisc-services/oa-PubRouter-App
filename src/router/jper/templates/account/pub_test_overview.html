@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">Publisher auto-test overview ({{scope}})</h1>
+		<div class="accordion cms">
+			<p>List of all publishers that are currently auto-testing (those with a start-date, but no end-date){% if scope == "all" %} or that have completed testing (those with an end-date){% endif %}.</p>
+			<p class="info-note">Click the <b>publisher's name</b> to go to their account page; and <b>start date</b> to go to their test summary page.<br><b>Type</b> column - <i><b>Upon</b></i> : VoR or AM notifications sent upon publication; &nbsp; <i><b>Before</b></i> : AM notifications sent before publication.<br><b>Route notes</b> column - Indicates if notifications are being created & routed to YOUR-ORG test repos only (after validating OK).</p>
+		</div>
+		<div>
+		{% if scope == "all" %}
+			<a class="nav-btn btn btn--3d btn--medium" href="{{ url_for('account.test_overview')}}" role="button" aria-label="List active auto-testing accounts">Show Active Only</a>
+		{% else %}
+			<a class="nav-btn btn btn--3d btn--medium" href="{{ url_for('account.test_overview', scope='all')}}" role="button" aria-label="List all auto-testing accounts">Show All</a>
+		{% endif %}
+		</div>
+		<div class="row">
+			<table id="overview-table" class="data-table" data-rwdtable-sortable data-sortable-col-zero >
+				<thead>
+					<tr>
+						<th class="persist essential" data-sort-default>Organisation Name</th>
+						<th class="persist essential">Type</th>
+						<th class="persist essential dmy-width">Start date</th>
+						<th class="persist essential dmy-width">End date</th>
+						<th class="persist essential dmy-width">Last failure</th>
+						<th class="persist essential">Fails</th>
+						<th class="persist essential dmy-width">Last success</th>
+						<th class="persist essential">OK</th>
+						<th class="optional">OK since <br>last fail</th>
+						<th class="persist essential">Route <br>notes</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for acc in publishers %}
+					{% set test_dict = acc.publisher_data.get_test_data_dict_for_form(with_ymd_dates=True) %}
+					<tr>
+						<td data-sort-value="{{acc.org_name.upper()}}"><a href="{{url_for('account.disp_org_acc', org_uuid=acc.uuid)}}#manage_testing">{{acc.org_name}}</a></td>
+						<td>{% if test_dict["test_type"] == "u" %}Upon{% else %}Before{% endif %}</td>
+						<td data-sort-value="{{test_dict['ymd_test_start']}}">{% if test_dict["test_start"] %}<a href="{{url_for('account.test_history', pub_uuid=acc.uuid)}}">{{test_dict["test_start"]}}</a>{% else %}{{test_dict["test_start"]}}{% endif %}</td>
+						<td data-sort-value="{{test_dict['ymd_test_end']}}">{{test_dict["test_end"]}}</td>
+						<td data-sort-value="{{test_dict['ymd_last_error']}}">{{test_dict["last_error"]}}</td>
+						<td>{{test_dict["num_err_tests"]}}</td>
+						<td data-sort-value="{{test_dict['ymd_last_ok']}}">{{test_dict["last_ok"]}}</td>
+						<td>{{test_dict["num_ok_tests"]}}</td>
+						<td>{{test_dict["num_ok_since_last_err"]}}</td>
+						<td>{% if test_dict["route_note_checkbox"] %}Yes{% else %}No{% endif %}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+	});
+</script>
+{% endblock extra_js_bottom %}

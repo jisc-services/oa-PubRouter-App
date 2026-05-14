@@ -1,0 +1,48 @@
+{% macro render_field(field, class, class_label) %}
+	{% if field.errors %}
+	<span class="s-error"> 
+	{% endif %}
+	{% if class_label is not none %}
+		{{ field.label(class_=class_label) }}
+	{% endif %}
+	{% if field.flags.is_disabled %}
+		{% if kwargs %}
+			{% if not "disabled" in kwargs %}
+				{% set kwargs = dict(disabled=True, **kwargs) %}
+			{% endif %}
+		{% else %}
+			{% set kwargs = dict(disabled=True) %}
+		{% endif %}
+	{% endif %}
+	{% if kwargs %}
+		{{ field(class_=class, placeholder=field.description, **kwargs) | safe }}
+	{% else %}
+		{{ field(class_=class, placeholder=field.description) | safe }}
+	{% endif %}
+	{% if field.errors %} 
+		<span class=err-msg>{% for error in field.errors %}{{ error }} {% endfor %}</span>
+	</span>
+	{% endif %} 
+{% endmacro %}
+
+{% macro render_hidden_field(field, id) %}
+	{% if field.errors %}
+	<span class="s-error">
+	{% endif %}
+	{# Hyphen in key prevents aria attributes being passed to field directly  #}
+	{% if field.flags.is_disabled %}
+		{% set aria_attributes = {"aria-hidden": "true", "aria-label": field.name, "disabled": True } %}
+	{% else %}
+		{% set aria_attributes = {"aria-hidden": "true", "aria-label": field.name} %}
+	{% endif %}
+	{{ field(class_='hide', id=id, **aria_attributes) | safe }}
+	{% if field.errors %}
+		<span class=err-msg>{% for error in field.errors %}{{ error }} {% endfor %}</span>
+	</span>
+	{% endif %}
+{% endmacro %}
+
+{% macro zero_to_dash(value) %}
+	{% if value == 0 %}-{% else %}{{value}}{% endif %}
+{% endmacro %}
+

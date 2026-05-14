@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row cms">
+	<h1>Publisher reports{% if curr_org_is_super %}<span class="h_small"><a id="stickme" href="{{url_for('account.disp_org_acc', org_uuid=pub_uuid)}}">{{org_name}}</a></span>{% endif %}</h1>
+	<div class="col">
+		<h2 class="like_h3">Article distribution reports</h2>
+		<ul>
+		{% for report in reports %}
+            <li class="gap-vert gap-left-15"><a href="{{url_for('account.download_report', type=report_type, uuid=pub_uuid, filename=report)}}">{{report}}</a></li>
+		{% else %}
+			<li class="gap-vert gap-left-15">No Reports</li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

@@ -1,0 +1,12 @@
+[
+    {
+        "id" : "1234567890",
+        "repository" : "abcdefghijk",
+        "domains" : ["ucl.ac.uk", "universitycollegelondon.ac.uk"],
+        "name_variants" : ["UCL", "U.C.L", "University College"],
+        "emails" : ["someone@sms.ucl.ac.uk"],
+        "postcodes" : ["SW1 0AA"],
+        "grants" : ["BB/34/juwef"]
+    }
+
+]

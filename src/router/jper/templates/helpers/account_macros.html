@@ -1,0 +1,140 @@
+{#
+    Macros for Users (Account listing) and User (Account) pages for rendering User Account inputs and
+    elements related to status and on/off btns.
+
+    NOTE that {{- and -}} are used to remove surplus whitespace
+#}
+
+{## Display User Account form inputs ##}
+{% macro display_user_acc_form_inputs(curr_org_is_super, curr_user_acc, user_details_form, is_add_new, is_register_form, is_own_rec) %}
+
+    {% from "helpers/field_render.html" import render_field, render_hidden_field %}
+
+    {# Form fields for user account #}
+    <ul class="form-fields">
+        <li class="form__item">
+            {{render_field(user_details_form.username,'form__item','form__label required')}}
+    {% if not is_own_rec %}
+            <span class="info-note">User's organisation email address.</span>
+    {% endif %}
+        </li>
+    {% if curr_org_is_super %}
+        <li class="form__item">
+            {{render_field(user_details_form.user_email,'form__item','form__label')}}
+            <span class="info-note">Use only if Username is NOT an email.</span>
+    {% else %}
+        <li style="margin:0;">
+            {{render_hidden_field(user_details_form.user_email,'') }}
+    {% endif %}
+        </li>
+        <li class="form__item">
+            {{render_field(user_details_form.surname,'form__item','form__label required')}}
+        </li>
+        <li class="form__item">
+            {{render_field(user_details_form.forename,'form__item','form__label required')}}
+        </li>
+        <li class="form__item">
+            {{render_field(user_details_form.org_role,'form__item','form__label')}}
+        </li>
+        <li class="form__item">
+            {{render_field(user_details_form.role_code,'form__item','form__label required')}}
+    {% if not is_own_rec %}
+            <span class="info-note">Use 'Standard' if username (above) is a shared email address.{% if is_register_form %}<br> NB: for new Admin orgs, this value is ignored & user is set to Jisc-Admin.{% endif %}</span>
+    {% endif %}
+        </li>
+        <li class="form__item">
+            {{render_field(user_details_form.user_note,'form__item','form__label')}}
+        </li>
+    {% if curr_user_acc.is_jisc_admin %}
+        <li class="form__item-checkbox">
+            {{render_field(user_details_form.direct_login,'form__item','form__label')}}
+            <span class="info-note">Avoid 2 step login with emailed access code. Use with CAUTION as less secure.</span>
+    {% else %}
+        <li style="margin:0;">
+            {{render_hidden_field(user_details_form.direct_login,'') }}
+    {% endif %}
+        </li>
+        <li class="form__item">
+    {% if is_add_new %}
+            <p class="small-gap">Leave password empty to have a strong password generated automatically.</p>
+    {% else %}
+            <p class="small-gap">Change password <span class="smaller">(leave empty unless you want to set a new password)</span></p>
+    {% endif %}
+            {{render_field(user_details_form.password,'form__item','form__label')}}
+            <span class="info-note">At least 12 characters, lower & upper case, at least 1 digit & 1 symbol.</span>
+            <br>
+            {{render_field(user_details_form.password_verify,'form__item','form__label')}}
+        </li>
+    </ul>
+{% endmacro %}
+
+
+
+{## Show additional quick links to navigate to various pages holding history information ##}
+{% macro quick_links(org_ac, has_sword) %}
+    {% set _org_uuid = org_ac.uuid %}
+    <a title="Contact panel" href="{{url_for('account.disp_org_acc', org_uuid=_org_uuid)}}#contact">C</a>
+    {% if org_ac.is_repository %}
+        <a class="gap-left-5" title="Matched notification history" href="{{url_for('account.notifications', repo_uuid=_org_uuid)}}#pg-h1">H</a>
+        {% if has_sword %}<a class="gap-left-5" title="Sword deposit history" href="{{url_for('account.sword_deposit_history', repo_uuid=_org_uuid)}}#pg-h1">S</a>{% else %}<span class="gap-left-5">&hellip;</span>{% endif %}
+        <a class="gap-left-5" title="Matching parameters" href="{{url_for('account.view_match_params', repo_uuid=_org_uuid)}}#pg-h1">M</a>
+    {% elif org_ac.is_publisher %}
+        <a class="gap-left-5" title="Matched deposit history" href="{{url_for('account.deposits', pub_uuid=_org_uuid)}}#pg-h1">H</a>
+        <a class="gap-left-5" title="Daily deposit summary" href="{{url_for('account.deposit_history', pub_uuid=_org_uuid)}}#pg-h1">D</a>
+        <a class="gap-left-5" title="Automated test history" href="{{url_for('account.test_history', pub_uuid=_org_uuid)}}#pg-h1">T</a>
+    {% endif %}
+        <a class="gap-left-5" title="Manage users" href="{{url_for('account.list_org_users', org_uuid=_org_uuid)}}">U</a>
+{% endmacro %}
+
+
+{## Set account status class ##}
+{% macro row_status_class(org_status) %}
+    {% if org_status %}{{"acc-" + org_status}}{% endif %}
+{% endmacro %}
+
+{## Set status button span ##}
+{% macro status_button_span(has_sword, org_ac, org_status_label, days_since_deposit_fn) %}
+    {% if has_sword %}
+        {# text value of 'repo-status' element and aria attributes of 'toggle-repo' span element are set after
+           page load by javascript in service.account.js file #}
+        <span class="repo-status">{{org_status_label}}</span>
+        <span class="toggle-repo" role="button"></span>
+    {% elif org_ac.is_repository %}
+        API User
+    {% elif org_ac.is_publisher %}
+        {% set pub_data = org_ac.publisher_data %}
+        {% if pub_data.in_test %}
+            {% set days_since, subject, prefix = pub_data.days_since_last_test(), "test", "T " %}
+        {% else %}
+            {% set days_since, subject, prefix = days_since_deposit_fn(org_ac.id), "deposit", "" %}
+        {% endif %}
+        {% if days_since is not none %}
+            {% if days_since < 8 %}
+                {% set icon_colour = "green" %}
+            {% elif days_since < 11 %}
+                {% set icon_colour = "amber" %}
+            {% else %}
+                {% set icon_colour = "red" %}
+            {% endif %}
+            {% if days_since == 1 %}
+                {% set day = 'day' %}
+            {% else %}
+                {% set day = 'days' %}
+            {% endif %}
+            {{prefix}}<span class="publisher-status {{icon_colour}}-pub" title="{{days_since}} {{day}} since last {{subject}}."></span>
+            <span>{{days_since}} {{day}}</span>
+        {% else -%}
+            No {{subject}}s
+        {%- endif %}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro on_off_button_span(org_status) %}
+    {% if org_status %}
+        {# text value of 'on-off' element and aria attributes of 'toggle-on-off' span element are set after
+           page load by javascript in service.account.js file #}
+        <span class="on-off">{{"Off" if org_status == "off" else "On"}}</span>
+        <span class="toggle-on-off" tabindex="0" role="button"></span>
+    {% endif %}
+{% endmacro %}

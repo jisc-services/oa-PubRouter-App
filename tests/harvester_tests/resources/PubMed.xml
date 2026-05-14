@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2017//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_170101.dtd">
+<PubmedArticleSet>
+<PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+        <PMID Version="1">28061375</PMID>
+        <DateCreated>
+            <Year>2017</Year>
+            <Month>01</Month>
+            <Day>06</Day>
+        </DateCreated>
+        <DateCompleted>
+            <Year>2017</Year>
+            <Month>09</Month>
+            <Day>21</Day>
+        </DateCompleted>
+        <DateRevised>
+            <Year>2017</Year>
+            <Month>09</Month>
+            <Day>21</Day>
+        </DateRevised>
+        <Article PubModel="Print-Electronic">
+            <Journal>
+                <ISSN IssnType="Electronic">1873-622X</ISSN>
+                <JournalIssue CitedMedium="Internet">
+                    <Volume>90</Volume>
+                    <PubDate>
+                        <Year>2017</Year>
+                        <Month>Mar</Month>
+                    </PubDate>
+                </JournalIssue>
+                <Title>Behaviour research and therapy</Title>
+                <ISOAbbreviation>Behav Res Ther</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>Applying new evidence standards to youth cognitive behavioral therapies - A review.</ArticleTitle>
+            <Pagination>
+                <MedlinePgn>147-158</MedlinePgn>
+            </Pagination>
+            <ELocationID EIdType="pii" ValidYN="Y">S0005-7967(16)30231-5</ELocationID>
+            <ELocationID EIdType="doi" ValidYN="Y">10.1016/j.brat.2016.12.011</ELocationID>
+            <Abstract>
+                <AbstractText>This review included 136 published randomized controlled trials (RCTs) of youth cognitive behavioral therapy (CBT) treatments. We aimed to test the premise that evidence-based youth treatments can be better differentiated from each other by applying more nuanced standards of evidence. Accordingly, we applied three standards to this article sample to determine how many treatments produced significant results: (a) on multiple target symptom measures, (b) at follow-up, and/or (c) against an active comparison group. We identified how many trials met standards individually and in combination. Although 87 of the 136 articles produced at least one significant treatment result at post-assessment, the subsets of &quot;passing&quot; articles were smaller and varied for any one of our three standards, with only 11 articles (8%) meeting all three standards simultaneously. Implications are discussed regarding the definition of &quot;evidence-based,&quot; the need for multi-parameter filtering in treatment selection and clinical decision making, and future directions for research. We ultimately argue the value in assessing youth treatments for different types of evidence, which is better achieved through dynamic sets of standards, rather than a single approach to assessing general strength of evidence.</AbstractText>
+                <CopyrightInformation>Copyright © 2016 Elsevier Ltd. All rights reserved.</CopyrightInformation>
+            </Abstract>
+            <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>Rith-Najarian</LastName>
+                    <ForeName>Leslie R</ForeName>
+                    <Initials>LR</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Psychology, University of California, Los Angeles 1285 Franz Hall, Los Angeles, CA, 90095, USA. Electronic address: leslierrn@ucla.edu.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Park</LastName>
+                    <ForeName>Alayna L</ForeName>
+                    <Initials>AL</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Psychology, University of California, Los Angeles 1285 Franz Hall, Los Angeles, CA, 90095, USA.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Wang</LastName>
+                    <ForeName>Tina</ForeName>
+                    <Initials>T</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Psychology, University of California, Los Angeles 1285 Franz Hall, Los Angeles, CA, 90095, USA.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Etchison</LastName>
+                    <ForeName>Ana I</ForeName>
+                    <Initials>AI</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Psychology, University of California, Los Angeles 1285 Franz Hall, Los Angeles, CA, 90095, USA.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Chavira</LastName>
+                    <ForeName>Denise A</ForeName>
+                    <Initials>DA</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Psychology, University of California, Los Angeles 1285 Franz Hall, Los Angeles, CA, 90095, USA.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Chorpita</LastName>
+                    <ForeName>Bruce F</ForeName>
+                    <Initials>BF</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Psychology, University of California, Los Angeles 1285 Franz Hall, Los Angeles, CA, 90095, USA.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+            </AuthorList>
+            <Language>eng</Language>
+            <PublicationTypeList>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+                <PublicationType UI="D016454">Review</PublicationType>
+            </PublicationTypeList>
+            <ArticleDate DateType="Electronic">
+                <Year>2016</Year>
+                <Month>12</Month>
+                <Day>23</Day>
+            </ArticleDate>
+        </Article>
+        <MedlineJournalInfo>
+            <Country>England</Country>
+            <MedlineTA>Behav Res Ther</MedlineTA>
+            <NlmUniqueID>0372477</NlmUniqueID>
+            <ISSNLinking>0005-7967</ISSNLinking>
+        </MedlineJournalInfo>
+        <CitationSubset>IM</CitationSubset>
+        <MeshHeadingList>
+            <MeshHeading>
+                <DescriptorName UI="D000367" MajorTopicYN="N">Age Factors</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D015928" MajorTopicYN="Y">Cognitive Behavioral Therapy</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D001523" MajorTopicYN="N">Mental Disorders</DescriptorName>
+                <QualifierName UI="Q000628" MajorTopicYN="Y">therapy</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D016032" MajorTopicYN="N">Randomized Controlled Trials as Topic</DescriptorName>
+                <QualifierName UI="Q000592" MajorTopicYN="Y">standards</QualifierName>
+            </MeshHeading>
+            <MeshHeading>
+                <DescriptorName UI="D016896" MajorTopicYN="N">Treatment Outcome</DescriptorName>
+            </MeshHeading>
+        </MeshHeadingList>
+        <KeywordList Owner="NOTNLM">
+            <Keyword MajorTopicYN="N">Anxiety</Keyword>
+            <Keyword MajorTopicYN="N">CBT</Keyword>
+            <Keyword MajorTopicYN="N">Evidence-based</Keyword>
+            <Keyword MajorTopicYN="N">Standards</Keyword>
+            <Keyword MajorTopicYN="N">Treatment selection</Keyword>
+            <Keyword MajorTopicYN="N">Youth</Keyword>
+        </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+            <PubMedPubDate PubStatus="received">
+                <Year>2016</Year>
+                <Month>02</Month>
+                <Day>02</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="revised">
+                <Year>2016</Year>
+                <Month>11</Month>
+                <Day>11</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="accepted">
+                <Year>2016</Year>
+                <Month>12</Month>
+                <Day>16</Day>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="pubmed">
+                <Year>2017</Year>
+                <Month>1</Month>
+                <Day>7</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="medline">
+                <Year>2017</Year>
+                <Month>9</Month>
+                <Day>22</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+            <PubMedPubDate PubStatus="entrez">
+                <Year>2017</Year>
+                <Month>1</Month>
+                <Day>7</Day>
+                <Hour>6</Hour>
+                <Minute>0</Minute>
+            </PubMedPubDate>
+        </History>
+        <PublicationStatus>ppublish</PublicationStatus>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">28061375</ArticleId>
+            <ArticleId IdType="pii">S0005-7967(16)30231-5</ArticleId>
+            <ArticleId IdType="doi">10.1016/j.brat.2016.12.011</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>
+
+</PubmedArticleSet>

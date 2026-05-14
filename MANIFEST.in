@@ -1,0 +1,7 @@
+# MANIFEST.in - defines NON-python files to also include in package build
+
+# Include all files in & under static directory structure
+graft src/router/jper/static
+# recursive-include src/router/jper/static *.eot *.svg *.ttf *.woff *.json *.png *.ico *.jpg *.css *.pdf *.js *.md *.csv *.xlsx
+recursive-include src/router/jper/templates *.html
+recursive-include src/router/jper_sword_out/templates *.html

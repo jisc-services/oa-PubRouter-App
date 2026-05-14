@@ -1,0 +1,132 @@
+{% extends "base.html" %}a
+{% block content %}
+
+<div class="row cms">
+	<h1 id="stickme">{{title}}</h1>
+	<div class="col span-12 cms">
+        <p>This page shows the number of Users for each organisation. Accounts that are <i>off</i> are shown in lighter font. Click the <i>User Count</i> to list the users.</p>
+		<div class="row">
+			<form id="filters" method="GET" action="" class="form">
+				<p class="info-note">Select different options below to change the listed accounts (hover over the labels for more information).</p>
+				<div class="col span-5 small-gap-vert">
+					{# Checkboxes for controlling Org Roles to list #}
+					<fieldset class="form">
+						<legend class="visuallyhidden">Organisation Types</legend>
+						<input id="ot1" type="checkbox" name="org_types" value="R">
+						<label for="ot1" class="txt-bottom" title="List repository accounts">Repository</label>
+						<input id="ot2" class="gap-left" type="checkbox" name="org_types" value="P">
+						<label for="ot2" class="txt-bottom" title="List publisher accounts">Publisher</label>
+						<input id="ot3" class="gap-left" type="checkbox" name="org_types" value="A">
+						<label for="ot3" class="txt-bottom" title="List YOUR-ORG admin accounts">Admin acc</label>
+					</fieldset>
+				</div>
+				<div class="col span-3 small-gap-vert">
+					{# Checkbox buttons for controlling On/OFf #}
+					<fieldset class="form">
+						<legend class="visuallyhidden">On or Off</legend>
+						<input id="doo1" type="checkbox" name="on_off" value="O">
+						<label for="doo1" class="txt-bottom" title="Include users of organisation accounts switched ON">Org On</label>
+						<input id="doo2" class="gap-left" type="checkbox" name="on_off" value="F">
+						<label for="doo2" class="txt-bottom" title="Include users of organisation accounts switched OFF">Org Off</label>
+					</fieldset>
+				</div>
+				<button class="btn btn--3d btn--primary" type="submit">Refresh</button>
+			</form>
+		</div>
+
+		<table data-rwdtable-sortable data-sortable-col-zero class="content-table" id="org_acs">
+			<thead>
+				<tr class="no-decoration">
+					<th {% if sort_col == 1 %}data-sort-default{% endif %} class="persist essential">Account Type</th>
+					<th {% if sort_col == 2 %}data-sort-default{% endif %} class="persist essential">Organisation Name</th>
+					<th class="optional rwd-hid">ID</th>
+					<th class="optional rwd-hid">UUID</th>
+					<th class="persist essential">On/Off</th>
+					<th {% if sort_col == 3 %}data-sort-default{% endif %} class="persist essential">User Count</th>
+				</tr>
+			</thead>
+
+			<tbody class="user_tbody">
+			{% for ac_id, org_name, ac_uuid, org_role, ac_status_code, user_count in org_data_tuples %}
+				<tr {% if ac_status_code == 0 %}class="acc-off"{% endif %}>
+					<td data-sort-value="{{make_sortable_str(org_role, org_name, lengths=[1,20])}}">{{translate_role(org_role)}}</td>
+					<td data-sort-value="{{org_name.upper()}}"><a title="Manage organisation" href="{{url_for('account.disp_org_acc', org_uuid=ac_uuid)}}">{{org_name}}</a></td>
+					<td data-sort-value="{{ac_id}}">{{ac_id}}</td>
+					<td>{{ac_uuid}}</td>
+					<td>{% if ac_status_code == 0 %}Off{% else %}On{% endif %}</td>
+					<td data-sort-value="{{make_sortable_str('%02d' % user_count, org_name, lengths=[2,20])}}"><a title="Manage users" href="{{url_for('account.list_org_users', org_uuid=ac_uuid)}}">{{user_count}}</a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %} 
+{% block extra_js_bottom %}
+<script>
+$(document).ready(function(){
+	/**
+	*	Code for Info accordion
+	**/
+	initInfoAccordion();
+
+
+	/**
+	*	Code for filter checkboxes
+	**/
+	const $filterForm = $("#filters");
+	const urlObj = window.location;
+	const parts = urlObj.href.split('?');
+	const url = parts[0];
+	// Defaults
+	const defaultObj = {
+		on_off: 'OF',
+		org_types: 'RP'
+	}
+	/**
+	*	Initialise filtersObj from passed URL query params
+	**/
+	let filtersObj = structuredClone(defaultObj);
+	// If we have query string, split it into separate param segments & create object from parameters
+	if (parts.length > 1) {
+		// split query string on each '&'
+		for(const q of parts[1].split('&')){
+			param = q.split('=');
+			filtersObj[param[0]] = param[1];
+		}
+	}
+
+	/**
+	*	Set filter checkboxes
+	**/
+	$filterForm.find("input:checkbox").each(function(){
+		if(filtersObj[this.name].includes(this.value)) {
+			this.checked = true;
+		}
+	});
+
+	/**
+	*	Code to Submit the filters form
+	**/
+	$filterForm.on("submit", function(e){
+		e.preventDefault();		// Don't perform default Form submission
+
+		filtersObj = {on_off: "", org_types: ""};
+		$filterForm.find("input:checked").each(function(){
+			filtersObj[this.name] += this.value;
+		});
+		// Set defaults if nothing checked
+		for(let k of ['on_off', 'org_types']) {
+			// console.log(k, "->", filtersObj[k], "def:", defaultObj[k]);
+		    if (filtersObj[k] === ''){
+		    	filtersObj[k] = defaultObj[k];
+		    }
+		}
+		const newURL = url + "?" + $.param(filtersObj);
+		// Default behaviour of form is to not re-submit if nothing has changed
+		(newURL === url) ? window.location.reload() : window.location.replace(newURL);
+	});
+});
+</script>
+
+{% endblock extra_js_bottom %}

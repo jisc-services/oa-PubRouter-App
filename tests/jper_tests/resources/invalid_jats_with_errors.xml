@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD with MathML3 v1.1d1 20130915//EN" "JATS-archivearticle1-mathml3.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article" xml:lang="EN" dtd-version="1.1d1" specific-use="XXX">
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="hwp">bmj</journal-id>
+			<journal-id journal-id-type="nlm-ta">BMJ</journal-id>
+			<journal-id journal-id-type="publisher-id">BMJ-UK</journal-id>
+			<journal-title-group>
+				<journal-title>BMJ</journal-title>
+				<abbrev-journal-title abbrev-type="publisher">BMJ</abbrev-journal-title>
+				<abbrev-journal-title abbrev-type="pubmed">BMJ</abbrev-journal-title>
+			</journal-title-group>
+			<issn pub-type="ppub">0959-8138</issn>
+			<issn pub-type="epub">1756-1833</issn>
+			<publisher>
+				<publisher-name>British Medical Journal Publishing Group</publisher-name>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-version vocab="JAV" vocab-identifier="http://www.niso.org/publications/rp/RP-8-2008.pdf" vocab-term="Bad version" article-version-type="BAD">Bad article version</article-version>
+			<article-id pub-id-type="publisher-id">burn051410</article-id>
+			<article-id pub-id-type="doi">10.1136/bmj.l6090</article-id>
+			<article-id pub-id-type="pmid">31722875</article-id>
+			<article-categories>
+				<subj-group subj-group-type="heading">
+					<subject>Research</subject>
+				</subj-group>
+			</article-categories>
+			<issue>111</issue>
+			<title-group>
+				<article-title>Invalid JATS - Bad article-version - Duplicate publication dates</article-title>
+			</title-group>
+			<contrib-group>
+				<contrib contrib-type="author" corresp="yes">
+					<contrib-id contrib-id-type="orcid">http://orcid.org/0000-0003-1988-2982</contrib-id>
+					<name>
+						<surname>Burr-Corresp</surname>
+						<given-names>Nicholas E</given-names>
+					</name>
+					<role>clinical research fellow in gastroenterology</role>
+					<xref ref-type="aff" rid="aff1">1 </xref>
+					<xref ref-type="aff" rid="aff2">2</xref>
+				</contrib>
+				<contrib contrib-type="author">
+					<contrib-id contrib-id-type="orcid">http://orcid.org/0000-0002-0591-1458</contrib-id>
+					<name>
+						<surname>Derbyshire</surname>
+						<given-names>Edmund</given-names>
+					</name>
+					<role>consultant gastroenterologist</role>
+					<xref ref-type="aff" rid="aff3">3</xref>
+				</contrib>
+				<aff id="aff1">
+					<label>1</label>Test Author University UK</aff>
+				<aff id="aff2">
+					<label>2</label>Imperial College, UK</aff>
+				<aff id="aff3">
+					<label>3</label>Bristol University, UK</aff>
+			</contrib-group>
+			<contrib-group>
+				<contrib contrib-type="editor">
+					<contrib-id contrib-id-type="orcid">http://orcid.org/0000-1111-2222-4444</contrib-id>
+					<name>
+						<surname>Editor</surname>
+						<given-names>Any</given-names>
+					</name>
+					<role>lead editor</role>
+				</contrib>
+				<contrib contrib-type="reviewer">
+					<contrib-id contrib-id-type="orcid">http://orcid.org/0000-1111-2222-5555</contrib-id>
+					<name>
+						<surname>Dogsbody</surname>
+						<given-names>Isa</given-names>
+					</name>
+					<role>reviewer</role>
+				</contrib>
+				<aff>Editing contrib-group affiliation, University UK</aff>
+			</contrib-group>
+			<author-notes>
+				<corresp id="cor1">Correspondence to: N E Burr <email xlink:href="nick.burr@nhs.net">nick.burr@nhs.net</email> (or <ext-link ext-link-type="uri" xlink:href="https://twitter.com/Nick_Burr1">@Nick_Burr1</ext-link> on Twitter)</corresp>
+			</author-notes>
+			<pub-date pub-type="epub" iso-8601-date="2020-12-10">
+				<day>10</day>
+				<month>12</month>
+				<year>2020</year>
+			</pub-date>
+			<pub-date pub-type="epub" iso-8601-date="2020-12-10">
+				<day>10</day>
+				<month>12</month>
+				<year>2020</year>
+			</pub-date>
+			<volume>367</volume>
+			<volume-id pub-id-type="other">367</volume-id>
+			<fpage>92</fpage>
+			<lpage>96</lpage>
+			<page-range>92-96</page-range>
+			<elocation-id>l6090</elocation-id>
+			<history>
+				<date date-type="accepted">
+					<day>01</day>
+					<month>03</month>
+					<year>2020</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-statement>Published by the BMJ Publishing Group Limited. For permission to use (where not already granted under a licence) please go to <ext-link ext-link-type="uri" xlink:href="http://group.bmj.com/group/rights-licensing/permissions">http://group.bmj.com/group/rights-licensing/permissions</ext-link></copyright-statement>
+				<copyright-year>2020</copyright-year>
+				<copyright-holder>BMJ</copyright-holder>
+				<license>
+					<ali:license_ref xmlns:ali="http://www.niso.org/schemas/ali/1.0/" start_date="2021-09-10">http://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+					<license-p>This is an Open Access article distributed in accordance with the terms of the Creative Commons Attribution (CC BY 4.0) license, which permits others to distribute, remix, adapt and build upon this work, for commercial use, provided the original work is properly cited. See: <ext-link xlink:href="http://creativecommons.org/licenses/by/4.0/" ext-link-type="uri">http://creativecommons.org/licenses/by/4.0/</ext-link>.</license-p>
+				</license>
+			</permissions>
+			<self-uri xlink:href="https://bmj.com/content/367/bmj.l6090.full.pdf" content-type="application/pdf" xlink:role="http://schema.highwire.org/variant/full-text">https://bmj.com/content/367/bmj.l6090.full.pdf</self-uri>
+			<self-uri xlink:href="https://bmj.com/content/367/bmj.l6090.full" content-type="application/xhtml+xml" xlink:role="http://schema.highwire.org/variant/full-text">https://bmj.com/content/367/bmj.l6090.full</self-uri>
+			<self-uri xlink:href="http://dx.doi.org/10.1136/bmj.l6090" content-type="doi" xlink:role="default">http://dx.doi.org/10.1136/bmj.l6090</self-uri>
+			<abstract>
+				<p>This is some text. This is some more text. And this. And this. etc. etc.</p>
+			</abstract>
+			<funding-group>
+				<award-group id="fund1">
+					<funding-source>
+						<institution-wrap>
+							<institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100004412</institution-id>
+							<institution>Human Frontier Science Program</institution>
+						</institution-wrap>
+					</funding-source>
+					<award-id>RGP0054-2013</award-id>
+					<principal-award-recipient>
+						<name>
+							<surname>Burr-Corresp</surname>
+							<given-names>Nicholas E</given-names>
+						</name>
+					</principal-award-recipient>
+				</award-group>
+				<funding-statement>The funders had no role in study design, data collection and interpretation, or the decision to submit the work for publication.</funding-statement>
+			</funding-group>
+		</article-meta>
+	</front>
+	<body/>
+	<back/>
+</article>

@@ -1,0 +1,146 @@
+{# Content Management Admin webpage - Needs Javascript in `content_mgt.js` & `ajax_helpers.js` files. #}
+
+{% extends "base.html" %}
+{% from "helpers/field_render.html" import render_field %}
+
+{% block content %}
+<h1>Content management</h1>
+<br>
+<div class="row">
+	<div id="root" class="span-12">
+		{# Content type select box panel #}
+		<div id="select_cms_type" class="box box--padding-large box--brd-mgreyblue cms">
+			<h2 class="like_h3">Content type selection</h2>
+			<div class="form">
+				<label class="form__label" for="cms_type">Content type</label>
+				<select class="form__item" id="cms_type" name="cms_type">
+					<option value="">Choose one ............................</option>
+					{# The remaining options are populated by javascript #}
+				</select>
+			</div>
+			{# Placeholders for selected content-type Description & Link to web page #}
+			<div class="full_desc gap-vert"></div>
+			<p class="page_link"></p>
+			<div>
+				<button type="button" class="btn btn--3d btn--primary" data-action="run_func" data-func="add_new">Add new record</button>
+			</div>
+			{# Flash-message div #}
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+		</div>
+		{# Show existing content panel (listed in a table) #}
+		<div id="view_existing_content" class="box box--padding-large box--brd-mgreyblue cms">
+			<h2 class="like_h3">Existing content</h2>
+			{# Click for more information accordion panel #}
+			<div class="accordion cms">
+				<p>Action buttons (hovering over a button will show the 'tool tip'):</p>
+				<ul>
+					<li><strong>Edit</strong> - Edit the record</li>
+					<li><strong>Copy</strong> - Edit a copy of the record, which will be saved as a Draft record</li>
+					<li><strong>Draft</strong> - Make record Draft</li>
+					<li><strong>Live</strong> - Make record Live (can be undone by making Draft again)</li>
+					<li><strong>Delete</strong> - Delete record (can be undone by making Draft again).</li>
+				</ul>
+				<p>Only Live records will be displayed on the relevant web page. They are listed with a green background.</p>
+				<p>When an existing record is edited, the prior version is kept as a Superseded record (unless only the sort order has changed).</p>
+				<p>Both Superseded & Deleted records are purged from the database after 3 months. They are listed with text struck through, Deleted have a pale grey/pink background. They can be reinstated by changing back to Draft.</p>
+				<p>Records are ordered by <i>sort</i> value ascending, followed by <i>creation date</i> descending; so for records with the same (or no) <i>sort</i> value, newest first.</p>
+			</div>
+
+			{# Checkboxes for controlling status of recs to list #}
+			<div id="filters" class="small-gap-vert">
+				{# Checkboxes for controlling status of recs to list #}
+				<fieldset class="form">
+					<legend class="visuallyhidden">Filter by record status</legend>
+					<input id="c1" type="checkbox" name="status" value="N" checked>
+					<label for="c1" class="txt-bottom">Draft</label>
+					<input id="c2" class="gap-left" type="checkbox" name="status" value="L" checked>
+					<label for="c2" class="txt-bottom">Live</label>
+					<input id="c3" class="gap-left"  type="checkbox" name="status" value="S">
+					<label for="c3" class="txt-bottom">Superseded</label>
+					<input id="c4" class="gap-left"  type="checkbox" name="status" value="D">
+					<label for="c4" class="txt-bottom">Deleted</label>
+				</fieldset>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Sort</th>
+						<th>Content</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				{# Table body is populated by javascript #}
+				<tbody></tbody>
+			</table>
+			<button type="button" class="btn btn--3d btn--primary" data-action="run_func" data-func="add_new">Add new record</button>
+			{# Flash-message div #}
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+		</div>
+		{# Edit content panel #}
+		<div id="edit_content" class="overlay box box--padding-large box--brd-mgreyblue box--shadow cms">
+			<button type="button" class="overlay-x" data-action="run_func" data-func="close_edit" aria-label="Close panel"></button>
+			{# Below, the first <span> is set to either "New" or "Edit"; the 2nd <span> is populated with title. #}
+			<h2 class="like_h3"><span class="strong"></span> <span></span> content</h2>
+			{# Click for more information accordion panel #}
+			{% include 'html_tips_accordion.html' %}
+			{# Edit form - will be further built by Javascript #}
+			<div class="form">
+				<p class="full_desc"></p>
+				<ul class="form-fields"></ul>
+				<div class="small-gap-after">
+					<span class="form__label"></span>
+					<button type="button" id="save_btn" class="btn btn--3d btn--primary" data-action="submit" data-func="save_content">Update</button>
+					<button type="button" class="btn btn--3d btn--medium gap-left" data-action="run_func" data-func="close_edit">Cancel</button>
+					<button type="button" class="btn btn--3d btn--medium gap-left" data-action="run_func" data-func="fillblanks" title="Empty fields will be filled with sample text & rendered in Preview below">Example</button>
+					<button type="button" class="btn btn--3d btn--medium gap-left" data-action="run_func" data-func="preview" title="Entered data will be rendered in Preview area below">Preview</button>
+				</div>
+				<span id="save_note" class="info-note under">When existing content is updated the original record is 'Superseded'.</span>
+			</div>
+			{# Flash-message div associated with form #}
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+			<hr class="gap-vert">
+			{# Preview section #}
+			<div class="like_h3">Preview</div>
+			<div id="preview_pane" class="push-1 span-10"></div>
+		</div>
+		{# Clear cache panel #}
+		<div id="clear_cache" class="box box--padding-large box--brd-mgreyblue cms">
+			<h2 class="like_h3">Clear page cache</h2>
+			<p>In normal operation, Router refreshes its cached web pages every 6 hours, so it can take that long for record changes to appear on Router's website.</p>
+			<p>However, you can make changes to <i>Live</i> records immediately visible by clearing the cache.</p>
+			<p>You should do this only after completing all changes to <i>Live</i> content.</p>
+			<p><button type="button" class="btn btn--3d btn--primary" data-action="submit" data-func="clear_cache">Clear cache</button></p>
+			{# Placeholder for Link to web page #}
+			<p class="page_link"></p>
+			{# Flash-message div associated with form #}
+			<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script type="text/javascript" src="/static/js/ajax_helpers.js"></script>
+<script type="text/javascript" src="/static/js/content_mgt.js"></script>
+<script>
+$(document).ready(function(){
+	/**
+	* Code for Info accordion
+	**/
+	initInfoAccordion();
+
+	/**
+	*	Initialisation used in conjunction with functions in content_mgt.js (for Contact panel)
+	**/
+	// Set event handlers
+	initAndSetCmsEventHandlers(
+		"{{url_for('admin.content_ajax')}}",
+		$("#root"),
+		$('#select_cms_type'),
+		$("#view_existing_content"),
+		$("#edit_content"),
+		$("#preview_pane"));
+});
+</script>
+{% endblock extra_js_bottom %}

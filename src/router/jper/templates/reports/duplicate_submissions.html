@@ -1,0 +1,82 @@
+{% from "helpers/from_to_date_macro.html" import from_to_date %}
+
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1 id="pg-h1">Publisher duplicate submissions in period</h1>
+		<div class="accordion">
+			<p>This report shows duplicate submissions (by DOI) from publishers where at least 1 duplicate was  routed to at least 1 live repository account within the specified period.</p>
+			<p>Monthly versions of this report are generated automatically on the 1st of each month (for the preceding month) and can be <a href="{{url_for('reports.dup_submission_reports')}}">downloaded here</a>.</p>
+			<p>If only 1 date field is set below, then the other date is set automatically with a gap of 1 week.</p>
+			<p>In order to capture duplicates that may have occurred close to the specified <i>from</i> and <i>to</i> dates, the database is actually searched over a date range extending 7 days either side of the specified dates.</p>
+			<p>In the results, the <i>metadata metrics</i> strings comprise a bit_field value, followed by counts of attributes:<br><span class="strong smallish">bit_field | authors | orcids | funders | funder-ids | grants | licenses | structured-affiliations | affiliation-ids</span>.<br>Multiple metrics strings for a particular DOI indicates substantial metadata differences among the duplicates; whereas a single metrics string suggests minimal or no differences in metadata.</p>
+		</div>
+		{# Date range #}
+		{{from_to_date(from_date, to_date, spinner=True)}}
+
+		{# Report table #}
+		<div class="row">
+		{% if data is none %}
+			<p class="info-note">Enter at least one date (by default the other will be set with a gap of 1 week).<br>
+				Alternatively, <a href="{{url_for('reports.dup_submission_reports')}}">see here</a> for monthly versions of the report (automatically generated).</p>
+		{% else %}
+			<table id="data_table"  class="content-table" data-rwdtable-sortable data-sortable-col-zero>
+				<thead>
+					<tr class="no-decoration">
+						<th class="persist essential">Duplicates</th>
+						<th class="persist essential">Publisher</th>
+						<th class="persist essential">DOI</th>
+						<th class="optional">Filenames</th>
+						<th class="persist essential">Deposit dates</th>
+						<th class="persist essential">Repositories</th>
+						<th class="optional">Notification IDs</th>
+						<th class="optional">Metadata metrics</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for rec_list in data %}
+					<tr>
+						<td>{{rec_list[0]}}</td>
+						<td>{{rec_list[1]}}</td>
+						<td>{{rec_list[2]}}</td>
+						<td>{{rec_list[3]|replace(', ', ',<br>')|safe}}</td>
+						<td>{{rec_list[4]|replace(', ', ',<br>')|safe}}</td>
+						<td>{{rec_list[5]|replace(', ', ',<br>')|safe}}</td>
+						<td>{{rec_list[6]|replace(', ', ',<br>')|safe}}</td>
+						<td>{{rec_list[7]|replace('; ', ';<br>')|safe}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		  	{% if data %}
+			<div>
+				<a class="btn btn--3d btn--primary no-underline download" href="{{csv_link}}" role="button">Download CSV file</a>
+			</div>
+		  	{% endif %}
+		{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script>
+	$(document).ready(function(){
+		/**
+		* Show spinner when date form is submitted
+		**/
+		const $form = $("#from_to_dates");
+		const $spinner = $(".spinner");
+		$spinner.hide();
+		$form.on("submit", function(e){
+			sleep(300).then(() => {$spinner.show();});
+		});
+
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+	});
+</script>
+{% endblock extra_js_bottom %}
