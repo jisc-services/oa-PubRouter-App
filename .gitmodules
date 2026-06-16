@@ -1,0 +1,6 @@
+[submodule "Octopus"]
+	path = Octopus
+	url = https://github.com/jisc-services/oa-PubRouter-Octopus.git
+[submodule "sword2"]
+	path = sword2
+	url = https://github.com/jisc-services/oa-python-sword2.git

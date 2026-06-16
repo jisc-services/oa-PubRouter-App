@@ -1,0 +1,34 @@
+{% extends "base.html" %} 
+{# Page to request a reset token. Has a simple form that takes either a Contact email or Username to
+	identify the account for which password reset is required. #}
+{% block content %}
+
+<div class="row cms">
+	<div class="col">
+		<h1>Request password reset</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col span-8">
+		<form method="post" action="" class="form">
+			<fieldset class="form__fieldset">
+				<legend class="legend-text">Enter your username (email address)</legend>
+				<ul class="form-fields">
+					<li class="form__item">
+						<label class="form__label" for="username">Username </label>
+						<input class="form__item" id="username" type="text" name="username">
+					</li>
+					<li class="form__item">
+						<p class="info-note ">If you do not know this then please email <a href="mailto:XXXX@YYYY.ac.uk?subject=Publications%20Router%20password%20reset%20request&amp;body=I%20would%20like%20to%20reset%20our%20PubRouter%20account%20password.%20%20My%20contact%20email%20address%20for%20receiving%20a%20password%20reset%20link%20is%20[ENTER%20EMAIL%20HERE].%20%20[PLEASE%20PROVIDE%20YOUR%20DETAILS].">XXXX@YYYY.ac.uk</a> requesting a password reset link.</p>
+					</li>
+					<li class="form__item">
+						<button class="btn btn--3d btn--primary" id="reset_token" type="submit">Request reset link</button>
+					</li>
+				</ul>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
+

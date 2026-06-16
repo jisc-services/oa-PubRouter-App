@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="row">
+	<div class="col span-11 cms">
+		<h1>For institutions</h1>
+
+		<h2>Key benefits</h2>
+		<ul>
+			<li>You are alerted to new articles by your researchers that you may not have known about otherwise.</li>
+			<li>Metadata, often with the full text, is delivered straight into your review queue, avoiding the need to enter it manually.</li>
+			<li>For any full-text articles that we send that are under embargo, we send you an actionable embargo end date, saving you time and effort otherwise needed to investigate what this should be in each case.</li>
+		</ul>
+		<h2>How to join</h2>
+		<p>Publications Router is still live until 1 July 2026, but it is no longer possible to join. (For reference, this web site retains historical information describing how institutions could <a href="{{url_for('about.startupguide')}}">get started</a>, although new institutions can no longer join.) Participating institutions are full HE members of Jisc with a <a href="{{url_for('about.startupguide')}}#compatible-systems">compatible systems</a>.</p>
+		<p>Please contact us at <a href="mailto:XXXX@YYYY.ac.uk">XXXX@YYYY.ac.uk</a>, mentioning Publications Router, if you would like to know more.</p>
+
+		<h2>How it works</h2>
+		<p>Publications Router can deliver notifications about your researchers' papers straight into a work queue in your repository or CRIS.  The notifications may include the full text of the published version of record, or the authors' accepted manuscript, or may just consist of metadata. This will depend on what individual publishers can provide.</p>
+		<p>The service can currently deliver into the following platforms used by institutions:</p>
+		<ul>
+			<li>DSpace</li>
+			<li>EPrints</li>
+			<li>Pure</li>
+			<li>Symplectic Elements (when connected via its RT2 module to either EPrints or DSpace)</li>
+			<li>Worktribe.</li>
+		</ul>
+		<p><img src="/static/img_1.png" alt="Schematic showing the flow of notifications from a publisher through Publications Router to a repository or CRIS."></p>
+		<p>Publishers send notifications at various stages in the publishing process. Notifications provided only at publication stage should still reach you in good time to achieve REF compliance. Some operate a two-step process, so that an initial notification reaches you at an early stage, followed by an updated notification upon final publication.</p>
+		<p>The notifications may include the full text of the published version of record, or the authors' accepted manuscript, or may just consist of metadata. This will depend on what individual publishers can provide.</p>
+		<p>There are also automated feeds from multi-publisher sources. These include the open access subset of Europe PubMed Central, which provides the full text of the version of record, and also metadata-only feeds from Crossref and PubMed.</p>
+		<p>To enable Publications Router to send you notifications about the correct articles, you will need to provide us with some key parameters that Publications Router can use to match them to your institution. These include variant names for your institution, postcodes that may occur in its addresses, email domain names that your authors may use, or your researchers' ORCIDs.</p>
+		<p>Some publishers may supply content that is under embargo. If so, we will include the embargo end-date in the metadata. For those articles, you agree to respect these embargoes by signing an agreement with us.</p>
+		<p>Publications Router can supply the matched notifications directly into your EPrints or DSpace repository using the SWORD2 protocol. Other systems such as CRISs can use Router’s API to retrieve matched notifications.</p>
+
+		<h2>Technical information</h2>
+		<p>Please see <a href="{{url_for('about.resources')}}">Technical information</a> for details of the Publications Router architecture and how to connect to it.</p>
+	</div>
+</div>
+
+{% endblock %}
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

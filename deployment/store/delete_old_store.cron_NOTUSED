@@ -1,0 +1,61 @@
+### Cron job entries for deleting files from store directories ###
+#
+#   There are 3 directories use by the store module:
+#       /Incoming/store - the main store folder
+#       /var/pubrouter/local_store/tmp - Temporary file store, used for adhoc processing and caching
+#       /var/pubrouter/local_store/live - Location for optionally stored copies of files primarily for test purposes
+#
+#   There are 3 cron jobs defined in this file for deleting from each of these locations.
+#
+#   These cron jobs are all run as `root` user.
+###
+
+# delete_old_store.sh
+#
+#   Deletes files older than a given number of days from the data store /Incoming/store
+#   Any errors are logged to stdout and also emailed.
+#
+#   2 optional parameters:
+#       1: Integer number of days to keep (must be >= 30) - defaults to 92
+#       2: String error email addresses (comma separated, no spaces) - defaults to XXXX.YYYY@YYYY.ac.uk
+#
+#   EXAMPLE: 0 3 * * * root /usr/local/PubRouter/deployment/delete_old_store.sh 88 some-email@address.co.uk >>/var/log/pubrouter/delete_store.log 2>&1
+#
+# Run each day at 04:15hrs.  Outputs STDERR and STDOUT to /var/log/pubrouter/delete_store.log file
+
+15 4 * * * root /usr/local/PubRouter/deployment/delete_old_store.sh >>/var/log/pubrouter/delete_store.log 2>&1
+
+
+# delete_old_temp_store.sh
+#
+#   Deletes files older than a given number of days from the /var/pubrouter/local_store/tmp
+#   Any errors are logged to stdout and also emailed.
+#
+#   2 optional parameters:
+#       1: Integer number of days to keep (must be >= 2) - defaults to 5
+#       2: String error email addresses (comma separated, no spaces) - defaults to XXXX.YYYY@YYYY.ac.uk
+#
+#   EXAMPLE: 15 3 * * * root /usr/local/PubRouter/deployment/delete_old_temp_store.sh 88 some-email@address.co.uk >>/var/log/pubrouter/delete_tmp_store.log  2>&1
+#
+# Run each day at 04:25hrs.  Outputs STDERR and STDOUT to /var/log/pubrouter/delete_tmp_store.log file
+
+25 4 * * * root /usr/local/PubRouter/deployment/delete_old_temp_store.sh >>/var/log/pubrouter/delete_tmp_store.log 2>&1
+
+
+# delete_old_local_store.sh
+#
+#   Deletes files older than a given number of days from the /var/pubrouter/local_store/live
+#   Any errors are logged to stdout and also emailed.
+#
+#   2 optional parameters:
+#       1: Integer number of days to keep (must be >= 20) - defaults to 30
+#       2: String error email addresses (comma separated, no spaces) - defaults to XXXX.YYYY@YYYY.ac.uk
+#
+#   EXAMPLE: 20 3 * * * root /usr/local/PubRouter/deployment/delete_old_local_store.sh 88 some-email@address.co.uk >>/var/log/pubrouter/delete_local_store.log  2>&1
+#
+# Run each day at 04:30hrs.  Outputs STDERR and STDOUT to /var/log/pubrouter/delete_local_store.log file
+
+30 4 * * * root /usr/local/PubRouter/deployment/delete_old_local_store.sh >>/var/log/pubrouter/delete_local_store.log 2>&1
+
+
+## end ##

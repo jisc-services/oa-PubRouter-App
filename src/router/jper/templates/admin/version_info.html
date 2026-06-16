@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row cms">
+	<div class="col span-11">
+		<h1>Router version information<span class="h_small">∗developers only∗</span></h1>
+
+		<p>This release of Router is built from the following package versions.</p>
+
+        <h2 class="like_h3">Jisc packages</h2>
+        <div class="span-8">
+            <table class="std-txt">
+                <thead>
+                    <tr><th>Module</th><th>Version</th></tr>
+                </thead>
+                <tbody>
+                {% for name, vers in jisc_module_tuple_list -%}
+                    <tr><td>{{name}}</td><td>{{vers}}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+		<br>
+
+        <h2 class="like_h3">All packages</h2>
+        <div class="span-8">
+            <table class="std-txt">
+                <thead>
+                    <tr><th>Package</th><th>Version</th></tr>
+                </thead>
+                <tbody>
+                {% for name, vers in lib_name_version_tuple_list -%}
+                    <tr><td>{{name}}</td><td>{{vers}}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+		<br>
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

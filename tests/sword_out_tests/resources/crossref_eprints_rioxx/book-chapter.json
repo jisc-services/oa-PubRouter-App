@@ -1,0 +1,69 @@
+{
+    "provider" : {
+      "route" : "harvester",
+      "agent" : "Crossref",
+      "id" : 1,
+      "ref" : "10.22233/9781910443774.91.2",
+      "harv_id" : 2
+    },
+    "repositories" : [3, 4, 5, 6],
+    "created" : "2020-07-22T11:05:11Z",
+    "analysis_date" : "2020-07-22T11:11:24Z",
+    "id" : 1,
+    "type" : "R",
+    "metadata" : {
+      "author" : [
+        {
+          "name" : {
+            "surname" : "Walker",
+            "firstname" : "Ben",
+            "fullname" : "Ben Walker"
+          },
+          "affiliations": [{
+                "org": "University of Bristol",
+                "city": "Bristol",
+                "country": "United Kingdom",
+                "raw": "University of Bristol, Bristol, United Kingdom"
+            }]
+        }
+      ],
+      "history_date" : [
+        {
+          "date" : "2020-04-01",
+          "date_type" : "ppub"
+        },
+        {
+          "date" : "2020-04-01",
+          "date_type" : "issued"
+        }
+      ],
+      "article" : {
+        "start_page" : "548",
+        "end_page" : "549",
+        "title" : "Adverse Reaction to Topical Clotrimazole Therapy for Canine Sinonasal Aspergillosis",
+        "type" : "book-chapter",
+        "page_range" : "548-549",
+        "num_pages" : "2",
+        "identifier" : [
+          {
+            "type" : "doi",
+            "id" : "10.22233/9781910443774.91.2"
+          }
+        ]
+      },
+      "journal" : {
+        "publisher" : [
+          "British Small Animal Veterinary Association"
+        ],
+        "title" : "BSAVA Congress Proceedings 2020"
+      },
+      "publication_date" : {
+        "publication_format" : "printed",
+        "date" : "2020-04-01",
+        "month" : "04",
+        "year" : "2020",
+        "day" : "01"
+      }
+    },
+    "links" : []
+}

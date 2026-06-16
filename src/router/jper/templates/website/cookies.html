@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col span-11 cms">
+        <h1>Cookies</h1>
+        <section class="cookie-block">
+            <p class="strong font-2rem">Your settings</p>
+            <button id="cookie-toggle-button" class="cookie-unset"></button>
+            <div>We use tracking cookies to improve your experience. You can change this setting at any time.</div>
+        </section>
+        <p>To help improve this site we place small files, known as cookies, onto your computer. Some are essential for
+            the site to work properly, others are to improve the experience you have.
+        </p>
+        <p>You can stop this site using non-essential cookies by updating your settings above.
+        </p>
+        <p>You can also decide to stop this or any site from using <strong>any</strong> cookies. To learn more about
+            cookies and how to manage them visit&nbsp;<a href="http://aboutcookies.org/">AboutCookies.org</a>.
+        </p>
+
+        <h2>How we use cookies</h2>
+        <p>We use cookies for several purposes on this website – we’ve listed each of them below with more details about
+            why we use them and how long they’ll last.
+        </p>
+        <h3>Cookies to improve your experience</h3>
+        <p>You can tell us to stop using these at any time by updating your settings above.</p>
+        <h4>Measuring website usage (Google Analytics)</h4>
+        <p>We use Google Analytics to collect information about how people use our site, and rough demographics as to
+            what groups of people are&nbsp;using our site. We do this to make sure it’s meeting your needs and to
+            understand how we could improve it. As well as controlling this above - you can&nbsp;<a
+                    href="https://tools.google.com/dlpage/gaoptout/">opt out of Google Analytics tracking directly</a>.
+        </p>
+        <ul>
+            <li>the pages you visit</li>
+            <li>how long you spend on each page</li>
+            <li>how you got to the site</li>
+            <li>what you click on while you're here.</li>
+        </ul>
+        <p>The following cookies are set by Google Analytics;</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Expires</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td> _ga<br>_ga_…</td>
+                <td>These cookies help us count how many people visit the site by tracking if you've visited before.</td>
+                <td>2 years.</td>
+            </tr>
+            <tr>
+                <td>_gid</td>
+                <td>Like _ga, this lets us know if you’ve visited before, so we can count how many of our visitors are
+                    new to the site or to a certain page.</td>
+                <td>24 hours.</td>
+            </tr>
+            <tr>
+                <td>_gat</td>
+                <td>This is used by Google Analytics to ensure its work doesn't have a big impact on the site's
+                    performance.</td>
+                <td>24 hours.</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <h3>Essential cookies</h3>
+        <h4>Cloudflare website security</h4>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Expires</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>__cfduid</td>
+                <td>Set by the CloudFlare service to identify trusted web traffic. It does not correspond to any user id in the web application, nor does the cookie store any personally identifiable information.</td>
+                <td>5 years.</td>
+            </tr>
+            <tr>
+                <td>__cfruid</td>
+                <td>Used by Cloudflare Content Network to identify trusted web traffic.</td>
+                <td>When browser closes.</td>
+            </tr>
+            <tr>
+                <td>__cf_bm</td>
+                <td>Identification & mitigation of <i>bot</i> traffic, to protect site from bad bots.</td>
+                <td>30 minutes.</td>
+            </tr>
+            <tr>
+                <td>__cflb</td>
+                <td>Used by Cloudflare Load Balancer in order to optimize network resource usage.</td>
+                <td>30 minutes.</td>
+            </tr>
+            <tr>
+                <td>_cfuvid</td>
+                <td>Used by Cloudflare Rate Limiting to distinguish between users who share the same IP address.</td>
+                <td>When browser closes.</td>
+            </tr>
+            <tr>
+                <td>cf_chl_2</td>
+                <td>Used by Cloudflare for the execution of Javascript or Captcha challenges. These cookies are not used for tracking or beyond the scope of the challenge.</td>
+                <td>When browser closes.</td>
+            </tr>
+            <tr>
+                <td>cf_clearance</td>
+                <td>Indicates if a CAPTCHA or Javascript challenge has been solved.</td>
+                <td>1 year.</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <h4>Website operation and log in access</h4>
+        <p>Our system uses cookies to allow you to log into the site, and access restricted content and services; also cookies that allow it to run smoothly.</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Purpose</th>
+                <th>Expires</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>session</td>
+                <td>Allows the website to provide you with restricted content.</td>
+                <td>When browser is closed.</td>
+            </tr>
+            <tr>
+                <td>tracking_enabled</td>
+                <td>Remember whether tracking cookies are enabled or not.</td>
+                <td>After 180 days.</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <h4>Opt in cookies</h4>
+        <p>We allow users to opt in to some cookies on login.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Purpose</th>
+                    <th>Expires</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>remember_token</td>
+                    <td>Will keep you logged in after leaving the site (opt in).</td>
+                    <td>After 90 days or if you log out.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>NB: Cookie guidance wording adapted from&nbsp;<a href="http://www.gov.uk/help/cookies">gov.uk</a>, shared under the <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/">Open Government Licence</a>.
+        </p>
+        <h2>Notes</h2>
+        <p>Please note, if you have used the site in the past these cookies may still be on your computer - but by
+            disabling
+            them in your settings we will no longer access them.</p>
+        <p>This statement was last updated on 2 March 2026.</p>
+    </div>
+</div>
+{% endblock %} 
+
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

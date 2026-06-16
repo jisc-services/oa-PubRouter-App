@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+
+{% macro list_to_table(items, title, legend) %}
+  	{%- if items -%}
+	  {%- if title %}
+		<h3 class="like_h4">{{title}}</h3>
+	  {% endif -%}
+		<table>
+			<thead>
+				<tr><th class="bold">{{legend}}</th></tr>
+			</thead>
+			<tbody>
+			{% for item in items -%}
+				<tr><td>{{item}}</td></tr>
+			{% endfor %}
+			</tbody>
+		</table>
+  	{%- endif -%}
+{%- endmacro -%}
+
+{%- macro format_date_time(date_time, join_with) -%}
+{# Convert a date_time like "2021-04-06T10:16:50Z" into "06/04/2021...10:15:50" where ... is value of join_with #}
+{{-"{}/{}/{}".format(date_time[8:10], date_time[5:7], date_time[0:4])}}{{join_with}}{{date_time[11:19]-}}
+{%- endmacro %}
+
+{% macro show_differences(diffs_dict, version, snippet) %}
+<div class="row">
+  <h3 class="like_h4 ">Comparison with {{version}} {% if diffs_dict %}<span class="smaller">({{snippet}}dated {{format_date_time(diffs_dict.old_date, " ")}})</span>{% endif %}</h3>
+  {%- if diffs_dict -%}
+	<div class="col span-5 cms">
+	  {% if diffs_dict.new -%}
+		{% set legend = "New data (not in the {})".format(version) %}
+		{{list_to_table(diffs_dict.new, "", legend)}}
+      {%- endif %}
+      {% if diffs_dict.increased -%}
+		{{list_to_table(diffs_dict.increased, "", "Increased counts")}}
+      {%- endif %}
+	</div>
+	<div class="col span-5 push-1 cms">
+	  {% if diffs_dict.lost -%}
+		{% set legend = "Absent data (is in the {})".format(version) %}
+		{{list_to_table(diffs_dict.lost, "", legend)}}
+      {%- endif %}
+      {% if diffs_dict.decreased -%}
+		{{list_to_table(diffs_dict.decreased, "", "Decreased counts")}}
+      {%- endif %}
+	</div>
+  {%- else -%}
+    <p>No measured differences between this and the {{version}}, however there may be differences in the content - so inspection is advised.</p>
+  {%- endif -%}
+</div>
+{% endmacro %}
+
+{% macro metadata_section_table(meta_list, div_class, title) %}
+	<div class="{{div_class}}">
+		{# <h3 class="like_h4">{{title}}</h3> #}
+		<table>
+		{% if curr_org_is_super %}  {# Show the weight values #}
+    		{% set weights = ["Super", "High", "Medium", "Low"] %}
+			<thead>
+				<tr><th class="bold">{{title}}</th><th>Weight</th></tr>
+			</thead>
+			<tbody>
+			{% for _, item, level in meta_list %}
+				<tr><td>{{item}}</td><td>{{weights[level]}}</td></tr>
+			{% endfor %}
+			</tbody>
+		{% else %}
+			<thead>
+				<tr><th class="bold">{{title}}</th></tr>
+			</thead>
+			<tbody>
+			{% for _, item, level in meta_list %}
+				<tr><td>{{item}}</td></tr>
+			{% endfor %}
+			</tbody>
+		{% endif %}
+		</table>
+	</div>
+{% endmacro %}
+
+{% block content %}
+<div class="row">
+	<div class="col span-12 cms">
+		<h1>Notification Details</h1>
+		<div class="accordion cms">
+			<p>This page shows details of a specific notification.</p>
+			<p>In particular, it provides <b>metrics</b> information (presence/absence of metadata, and counts of some metadata items) which is used by the duplicate handling functionality.  Where the notification is a duplicate of one previously received, then key differences in the metrics between the current and prior notifications are highlighted.</p>
+			<p>It also displays the notification metadata in 2 formats:</p>
+			<ul><li>Tabular presentation (highlighting any new data if a duplicate)</li><li>JSON (expandable/collabsible) tree.</li></ul>
+			<p>NB. If a notification has a large number of authors the page will be very long and may take time to display.</p>
+		</div>
+	{% if curr_org_is_super %}
+		<form id="frm_note_id" class="form" action="" method="GET">
+			<label class="form_fields-same-line" >Notifcation ID<input class="gap-left" name="note_id" type="number" value="{{notification.id if notification}}"></label>
+			<button class="gap-left btn btn--3d btn--primary" type="submit">Submit</button>
+    	</form>
+	{% endif %}
+		<br>
+    {% if notification %}
+		<section class="row span-10 cms">
+			<h2 class="like_h3">Summary</h2>
+			<table>
+				<tbody>
+				<tr><th>Note ID</th><td>{{notification.id}}</td></tr>
+				{% set doi = notification.article_doi %}
+				<tr><th>DOI</th><td>{{doi}}{% if doi %} &nbsp; <a href="https://doi.org/{{doi}}" class="gap-left-15 nav-btn btn--3d" target="_blank" title="Opens in new window">Publisher's page</a>{% endif %}</td></tr>
+				<tr><th>Title</th><td>{{notification.article_title}}</td></tr>
+				<tr><th>Provider</th><td>{{notification.provider_agent}}</td></tr>
+				<tr><th>Received</th><td>{{notification.created[:10]}} &nbsp;{{notification.created[11:-1]}}</td></tr>
+			  {% set duplicate_count = (metrics_dict.p_count + metrics_dict.h_count - 1) if metrics_dict else 0 %}
+			  {% if duplicate_count > 0 %}
+				<tr><th>Duplicate</th><td>{{duplicate_count}} notification{% if duplicate_count == 1 %} with this DOI has{% else %}s with this DOI have{% endif %} been seen before.</td></tr>
+			  {% endif %}
+				</tbody>
+			</table>
+		</section>
+		<br>
+		<section class="row is-collapsible show_hide__container is-collapsible--button box--bg-pale" data-collapsible>
+			<h2 class="show_hide__trigger">Metrics</h2>
+			<div class="show_hide__target">
+			  {% if metrics_dict %}
+				<div class="row span-5 cms">
+					{% set count_dict = metrics_dict.val %}
+					<table>
+						<thead>
+						<tr><th class="bold">Metadata item count</th><th>Count</th></tr>
+						</thead>
+						<tbody>
+						<tr><td>Authors</td><td>{{count_dict.n_auth}}</td></tr>
+						<tr><td>Structured affiliations</td><td>{{count_dict.n_struct_aff}}</td></tr>
+						<tr><td>Affiliations ids</td><td>{{count_dict.n_aff_ids}}</td></tr>
+						<tr><td>Orcids</td><td>{{count_dict.n_orcid}}</td></tr>
+						<tr><td>Funders</td><td>{{count_dict.n_fund}}</td></tr>
+						<tr><td>Funder IDs</td><td>{{count_dict.n_fund_id}}</td></tr>
+						<tr><td>Grants</td><td>{{count_dict.n_grant}}</td></tr>
+						<tr><td>Licences</td><td>{{count_dict.n_lic}}</td></tr>
+						</tbody>
+					</table>
+				</div>
+				{{metadata_section_table(bits_on_list, "col span-5 cms", "Metadata item present")}}
+				{{metadata_section_table(bits_off_list, "col span-5 push-1 cms", "Metadata item absent")}}
+			  {% else %}
+				<p>None, because it has no DOI value.</p>
+			  {% endif %}
+			</div>
+		</section>
+
+	  {% if orig_deposit_diffs is not none %}
+		<br>
+		<section class="row is-collapsible show_hide__container is-collapsible--button box--bg-pale" data-collapsible>
+			<h2 class="show_hide__trigger">Comparison with prior versions</h2>
+			<div class="show_hide__target">
+				{{show_differences(orig_deposit_diffs, "original notification", "")}}
+			{% if cum_deposit_diffs is not none %}
+				<hr class="gap-vert">
+				{{show_differences(cum_deposit_diffs, "accumulated notifications", "the last ")}}
+			{% endif %}
+			</div>
+		</section>
+	  {% endif %}
+		<br>
+		<section class="row is-collapsible show_hide__container is-collapsible--button box--bg-pale" data-collapsible>
+			<h2 class="show_hide__trigger">Tabular Metadata {% if highlight_bits %}<span class="smaller hi">(highlighting additions)</span>{% endif %}</h2>
+			<div class="show_hide__target">
+			{{format_note_fn(notification, highlight_bits, "")|safe}}
+			</div>
+		</section>
+		<br>
+		<section class="row is-collapsible show_hide__container is-collapsible--button box--bg-pale" data-collapsible>
+			<h2 class="show_hide__trigger">JSON Metadata</h2>
+			<div id="json" class="show_hide__target"></div>
+		</section>
+  	{% endif %}
+	</div>
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script type="text/javascript" src="/static/js/json-viewer.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+
+		{% if notification %}
+		/**
+		*	Functions to handle display of JSON Metadata
+		**/
+			const json_node = new JSONViewer($('#json')[0], JSON.parse( {{notification.json()|tojson}} ), 1);
+		{% endif %}
+	});
+</script>
+
+{% endblock extra_js_bottom %}

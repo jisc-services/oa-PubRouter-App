@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE article PUBLIC
+        "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.1d1 20130915//EN" "JATS-archivearticle1.dtd">
+<article article-type="research-article" dtd-version="1.1d1" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+    <front>
+        <journal-meta>
+            <journal-id journal-id-type="nlm-ta">elife</journal-id>
+            <journal-id journal-id-type="hwp">eLife</journal-id>
+            <journal-id journal-id-type="publisher-id">eLife</journal-id>
+            <journal-title-group>
+                <journal-title>eLife</journal-title>
+            </journal-title-group>
+            <issn publication-format="electronic">2050-084X</issn>
+            <publisher>
+                <publisher-name>eLife Sciences Publications, Ltd</publisher-name>
+            </publisher>
+        </journal-meta>
+        <article-meta>
+            <article-id pub-id-type="publisher-id">05538</article-id>
+            <article-id pub-id-type="doi">10.7554/eLife.05538</article-id>
+            <article-categories>
+                <subj-group subj-group-type="display-channel">
+                    <subject>Research article</subject>
+                </subj-group>
+                <subj-group subj-group-type="heading">
+                    <subject>Developmental biology and stem cells</subject>
+                </subj-group>
+                <subj-group subj-group-type="heading">
+                    <subject>Genomics and evolutionary biology</subject>
+                </subj-group>
+            </article-categories>
+            <title-group>
+                <article-title>Constraint and divergence of global gene expression in the mammalian embryo
+                </article-title>
+            </title-group>
+            <contrib-group>
+                <contrib contrib-type="author" id="author-21396" equal-contrib="yes">
+                    <name>
+                        <surname>Spies</surname>
+                        <given-names>Noah</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff1">1</xref>
+                    <xref ref-type="aff" rid="aff2">2</xref>
+                    <xref ref-type="fn" rid="equal-contrib">&#x2020;</xref>
+                    <xref ref-type="other" rid="par-3"/>
+                    <xref ref-type="fn" rid="con1"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" id="author-22083" equal-contrib="yes">
+                    <name>
+                        <surname>Smith</surname>
+                        <given-names>Cheryl L</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff1">1</xref>
+                    <xref ref-type="aff" rid="aff2">2</xref>
+                    <xref ref-type="fn" rid="equal-contrib">&#x2020;</xref>
+                    <xref ref-type="fn" rid="con2"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" id="author-22084">
+                    <name>
+                        <surname>Rodriguez</surname>
+                        <given-names>Jesse M</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff3">3</xref>
+                    <xref ref-type="aff" rid="aff4">4</xref>
+                    <xref ref-type="fn" rid="pa1">&#x2021;</xref>
+                    <xref ref-type="fn" rid="con3"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" id="author-7553">
+                    <name>
+                        <surname>Baker</surname>
+                        <given-names>Julie C</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff2">2</xref>
+                    <xref ref-type="other" rid="par-1"/>
+                    <xref ref-type="other" rid="par-2"/>
+                    <xref ref-type="fn" rid="con5"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" id="author-10909">
+                    <name>
+                        <surname>Batzoglou</surname>
+                        <given-names>Serafim</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff3">3</xref>
+                    <xref ref-type="fn" rid="con6"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <contrib contrib-type="author" corresp="yes" id="author-21404">
+                    <name>
+                        <surname>Sidow</surname>
+                        <given-names>Arend</given-names>
+                    </name>
+                    <xref ref-type="aff" rid="aff1">1</xref>
+                    <xref ref-type="aff" rid="aff2">2</xref>
+                    <xref ref-type="corresp" rid="cor1">&#x002a;</xref>
+                    <xref ref-type="fn" rid="con4"/>
+                    <xref ref-type="fn" rid="conf1"/>
+                    <xref ref-type="other" rid="dataro1"/>
+                </contrib>
+                <aff id="aff1">
+                    <label>1</label>
+                    <institution content-type="dept">Department of Pathology</institution>,<institution>Stanford
+                    University School of Medicine</institution>,
+                    <addr-line>
+                        <named-content content-type="city">Stanford</named-content>
+                    </addr-line>
+                    ,
+                    <country>United States</country>
+                </aff>
+                <aff id="aff2">
+                    <label>2</label>
+                    <institution content-type="dept">Department of Genetics</institution>,<institution>Stanford
+                    University School of Medicine</institution>,
+                    <addr-line>
+                        <named-content content-type="city">Stanford</named-content>
+                    </addr-line>
+                    ,
+                    <country>United States</country>
+                </aff>
+                <aff id="aff3">
+                    <label>3</label>
+                    <institution content-type="dept">Department of Computer Science</institution>,<institution>Stanford
+                    University</institution>,
+                    <addr-line>
+                        <named-content content-type="city">Stanford</named-content>
+                    </addr-line>
+                    ,
+                    <country>United States</country>
+                </aff>
+                <aff id="aff4">
+                    <label>4</label>
+                    <institution content-type="dept">Biomedical Informatics Program</institution>,<institution>Stanford
+                    University School of Medicine</institution>,
+                    <addr-line>
+                        <named-content content-type="city">Stanford</named-content>
+                    </addr-line>
+                    ,
+                    <country>United States</country>
+                </aff>
+            </contrib-group>
+            <contrib-group content-type="section">
+                <contrib contrib-type="editor" id="author-1083">
+                    <name>
+                        <surname>Ferguson-Smith</surname>
+                        <given-names>Anne C</given-names>
+                    </name>
+                    <role>Reviewing editor</role>
+                    <aff><institution>University of Cambridge</institution>,
+                        <country>United Kingdom</country>
+                    </aff>
+                </contrib>
+            </contrib-group>
+            <author-notes>
+                <corresp id="cor1"><label>&#x002a;</label>For correspondence:
+                    <email>arend@stanford.edu</email>
+                </corresp>
+                <fn fn-type="con" id="equal-contrib">
+                    <label>&#x2020;</label>
+                    <p>These authors contributed equally to this work</p>
+                </fn>
+                <fn fn-type="present-address" id="pa1">
+                    <label>&#x2021;</label>
+                    <p>Google Inc., Mountain View, United States</p>
+                </fn>
+            </author-notes>
+            <pub-date publication-format="electronic" date-type="pub">
+                <day>14</day>
+                <month>04</month>
+                <year>2015</year>
+            </pub-date>
+            <pub-date pub-type="collection">
+                <year>2015</year>
+            </pub-date>
+            <volume>4</volume>
+            <elocation-id>e05538</elocation-id>
+            <history>
+                <date date-type="received">
+                    <day>09</day>
+                    <month>11</month>
+                    <year>2014</year>
+                </date>
+                <date date-type="accepted">
+                    <day>13</day>
+                    <month>04</month>
+                    <year>2015</year>
+                </date>
+            </history>
+            <permissions>
+            </permissions>
+            <self-uri content-type="pdf" xlink:href="elife05538.pdf"/>
+            <abstract>
+                <object-id pub-id-type="doi">10.7554/eLife.05538.001</object-id>
+                <p>The effects of genetic variation on gene regulation in the developing mammalian embryo remain largely
+                    unexplored. To globally quantify these effects, we crossed two divergent mouse strains and asked how
+                    genotype of the mother or of the embryo drives gene expression phenotype genomewide. Embryonic
+                    expression of 331 genes depends on the genotype of the mother. Embryonic genotype controls
+                    allele-specific expression of 1594 genes and a highly overlapping set of cis-expression quantitative
+                    trait loci (eQTL). A marked paucity of trans-eQTL suggests that the widespread expression
+                    differences do not propagate through the embryonic gene regulatory network. The cis-eQTL genes
+                    exhibit lower-than-average evolutionary conservation and are depleted for developmental regulators,
+                    consistent with purifying selection acting on expression phenotype of pattern formation genes. The
+                    widespread effect of maternal and embryonic genotype in conjunction with the purifying selection we
+                    uncovered suggests that embryogenesis is an important and understudied reservoir of phenotypic
+                    variation.
+                </p>
+                <p>
+                    <bold>DOI:</bold>
+                    <ext-link ext-link-type="doi" xlink:href="10.7554/eLife.05538.001">
+                        http://dx.doi.org/10.7554/eLife.05538.001
+                    </ext-link>
+                </p>
+            </abstract>
+            <abstract abstract-type="executive-summary">
+                <object-id pub-id-type="doi">10.7554/eLife.05538.002</object-id>
+                <title>eLife digest</title>
+                <p>The way that the embryo of a mammal, such as a mouse or a human, develops from a fertilized egg is a
+                    complicated process that relies on controlling: which genes are active; when these genes activate;
+                    and for how long they are active. In broad terms, there are four ways that this control can be
+                    achieved:
+                </p>
+                <p>First, inside the sperm or egg, genes can be marked with small chemical tags that flag these genes to
+                    be activated (or remain inactive) after fertilization, depending on whether the modification was
+                    made by the father (in the sperm) or the mother (in the egg); this process is known as &#x2018;imprinting&#x2019;.
+                    Second, the mother can alter the gene activity in her offspring via the placenta; this process is
+                    known as &#x2018;maternal effect&#x2019;. Third, instructions encoded within the embryo&#x0027;s DNA
+                    can directly control if, and when, a nearby gene becomes activated; this is known as &#x2018;
+                    <italic>cis</italic>-regulation&#x2019;. Finally, similar instructions can also control genes that
+                    are situated elsewhere in the embryo&#x0027;s DNA through indirect mechanisms; this is known as
+                    &#x2018;<italic>trans</italic>-regulation&#x2019;.
+                </p>
+                 <p>
+                    <bold>DOI:</bold>
+                    <ext-link ext-link-type="doi" xlink:href="10.7554/eLife.05538.002">
+                        http://dx.doi.org/10.7554/eLife.05538.002
+                    </ext-link>
+                </p>
+            </abstract>
+            <kwd-group kwd-group-type="author-keywords">
+                <title>Author keywords</title>
+                <kwd>allele-specific expression</kwd>
+                <kwd>quantitative trait loci</kwd>
+                <kwd>parental effects</kwd>
+                <kwd>gene expression</kwd>
+            </kwd-group>
+            <kwd-group kwd-group-type="research-organism">
+                <title>Research organism</title>
+                <kwd>mouse</kwd>
+            </kwd-group>
+            <funding-group>
+                <award-group id="par-1">
+                    <funding-source>
+                        <institution-wrap>
+                            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000002
+                            </institution-id>
+                            <institution content-type="university">National Institutes of Health (NIH)</institution>
+                        </institution-wrap>
+                    </funding-source>
+                    <award-id>R01GM103787</award-id>
+                    <principal-award-recipient>
+                        <name>
+                            <surname>Baker</surname>
+                            <given-names>Julie C</given-names>
+                        </name>
+                    </principal-award-recipient>
+                </award-group>
+                <award-group id="par-2">
+                    <funding-source>
+                        <institution-wrap>
+                            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000861
+                            </institution-id>
+                            <institution>Burroughs Wellcome Fund (BWF)</institution>
+                        </institution-wrap>
+                    </funding-source>
+                    <principal-award-recipient>
+                        <name>
+                            <surname>Baker</surname>
+                            <given-names>Julie C</given-names>
+                        </name>
+                    </principal-award-recipient>
+                </award-group>
+                <award-group id="par-3">
+                    <funding-source>
+                        <institution-wrap>
+                            <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100000002
+                            </institution-id>
+                            <institution content-type="university">National Institutes of Health (NIH)</institution>
+                        </institution-wrap>
+                    </funding-source>
+                    <award-id>T32 HG000044</award-id>
+                    <principal-award-recipient>
+                        <name>
+                            <surname>Spies</surname>
+                            <given-names>Noah</given-names>
+                        </name>
+                    </principal-award-recipient>
+                </award-group>
+                <funding-statement>The funders had no role in study design, data collection and interpretation, or the
+                    decision to submit the work for publication.
+                </funding-statement>
+            </funding-group>
+            <custom-meta-group>
+                <custom-meta>
+                    <meta-name>elife-xml-version</meta-name>
+                    <meta-value>2.3</meta-value>
+                </custom-meta>
+                <custom-meta specific-use="meta-only">
+                    <meta-name>Author impact statement</meta-name>
+                    <meta-value>Embryonic gene expression is strongly influenced by maternal genetic variation and by
+                        embryonic variation that acts in
+                        <italic>cis</italic>
+                        but not in<italic>trans</italic>.
+                    </meta-value>
+                </custom-meta>
+            </custom-meta-group>
+        </article-meta>
+    </front>
+    <sub-article article-type="article-commentary" id="SA1">
+        <front-stub>
+            <article-id pub-id-type="doi">10.7554/eLife.05538.013</article-id>
+            <title-group>
+                <article-title>Decision letter</article-title>
+            </title-group>
+            <contrib-group content-type="section">
+                <contrib contrib-type="editor">
+                    <name>
+                        <surname>Ferguson-Smith</surname>
+                        <given-names>Anne C</given-names>
+                    </name>
+                    <role>Reviewing editor</role>
+                    <aff><institution>University of Cambridge</institution>,
+                        <country>United Kingdom</country>
+                    </aff>
+                </contrib>
+            </contrib-group>
+        </front-stub>
+        <body>
+            <boxed-text>
+                <p>eLife posts the editorial decision letter and author response on a selection of the published
+                    articles (subject to the approval of the authors). An edited version of the letter sent to the
+                    authors after peer review is shown, indicating the substantive concerns or comments; minor concerns
+                    are not usually shown. Reviewers have the opportunity to discuss the decision before the letter is
+                    sent (see<ext-link ext-link-type="uri" xlink:href="http://elifesciences.org/review-process">review
+                        process</ext-link>). Similarly, the author response typically shows only responses to the major
+                    concerns raised by the reviewers.
+                </p>
+            </boxed-text>
+        </body>
+    </sub-article>
+    <sub-article article-type="reply" id="SA2">
+        <front-stub>
+            <article-id pub-id-type="doi">10.7554/eLife.05538.014</article-id>
+            <title-group>
+                <article-title>Author response</article-title>
+            </title-group>
+        </front-stub>
+        <body>
+            <p><italic>1) The title is provocative, without obvious follow-up. &#x2018;Convergence&#x2019; and &#x2018;divergence&#x2019;
+                has implications about genetic selection and systems properties. The reviewers expected a definition of
+                what these concepts mean in this context, how the study design would address these questions, and then
+                interpretation of how the results provide insight. This was not evident in this manuscript. The primary
+                reference seems to be in the Introduction, where two definitions of divergence are provided: first, it
+                refers to changes in embryonic development resulting from genotype-specific differences in maternal
+                transcripts present in mature oocytes at fertilization, and second, divergence here seems to be
+                differences in regulatory control between embryos and adults. Both have been extensively studied, first
+                to understand the maternal:zygotic transition in gene expression patterns, and second to characterize
+                differentiation of cells, organs, and tissues. Resolving these and other forms of direct (genetic) and
+                indirect (epigenetic, social factors is beyond the scope of the present study design, except with weak
+                ad hoc arguments</italic>.
+            </p>
+        </body>
+    </sub-article>
+</article>

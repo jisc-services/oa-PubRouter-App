@@ -1,0 +1,32 @@
+#######################################################################################
+# /etc/sudoers.d/jenkins
+#   This file contains sudoer commands required by PubRouter jenkins user.
+#
+#   It should be installed manually in /etc/sudoers.d directory, renaming the file to 'jenkins' and setting
+#   its' permissions to '0440' as follows:
+#       # As root user
+#       # From location where oa-PubRouter-App git project has been cloned / fetched...
+#       cp .../deployment/etc_sudoers-d_jenkins /etc/sudoers.d/jenkins
+#       chmod 0440  jenkins
+#######################################################################################
+
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/createFTPuser.sh
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/deleteFTPuser.sh
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/moveFTPfiles.sh
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/moveAtyponFTPfiles.sh
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/checkUserExists.sh
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/checkFtpSessionExists.sh
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/delete_old_ftp_files.sh
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/delete_files.sh
+jenkins ALL = (root) NOPASSWD:/home/jenkins/.pubrouter/sh/kill_sftp.sh
+jenkins ALL = (root) NOPASSWD:/bin/cp
+jenkins ALL = (root) NOPASSWD:/bin/rm /etc/supervisor/conf.d/*
+jenkins ALL = (root) NOPASSWD:/usr/bin/rename
+jenkins ALL = (root) NOPASSWD:/bin/ln
+jenkins ALL = (root) NOPASSWD:/bin/cmp
+jenkins ALL = (root) NOPASSWD:/bin/chmod +x /home/jenkins/.pubrouter/sh/*.sh
+jenkins ALL = (root) NOPASSWD:/bin/mkdir
+jenkins ALL = (root) NOPASSWD:/bin/chown
+jenkins ALL = (root) NOPASSWD:/usr/bin/supervisorctl
+
+# end #

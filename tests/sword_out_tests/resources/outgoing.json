@@ -1,0 +1,232 @@
+{
+    "id": "1234567890",
+    "created": "2015-02-02T00:00:00Z",
+    "vers": "4",
+    "analysis_date": "2015-02-02T00:00:00Z",
+    "provider": {
+        "agent":  "Springer Nature"
+    },
+    "event": "submission",
+    "content": {
+        "packaging_format": "https://pubrouter.jisc.ac.uk/FilesAndJATS"
+    },
+    "links": [
+        {
+            "type": "splash",
+			"access": "special",
+            "format": "text/html",
+            "url": "http://fake.jisc.ac.uk/api/v1/notification/1234567890/content/1"
+        },
+        {
+            "type": "fulltext",
+			"access": "public",
+            "format": "application/pdf",
+            "url": "http://fake.jisc.ac.uk/api/v1/notification/1234567890/content/2"
+        },
+        {
+            "type": "package",
+            "format": "application/zip",
+            "url": "http://fake.jisc.ac.uk/api/v1/notification/1234567890/content/ArticleFilesJATS.zip",
+            "packaging": "http://purl.org/net/sword/package/SimpleZip"
+        },
+        {
+            "type": "package",
+            "format": "application/zip",
+            "url": "http://fake.jisc.ac.uk/api/v1/notification/1234567890/content",
+            "packaging": "https://pubrouter.jisc.ac.uk/FilesAndJATS"
+        }
+    ],
+    "metadata": {
+        "journal": {
+            "title": "Journal of Important Things",
+            "abbrev_title": "Abbreviated version of journal  title",
+            "volume": "Volume-num",
+            "issue": "Issue-num",
+            "publisher": ["Premier Publisher"],
+            "identifier": [
+                {"type": "issn", "id": "1234-5678" },
+                {"type": "eissn", "id": "1234-5678" },
+                {"type": "pissn", "id": "9876-5432" },
+                {"type": "doi", "id": "10.pp/jit" }
+            ]
+        },
+        "article": {
+            "title": "Test Article",
+            "subtitle": ["Test Article Subtitle"],
+            "type": "article",
+            "version": "vor",
+            "start_page": "Start-pg",
+            "end_page": "End-pg",
+            "page_range": "Page-range",
+            "num_pages": "Total-pages",
+            "e_num": "e-Location",
+            "language": ["eng", "american"],
+            "abstract": "Abstract of the work ",
+            "identifier": [
+                {"type": "doi", "id": "55.aa/base.1"}
+            ],
+            "subject": ["science", "technology", "arts", "medicine"]
+        },
+        "author": [{
+            "type": "corresp",
+            "name": {
+                "firstname": "Richard",
+                "surname": "Jones",
+                "fullname": "Richard Jones",
+                "suffix": "Snr."
+            },
+            "organisation_name": "",
+            "identifier": [{
+                "type": "orcid",
+                "id": "3333-0000-1111-2222"
+            }, {
+                "type": "email",
+                "id": "richard@example.com"
+            }, {
+                "type": "email",
+                "id": "richard2@example.com"
+            }
+			],
+           "affiliations": [{
+                "identifier": [{"type": "ISNI", "id": "isni 1111 2222 3333"}, {"type": "ROR", "id": "ror-123"}],
+                "org": "Cottage Labs org",
+                "dept": "Moonshine dept",
+                "street": "Lame street",
+                "city": "Cardiff",
+                "state": "Gwent",
+                "postcode": "HP3 9AA",
+                "country": "England",
+                "country_code": "GB",
+                "raw": "Cottage Labs org, Moonshine dept, Lame street, Cardiff, Gwent, HP3 9AA, England, ISNI: isni 1111 2222 3333, ROR: ror-123"
+            }]
+        },{
+            "type": "author",
+            "name": {
+                "firstname": "Mark",
+                "surname": "MacGillivray",
+                "fullname": "Mark MacGillivray",
+                "suffix": ""
+            },
+            "organisation_name": "Gilli-Gravy",
+            "identifier": [{
+                "type": "orcid",
+                "id": "1111-2222-3333-0000"
+            }, {
+                "type": "email",
+                "id": "mark@example.com"
+            }
+            ],
+           "affiliations": [{
+                "identifier": [{"type": "ISNI", "id": "isni 1111 2222 3333"}, {"type": "ROR", "id": "ror-123"}],
+                "org": "Cottage Labs org",
+                "dept": "Moonshine dept",
+                "street": "Lame street",
+                "city": "Cardiff",
+                "state": "Gwent",
+                "postcode": "HP3 9AA",
+                "country": "England",
+                "country_code": "GB",
+                "raw": "Cottage Labs org, Moonshine dept, Lame street, Cardiff, Gwent, HP3 9AA, England, ISNI: isni 1111 2222 3333, ROR: ror-123"
+            }]
+        },{
+            "type": "author",
+            "organisation_name": "Collaboration group",
+            "identifier": [
+                {
+                "type": "email",
+                "id": "collabs@example.com"
+            }
+            ],
+            "affiliations": [{
+                "raw": "Collaboration Labs, EH9 5TP"
+            }]
+        }],
+        "contributor": [{
+            "type": "editor",
+            "name": {
+                "firstname": "Manolo",
+                "surname": "Williams",
+                "fullname": "Manolo Williams",
+                "suffix": ""
+            },
+            "organisation_name": "",
+            "identifier": [{
+                "type": "email",
+                "id": "manolo@example.com"
+            },
+                {
+                    "type": "email",
+                    "id": "manoltwo@belford.ac.uk"
+                }
+            ],
+            "affiliations": [{
+                "raw": "Lalala Labs, BS1 8HD"
+            }]
+        }],
+
+        "accepted_date": "2014-09-01",
+        "publication_date": {
+            "publication_format": "",
+            "date": "2015-01-01",
+            "season": ""
+        },
+        "history_date": [{
+                "date_type": "received",
+                "date": "2014-07-03"
+            },
+            {
+                "date_type": "accepted",
+                "date": "2014-11-12"
+            },
+            {
+                "date_type": "epub",
+                "date": "2015-01-01"
+            },
+            {
+                "date_type": "ppub",
+                "date": "2015-01-15"
+            }
+        ],
+        "publication_status": "Published",
+        "funding": [
+            {
+                "name": "Rotary Club of Eureka",
+                "identifier": [
+                    {"type": "ringgold", "id": "rot-club-eurek"},
+                    {"type": "Fundref", "id": "https://doi.org/10.13039/100008650"}
+                ],
+                "grant_numbers": ["BB/34/juwef"]
+            },
+            {
+                "name": "Wellcome Trust",
+                "identifier": [
+                    {"type": "ror", "id": "https://ror.org/029chgv08"}
+                ],
+                "grant_numbers": ["BB/34/judoi"]
+            },
+            {
+                "name": "Bill and Melinda Gates Foundation",
+                "identifier": [
+                    {"type": "doi", "id": "http://dx.doi.org/10.13039/100000865"}
+                ],
+                "grant_numbers": []
+            }
+        ],
+        "embargo": {
+            "end": "2030-01-01",
+            "start": "2015-01-01",
+            "duration": 12
+        },
+        "license_ref": [{
+                "title": "licence title",
+                "type": "ccby",
+                "url": "http://url",
+                "version": "1",
+                "start": "2016-01-01",
+                "best": true
+            }
+        ],
+        "peer_reviewed": true,
+        "ack": "Some acknowledgement text"
+    }
+}

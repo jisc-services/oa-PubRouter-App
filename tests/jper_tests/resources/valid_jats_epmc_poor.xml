@@ -1,0 +1,342 @@
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.1d2 20140930//EN" "JATS-archivearticle1.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" article-type="review-article">
+	<?properties open_access?>
+	<?DTDIdentifier.IdentifierValue -//NLM//DTD Journal Publishing DTD v2.3 20070202//EN?>
+	<?DTDIdentifier.IdentifierType public?>
+	<?SourceDTD.DTDName journalpublishing.dtd?>
+	<?SourceDTD.Version 2.3?>
+	<?ConverterInfo.XSLTName jp2nlmx2.xsl?>
+	<?ConverterInfo.Version 2?>
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="nlm-ta">Front Chem</journal-id>
+			<journal-id journal-id-type="iso-abbrev">Front Chem</journal-id>
+			<journal-id journal-id-type="publisher-id">Front. Chem.</journal-id>
+			<journal-title-group>
+				<journal-title>Frontiers in Chemistry</journal-title>
+			</journal-title-group>
+			<issn pub-type="epub">2296-2646</issn>
+			<publisher>
+				<publisher-name>Frontiers Media S.A.</publisher-name>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-id pub-id-type="pmcid">4365737</article-id>
+			<article-id pub-id-type="doi">10.3389/fchem.2015.00017</article-id>
+			<article-categories>
+				<subj-group subj-group-type="heading">
+					<subject>Chemistry</subject>
+					<subj-group>
+						<subject>Mini Review</subject>
+					</subj-group>
+				</subj-group>
+			</article-categories>
+			<title-group>
+				<article-title>The elusive nature and diagnostics of misfolded A&#x003b2; oligomers</article-title>
+			</title-group>
+			<contrib-group>
+				<contrib contrib-type="author" corresp="yes">
+					<name>
+						<surname>Asoli</surname>
+						<given-names>Eleonora</given-names>
+					</name>
+					<email>e.asoli&commat;frontiersin.org</email>
+					<xref ref-type="aff" rid="aff1">
+						<sup>1</sup>
+					</xref>
+					<uri xlink:type="simple" xlink:href="http://community.frontiersin.org/people/u/205620"/>
+				</contrib>
+				<contrib contrib-type="editor">
+					<name>
+						<surname>Beebee</surname>
+						<given-names>Jane with local xref</given-names>
+					</name>
+					<aff>
+						<sup>99</sup>Beebee's very own Affiliation</aff>
+					<email>j.beebee&commat;frontiersin.org</email>
+					<xref ref-type="aff" rid="aff999">
+						<sup>1</sup>
+					</xref>
+					<uri xlink:type="simple" xlink:href="http://community.frontiersin.org/people/u/205620"/>
+					<contrib-id contrib-id-type="orcid" authenticated="true">http://orcid.org/0000-0002-1825-8888</contrib-id>
+					<contrib-id contrib-id-type="scopus">123456</contrib-id>
+				</contrib>
+				<contrib contrib-type="author">
+					<name>
+						<surname>Ceecee</surname>
+						<given-names>Bob with global xref</given-names>
+					</name>
+					<email>b.ceecee&commat;frontiersin.org</email>
+					<xref ref-type="aff" rid="aff2"/>
+					<uri xlink:type="simple" xlink:href="http://community.frontiersin.org/people/u/205620"/>
+				</contrib>
+				<aff>An <sup>9</sup> affiliation without ID.</aff>
+				<aff>Another <sup>super</sup> affiliation without ID.</aff>
+				<aff id="aff1">Local affiliation WITH ID</aff>
+			</contrib-group>
+			<contrib-group>
+				<contrib contrib-type="author">
+					<name>
+						<surname>Cerasoli</surname>
+						<given-names>Eleonora</given-names>
+					</name>
+					<email>e.cerasoli&commat;frontiersin.org</email>
+					<xref ref-type="aff" rid="aff1">
+						<sup>1</sup>
+					</xref>
+					<uri xlink:type="simple" xlink:href="http://community.frontiersin.org/people/u/205620"/>
+				</contrib>
+				<contrib contrib-type="an author">
+					<name>
+						<surname>Ryadnov</surname>
+						<given-names>Maxim G.</given-names>
+					</name>
+					<xref ref-type="aff" rid="aff1">
+						<sup>1</sup>
+					</xref>
+					<uri xlink:type="simple" xlink:href="http://community.frontiersin.org/people/u/96728"/>
+				</contrib>
+				<contrib contrib-type="assisting author">
+					<name>
+						<surname>Austen</surname>
+						<given-names>Brian M.</given-names>
+					</name>
+					<contrib-id contrib-id-type="orcid" authenticated="true">http://orcid.org/0000-0002-1825-0097</contrib-id>
+					<contrib-id contrib-id-type="scopus">7007156898</contrib-id>
+					<xref ref-type="aff" rid="aff2">
+						<sup>2</sup>
+					</xref>
+					<xref ref-type="author-notes" rid="fn001">
+						<sup>*</sup>
+					</xref>
+					<uri xlink:type="simple" xlink:href="http://community.frontiersin.org/people/u/199718"/>
+				</contrib>
+			</contrib-group>
+			<aff id="aff1">
+				<sup>1</sup>
+				<institution>Biotechnology Department, National Physical Laboratory</institution>
+				<city>Teddington</city>
+				<country>UK</country>
+				<postal-code>SW1 5EY</postal-code>
+			</aff>
+			<aff id="aff2">
+				<sup>2</sup>
+				<institution>Basic Medical Sciences, St. George's University of London</institution>
+				<city>London</city>
+				<country>UK</country>
+				<postal-code>EH10 6KL</postal-code>
+			</aff>
+			<author-notes>
+				<fn fn-type="edited-by">
+					<p>Edited by: Graham Lorimer Simpson, GlaxoSmithKline, UK</p>
+				</fn>
+				<fn fn-type="edited-by">
+					<p>Reviewed by: Luis &#x000c1;lvarez De Cienfuegos Rodr&#x000ed;guez, University of Granada, Spain; Juan Jose Diaz-Mochon, University of Granada, Spain; Richard B. Parsons, King's College London, UK</p>
+				</fn>
+				<corresp id="fn001">*Correspondence: Brian M. Austen, St. George's University of London, Cranmer Terrace, London SW17 0RE, UK<email xlink:type="simple">sghk200&commat;sgul.ac.uk</email>
+				</corresp>
+				<fn fn-type="other" id="fn002">
+					<p>This article was submitted to Medicinal and Pharmaceutical Chemistry, a section of the journal Frontiers in Chemistry</p>
+				</fn>
+			</author-notes>
+			<pub-date pub-type="epub">
+				<day>19</day>
+				<month>3</month>
+				<year>2015</year>
+			</pub-date>
+			<pub-date pub-type="collection">
+				<year>2015</year>
+			</pub-date>
+			<volume>3</volume>
+			<elocation-id>17</elocation-id>
+			<history>
+				<date date-type="received">
+					<day>15</day>
+					<month>12</month>
+					<year>2014</year>
+				</date>
+				<date date-type="accepted">
+					<day>24</day>
+					<month>2</month>
+					<year>2015</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-statement>Copyright &#x000a9; 2015 Cerasoli, Ryadnov and Austen.</copyright-statement>
+				<copyright-year>2015</copyright-year>
+				<license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by/4.0/">
+					<license-p>This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). <sup>SOME SUP</sup> The use, distribution or reproduction in other forums is permitted, provided the original author(s) or licensor are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.</license-p>
+				</license>
+				<license>
+					<ali:license_ref start_date="2017-05-02">http://some-url/ok</ali:license_ref>
+				</license>
+				<ali:free_to_read start_date="2017-05-15" end_date="2017-09-15"/>
+			</permissions>
+			<abstract>
+				<p>Amyloid-beta (A&#x003b2;) peptide oligomers are believed to be the causative agents of Alzheimer's disease (AD). Though post-mortem examination shows that insoluble fibrils are deposited in the brains of AD patients in the form of intracellular (tangles) and extracellular (plaques) deposits, it has been observed that cognitive impairment is linked to synaptic dysfunction in the stages of the illness well before the appearance of these mature deposits. Increasing evidence suggests that the most toxic forms of A&#x003b2; are soluble low-oligomer ligands whose amounts better correlate with the extent of cognitive loss in patients than the amounts of fibrillar insoluble forms. Therefore, these ligands hold the key to a better understanding of AD prompting the search for clearer correlations between their structure and toxicity. The importance of such correlations and their diagnostic value for the early diagnosis of AD is discussed here with a particular emphasis on the transient nature and structural plasticity of misfolded A&#x003b2; oligomers.</p>
+			</abstract>
+			<kwd-group>
+				<kwd>A&#x003b2; oligomers</kwd>
+				<kwd>neurodegeneration</kwd>
+				<kwd>protein misfolding</kwd>
+				<kwd>fibrillogenesis</kwd>
+				<kwd>Alzheimer's disease</kwd>
+			</kwd-group>
+			<counts>
+				<fig-count count="2"/>
+				<table-count count="0"/>
+				<equation-count count="0"/>
+				<ref-count count="71"/>
+				<page-count count="6"/>
+				<word-count count="4976"/>
+			</counts>
+			<funding-group>
+				<award-group id="nih-509">
+					<funding-source country="US">NIH</funding-source>
+					<award-id>NIH GM61374</award-id>
+					<principal-award-recipient>Stanford</principal-award-recipient>
+				</award-group>
+			</funding-group>
+			<funding-group>
+				<award-group id="nsf-510">
+					<funding-source country="US">NSF</funding-source>
+					<award-id>NSF DBI-0317510</award-id>
+					<principal-award-recipient>Berkeley</principal-award-recipient>
+				</award-group>
+				<award-group id="arda-511"  award-type="contract">
+					<funding-source country="US">ARDA ACQUAINT</funding-source>
+					<principal-award-recipient>Berkeley</principal-award-recipient>
+				</award-group>
+				<award-group id="geneentech-512" award-type="gift">
+					<funding-source country="US">Genentech Corp.</funding-source>
+					<principal-award-recipient>Berkeley</principal-award-recipient>
+				</award-group>
+			</funding-group>
+			<funding-group>
+				<award-group>
+					<funding-source id="gs1">National Institutes of Health</funding-source>
+					<award-id>GM18458</award-id>
+				</award-group>
+				<award-group>
+					<funding-source id="gs2">National Science Foundation</funding-source>
+					<award-id>DMS-0204674</award-id>
+					<award-id>DMS-0244638</award-id>
+				</award-group>
+			</funding-group>
+		</article-meta>
+	</front>
+	<body>
+		<sec>
+			<title>Protein conformational disorders</title>
+			<p>Cerebral proteopathies including Alzheimer's, Parkinson's, and Huntington's diseases result from progressive amyloidogenesis for which protein misfolding is the cause (Eisenberg and Jucker,<xref rid="B12" ref-type="bibr">2012</xref>). The complexity of these diseases is the main reason behind the persistent lack of efficient therapeutic approaches. Traditional drug development relies on finding a therapeutic target which for most diseases can be traced down to an individual molecule, mutation or infection. In contrast, proteopathies are process disorders which develop over many years through a chain of conformational changes starting with an abnormally folded protein or/as in prion diseases, as a result of permissive templating of an endogenous protein by an exogenous amyloidogenic form. Therefore, proteopathies are often referred to as protein conformational disorders with a particular emphasis on a specific causative agent. This mini-review focuses on one of such agents&#x02014;amyloid-beta or A&#x003b2;&#x02014;and discusses the elusive nature of its development into cytotoxic oligomers (Meli et al.,<xref rid="B43" ref-type="bibr">2014</xref>).</p>
+			<p>A&#x003b2; stands for a proteolytic product of a transmembrane amyloid precursor protein (APP). This is a 40&#x02013;42 residue peptide which constitutes a primary structural component of insoluble fibrils accumulating in microscopic deposits, senile plaques, that are found in the post-mortem brains of Alzheimer's disease (AD) patients (Glenner and Wong,<xref rid="B17" ref-type="bibr">1984</xref>; Masters et al.,<xref rid="B41" ref-type="bibr">1985</xref>). Early studies showed that in such plaques A&#x003b2; existed in a stable multimeric form and some credence was given to the role of A&#x003b2; in the disease by the demonstration that aggregated forms of A&#x003b2; were toxic to neuronal cells<italic>in vitro</italic>and<italic>in vivo</italic>(Walsh and Selkoe,<xref rid="B65" ref-type="bibr">2007</xref>), whereas monomeric, soluble forms were innocuous. However, no correlation was found between the number of amyloid plaques in brain and the extent of cognition loss in examined brains of AD patients. Instead, better correlations were apparent between (i) the total amount of soluble and insoluble &#x003b2;-amyloid in brain and cognitive decline (McLean et al.,<xref rid="B42" ref-type="bibr">1999</xref>) and (ii) the amounts of A&#x003b2; oligomers and the extent of cognitive loss in patients as opposed to the number of fibrils (Glabe,<xref rid="B16" ref-type="bibr">2008</xref>). These findings are in a striking agreement with that fibrils are less toxic to neurons than soluble oligomers (Sakono and Zako,<xref rid="B55" ref-type="bibr">2010</xref>) and that lowering the cytotoxicity of &#x003b2;-amyloid does not necessarily reduce fiber formation (Zerovnik et al.,<xref rid="B70" ref-type="bibr">2011</xref>; Jiang et al.,<xref rid="B26" ref-type="bibr">2013</xref>). Therefore, A&#x003b2; fibrils can be viewed as repositories of soluble intermediates that are in equilibrium with insoluble forms (Bieschke et al.,<xref rid="B4" ref-type="bibr">2012</xref>) (Figure<xref ref-type="fig" rid="F1">1</xref>).</p>
+			<fig id="F1" position="float">
+				<label>Figure 1</label>
+				<caption>
+					<p>
+						<bold>Schematic representations of (A) spontaneous A&#x003b2; aggregation from &#x003b2;-sheet&#x02013;nucleating monomers (lag) phase to &#x003b2;-sheet-rich oligomers, protofibrils and fibrils (PDB entries 1BEG, 2LFM, 2GSP, and 2OTK)</bold>. Fibril model is reproduced under the terms of the creative Commons Attribution non-commercial license from Marshall (<xref rid="B39" ref-type="bibr">2009</xref>).<bold>(B)</bold>Two elementary units, &#x003b2;-hairpin and &#x003b2;-arch, leading to different assembly pathways (PDB entries 2OTK and 2LNQ rendered by Swiss PDB Viewer).</p>
+				</caption>
+				<graphic xlink:href="fchem-03-00017-g0001"/>
+			</fig>
+			<p>Outstanding questions relate to the precise relationships between the primary and secondary structure of A&#x003b2; and those tertiary interactions that underpin different polymorphic forms, transient or equilibrated, but which remain elusive to most experimental conditions that fail to adequately replicate A&#x003b2; aggregation pathways (Bitan et al.,<xref rid="B5" ref-type="bibr">2005</xref>; Philo,<xref rid="B51" ref-type="bibr">2006</xref>). Yet again, it is becoming apparent that it is the conformational plasticity of A&#x003b2; which is responsible for the observed polymorphism and toxicity (Hubin et al.,<xref rid="B23" ref-type="bibr">2014</xref>). Along the same lines, it is reasonable to consider a sequence of nucleating processes each of which may potentially lead to different cytotoxicity (Necula et al.,<xref rid="B47" ref-type="bibr">2007</xref>; Miller et al.,<xref rid="B44" ref-type="bibr">2010</xref>). Such a notion prompts an important conclusion that key factors for the cytotoxic effects of &#x003b2;-amyloid may be confined to interactions between soluble oligomers and cellular membranes (Broersen et al.,<xref rid="B6" ref-type="bibr">2010</xref>), (Broersen et al.,<xref rid="B6" ref-type="bibr">2010</xref>; Stefani,<xref rid="B61" ref-type="bibr">2012</xref>) favoring stronger binders (Miller et al.,<xref rid="B44" ref-type="bibr">2010</xref>).</p>
+		</sec>
+
+	</body>
+	<back>
+		<ref-list>
+			<title>References</title>
+			<ref id="B1">
+				<mixed-citation publication-type="journal">
+					<person-group person-group-type="author">
+						<name>
+							<surname>Armen</surname>
+							<given-names>R. S.</given-names>
+						</name>
+						<name>
+							<surname>Demarco</surname>
+							<given-names>M. L.</given-names>
+						</name>
+						<name>
+							<surname>Alonso</surname>
+							<given-names>D. O.</given-names>
+						</name>
+						<name>
+							<surname>Daggett</surname>
+							<given-names>V.</given-names>
+						</name>
+					</person-group>(<year>2004</year>).<article-title>Pauling and Corey's alpha-pleated sheet structure may define the prefibrillar amyloidogenic intermediate in amyloid disease</article-title>.<source>Proc. Natl. Acad. Sci. U.S.A</source>.<volume>101</volume>,<fpage>11622</fpage>&#x02013;<lpage>11627</lpage>
+					<pub-id pub-id-type="doi">10.1073/pnas.0401781101</pub-id>
+					<pub-id pub-id-type="pmid">15280548</pub-id>
+				</mixed-citation>
+			</ref>
+			<ref id="B2">
+				<mixed-citation publication-type="journal">
+					<person-group person-group-type="author">
+						<name>
+							<surname>Austen</surname>
+							<given-names>B. M.</given-names>
+						</name>
+						<name>
+							<surname>Aggrey</surname>
+							<given-names>R.</given-names>
+						</name>
+						<name>
+							<surname>Merh</surname>
+							<given-names>A.</given-names>
+						</name>
+						<name>
+							<surname>Ly</surname>
+							<given-names>L.</given-names>
+						</name>
+						<name>
+							<surname>Lawrence</surname>
+							<given-names>R.</given-names>
+						</name>
+						<name>
+							<surname>Yeong</surname>
+							<given-names>K.</given-names>
+						</name>
+					</person-group>(<year>2008</year>).<article-title>P1-354: a diagnostic ELISA measures higher levels of soluble oligomers of &#x003b2;-amyloid in sera from Alzheimer's patients than age-matched controls</article-title>.<source>Alzheimers Dement. J. Alzheimers Assoc</source>.<volume>4</volume>,<fpage>T322</fpage>
+					<pub-id pub-id-type="doi">10.1016/j.jalz.2008.05.936</pub-id>
+				</mixed-citation>
+			</ref>
+
+		</ref-list>
+		<glossary>
+			<def-list>
+				<title>Abbreviations</title>
+				<def-item>
+					<term>AD</term>
+					<def>
+						<p>Alzheimer's disease</p>
+					</def>
+				</def-item>
+				<def-item>
+					<term>APP</term>
+					<def>
+						<p>amyloid precursor protein</p>
+					</def>
+				</def-item>
+				<def-item>
+					<term>ADDLs</term>
+					<def>
+						<p>amyloid-derived diffusible ligands</p>
+					</def>
+				</def-item>
+				<def-item>
+					<term>TTR</term>
+					<def>
+						<p>transthyretin</p>
+					</def>
+				</def-item>
+				<def-item>
+					<term>SDS</term>
+					<def>
+						<p>sodium dodecyl sulphate.</p>
+					</def>
+				</def-item>
+			</def-list>
+		</glossary>
+	</back>
+	<namespaced:element>poor</namespaced:element>
+</article>

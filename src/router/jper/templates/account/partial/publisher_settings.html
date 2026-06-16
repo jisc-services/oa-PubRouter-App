@@ -1,0 +1,61 @@
+	<div id="deposit_history" class="box box--padding-large box--brd-mgreyblue">
+		<h3>Deposit history</h3>
+		<p>View and download a summary report of your past deposits to Publications Router.<br>
+			<a target="_blank" href="{{url_for('account.deposit_history', pub_uuid=org_acc.uuid)}}">Daily deposit summary</a>
+			<span class="open-new"></span>
+		</p>
+		<p>View a detailed report of the last 3 months deposits that were matched to institutional repositories.<br>
+			<a target="_blank" href="{{url_for('account.deposits', pub_uuid=org_acc.uuid)}}">Matched deposit history</a>
+			<span class="open-new"></span>
+		</p>
+	</div>
+	<div id="manage_defaults" class="box box--padding-large box--brd-mgreyblue">
+		<h3>Defaults (optional) - <small>Embargo period, Post-embargo licence, Peer-reviewed indicator</small></h3>
+		<div class="accordion cms">
+			<h4>Default embargo</h4>
+			<p>The default embargo duration (in months), if you specify one below, will be applied when the default licence is applied, where:</p>
+			<ul>
+				<li>No licence is specified in the article's metadata</li>
+				<li>The article metadata includes a publication date.</li>
+			</ul>
+			<p>In such cases Publications Router will calculate an embargo end-date by adding the default embargo duration to the publication date. This calculated embargo end-date will be included in the article metadata sent to repositories. It will also be used to set the start date of the default post-embargo licence.</p>
+
+			<h4>Default post-embargo licence</h4>
+			<p>If present, the default licence information entered below will be applied whenever the article-level metadata you provide lacks any licensing metadata. (In other words, if an article already has a licence specified in its metadata then that is used; otherwise this default is added to the outgoing metadata sent to repositories.)</p>
+			<p>In those cases, in the outgoing article metadata, the start date of the post-embargo licence will be set to the embargo end date where that can be deduced (see below).</p>
+
+			<h4>Peer reviewed indicator</h4>
+			<p>If all articles submitted to Publications Router have been peer reviewed, then that may be indicated here.  This information will be included in the article metadata sent to repositories.</p>
+
+			<h4>No defaults</h4>
+			<p>If you do not wish Router ever to apply a global default embargo period or post-embargo licence or peer reviewed indicator, please leave all of this section blank.</p>
+		</div>
+		<form method="post" action="{{url_for('account.update_defaults', org_uuid=org_acc.uuid)}}#manage_defaults" class="form">
+			<p class="info-note">Either leave all fields blank or enter both Embargo duration and a Licence URL and/or set Peer reviewed checkbox.</p>
+			<ul class="form-fields">
+			   	<li class="form__item">
+					{{render_field(form_pub.embargo_duration,'form__item','form__label required')}}
+					<span class="info-note">Set to 0 if licence applies immediately. </span>
+		   		</li>
+			   	<li class="form__item">
+			   		{{render_field(form_pub.license_url,'form__item wide-text','form__label required')}}
+			   	</li>
+				  <li class="form__item">
+			   		{{render_field(form_pub.license_title,'form__item','form__label')}}
+					<span class="info-note">Example: <em>Creative Commons Attribution</em> or<br><em>XYZ Publisher Ltd post-embargo licence for accepted manuscript</em></span>
+			   	</li>
+			   	<li class="form__item">
+			   		{{render_field(form_pub.license_type,'form__item','form__label')}}
+					<span class="info-note">Example: <em>CC BY-NC-ND</em> &nbsp; or<br><em>open-access licence</em> &nbsp; or<br><em>XYZ Publisher post-embargo licence</em></span>
+			   	</li>
+				  <li class="form__item">
+			   		{{render_field(form_pub.license_version,'form__item','form__label')}}
+			   	</li>
+				<li class="form__item-checkbox">
+					<br>
+					{{render_field(form_pub.peer_reviewed, 'form__item', 'form__label')}}
+				</li>
+			</ul>
+			{% if curr_user_is_not_readonly %}<br><button class="btn btn--3d btn--primary" id="update_lic" type="submit">Update</button>{% endif %}
+		</form>
+	</div>

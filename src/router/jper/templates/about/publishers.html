@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="row">
+	<div class="col span-11 cms">
+		<h1>For publishers</h1>
+
+		<h2>Key benefits</h2>
+		<ul>
+			<li>Fulfil your obligations under Plan-S-compliant agreements, such as transformative agreements or compliance via the green route.</li>
+			<li>Help institutions accurately capture and adhere to your licensing terms</li>
+			<li>Help UK institutions and their researchers to comply with Plan S, the policy on open access and the REF, and mandates and policies from other bodies such as UKRI and the Wellcome Trust.</li>
+			<li>Be seen to be helping institutions in their long-standing aspiration to capture and disseminate copies of the outputs of their researchers using their open repositories.</li>
+		</ul>
+
+		<h2>How it works</h2>
+		<p>Publications Router delivers full-text articles and metadata directly to institutions that match the affiliations of the authors, including all the co-authors, or other parameters such as their ORCIDs or grant numbers.</p>
+		<p><img src="/static/img_1.png" alt="Schematic showing the flow of notifications from a publisher through publications router to a repository or CRIS."></p>
+
+		<h2>Fulfilling Plan S</h2>
+		<p>Publications Router’s key focus is to work with publishers that have signed agreements with Jisc Collections in which they commit to participating in the service in order to help institutions comply with <a href="https://www.coalition-s.org/">Plan S.</a></p>
+		<p>This may take the form of either or both of a transformative agreement or compliance via the green route, in which the articles are deposited onto open repositories for immediate open access with no embargo.</p>
+
+		<h2>What we need from you in fulfilment of a transformative agreement</h2>
+		<p>If you have signed a transformative agreement, we work together to pass on OA content upon publication of the version of record (VoR). Please supply all OA content, including both articles that have been flipped to OA as a result of the transformative agreement and also content from your wholly-OA journals.</p>
+
+		<h2>What we need from you for green-route compliance</h2>
+		<p>If you have signed an agreement in which you commit to facilitating green-route compliance, we ask you to provide at least the accepted manuscript (AM) of all articles no later than the date of publication.</p>
+
+		<h2>Other arrangements</h2>
+		<p>Publishers that have not signed a Plan-S-compliant agreement can still use Publications Router to deliver material direct to the right institutions, accurately reporting licensing terms and other requirements.</p>
+
+		<h2>Workflows and metadata</h2>
+		<p>To fulfil the minimal requirements of a Plan-S-compliant agreement, the workflow needs to deliver articles upon publication, including the metadata set out below.</p>
+		<ul>
+			<li><b>Upon publication</b> please supply the full-text article accompanied by the finalised metadata, including
+				<ul>
+					<li>The article's <b>DOI</b></li>
+					<li>The article's <b>title</b></li>
+					<li>The full list of (co-)<b>authors</b> and, crucially, their <b>affiliations</b> (and ORCIDs if available)</li>
+					<li>The full <b>bibliographic details</b> (including year of publication, journal title, volume, page numbers)</li>
+					<li><b>Licensing metadata</b> indicating a CC BY licence with no embargo period</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h2>Sending us the content – technical guidelines</h2>
+		<p>Our standard process is for publishers to supply the <b>metadata as JATS</b> (or NLM) XML, accompanied by content files (including <b>PDF of the full-text article</b>), via <b>SFTP</b>. Full technical documentation for this is available in our <a href="/static/docs/FTP_deposit_protocol_for_new_publishers.pdf">FTP Deposit Protocol document</a>.</p>
+		<p>We do not wish to harvest from publishers’ individual APIs.</p>
+
+		<h2>Further technical information</h2>
+		<p>Please see our <a href="{{url_for('about.resources')}}">technical information page</a> for details of Publications Router’s architecture and how to connect to it.</p>
+
+		<h2>Getting started</h2>
+		<p>Publications Router is closing on 1 July 2026. It is therefore no longer open to new publishers. For further information, please contact us via <a href="mailto:XXXX@YYYY.ac.uk?subject=PubRouter%20FTP%20Technical%20Documentation">XXXX@YYYY.ac.uk</a> mentioning Publications Router.</p>
+	</div>
+</div>
+
+{% endblock %}
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

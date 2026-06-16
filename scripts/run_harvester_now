@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+"""
+run_harvester_now
+@author: Jisc
+
+This utility program provides a way to run the harvester manually (as jenkins user) instead of executing via
+harvester/scheduler.
+
+IMPORTANT: Before running this utility you must activate Python virtual machine context by using command:
+    source /usr/local/PubRouter/app/bin/activate
+
+"""
+from octopus.core import initialise
+from router.harvester.harvester_main import app, Harvester
+
+if __name__ == '__main__':
+    with app.app_context():
+        initialise()
+        # Execute harvester process
+        Harvester.run()
+

@@ -1,0 +1,95 @@
+<footer class="site-footer" role="contentinfo" aria-label="Site footer listing links to further information">
+<!--.light here denotes depth of bg tint-->
+	<div class="inner l-pull-left light l-gutter--top">
+  		<div class="l-centre-offset row"> 
+    	<!-- Based on the way these elements behave when folded down, this is a standard row/col layout-->
+			<div class="col span-4">
+  				<div class="linklist l-gutter--right">
+    				<div class="linklist__title">About Publications Router</div>
+ 					<ul>
+						<li class="linklist__item"> <a href="{{url_for('about.institutions')}}">Information for institutions</a></li>
+						<li class="linklist__item"> <a href="{{url_for('about.publishers')}}">Information for publishers</a></li>
+						<li class="linklist__item"> <a href="{{url_for('about.resources')}}">Technical information</a></li>
+						<li class="linklist__item"> <a href="{{url_for('about.providerlist')}}">List of Router content providers</a></li>
+   					</ul>
+  				</div>
+  				<!--/ .linklist --> 
+			</div>
+			<div class="col span-4">
+  				<div class="linklist l-gutter--right">
+    				<div class="linklist__title">Useful links</div>
+ 					<ul>     
+     					<li class="linklist__item"><a href="https://www.jisc.ac.uk/research-management">Jisc's research management services</a></li>
+      					<li class="linklist__item"><a href="https://research.jiscinvolve.org/wp/">Jisc research blog</a>&nbsp; <a href="https://research.jiscinvolve.org/wp/tag/publications-router/">(router posts)</a></li>
+    				</ul>
+  				</div>
+  				<!--/ .linklist --> 
+			</div>
+ 			<div class="col span-4">
+  				<div class="linklist l-gutter--right">
+    				<div class="linklist__title">Contact</div>
+ 					<ul>
+                		<li class="linklist__item">
+                  			<a href="mailto:XXXX@YYYY.ac.uk?subject=Publications%20Router%20-%20">XXXX@YYYY.ac.uk</a> - please mention Publications Router in your email
+                		</li>
+               		</ul>
+  				</div>
+  				<!--/ .linklist --> 
+  			</div>
+		</div>
+		<!--/ /-centre-offset.row --> 
+	</div>
+	<!--/ .inner.l-pull-left --> 
+	
+	
+	<!--.medium here denotes depth of bg tint-->
+	<div class="inner l-pull-left medium bottom-section">
+		<div class="l-centre-offset row">
+			<div class="col span-6">
+				<div class="l-gutter--right">
+					<div class="divisional-info">
+						<div class="divisional-info__side">
+							<a href="https://jisc.ac.uk"><img alt="Jisc logo" src="/static/css/img/jisc-logo.svg" height="70"></a>
+						</div>
+						<div class="divisional-info__body">
+							<p>We provide secure, cost-effective access to the <abbr title="United Kingdom">UK</abbr>'s richest collection of <a href="https://www.jisc.ac.uk/libraries-and-research">digital content</a>: giving you access to the latest data and content from leading international publishers and providers.</p>
+							<p><a href="https://www.jisc.ac.uk">Find out more at jisc.ac.uk</a></p>
+						</div>
+					</div>	
+				</div> 
+			</div> 
+			<div class="col span-6">
+				<div class="linklist linklist--2col l-gutter--left">
+					<div class="linklist__title">
+						Libraries and research
+					</div>
+					<ul>
+						<li class="linklist__item">
+							<a href="https://www.jisc.ac.uk/libraries-and-learning-resources">Libraries & learning resources</a>
+						</li>
+						<li class="linklist__item">
+							<a href="https://www.jisc.ac.uk/licensing-and-procurement">Licensing & procurement</a>
+						</li>
+						<li class="linklist__item">
+							<a href="https://www.jisc.ac.uk/research-management">Research management</a>
+						</li>
+					</ul>
+				</div>	
+			</div> 	
+		</div>
+	</div>	<!--/ .inner.l-pull-left.medium --> 
+	
+	
+	<!--.heavy here denotes depth of bg tint-->
+	<div class="inner l-pull-left heavy">
+		<div class="l-centre-offset row">
+			<div class="horiz-list">
+				<ul>
+					<li><a href="{{url_for('website.cookies')}}">Cookies</a></li>
+					<li><a href="https://www.jisc.ac.uk/website/privacy-notice">Privacy</a></li>
+					<li><a href="{{url_for('website.accessibility')}}">Accessibility</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>

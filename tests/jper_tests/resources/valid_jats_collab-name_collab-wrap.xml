@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD with OASIS Tables with MathML3 v1.1 20151215//EN" "JATS-archive-oasis-article1-mathml3.dtd">
+<article article-type="review-article"
+         xmlns:mml="http://www.w3.org/1998/Math/MathML"
+         xmlns:oasis="http://www.niso.org/standards/z39-96/ns/oasis-exchange/table"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+	<front>
+		<journal-meta>
+			<journal-id journal-id-type="publisher-id">3DP</journal-id>
+			<journal-title-group>
+				<journal-title>Journal of 3D printing in medicine</journal-title>
+				<abbrev-journal-title abbrev-type="publisher">J. 3D Print. Med.</abbrev-journal-title>
+				<abbrev-journal-title abbrev-type="pubmed">Journal of 3D printing in medicine</abbrev-journal-title>
+			</journal-title-group>
+			<issn pub-type="ppub">2059-4755</issn>
+			<issn pub-type="epub">2059-4763</issn>
+			<publisher>
+				<publisher-name>Future Medicine Ltd</publisher-name>
+				<publisher-loc>London, UK</publisher-loc>
+			</publisher>
+		</journal-meta>
+		<article-meta>
+			<article-id pub-id-type="doi">10.2217/3dp-2017-9917</article-id>
+			<article-categories>
+				<subj-group subj-group-type="heading">
+					<subject>Review</subject>
+				</subj-group>
+			</article-categories>
+			<title-group>
+				<article-title>Auricular reconstruction from rib to 3D printing</article-title>
+			</title-group>
+			<contrib-group>
+				<contrib contrib-type="author">
+					<collab-name>Collab ONE (no alternative)</collab-name>
+					<xref ref-type="aff" rid="AFF1"><sup>1</sup></xref>
+				</contrib>
+				<contrib contrib-type="author">
+					<collab-name-alternatives>
+						<collab-name>Chinese 脳卒中急性期患</collab-name>
+						<collab-name xml:lang="en">Collab TWO (English alternative)</collab-name>
+					</collab-name-alternatives>
+					<xref ref-type="aff" rid="AFF1"><sup>1</sup></xref>
+				</contrib>
+				<contrib contrib-type="author">
+					<collab-wrap collab-type="research group">
+						<collab-name>Collab THREE (Research Group with Members)</collab-name>
+						<contrib-group>
+							<contrib>
+								<string-name>
+									<given-names>Ardie</given-names>
+									<surname>Bausenbach</surname>
+								</string-name>
+								<aff>
+									<institution>Collab group Institution (Bausenbach)</institution>
+								</aff>
+							</contrib>
+							<contrib>
+								<string-name>
+									<given-names>Jeffrey</given-names>
+									<surname>Beck</surname>
+								</string-name>
+								<xref ref-type="aff" rid="AFF5">5</xref>
+							</contrib>
+							<contrib>
+								<name>
+									<given-names>Isa</given-names>
+									<surname>Group-Author</surname>
+									<suffix>Snr.</suffix>
+								</name>
+								<aff>
+									<institution>Collab group Institution (Group-Author)</institution>
+								</aff>
+								<xref ref-type="aff" rid="AFF6">6</xref>
+							</contrib>
+							<aff id="AFF5"><sup>5</sup>Nested Xref Contrib Group Affiliation FIVE</aff>
+							<aff id="AFF6"><sup>6</sup>Nested Xref Contrib Group Affiliation SIX</aff>
+						</contrib-group>
+					</collab-wrap>
+				</contrib>
+				<contrib contrib-type="author"
+				         corresp="yes">
+					<string-name>
+						<given-names>David A</given-names>
+						<surname>Zopf-Three</surname>
+						<suffix>Snr.</suffix>
+					</string-name>
+					<xref ref-type="corresp" rid="COR1">*</xref>
+					<xref ref-type="aff" rid="AFF3"><sup>3</sup></xref>
+				</contrib>
+				<contrib contrib-type="editor">
+					<name>
+						<given-names>Isa</given-names>
+						<surname>Editor</surname>
+					</name>
+					<aff>A locally defined Editor affiliation.</aff>
+				</contrib>
+				<aff id="AFF1"><sup>1</sup>Medical School, University of Michigan, Ann Arbor, MI, USA</aff>
+				<aff id="AFF2"><sup>2</sup>Department of Biomedical Engineering, Georgia Institute of Technology, Atlanta, GA, USA</aff>
+				<aff id="AFF3"><sup>3</sup>Otolaryngology – Head &amp; Neck Surgery, Pediatric Division, University of Michigan Health Systems, CS Mott Children's Hospital, Ann Arbor, MI, USA</aff>
+				<aff id="AFF4"><sup>4</sup>Xref Contrib Group Affiliation</aff>
+			</contrib-group>
+			<author-notes>
+				<corresp id="COR1">
+					<label>*</label>Author for correspondence:
+					<email xmlns:xlink="http://www.w3.org/1999/xlink"
+					       xlink:href="mailto:corresponder@med.umich.edu">corresponder@med.umich.edu</email>
+				</corresp>
+			</author-notes>
+			<pub-date pub-type="ppub">
+				<month>January</month>
+				<year>2018</year>
+			</pub-date>
+			<volume>2</volume>
+			<issue>1</issue>
+			<fpage>35</fpage>
+			<lpage>41</lpage>
+			<history>
+				<date date-type="received">
+					<day>07</day>
+					<month>09</month>
+					<year>2017</year>
+				</date>
+				<date date-type="accepted">
+					<day>16</day>
+					<month>11</month>
+					<year>2017</year>
+				</date>
+				<date date-type="online">
+					<day>15</day>
+					<month>12</month>
+					<year>2017</year>
+				</date>
+			</history>
+			<permissions>
+				<copyright-statement>© 2017 Future Medicine Ltd</copyright-statement>
+				<copyright-year>2018</copyright-year>
+			</permissions>
+			<self-uri content-type="pdf" xlink:title="pdf" xlink:href="3dp-2017-9917.pdf"/>
+			<abstract>
+				<p>The human ear imparts critical form and function and remains one of the most challenging facial features to reconstruct. Over the past century, surgeons have developed numerous techniques and materials for total auricular reconstruction. Refined costal cartilage techniques have remained the gold standard for the past half-century. Recent advancements with novel materials, tissue engineering and 3D printing provide immense potential; however, prohibitive costs and regulatory steps remain as barriers to clinical translation.</p>
+			</abstract>
+			<kwd-group kwd-group-type="author">
+				<title>Keywords:</title>
+				<kwd>3D printing</kwd>
+				<kwd>auricular reconstruction</kwd>
+				<kwd>bioscaffold</kwd>
+				<kwd>ear reconstruction</kwd>
+				<kwd>tissue engineering</kwd>
+			</kwd-group>
+			<counts>
+				<page-count count="8"/>
+			</counts>
+		</article-meta>
+	</front>
+</article>

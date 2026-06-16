@@ -1,0 +1,39 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="row cms">
+	<div class="col span-11">
+		<h1>Current content providers</h1>
+		<p>The publishers currently supplying feeds to Publications Router are listed <a href="#pub">below</a>, together with details of the timing and content of their notifications. The Router also collects notifications from other sources listed in the <a href="#other">Other providers</a> section.</p>
+		<p><b>Article versions</b> are identified in the table below using abbreviations defined in the <a target="_blank" href="https://www.niso.org/publications/niso-rp-8-2008-jav">NISO/ALPSP document:</a></p>
+		<p class="indent-left">AM - Accepted manuscript<br>VoR - Version of record.</p>
+		<h2 id="pub">Publishers</h2>
+		<table class="std-txt">
+			<thead>
+				<tr>
+					<th style="width:30%">Name</th>
+					<th>What they provide, when</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{publisher_tr_html | safe}}
+			</tbody>
+		</table>		
+		<br>
+		<h2 id="other">Other providers</h2>
+		<table class="std-txt">
+			<thead>
+				<tr>
+					<th style="width:30%">Name</th>
+					<th>What they provide, when</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{harvester_tr_html | safe}}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}
+{% block extra_js_bottom %}
+{% endblock extra_js_bottom %}

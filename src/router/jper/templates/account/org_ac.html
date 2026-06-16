@@ -1,0 +1,431 @@
+{% extends "base.html" %}
+
+{# account_role will be single character, one of 'A', 'R', 'P' #}
+{% set account_role = org_acc.raw_role %}
+
+{% block content %}
+{% from "helpers/field_render.html" import render_field %}
+{% import "helpers/account_macros.html" as account_macros %}
+
+{% if not curr_user_is_anon %}
+  {% set is_not_own_org = curr_user_org_acc.id != org_acc.id %}
+  {% set contact_email = org_acc.contact_email %}
+	<div class="row cms">
+		{# Display title text from dict depending on account_role #}
+		<h1>{{ {'A':'Admin', 'R':'Institution repository', 'P':'Publisher'}[account_role]}} account
+			{%- if account_role != 'A' and org_acc.live_date is none %} ‧ test{% endif %}
+			{%- if account_role == 'P' -%}
+			{%- set pub_data = org_acc.publisher_data %}{% if pub_data.in_test %} ‧ autotest{%- if pub_data.route_note %} ‧ routing{% endif %}{% endif -%}
+			{%- endif -%}
+		</h1>
+
+		<!-- TOP GREY BOX -->
+		<section class="box box--padding-large box--padding-bottom-none box--brd-vlgreyblue box--bg-vlgreyblue">
+			<h2 id="stickme">{{org_acc.org_name}}</h2>
+
+			<div class="col span-4 cms">
+			{% if account_role != 'A' %}
+				{% set org_status = org_acc.org_status() %}
+				{% set has_sword = org_acc.has_sword_collection() %}
+				<table class="cell-border no-gap {% if curr_org_is_super %}white-back{% else %}no-pointer{% endif %}">
+					{# hidden header provided for accessibility #}
+					<thead class="visuallyhidden"><tr><th>Status</th><th>On/Off</th></tr></thead>
+					<tbody class="user_tbody">
+					<tr class="{{account_macros.row_status_class(org_status)}}" {% if curr_org_is_super %} data-ajax_url="{{url_for('account.admin_ajax', org_id=org_acc.id)}}"{% endif %}>
+                        {% set org_status_label = org_acc.org_status(curr_org_is_super) if has_sword else "" %}
+                        <td>{{account_macros.status_button_span(has_sword, org_acc, org_status_label, days_since_deposit_fn)}}</td>
+                        <td>{{account_macros.on_off_button_span(org_status)}}</td>
+                    </tr>
+					</tbody>
+				</table>
+			{% endif %}
+			</div>
+
+			<div class="col span-8 cms">
+				<dl class="dl-horiz dl-horiz--account-details">
+		{% if curr_org_is_super %}
+					<dt>Rec ID</dt>
+					<dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{org_acc.id}}</dd>
+					<dt>Created</dt>
+					<dd>{{org_acc.created[:10]}}</dd>
+		{% endif %}
+					<dt>Account ID</dt>
+					<dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{org_acc.uuid}}</dd>
+					<dt>API key</dt>
+					<dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{org_acc.api_key}}</dd>
+		{% if contact_email %}
+					<dt>Contact</dt>
+					<dd class="icon-after icon-clipboard-after clickable-icon super-small-icon show-on-hover" data-action="clipboard" data-function="copy_text">{{contact_email}}</dd>
+		{% endif %}
+				</dl>
+			</div>
+		</section>
+	</div>
+	<!-- Right-hand floating menu -->
+	<div class="float-menu">
+		<span class="float-btn"><span class="float-icon" aria-label="Side menu button">☰</span></span>
+		<div class="float-menu-txt nav-btns smaller">
+			<ul>
+				<li><a href="#top" role="button" aria-label="Jump to top">Top</a></li>
+			{% if curr_user_is_admin %}
+				<li><a href="#users" role="button" aria-label="Jump to users">Users</a></li>
+			{% endif %}
+			{% if account_role == 'P' %}
+				<li><a href="#deposit_history" role="button" aria-label="Jump to deposit history">Deposit history</a></li>
+				<li><a href="#manage_defaults" role="button" aria-label="Jump to set defaults">Set defaults</a></li>
+				<li><a href="#manage_account" role="button" aria-label="Jump to account details">Organisation details</a></li>
+				<li><a href="#pub_reports" role="button" aria-label="Jump to reporting">Reporting</a></li>
+				<li><a href="#manage_testing" role="button" aria-label="Jump to submission testing">Submission testing</a></li>
+				<li><a href="#ftp_help" role="button" aria-label="Jump to connection details">Connection details</a></li>
+			  {% if curr_org_is_super %}
+				<li><a href="#contact" role="button" aria-label="Jump to contact">Contact</a></li>
+				<li><a href="#make_live" role="button" aria-label="Jump to make live">Make live</a></li>
+				{% if curr_user_is_not_readonly and is_not_own_org %}<li><a href="#delete_account" role="button" aria-label="Jump to delete account">Delete account</a></li>{% endif %}
+			  {% endif %}
+			{% elif account_role == 'R' %}
+				<li><a href="#manage_matching" role="button" aria-label="Jump to manage matching">Matching parameters</a></li>
+				<li><a href="#manage_duplicates" role="button" aria-label="Jump to manage duplicates">Duplicate filtering</a></li>
+				<li><a href="#manage_sources" role="button" aria-label="Jump to notification sources">Notification sources</a></li>
+				<li><a href="#manage_connection" role="button" aria-label="Jump to connection settings">Connection settings</a></li>
+				<li><a href="#sword_history" role="button" aria-label="Jump to SWORD deposit history">Deposit history</a></li>
+				<li><a href="#manage_account" role="button" aria-label="Jump to account details">Organisation details</a></li>
+			  {% if curr_org_is_super %}
+				<li><a href="#contact" role="button" aria-label="Jump to contact">Contact</a></li>
+				<li><a href="#make_live" role="button" aria-label="Jump to make live">Make live</a></li>
+				<li><a href="#repo_ids" role="button" aria-label="Jump to institutions identifiers">Institution identifiers</a></li>
+				{% if curr_user_is_not_readonly and is_not_own_org %}<li><a href="#delete_account" role="button" aria-label="Jump to delete account">Delete account</a></li>{% endif %}
+			  {% endif %}
+			{% else %}
+				<li><a href="#manage_account" role="button" aria-label="Jump to account details">Organisation details</a></li>
+				<li><a href="#contact" role="button" aria-label="Jump to contact">Contact</a></li>
+				{% if curr_user_is_not_readonly and is_not_own_org %}<li><a href="#delete_account" role="button" aria-label="Jump to delete account">Delete account</a></li>{% endif %}
+			{% endif %}
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span-12 cms">
+		{% if curr_user_is_admin or (curr_org_is_super and curr_user_is_not_readonly) %}
+			<h2 id="users">User management (admin only)</h2>
+			<div class="gap-vert">
+				<a class="nav-btn btn btn--3d btn--large" target="_blank" href="{{ url_for('account.list_org_users', org_uuid=org_acc.uuid)}}" role="button">Manage users</a><span class="open-new"></span>
+				<br><br>
+			</div>
+		{% endif %}
+			<h2>Settings</h2>
+		{% if account_role == 'P' %}
+			{% include 'account/partial/publisher_settings.html' %}
+		{% elif account_role == 'R' %}
+			{% include 'account/partial/repository_edit.html' %}
+			{% include 'account/partial/sword_deposit_history.html' %}
+		{% endif %}
+
+			<!-- Account Settings Panel -->
+			<div id="manage_account" class="box box--padding-large box--brd-mgreyblue">
+				<h3>Manage organisation data</h3>
+
+				{# Organisation name and notes #}
+				<form method="POST" action="{{ url_for('account.update_settings', org_uuid=org_acc.uuid) }}#manage_account" class="form">
+					<ul class="form-fields">
+						<li class="form__item">
+							{{render_field(basic_form.organisation_name,'form__item','form__label')}}
+							<span class="info-note">This will be listed publicly.</span>
+						</li>
+						<li class="form__item">
+							{{render_field(basic_form.note,'form__item','form__label')}}
+						</li>
+						<li class="form__item">
+							{{render_field(basic_form.contact_email,'form__item','form__label')}}
+							<span class="info-note">Primary contact for the organisation.</span>
+						</li>
+						<li class="form__item">
+							{{render_field(basic_form.tech_contact_emails,'form__item','form__label')}}
+							<span class="info-note">Email addresses to which automated error emails will be sent, and which may be used for technical queries.  Separate each with a space, comma or semicolon.</span>
+						</li>
+					</ul>
+
+					{% if curr_user_is_not_readonly %}<br><button class="btn btn--3d btn--primary" id="update_general" type="submit">Update</button>{% endif %}
+				</form>
+			</div>
+
+		{% if account_role == 'P' %}
+			{% include 'account/partial/publisher_reporting.html' %}
+			{% include 'account/partial/publisher_testing.html' %}
+			{% include 'account/partial/publisher_connecting.html' %}
+		{% endif %}
+
+		{% if curr_org_is_super %}
+			<h2>Admin only account management</h2>
+			{#-- CONTACT (Notes/Emails) panel - relies upon Javascript - see foot of this file #}
+			{#-- NB. IDs based around {{accid_str}} are needed by javascript shared with recent_errors.html #}
+			<div id="contact" class="box box--padding-large box--brd-mgreyblue">
+				<h3>Contact</h3>
+				<div class="accordion cms">
+					<p>Emails are sent from account: <b>XXXX.YYYY@YYYY.ac.uk</b>, with footer:</p>
+					<p class="gap-left-15"><i>Jisc Publications Router Support Team</i>.</p>
+					<p>Notes/emails marked as deleted are actually purged from database monthly and only if the record is at least 12 months old.</p>
+				</div>
+			{% set accid = org_acc.id | string %}
+			{% set accid_str = "a" + accid %}
+			{% set target_base = "#" + accid_str %}
+				<div id="{{accid_str}}" data-apikey="{{api_key}}">
+					<h4>Historic Emails/Notes/ToDos
+						<button type="button" class="on nav-btn btn btn--3d gap-left-15" data-action="showhide" data-target="{{target_base}}-hist" data-text="history panel">Hide history panel</button>
+						<button type="button" class="on nav-btn btn btn--3d gap-left" data-action="showhide" data-target="{{target_base}}-hist_filters" data-text="filters">Hide filters</button>
+					</h4>
+					<div id="{{accid_str}}-hist">
+						<div id="{{accid_str}}-hist_filters" class="row">
+							<div class="col span-4">
+								{# Radio buttons for controlling number of historic notes/emails to list #}
+								<fieldset class="form">
+									<legend class="visuallyhidden">Number to show</legend>
+									<input id="r1" type="radio" name="hist_num-{{accid}}" value="5" checked>
+									<label for="r1" class="strong">Show last 5</label>
+									<br><input id="r2" type="radio" name="hist_num-{{accid}}" value="10">
+									<label for="r2" class="strong">Show last 10</label>
+									<br><input id="r3" type="radio" name="hist_num-{{accid}}" value="">
+									<label for="r3" class="strong">Show all</label>
+								</fieldset>
+							</div>
+							<div class="col span-4">
+								{# Checkboxes for controlling type of recs (emails, notes, todos) to list #}
+								<fieldset class="form">
+									<legend class="visuallyhidden">What to show</legend>
+									<input id="ct1" type="checkbox" name="hist_type-{{accid}}" value="N" checked>
+									<label for="ct1" class="strong">Notes</label>
+									<br><input id="ct2" type="checkbox" name="hist_type-{{accid}}" value="E" checked>
+									<label for="ct2" class="strong">Emails</label>
+									<br><input id="ct3" type="checkbox" name="hist_type-{{accid}}" value="B" checked>
+									<label for="ct3" class="strong">Bulk emails</label>
+									<br><input id="ct4" type="checkbox" name="hist_type-{{accid}}" value="T" checked>
+									<label for="ct4" class="strong">ToDos</label>
+								</fieldset>
+							</div>
+							<div class="col span-4">
+								{# Checkboxes for controlling status of recs to list #}
+								<fieldset class="form">
+									<legend class="visuallyhidden">Item Status</legend>
+									<input id="cs1" type="checkbox" name="hist_status-{{accid}}" value="H" checked>
+									<label for="cs1" class="strong">Pinned</label>
+									<br><input id="cs2" type="checkbox" name="hist_status-{{accid}}" value="N" checked>
+									<label for="cs2" class="strong">Standard</label>
+									<br><input id="cs3" type="checkbox" name="hist_status-{{accid}}" value="R" checked>
+									<label for="cs3" class="strong">Resolved</label>
+									<br><input id="cs4" type="checkbox" name="hist_status-{{accid}}" value="D">
+									<label for="cs4" class="strong">Deleted</label>
+								</fieldset>
+							</div>
+						</div>
+						<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+
+						{# The following DIV is populated by javascript (via AJAX call) #}
+						<div id="{{accid_str}}-hist_tbl"></div>
+
+						<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+					</div>
+				{% if curr_user_is_not_readonly %}
+					{% set tech_contact_emails = org_acc.tech_contact_emails_string() %}
+					{% set user_email_details = org_acc.tech_and_users_emails_dict_lists() %}
+					<hr>
+					<h4>Add new note / send email</h4>
+					<div id="{{accid_str}}-form">
+						{# Flash-message div associated with form #}
+						<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+						{# Note/email entry form #}
+						<ul class="form-fields form">
+							<li>
+								<label class="form__label" for="subject">Subject</label>
+								<textarea class="input form__item" id="subject" maxlength="100" minlength="2" name="subject" rows="1"></textarea>
+								<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="#subject"></button>
+								<span class="info-note">Required only for email.</span>
+							</li><li>
+								<label class="form__label required" for="body">Message</label>
+								<textarea class="input form__item" id="body" name="body" rows="6" maxlength="8000"></textarea>
+								<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="#body"></button>
+								<span class="info-note">Can include HTML markup.<br>8000 chars max.<br><button type="button" class="off nav-btn btn btn--3d small-gap-vert" data-action="showhide" data-target="#preview" data-text="preview" data-trigger_on="#render">Show preview</button></span>
+							</li><li id="preview" class="visuallyhidden">
+								<span class="form__label" for="preview_box">Preview
+								<br><button id="render" type="button" class="btn btn--3d small-gap-vert" title="Update preview box with changes made to message text above." data-action="set_html" data-source="#body" data-target="#preview_box">Refresh</button></span>
+								<div id="preview_box" class="simple-disp shaded_box form__item wide-text" title="Press 'Render' button to see preview of HTML markup."></div>
+							</li><li>
+								<label class="form__label" for="pin">Pin (highlight)</label>
+								<input class="form__item" id="pin" name="pin" type="checkbox">
+							</li><li class="overlay-container">
+								<span class="form__label"></span>
+								<button type="button" class="btn btn--3d btn--primary small-gap-vert" data-action="submit"  data-func="save_note">Save Note</button>
+								<button type="button" class="gap-left-15 btn btn--3d btn--primary small-gap-vert" data-action="submit" data-func="save_todo">Save ToDo</button>
+								{#--- Users email selection panel ---#}
+								<div id="{{accid_str}}-user_emails" class="overlay-wide box box--padding-large box--brd-mgreyblue box--shadow">
+									<button class="overlay-x" data-action="email_func" data-func="close_cancel" title="Close overlay without changing email address fields in underlying form"></button>
+									<h3>Email address selection <span class="small"> (add emails to the To or Cc address fields - duplicates will be removed)</span></h3>
+									{# <p class="info-note">Add selected emails to the To or Cc address fields (duplicates will be removed automatically before sending).</p>
+									#}
+									<table class="compressed no-border">
+										{# NB. Table may have multiple <tbody></tbody> elements #}
+										{# All checkboxes are initially UNCHECKED #}
+										<tbody class="grey-border">
+											<tr><th colspan="3">Organisation & Technical contacts<span class="float-right">
+												<button class="btn-small" type="button" data-action="email_func" data-func="set_checkboxes" value="1" title="Select all organisation & technical contact emails">All</button>
+												<button class="btn-small" type="button" data-action="email_func" data-func="set_checkboxes" value="0" title="Deselect all organisation & technical contact emails">None</button>
+												</span></th></tr>
+											<tr><td colspan="2">Organisation contact email addresses</td><td>{{contact_email}} <input class="float-right" type="checkbox" name="org_email" value="{{contact_email}}" aria-label="Organisation contact email address"></td></tr>
+										{% if tech_contact_emails %}
+											<tr><td colspan="2">Technical contact email addresses</td><td>{{tech_contact_emails | replace("; ", "<br>") | safe}} <input class="float-right" type="checkbox" name="org_email" value="{{tech_contact_emails}}" aria-label="Organisation technical contact email addresses"></td></tr>
+										{% endif %}
+										</tbody>
+										<tbody class="table-gap"></tbody>
+									  {% for role in ("Org admin", "Standard", "Read-only") %}
+									  	{% set user_details = user_email_details.get(role) %}
+										{% if user_details %}
+										<tbody class="grey-border">
+											<tr><th colspan="3">{{role}} users<span class="float-right">
+												<button class="btn-small" type="button" data-action="email_func" data-func="set_checkboxes" value="1" title="Select all {{role}} users email addresses">All</button>
+												<button class="btn-small" type="button" data-action="email_func" data-func="set_checkboxes" value="0" title="Deselect all {{role}} users email addresses">None</button>
+												</span>
+											</th></tr>
+										  {% for detail_dict in user_details %}
+											<tr><td>{{detail_dict.name}}</td><td>{{detail_dict.org_role}}</td><td>{{detail_dict.email}} <input class="float-right" type="checkbox" name="user_email" value="{{detail_dict.email}}" aria-label="Email address for {{role}} user: {{detail_dict.name}} ({{detail_dict.org_role}})"></td></tr>
+										  {% endfor %}
+										</tbody>
+										{% endif %}
+									  {% endfor %}
+									</table>
+									<div class="row">
+										<span class="bold">Selected emails</span>
+										<button class="gap-left btn-small btn--3d small-gap-after" data-action="email_func" data-func="select_all" title="Select all emails">Select all above</button>
+										<button class="gap-left-5 btn-small btn--3d small-gap-after" data-action="email_func" data-func="clear_selected" title="Clear all selected emails">Clear</button>
+										<span class="info-note wide">Email addresses for adding to the To or Cc address fields below.</span>
+										<textarea class="full-width" rows="3" aria-label="Selected emails" placeholder="These email addresses will be added to an address field below when the 'Add selected' button is pressed. Duplicates will be removed automatically." title="These email addresses will be added to an address field below when the 'Add selected' button is pressed. Duplicates will be removed automatically."></textarea>
+										<button type="button" class="clear-it" data-action="email_func" data-func="clear_selected" title="Clear all selected emails"></button>
+										<br/>
+										<br/>
+										<div class="col span-6">
+											<span class="bold">To address</span>
+											<button class="gap-left btn-small btn--3d small-gap-after" data-action="email_func" data-func="add_to_addr" value="to_addr" title="Add selected emails to the To address field">Add selected</button>
+											<button type="button" class="gap-left-5 btn-small btn--3d small-gap-after" data-action="clear_near" data-target="textarea" title="Clear To address field">Clear</button>
+											<textarea class="full-width form__item" name="to_addr" rows="4" aria-label="To address" placeholder="Send To email addresses separated by space, comma or semicolon." title="Send To email addresses separated by space, comma or semicolon"></textarea>
+											<button type="button" class="clear-it" data-action="clear_near" data-target="textarea" title="Clear To address field"></button>
+										</div>
+										<div class="col span-6">
+											<span class="bold">Cc address</span>
+											<button class="gap-left btn-small btn--3d small-gap-after" data-action="email_func" data-func="add_to_addr" value="cc_addr" title="Add selected emails to the Cc address field">Add selected</button>
+											<button type="button" class="gap-left-5 btn-small btn--3d small-gap-after" data-action="clear_near" data-target="textarea" title="Clear CC address field">Clear</button>
+											<textarea class="full-width form__item" name="cc_addr" rows="4" aria-label="CC address" placeholder="Cc email addresses separated by space, comma or semicolon." title="Cc email addresses separated by space, comma or semicolon"></textarea>
+											<button type="button" class="clear-it" data-action="clear_near" data-target="textarea" title="Clear CC address field"></button>
+										</div>
+									</div>
+									<br/>
+									<button class="btn btn--3d btn--medium" data-action="email_func" data-func="close_n_update_user_emails" title="Update email address fields in underlying form & close overlay">Update & Close</button>
+									<button class="btn btn--3d btn--medium gap-left-15" data-action="email_func" data-func="close_cancel" title="Close overlay without changing email address fields in underlying form">Cancel</button>
+								</div>
+							{#- END Users email selection panel -#}
+							</li><li>
+								<label class="form__label required" for="to_addr"><button type="button" class="float-left nav-btn btn btn--3d" data-action="email_func" data-func="show_user_emails" title="Open email selection panel">Select user emails</button>To</label>
+								<textarea class="input form__item" id="to_addr" name="to_addr" rows="4" placeholder="Separate emails by space, comma or semicolon." title="Separate email addresses by space, comma or semicolon">{{contact_email}}</textarea>
+								<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="#to_addr"></button>
+								<span class="info-note">Default: Organisation Contact email.</span>
+							</li><li>
+								<label class="form__label" for="cc_addr"><button type="button" class="float-left nav-btn btn btn--3d" data-action="email_func" data-func="show_user_emails" title="Open email selection panel">Select user emails</button>Cc</label>
+								<textarea class="input form__item" id="cc_addr" name="cc_addr" rows="4" placeholder="Separate emails by space, comma or semicolon." title="Separate email addresses by space, comma or semicolon">{{cc_emails}}</textarea>
+								<button type="button" class="clear-it" title="Clear field" data-action="clear" data-target="#cc_addr"></button>
+							</li><li>
+								<span class="info-note under">Emails automatically include footer: <i>Jisc Publications Router Support Team</i> and are sent from: <i>XXXX.YYYY@YYYY.ac.uk</i>.</span>
+								<span class="form__label"></span>
+								<button type="button" class="btn btn--3d btn--primary small-gap-vert" data-action="submit"  data-func="send_email">Send Email</button>
+							</li>
+						</ul>
+						{# Flash-message div associated with form #}
+						<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+						
+					</div>
+
+
+				{% endif %}
+				</div>
+			</div>
+
+			{% if account_role == 'R' %}
+				{% include 'account/partial/repo_go_live.html' %}
+				{% include 'account/partial/repo_identifiers_form.html' %}
+			{% else %}
+			  {% if account_role == 'P' %}
+				{% include 'account/partial/pub_go_live.html' %}
+			  {% endif %}
+			{% endif %}
+
+			{# Delete account #}
+		  {% if curr_user_is_not_readonly and is_not_own_org %}
+			<div id="delete_account" class="box box--padding-large box--brd-mgreyblue">
+				<h3>Delete organisation account</h3>
+				<p>This {% if account_role == 'A' %}Admin organisation account will be deleted along with
+				{% elif account_role == 'R' %}Repository account will be deleted along with its matching parameters and
+				{% elif account_role == 'P' %}Publisher account will be deleted along with its associated UNIX FTP account and
+				{% endif %} all associated user accounts.</p>
+				<form method="POST" action="{{ url_for('account.delete_org_acc', org_uuid=org_acc.uuid) }}" class="form">
+					<button type="submit" name="submit" class="btn btn--3d btn--primary do_action" value="delete" data-action="confirm" data-msg="Delete cannot be undone">Delete this account</button>
+					&nbsp; &nbsp;<b class="warning utf8-icon">Use with caution!</b>
+				</form>
+			</div>
+		  {% endif %}
+		{% endif %}
+
+		</div>
+	</div>
+
+{% endif %}
+{% endblock %}
+
+{% block extra_js_bottom %}
+{% if curr_org_is_super %}
+	<script type="text/javascript" src="/static/js/service_accounts.js"></script>
+
+	{# >>>> The 3 script blocks below relate to Contact (email/notes) panel functionality #}
+	<script type="text/javascript" src="/static/js/ajax_helpers.js"></script>
+	<script type="text/javascript" src="/static/js/note_email.js"></script>
+	<script>
+		$(document).ready(function(){
+			/**
+			*	Initialisation used in conjunction with functions in note_email.js (for Contact panel)
+			**/
+			// Set click handlers
+			initAndSetEmailNoteEventHandlers(
+				"{{url_for('account.note_email_ajax')}}",
+				"{{ '%.1s' % (org_acc.role) | upper}}",   // 1 Char indicator "P": publisher; "R": repository
+				"{{org_acc.id}}");
+		});
+	</script>
+	{# <<<< End of Contact (email/notes) panel functionality #}
+{% endif %}
+
+{% if account_role == 'R' %}
+	<script>
+		// set up a global variable for use in repo-form.js
+		// packaging_formats is a dict of form {"repository_software": [("packaging URI", "packaging name"), ... ], "repository_software2": ....}
+		var packaging_formats = {{packaging_formats|tojson|safe}}
+		var search_identifiers_url = "{{url_for('admin.search_identifiers', name='')}}"
+		var org_acc_api_key = "{{org_acc.api_key}}"
+	</script>
+	<script src="/static/js/repo-form.js"></script>
+{% endif %}
+
+<script>
+	$(document).ready(function(){
+		/**
+		* Set various button press handlers
+		**/
+		setActionClickHandlers("body", ".do_action, .clickable, .clickable-icon");
+
+		/**
+		* Code for Info accordion
+		**/
+		initInfoAccordion();
+
+		/**
+		* Code to determine if URL to current page contains a #reference AND if there is a flash message to display
+		* and, if so, to copy the flash message to the re-displayed panel (where, presumably, a button has just
+		* been pressed).
+		**/
+		flash_msg_at_location_href();
+	});
+</script>
+{% endblock extra_js_bottom %}

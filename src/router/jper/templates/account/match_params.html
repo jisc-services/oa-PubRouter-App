@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% if matching_params %}
+	{% set current_org_ids = matching_params.formatted_org_ids %}
+{% else %}
+	{% set current_org_ids = [] %}
+{% endif %}
+
+{% block content %}
+{% from "helpers/field_render.html" import render_field %}
+
+{# Macro to display table of particular matching parameters #}
+{% macro render_orig_params_table(match_params, id, heading, body_id) %}
+	<table {% if id %}id="{{id}}"{% endif %}>
+		{% if heading %}
+		<thead>
+			<tr><th>{{heading | safe}}</th></tr>
+		</thead>
+		{% endif %}
+		<tbody {% if body_id %}id="{{body_id}}"{% endif %}>
+		{% for param in match_params %}
+			{# pipe through filter than converts particular chars into HTML entities #}
+			<tr><td>{{param | escape}}</td></tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endmacro %}
+
+{# Macro to display Accordion containing a table of particular matching parameters #}
+{% macro render_params(match_params, id, title, heading) %}
+	{% if match_params %}
+		<section class="is-collapsible show_hide__container is-collapsible--button show_hide--is-expanded" data-collapsible>
+			<h3 class="show_hide__trigger">{{title}} <span class="smaller">(x{{match_params|length}})</span></h3>
+			<div class="show_hide__target">
+				{{render_orig_params_table(match_params, id, heading, '')}}
+			</div>
+			</section>
+	{% endif %}
+{% endmacro %}
+
+<div class="row cms">
+	<h1 id="pg-h1">Matching parameters{% if curr_org_is_super %}<span class="h_small"><a id="stickme" href="{{url_for('account.disp_org_acc', org_uuid=org_acc.uuid)}}">{{org_acc.org_name}}</a></span>{% endif %}</h1>
+	<div class="accordion cms">
+		<p>Router determines whether an article is matched to your account by comparing parameters of the types listed below with article metadata:</p>
+		<ul>
+			<li>Institution identifiers (ROR, ISNI, GRID, Crossref, Ringgold)</li>
+			<li>Institution name variants</li>
+			<li>Domain names (associated with institution website/emails)</li>
+			<li>Postcodes</li>
+			<li>Grant numbers</li>
+			<li>Author ORCIDS</li>
+			<li>Author email addresses.</li>
+		</ul>
+{% if not curr_user_is_not_readonly %}	{# curr user IS read-only #}
+	</div>
+{% else %}
+		<p>You can provide or change your account's matching parameters at any time by uploading a new set in a CSV file.  The file can contain just one type of parameter (in a single column) or multiple types (in multiple columns), with each column's heading specifying the type of matching parameter it contains.</p>
+	</div>
+    <div id="manage_matching" class="box box--padding-large box--brd-mgreyblue">
+        <h2>Update matching parameters</h2>
+		{% if matching_params %}<p>Parameters last updated:  {{matching_params.last_updated_formatted()}}</p>{% endif %}
+		<section class="is-collapsible show_hide__container is-collapsible--button" data-collapsible="">
+			{% set file_desc = "CSV or JSON file" if curr_org_is_super else "CSV file" %}
+			<h3 class="show_hide__trigger">Set parameters from {{file_desc}}</h3>
+			<div class="show_hide__target" style="display: block;">
+				<div class="cms">
+					<p>Change your matching parameters by uploading a new set in CSV format - see example template in
+						<a href="/static/csvtemplate.csv" download="">csv format</a> or
+						<a href="/static/csvtemplate_router_matching_params_XLS_FORMAT.xlsx" download="">excel format</a>.
+					</p>
+					<p>You can choose to upload one, some or all types of parameter in one or more CSV files - the column headings will determine which parameters are changed. (See guidance notes in the templates above).</p>
+					<p>Before making changes it is recommended that you download your current parameters (link below) in case you need to revert.  However, if you find you have made a mistake that you can't easily recover from, then contact <a href="mailto:XXXX@YYYY.ac.uk?subject=Publications%20Router%20-%20Revert%20matching%20parameters">XXXX@YYYY.ac.uk</a> requesting Publications Router support to revert to a previous parameter set (which are automatically archived each time you upload a new file).</p>
+				{% set set_match_params_url = url_for('account.set_match_params', org_uuid=org_acc.uuid) %}
+					<form class="form" method="POST" action="{{set_match_params_url}}"  enctype="multipart/form-data">
+						<ul class="form-fields">
+							<li>
+								<p class="strong">Upload parameters from your PC &nbsp;<small> (must be {{file_desc}} in prescribed format)</small></p>
+								<input class="form__item" type="file" name="file" id="file" accept={{".csv,.json" if curr_org_is_super else ".csv"}} aria-label="Choose file">
+								<button class="gap-left btn btn--primary btn--3d" id="config_upload" type="submit">Upload</button>
+								<p class="info-note under">Replaces existing parameters of the types indicated by column headings.</p>
+							</li>
+						</ul>
+					</form>
+					<br>
+					<form class="form" method="POST" action="{{set_match_params_url}}" enctype="multipart/form-data">
+						<ul class="form-fields">
+							<li>
+								<p class="strong">Upload parameters from a URL &nbsp;<small> (must be {{file_desc}} in prescribed format)</small></p>
+								<label class="form__item">URL&nbsp;
+									<input type="url" name="url" id="url" class="" placeholder="enter URL of file to upload">
+								</label>
+								<button class="gap-left btn btn--primary btn--3d" id="config_retrieve" type="submit">Upload</button>
+								<p class="info-note under">Replaces existing parameters of the types indicated by column headings.</p>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</section>
+		<section id="org_root" class="is-collapsible show_hide__container is-collapsible--button" data-collapsible="">
+			<h3 class="show_hide__trigger">Add Organisation IDs</h3>
+			<div class="show_hide__target" style="display: block;">
+				<div class="cms">
+					{# View related overlay panel #}
+					<div id="view_related" class="overlay box box--padding-large box--brd-mgreyblue box--shadow cms">
+						<button class="overlay-x" data-action="run_func" data-func="close_related" aria-label="Close panel"></button>
+						<h3>_</h3>
+						<p class="info-note">Click the <b>Add</b> button to add the organisation to the underlying <i>Possible Organisation IDs</i> table. (Organisations already in that table have no button).</p>
+						{# Related items form - will be further built by Javascript #}
+						<div class="form">
+							{# Form body is populated by javascript #}
+						</div>
+						<button class="btn btn--3d btn--medium" data-action="run_func" data-func="close_related">Close</button>
+						{# Flash-message div #}
+						<div class="hide flash small-gap-vert box--padding-small"></div>
+					</div>
+
+					<p>Add new organisation identifiers by searching ROR database.</p>
+					<div id="get_org_ids" class="form">
+						<ul class="form-fields">
+							<li>
+								<label class="form__label" for="org_name">Organisation name</label>
+								<input class="form__item" type="search" name="org_name" id="org_name" aria-label="Organisation name" value="{{org_acc.org_name}}">
+								<button class="btn btn--3d btn--primary gap-left" data-action="run_func" data-func="get_ror">Get possible ids</button>
+							</li>
+						</ul>
+					</div>
+					{# Show possible Org Ids (listed in a table) #}
+					<div id="list_org_ids" class="box box--padding-large box--brd-mgreyblue cms" style="display: none;">
+						<button class="overlay-x" data-action="run_func" data-func="hide_org_ids" aria-label="Close panel"></button>
+						<h3>Possible Organisation IDs</h3>
+						<div class="accordion cms">
+							<p>The first search result is designated the primary organisation as it is (usually) the best match to the entered search term. The relationship (from the ROR database) of other listed organisations to the primary is indicated by a symbol:</p>
+							<p class="indent-left small-gap-after exact"> - Primary organisation</p>
+							<p class="indent-left small-gap-after parent-exact"> - Parent of the primary organisation</p>
+							<p class="indent-left small-gap-after child-exact"> - Child of the primary organisation</p>
+							<p class="indent-left related-exact"> - Related to the primary organisation.</p>
+							<p>The primary organisation and any children or parent are shown with bold text.</p>
+                            <p>Other symbols:</p>
+							<p class="indent-left small-gap-after "><span class="circle">T</span> - Hover over this symbol to see the organisation type</p>
+							<p class="indent-left">🌐 - Link to organisation website.</p>
+							<p>Identifiers already existing (included) in your matching parameters are highlighted green and are not selectable.</p>
+							<p>Organisations outside the UK are not listed, as they are not currently eligible to use Publications Router.</p>
+						</div>
+						<p>Select identifiers you want to add, then press <i>Add selected identifiers</i> button below.<br></p>
+						<div id="org_id_filters">
+							<div class="col span-2 small-gap-vert">
+								{# Radio buttons for controlling org-ids to list #}
+								<fieldset class="form">
+									<legend class="visuallyhidden">Tick all relationship checkboxes</legend>
+									<input id="r1" type="radio" name="show_all" value="1" checked>
+									<label for="r1" class="txt-bottom">Show all</label>
+								</fieldset>
+							</div>
+							<div class="col span-8 small-gap-vert">
+								{# Checkboxes for controlling type of matches to list #}
+								<fieldset class="form">
+									<legend class="visuallyhidden">Select relationships</legend>
+									<input id="c0" class="gap-left" type="checkbox" name="show_match" value="E" checked>
+									<label for="c0" class="txt-bottom">Existing</label>
+									<input id="c1" class="gap-left" type="checkbox" name="show_match" value="P" checked>
+									<label for="c1" class="txt-bottom">Parents</label>
+									<input id="c2" class="gap-left" type="checkbox" name="show_match" value="C" checked>
+									<label for="c2" class="txt-bottom">Children</label>
+									<input id="c3" class="gap-left" type="checkbox" name="show_match" value="R" checked>
+									<label for="c3" class="txt-bottom">Related</label>
+									<input id="c4" class="gap-left" type="checkbox" name="show_match" value="O" checked>
+									<label for="c4" class="txt-bottom">Others</label>
+								</fieldset>
+							</div>
+						</div>
+						<table>
+							<thead>
+								<tr>
+									{# <th>Country</th>  -- exclude for time being as only showing GB results #}
+									<th>Organisation</th>
+									<th>ID</th>
+									<th>Select</th>
+								</tr>
+							</thead>
+							{# Table body is populated by javascript #}
+							<tbody></tbody>
+						</table>
+						<button class="btn btn--3d btn--primary" data-action="run_func" data-func="add_org_ids">Add selected identifiers</button>
+						<button class="btn btn--3d btn--medium gap-left" data-action="run_func" data-func="hide_org_ids">Cancel</button>
+						<span class="info-note">Page will be reloaded after update</span>
+					</div>
+					{# Flash-message div #}
+					<div class="hide flash small-gap-vert box--padding-small box--success"></div>
+					<br>
+				</div>
+			</div>
+		</section>
+		{% if matching_params %}
+			<br>
+			<a target="_blank" href="{{url_for('account.notifications', repo_uuid=org_acc.uuid, since=since, api_key=org_acc.api_key)}}">View notifications matched to your repository</a><span class="open-new"></span>
+		{% endif %}
+	</div>
+{% endif %}
+{% if curr_org_is_super %}
+  {% if has_archived_params %}
+	<br>
+	<p><a target="_blank" href="{{url_for('account.compare_match_params', repo_uuid=org_acc.uuid)}}">Compare current with archived parameters</a><span class="open-new"></span></p>
+  {% endif %}
+  {% if matching_params.has_regex or matching_params.had_regex %}
+	<br>
+    {% set orig_name_vars = matching_params.orig_name_variants %}
+    {% if orig_name_vars %}
+	  {% if not matching_params.has_regex %}
+	<p class="info-note">Matching parameters previously contained RegEx, although the current set does not.</p>
+	  {% endif %}
+	<div class="title-accordion cms">
+		<p>Name variants before RegEx was first added</p>
+		<button class="copy btn btn--3d gap-vert do_action" type="button" data-action="clipboard" data-function="copy_table" data-target="#orig_name_variants" title="Copy to clipboard">Copy values</button>
+		{{render_orig_params_table(orig_name_vars, '', 'Original name variants', 'orig_name_variants')}}
+		<button class="copy btn btn--3d small-gap-after do_action" type="button" data-action="clipboard" data-function="copy_table" data-target="#orig_name_variants" title="Copy to clipboard">Copy values</button>
+	</div>
+    {% else %}
+	<p class="info-note">Name variants {{'currently include' if matching_params.has_regex else 'previously included'}} RegEx. Original name variants are unknown.</p>
+    {% endif %}
+  {% endif %}
+{% endif %}
+	<br>
+	<h2 id="curr_params">Current matching parameters</h2>
+	<p class="no-underline"><a class="btn btn--3d btn--primary download" href="{{url_for('account.match_params_as_csv', org_uuid=org_acc.uuid)}}" role="button">Download as CSV file</a>
+		{% if curr_org_is_super %}<a class="gap-left btn btn--3d btn--primary download" href="{{url_for('account.match_params_as_json', org_uuid=org_acc.uuid)}}" role="button">Download as JSON file</a> <span class="smaller">(dev only option).</span>{% endif %}
+	</p>
+	{% if matching_params %}
+		{{render_params(matching_params.name_variants, 'name_variants', 'Name Variants', 'Variants of the name of your institution (may contain Regex input by Jisc staff)')}}
+		{{render_params(current_org_ids, 'org_ids', 'Organisation identifiers', 'Organisation identifiers for your institution <span class="smaller gap-left help-cursor" title="Note GRID &amp; RINGGOLD do not have links.">(links open in new tab)</span>')}}
+		{{render_params(matching_params.domains, 'domains', 'Domains', 'Domains that your institution owns or operates under, in either URLs or email addresses')}}
+		{{render_params(matching_params.postcodes, 'postcodes', 'Postcodes', 'Postcodes of your sites which may appear in author affiliations')}}
+		{{render_params(matching_params.grants, 'grants', 'Grant Numbers', 'Research grant numbers which may be referenced in publications')}}
+		{{render_params(matching_params.author_emails, 'emails', 'Author Emails', 'Researcher non-institutional email addresses (those NOT containing domains listed in the Domains section above)')}}
+		{{render_params(matching_params.author_orcids, 'orcids', 'ORCIDs', 'ORCIDS of researchers affiliated with your institution')}}
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js_bottom %}
+<script type="text/javascript" src="/static/js/ajax_helpers.js"></script>
+<script type="text/javascript" src="/static/js/org_id_match_params.js"></script>
+<script>
+$(document).ready(function(){
+	/**
+	* Code for Info accordion
+	**/
+	initInfoAccordion();
+
+	/**
+	* Set various button press/click handlers on elements with one of the specified classes
+	**/
+	setActionClickHandlers("body", ".do_action");
+
+	/**
+	*	Initialisation used in conjunction with functions in org_id_match_params.js (for Org Id selection)
+	**/
+	const rorNameType = "ror_display";   // Change to "label" if non-default Org-name (different language) is required
+	const rorLangCode = "en";	// Org-name language code (ignored if rorNameType is "ror_display")
+
+	// Create clickable links for existing Org-Ids - For ROR use the default 'ror_display' name
+	embellishOrgIds($("#org_ids"), rorNameType, rorLangCode);
+
+{% if curr_user_is_not_readonly %}
+	const currOrgIds = {{current_org_ids | safe}};
+	const countryCode = "GB";		// Leave empty or set to null if want to return data for all country codes
+	const filterCountryCodes = [];	// Add country codes to keep (only needed if `countryCode` above is empty or null
+
+	// Set event handlers
+	initAndSetOrgIdEventHandlers(
+		"{{url_for('account.set_match_params_ajax', org_uuid=org_acc.uuid)}}",
+		$("#org_root"),
+		$("#get_org_ids"),
+		$("#org_name"),
+		$("#list_org_ids"),
+		$("#org_id_filters"),
+		$("#view_related"),
+		currOrgIds,
+		countryCode,
+		filterCountryCodes,
+		rorNameType,
+		rorLangCode
+	);
+{% endif %}
+});
+</script>
+{% endblock extra_js_bottom %}
