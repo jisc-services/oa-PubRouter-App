@@ -43,6 +43,8 @@ Elasticsearch works fine with **Java SE 11.0.3 (LTS)** - it is not known whether
 
 The MySQL Version 8 community edition should be installed - see https://dev.mysql.com/doc/refman/8.0/en/mysql-installer.html.  The web installer is recommended.
 
+(Note that in Linux environments the latest version of MySQL, currently v9, should be used).
+
 The following MySQL components should be installed:
 * MySQL Server
 * MySQL Workbench - essential client for working with MySQL database
@@ -69,13 +71,19 @@ Once the script completes, you can test by typing: `pip -V`.
 
 #### Environment variables
 
-To set an environment, type "_edit environment variables_" in Windows search bar & open panel.
-
-You must set environment variables in order for Router to run successfully on your laptop: 
+Environment variables may need to be set, if they are not set automatically by installing Python, Java, elasticsearch.
+To set an environment, type "_edit environment variables_" in Windows search bar & open panel.  
+These variables _may_ need to be set for Router to run successfully on your laptop: 
 * `PYTHONPATH=C:\Python\Python38` _adjusted to installed version of python_ (if NOT set by Python installation)
 * `PATH=C:\Python\Python38;C:\Python\Python38\Scripts;` _ditto_
-* `OPERATING_ENV=development` 
 * `JAVA_HOME=C:\Program Files\Java\jdk-11.0.3` (assuming Java version 11.0.3 is installed) if not already set by Java installation process.
+
+#### Flask environment variables
+
+The `.flaskenv` file (which should already be located in the project root directory) can be edited to include environment specific values that are imported into Flask config.
+
+The essential value to include in the development environment is:
+* `OPERATING_ENV=development` 
 
 #### Hosts file
 PubRouter uses a default endpoint for Elasticsearch of `"http://gateway:9200"` (set as Python config variable `ELASTIC_SEARCH_HOST`). For this to work you must add an entry for '''gateway''' to the Windows hosts file.
@@ -152,6 +160,23 @@ cd C:\PATH-TO-YOUR-GIT-REPO\oa-PubRouter-App\src
 # requirements_4_testing.txt includes packages required for running tests
 pip install -r requirements_4_testing.txt
 ```
+
+#### Add necessary File-system directories
+
+Under the `C:` drive, create the following tree structure:
+```
+C:\Incoming
+      \app_local_store
+      \ftperrors
+      \ftptmp
+      \logs
+      \reports
+      \store  
+      \sftpusers
+      \tmparchive
+```
+(_C:\Incoming_ is the parent directory, with the others below that).
+
 
 #### Create Router Database and Admin user account
 
