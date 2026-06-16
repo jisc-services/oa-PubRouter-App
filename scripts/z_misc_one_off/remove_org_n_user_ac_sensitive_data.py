@@ -2,7 +2,12 @@
 """
 Remove sensitive (identifying / secret) data from Org & User account records.  (E.g. For producing test data).
 Script to do following:
-  - backup of account (Org-accounts) & acc_user tables
+  - Backup tables that will be modified:
+        - account (Org-accounts)
+        - acc_user (User accounts)
+        - acc_notes_emails (Standard emails - contain email addresses)
+        - acc_bulk_email (Bulk emails - contain email addresses).
+
   - Update Organisation accounts to anonymize the following data:
         - Contact email
         - Technical contact emails
@@ -14,25 +19,24 @@ Script to do following:
   - Update emails to anonymize email addresses
   - Update bulk emails to anonymize email addresses
 
+AFTER running, if all is OK when tested, the backup tables can be deleted - Paste following into SQL editor & run:
+    -- SQL to delete BACKED UP tables
+    USE `jper`;
+    DROP TABLES `acc_bulk_email_bak`, `acc_notes_emails_bak`, `account_bak`, `acc_user_bak`;
 
-TO REVERT - Paste following in SQL editor & run:
 
+TO REVERT (reinstate original data from backed up tables) - Paste following into SQL editor & run:
     -- SQL to reinstate BACKED UP tables
     USE `jper`;
 
+    -- Delete the modified tables
     DROP TABLES `acc_bulk_email`, `acc_notes_emails`, `account`, `acc_user`;
 
-    ALTER TABLE `acc_bulk_email_bak`
-    RENAME TO  `acc_bulk_email` ;
-
-    ALTER TABLE `acc_notes_emails_bak`
-    RENAME TO  `acc_notes_emails` ;
-
-    ALTER TABLE `account_bak`
-    RENAME TO  `account` ;
-
-    ALTER TABLE `acc_user_bak`
-    RENAME TO  `acc_user` ;
+    -- Rename the backed up tables
+    ALTER TABLE `acc_bulk_email_bak` RENAME TO  `acc_bulk_email` ;
+    ALTER TABLE `acc_notes_emails_bak` RENAME TO  `acc_notes_emails` ;
+    ALTER TABLE `account_bak` RENAME TO  `account` ;
+    ALTER TABLE `acc_user_bak` RENAME TO  `acc_user` ;
 
 """
 import re
