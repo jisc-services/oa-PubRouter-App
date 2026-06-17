@@ -106,7 +106,7 @@ class AdminDB:
         DB_NAME = "jper"
         DB_ADMIN_USER = "admin"
         if env == "development":
-            DB_NAME = "jper_live"
+            DB_NAME = "jper"
             DB_ADMIN_PWD = "1#er1*<Ss%WE&0QxA]C_mNS[C=0XERBI"
         elif env == "test":
             DB_ADMIN_PWD = "Test-Admin-Pwd"

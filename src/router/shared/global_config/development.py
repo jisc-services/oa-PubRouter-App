@@ -8,7 +8,7 @@ LOGLEVEL = "DEBUG"
 ## The following are Development values
 MYSQL_HOST = "localhost"
 MYSQL_PWD = "Admin_Pass1"   # Password for MYSQL_USER "jper_user"
-MYSQL_DB = "jper_live"
+MYSQL_DB = "jper"
 # MYSQL_USER = "test_admin"
 # MYSQL_PWD = "ABCabcXYZxyz"
 # MYSQL_DB = "test"
