@@ -177,6 +177,10 @@ C:\Incoming
 ```
 (_C:\Incoming_ is the parent directory, with the others below that).
 
+Also create a directory named `tmp` under the  `C:` drive:
+```
+C:\tmp
+```
 
 #### Create Router Database and Admin user account
 
