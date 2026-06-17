@@ -24,7 +24,7 @@ Script to do following:
 AFTER running, if all is OK when tested, the backup tables can be deleted - Paste following into SQL editor & run:
     -- SQL to delete BACKED UP tables
     USE `jper`;
-    DROP TABLES `acc_bulk_email_bak`, `acc_notes_emails_bak`, `account_bak`, `acc_user_bak`;
+    DROP TABLES `_backup_acc_bulk_email`, `_backup_acc_notes_emails`, `_backup_account`, `_backup_acc_user`;
 
 
 TO REVERT (reinstate original data from backed up tables) - Paste following into SQL editor & run:
@@ -35,14 +35,14 @@ TO REVERT (reinstate original data from backed up tables) - Paste following into
     DROP TABLES `acc_bulk_email`, `acc_notes_emails`, `account`, `acc_user`;
 
     -- Rename the backed up tables
-    ALTER TABLE `acc_bulk_email_bak` RENAME TO  `acc_bulk_email` ;
-    ALTER TABLE `acc_notes_emails_bak` RENAME TO  `acc_notes_emails` ;
-    ALTER TABLE `account_bak` RENAME TO  `account` ;
-    ALTER TABLE `acc_user_bak` RENAME TO  `acc_user` ;
+    ALTER TABLE `_backup_acc_bulk_email` RENAME TO `acc_bulk_email`;
+    ALTER TABLE `_backup_acc_notes_emails` RENAME TO `acc_notes_emails`;
+    ALTER TABLE `_backup_account` RENAME TO `account`;
+    ALTER TABLE `_backup_acc_user` RENAME TO `acc_user`;
 
 """
 
-TEST_RUN = False
+TEST_RUN = True
 
 import re
 import random
@@ -114,7 +114,7 @@ class AdminDB:
         DB_NAME = "jper"
         DB_ADMIN_USER = "admin"
         if env == "development":
-            DB_NAME = "jper"
+            DB_NAME = "jper"    # Override default database name here for Development environment (if needed)
             DB_ADMIN_PWD = "1#er1*<Ss%WE&0QxA]C_mNS[C=0XERBI"
         elif env == "test":
             DB_ADMIN_PWD = "Test-Admin-Pwd"
@@ -159,10 +159,10 @@ with app.app_context():
             ]:
                 admin_db.run_admin_query(sql, msg, commit=True)
             for table in tables_to_backup:
-                backup_table = f"{table}_bak"
+                _backup_table = f"_backup_{table}"
                 for sql, msg in [
-                    (f"CREATE TABLE {backup_table} LIKE {table};", f"Creating table '{backup_table}'"),
-                    (f"INSERT INTO {backup_table} SELECT * FROM {table};", f"Populating '{backup_table}' from '{table}'")
+                    (f"CREATE TABLE {_backup_table} LIKE {table};", f"Creating table '{_backup_table}'"),
+                    (f"INSERT INTO {_backup_table} SELECT * FROM {table};", f"Populating '{_backup_table}' from '{table}'")
                 ]:
                     admin_db.run_admin_query(sql, msg, commit=True)
 
@@ -233,4 +233,6 @@ with app.app_context():
         abend(f"ERROR while processing - {repr(e)}")
 
     log_title(f"ALL DONE" + (" - This was a TEST RUN - the database was NOT modified." if TEST_RUN else ""))
+    if not TEST_RUN:
+        print(f"** If after testing all looks good, then delete the backup tables using this SQL:\n\n    USE `{admin_db.db_name}`;\n    DROP TABLES `_backup_acc_bulk_email`, `_backup_acc_notes_emails`, `_backup_account`, `_backup_acc_user`; \n\n** Alternatively if any problems, you can reinstate the database using this SQL:\n\n    USE `{admin_db.db_name}`;\n    DROP TABLES `acc_bulk_email`, `acc_notes_emails`, `account`, `acc_user`;\n\n    ALTER TABLE `_backup_acc_bulk_email` RENAME TO `acc_bulk_email`;\n    ALTER TABLE `_backup_acc_notes_emails` RENAME TO `acc_notes_emails`;\n    ALTER TABLE `_backup_account` RENAME TO `account`;\n    ALTER TABLE `_backup_acc_user` RENAME TO `acc_user`;")
 
