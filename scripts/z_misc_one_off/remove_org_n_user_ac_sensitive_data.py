@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """
+NB. Set TEST_RUN = True  to check that script will run OK *without* making any Database changes
+
 Remove sensitive (identifying / secret) data from Org & User account records.  (E.g. For producing test data).
 Script to do following:
   - Backup tables that will be modified:
@@ -39,6 +41,9 @@ TO REVERT (reinstate original data from backed up tables) - Paste following into
     ALTER TABLE `acc_user_bak` RENAME TO  `acc_user` ;
 
 """
+
+TEST_RUN = False
+
 import re
 import random
 import string
@@ -62,6 +67,9 @@ def log_msg(level, msg, row_num=None, org_id=None, org_name=""):
 # Abnormal End
 def abend(msg):
     log_title(f"ABEND - {msg}")
+    if TEST_RUN:
+        log_title("This was a TEST RUN - the database was NOT modified.")
+
     exit(1)
 
 def random_string(s_len=None):
@@ -86,7 +94,7 @@ def randomise_string(s, first_upper=None, not_empty=True):
 
 def randomise_email(email, firstname=None, lastname=None):
     # Split the email into username and domain
-    if '@' not in email:
+    if not email or '@' not in email:
         return email
     local, domain = email.split('@', 1)
     if firstname is None:
@@ -132,7 +140,9 @@ class AdminDB:
 
 with app.app_context():
 
-    TEST = False
+    if TEST_RUN:
+        log_title("This is a TEST RUN - the database will NOT be modified.")
+
     initialise()
     ### ALter config to avoid outputting DEBUG log messages
     app.config["LOGLEVEL"] = "INFO"
@@ -143,7 +153,7 @@ with app.app_context():
 
     tables_to_backup = ["account", "acc_user", "acc_notes_emails", "acc_bulk_email"]
     try:
-        if not TEST:
+        if not TEST_RUN:
             for sql, msg in [
                 (f"USE {admin_db.db_name};", f"Use '{admin_db.db_name}' database"),
             ]:
@@ -176,7 +186,7 @@ with app.app_context():
                 # Change SWORD account credentials (Username, Pwd, Collection)
                 repo_data.add_sword_credentials(random_string(8), random_string(11), repo_data.sword_collection)
 
-            if not TEST:
+            if not TEST_RUN:
                 acc.update()
             log_msg("INFO", f"Account updated (New contact email: {acc.contact_email})", org_id=acc.id, org_name=acc.org_name)
 
@@ -187,7 +197,7 @@ with app.app_context():
                 acc_user.forename = randomise_string(acc_user.forename)
                 acc_user.username = randomise_email(acc_user.username, firstname=acc_user.forename, lastname=acc_user.surname)
                 # acc_user.org_role = randomise_string(acc_user.org_role)
-                if not TEST:
+                if not TEST_RUN:
                     acc_user.update()
                 log_msg("INFO", f"User {users_name} (ID: {acc_user.id}) updated; New username: {acc_user.username}", org_id=acc.id, org_name=acc.org_name)
 
@@ -200,7 +210,7 @@ with app.app_context():
             note_email_dict["to_addr"] = randomise_emails_string(note_email_dict.get("to_addr", ""))
             note_email_dict["cc_addr"] = randomise_emails_string(note_email_dict.get("cc_addr", ""))
             print("ID:", note_email_dict["id"] ,"\nTo:", note_email_dict["to_addr"], "\nCC:", note_email_dict["cc_addr"], "\n")
-            if not TEST:
+            if not TEST_RUN:
                 note_email.update()
 
         log_title("Modifying Bulk Email records")
@@ -211,10 +221,10 @@ with app.app_context():
             bulk_email_dict["bcc_to_addr"] = randomise_emails_string(bulk_email_dict.get("bcc_to_addr", ""), split_str=";")
             bulk_email_dict["bcc_cc_addr"] = randomise_emails_string(bulk_email_dict.get("bcc_cc_addr", ""), split_str=";")
             print("ID:", bulk_email_dict["id"], "\nCC:", bulk_email_dict["cc_addr"], "\nTo-bcc:", bulk_email_dict["bcc_to_addr"],"\nCC-bcc:", bulk_email_dict["bcc_cc_addr"],"\n")
-            if not TEST:
+            if not TEST_RUN:
                 bulk_email.update()
 
-        if not TEST:
+        if not TEST_RUN:
             AccOrg.commit()
             AccUser.commit()
             AccNotesEmails.commit()
@@ -222,4 +232,5 @@ with app.app_context():
     except Exception as e:
         abend(f"ERROR while processing - {repr(e)}")
 
-    log_title(f"ALL DONE")
+    log_title(f"ALL DONE" + (" - This was a TEST RUN - the database was NOT modified." if TEST_RUN else ""))
+
