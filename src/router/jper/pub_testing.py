@@ -740,7 +740,7 @@ class PubTesting:
                         "raw": "<Unstructured affilation> or absent",
                     ] }
             }
-            This ENCLOSURE uses `dv` from outer scope.
+            This ENCLOSURE uses `dv` DictValidator variable from outer scope.
 
             :param result_dict: Dict - holds control information and validation results
             :param author_dict_list: List of authors
@@ -790,7 +790,6 @@ class PubTesting:
                                    },
                 "desirable_keys": {"identifier": {"essential_keys": ["type", "id"]}
                                    },
-                # Note that organisation_name and name are validated by
                 "optional_keys": {
                     "organisation_name": None,
                     "name": {"essential_keys": ["firstname", "surname"],

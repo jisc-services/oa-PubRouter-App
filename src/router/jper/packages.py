@@ -1122,7 +1122,7 @@ class FTPZipFlattener:
             pkg_error = []
             if xml_found_at_depth is None:
                 pkg_error = ["no XML file"]
-            # Check for missing PDF is now done elsewhere
+            # Check for missing PDF is now done elsewhere 
             # if not pdf_found:
             #     pkg_error.append("no PDF file")
             if pkg_error:

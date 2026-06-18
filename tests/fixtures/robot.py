@@ -20,7 +20,7 @@ import os
 from router.jper.app import app_decorator, app
 
 TEST_DB_ADMIN_USER = "test_admin"   # Pre-existing DB Admin user with permissions to create database & tables
-TEST_DB_ADMIN_PWD = "_test#db#admin%1234%pwd_"
+TEST_DB_ADMIN_PWD = "py2FZ@BgzZd$PzJq5E#T" # "_test#db#admin%1234%pwd_"
 
 ROBOT_DB_NAME = "robot"     # Name of db schema to be used for robot tests
 

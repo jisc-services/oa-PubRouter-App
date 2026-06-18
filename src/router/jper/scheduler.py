@@ -227,7 +227,8 @@ def _move_files_from_ftp_jail_dir(file_type, shell_script_name, source_xfer_path
             if minimum_secs_since_last_modified:
                 msg2 = ""
                 # Set 'latest allowed time' value to X seconds ago; any file with 'last modified time' older than that
-                # will be moved; any file more recent than that will not be moved
+                # will be moved; any file more recent than that will not be moved (this avoids moving any file that is
+                # still in the process of being deposited into the FTP directory)
                 latest_allowed_file_modified_time_secs = int(time.time()) - minimum_secs_since_last_modified
             else:  # No processing of files while there is an active FTP connection
                 msg2 = "NOT "
@@ -260,7 +261,8 @@ def _move_files_from_ftp_jail_dir(file_type, shell_script_name, source_xfer_path
                 item_full_path = f"{source_xfer_path}/{item}"
                 # if latest_allowed_file_modified_time_secs is non-zero it means an active FTP connection was detected
                 if latest_allowed_file_modified_time_secs:
-                    # If file last modified time is later than the latest allowed time then don't process it
+                    # If file last modified time is later than the latest allowed time then don't process it now (it
+                    # will be processed at a later time).
                     if int(os.path.getmtime(item_full_path)) > latest_allowed_file_modified_time_secs:
                         pub_test.log(INFO,
                                      f"move_files…: Skipped recent file '{item}' as FTP connection exists; Acc: {pub_uuid}."
@@ -291,10 +293,10 @@ def _move_files_from_ftp_jail_dir(file_type, shell_script_name, source_xfer_path
                                                     msg, user_msg, pub_test)
                     bad_file_count += 1
                 else:
-                    # Some other error. It's probably a no space error, so just return that.
+                    # Some other error. It's probably a no disk space error, so just return that.
                     raise OSError(errno.ENOSPC, "No space left on device")
     
-            # If any bad Atypon files found, then log error
+            # If any bad files found, then log error
             if bad_file_count:
                 msg = f"{bad_file_count} failures occurred while processing {len(xfer_dir_listing)} {file_type} files" \
                       f" in directory '{source_xfer_path}' for Acc: '{acc_org_name}' (ID:{acc_id}, UUID:{pub_uuid}). (See log for individual details)."

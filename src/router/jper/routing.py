@@ -425,8 +425,9 @@ def route(unrouted, test_publishers=None, test_harvesters=None, active_repo_tupl
                         f"Failed to update Publisher Deposit record for notification Id: {routed_id}. {str(e)}")
 
                 # Raise error to publisher here if zip file was missing a PDF
-                # (This used to be done elsewhere (upon file ingest), but doing it after successful routing means that
-                # publishers are only alerted to potentially consequential problems)
+                # This used to be done elsewhere (upon file ingest), but doing it AFTER successful routing means that
+                # publishers are only alerted to potentially consequential problems (i.e. they are NOT informed of
+                # problems for submissions that are NOT matched/routed).
                 file_name = pub_deposit_record.name
                 if file_name and not routed.has_pdf:
                     # Publisher account may or may not have been retrieved in _create_routed above

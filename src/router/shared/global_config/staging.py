@@ -8,7 +8,7 @@ LOGLEVEL = 'DEBUG'
 # PUBLIC VERSION: obfuscate details
 MYSQL_HOST = "XXXX-XXXX-pubrouter.ZZZZ.eu-west-1.rds.amazonaws.com"    # Aurora MySQL Pre-Prod (staging) instance
 MYSQL_PWD = "XXXXYYYYXXXXYYYY"              # Password for MYSQL_USER "jper_user"
-TEST_DB_ADMIN_PWD = "_test#db#admin%1234%pwd_"      # Password of TEST_DB_ADMIN_USER User: "test_admin"
+TEST_DB_ADMIN_PWD = "_stage#db#admin%1234%pwd_"      # Password of TEST_DB_ADMIN_USER User: "test_admin"
 
 SERVER_NAME = 'XXXX.jisc.ac.uk'
 PREFERRED_URL_SCHEME = 'https'

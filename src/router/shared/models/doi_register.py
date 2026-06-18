@@ -831,7 +831,7 @@ def duplicate_doi_check(unrouted):
 
     If it is a duplicate, it compares it with prior versions: the original and, possibly a later cumulative version,
     producing a list of metrics differences dicts (diff-dicts). The comparison-list will have either 1 or 2 elements:
-        [dict-comparison-with-original, dict-comparison-with-later-cumulative**].
+        [dict-comparison-with-original, dict-comparison-with-later-cumulative].
     See function `compare_metrics()` for description of the diff-dicts
 
     :param unrouted: Object - unrouted notification

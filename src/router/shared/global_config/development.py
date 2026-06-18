@@ -13,7 +13,7 @@ MYSQL_DB = "jper"
 # MYSQL_PWD = "ABCabcXYZxyz"
 # MYSQL_DB = "test"
 # PUBLIC VERSION: obfuscate password
-TEST_DB_ADMIN_PWD = "_test#db#admin%1234%pwd_"      # Password of TEST_DB_ADMIN_USER User: "test_admin"
+TEST_DB_ADMIN_PWD = "py2FZ@BgzZd$PzJq5E#T" # "_test#db#admin%1234%pwd_"      # Password of TEST_DB_ADMIN_USER User: "test_admin"
 
 SERVER_NAME = 'localhost:5998'
 PREFERRED_URL_SCHEME = 'http'
