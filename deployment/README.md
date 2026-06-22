@@ -1,9 +1,10 @@
 # Contents of 'deployment' directory
 
-This directory holds the following files:
+**NOTE: The `jenkins_deployment.sh` script found in the [Jenkins schellscript directory](../jenkins) will correctly install all these configuration files into the appropriate directories on the server, when run under the auspices of Jenkins - see the [Build tools repository](https://github.com/jisc-services/oa-PubRouter-Build-Tools).**
+
+The `deployment` directory holds the following files:
 * Deployment configuration files (used by gunicorn, supervisorctl, nginx) - see [here](../docs/Architecture.md) for more information on the technology stack.
-* Bash shell scripts, with names of format ***script-name.sh***, that are either called by the application (i.e. from within python modules) or run as cron jobs
-* Cron job files (cron shell scripts and their companion cron scheduling script )
+* Bash shell scripts, with names of format ***script-name.sh***, that are called by the application (i.e. from within python modules).  NB. some scripts were previously run as cron jobs, but these were replaced by Router scheduler functionality).
 
 ## Config files
 
@@ -16,9 +17,9 @@ This directory holds the following files:
 * ***etc_sudoers-d_jenkins*** - holds sudoers configuration that must be installed (manually) as a file named `/etc/sudoers.d/jenkins` and given '0440' permissions: `sudo chmod 0440  /etc/sudoers.d/jenkins`.  
 ***NB***. This must be installed BEFORE running Jenkins deployment jobs.
 
-NOTE: nginx configuration for the PubRouter Gateway server is defined in the ***ansible*** section in our [Pubrouter Server Configuration](https://github.com/jisc-services/PubRouter-Server-Configuration) Github repository. 
+NOTE: Sample nginx configuration for the PubRouter servers can be found here: [Router Build Tools repository](https://github.com/jisc-services/oa-PubRouter-Build-Tools/tree/master/nginx). 
 
-## Shell scripts and cron
+## Shell scripts (and cron)
 
 ### Installation
 
@@ -31,16 +32,16 @@ Accordingly the application installation process requires that a symlink for <co
 
 Thus in <code>~/.pubrouter</code> we have <code>sh -> /usr/local/PubRouter/deployment/shellscripts</code>. 
 
-#### Shell scripts run by cron
-Some shell scripts are run by cron jobs.
+#### Shell scripts run by cron (now obsolete)
+Previously some shell scripts are run by cron jobs, but these were replaced by embedded functions run by Router's scheduler.
 
-### Cron files
+### Cron files (deprecated)
 Cron files come in pairs:
 * *some-filename*.sh - this is the bash shell script that contains the code to be executed
 
 * *some-filename*.cron - this is the companion cron command that executes the shell script at the required frequency / time of day
 
-The installation process copies the `*.cron` files into the `/etc/cron.d` directory and removes the `.cron` suffix (otherwise cron ignores them).
+The installation process previously copied the `*.cron` files into the `/etc/cron.d` directory and removed the `.cron` suffix (otherwise cron ignores them).  The functionality to do this still exists in the [deployment script](../jenkins/jenkins_deployment.sh) in case there is a future need for use of cron (although ideally any new timed jobs would be incorporated into the Router scheduling system).
 
 ### Bash scripts
 
@@ -49,7 +50,7 @@ These are files with names ending *.sh*.
 #### IMPORTANT: Executable shell-scripts
 
 ##### 1. Ensuring scripts have executable flag set
-It is necessary to set the shell-script executable status in file properties:
+It is necessary to set the shell-script executable status in file properties (in Windows file manager):
 
 * Right-click the file
 * Select Git tab
