@@ -69,7 +69,7 @@ class ZNoteDAO(TableDAO):
         return None
 
 
-log_fname = os.path.join("/tmp", f"notification_analysis_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"notification_analysis_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 

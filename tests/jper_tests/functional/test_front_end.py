@@ -662,16 +662,16 @@ class TestFrontEndRepositories(TestFrontEnd):
             "strongpassword",
             account_type="repo",
             matching_config={"name_variants": ["first", "second", "third"],
-                             "postcodes": ["first"],
-                             "emails": ["first", "second"],
-                             "orcids": ["first"]}
+                             "postcodes": ["pc_1"],
+                             "emails": ["email_1", "email_2"],
+                             "orcids": ["orcid_1"]}
             )
         self.login(org_admin_user.username, "strongpassword")
 
         url = url_for("account.match_params_as_csv", org_uuid=org_acc.uuid)
 
-        expected_data = (b"Name Variants,Domains,Postcodes,Grant Numbers,ORCIDs,Author Emails,Organisation Identifiers\r\n"
-                         b"third,,first,,first,second,\r\nsecond,,,,,first,\r\nfirst,,,,,,\r\n")
+        expected_data = (b"Name Variants,Domains,Postcodes,Organisation Identifiers,Author Emails,Grant Numbers,ORCIDs\r\n"
+                         b"third,,pc_1,,email_2,,orcid_1\r\nsecond,,,,email_1,,\r\nfirst,,,,,,\r\n")
         response = self.test_client.get(url)
         assert response.status_code == 200
         assert response.data == expected_data
@@ -691,7 +691,7 @@ class TestFrontEndRepositories(TestFrontEnd):
         org_acc, org_admin_user, api_user, std_user, ro_user = self.account_with_password("strongpassword", account_type="repo")
         self.login(std_user.username, "strongpassword")
 
-        partial_post = self.partial_post("account.update_other_match_params", org_uuid=org_acc.uuid)
+        partial_post = self.partial_post("account.update_other_match_data", org_uuid=org_acc.uuid)
         response = partial_post(data={"pub_years": 1}, follow_redirects=True)
         repo_data = AccOrg.pull(org_acc.id).repository_data
         html = response_to_html(response)

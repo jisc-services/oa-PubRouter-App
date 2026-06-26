@@ -34,9 +34,9 @@ class JPERTestCase(JPERMySQLTestCase):
 
     test_client = None
     # Use os.path.join to make sure that these paths are correct on Windows
-    store = os.path.join("/tmp", "store")
-    ftp = os.path.join("/tmp", "ftp")
-    reports = os.path.join("/tmp", "reports")
+    store = os.path.join(os.sep, "tmp", "store")
+    ftp = os.path.join(os.sep, "tmp", "ftp")
+    reports = os.path.join(os.sep, "tmp", "reports")
 
     @classmethod
     def store_path(cls, endpoint):

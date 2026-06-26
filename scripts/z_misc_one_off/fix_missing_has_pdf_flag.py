@@ -100,7 +100,7 @@ class AdminDB:
 
 
 
-log_fname = os.path.join("/tmp", f"fix_missing_pdf_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"fix_missing_pdf_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 

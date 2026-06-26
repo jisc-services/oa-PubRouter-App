@@ -12,7 +12,7 @@ from octopus.lib.dates import ymd_to_dmy, now_str
 from router.shared.models.doi_register import DoiRegister
 from router.shared.models.metrics import MetricsRecord
 from router.shared.models.schedule import Job
-from router.jper.reports import generate_duplicate_submissions_report, matching_params_report, matching_params_json
+from router.jper.reports import generate_duplicate_submissions_report, all_matching_params_report, all_matching_params_json
 from router.jper.forms.reports import MiscReportScriptsForm
 
 blueprint = Blueprint('reports', __name__)
@@ -362,9 +362,7 @@ def misc_reports():
         # "aff_analysis": (provider_aff_usage_report, {}),  - REPORT PRODUCED BY `scheduler.py` ##
         # "aff_org_analysis": (reports.provider_aff_org_report, {}),  - REPORT PRODUCED BY `scheduler.py` ##
         # "note_analysis": (note_types_report, {}),         - REPORT PRODUCED BY `scheduler.py` ##
-        "matching_params": (matching_params_report, {"sep": "  ~  "}),
-        "matching_params_nl": (matching_params_report, {"sep": "\n"}),
-        "matching_params_json": (matching_params_json, {"indent": 4}),
+        # "matching_params": (all_matching_params_report, {"sep": "  ~  "}),  - This 'report' has been MOVED to match_params_download in views\account.py
     }
     misc_reports_form = MiscReportScriptsForm()
     if request.args:
@@ -391,6 +389,8 @@ def misc_reports():
                 msg = f"The report to <strong><i>{rep_title.lower()}</i></strong> has been scheduled to run as a background job.<br/><br/>It will be emailed to you upon completion at <i>{send_to_email}</i>."
                 flash(msg, 'info+html')
             # will be an online report, as long as rep_title is not None
+            # - NOTE there are currently no online reports, but the matching-params-downloads were previously obtained here
+            #   and the code has been retained in case there are future online 'real' reports that should be produced here.
             elif rep_title:
                 _misc_dir = MISC_DIR
                 misc_dir = _report_directory(_misc_dir)

@@ -13,7 +13,7 @@ from router.shared.models.doi_register import DoiRegister
 from router.shared.models.account import AccOrg
 
 tbl = "doi_register"
-log_fname = os.path.join("/tmp", f"update_modify_{tbl}_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"update_modify_{tbl}_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 

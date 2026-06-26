@@ -13,7 +13,7 @@ from router.jper.app import app     # need to import app_decorator as other modu
 from router.shared.models.doi_register import DoiRegister
 from router.shared.models.note import RoutedNotification
 
-log_fname = os.path.join("/tmp", f"update_modified_doi_register_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"update_modified_doi_register_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 def write_log(s, flush=False):

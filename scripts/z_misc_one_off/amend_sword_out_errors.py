@@ -9,7 +9,7 @@ from router.jper.app import app     # need to import app_decorator as other modu
 from router.shared.models.note import RoutedNotification
 from router.shared.models.sword_out import SwordDepositRecord
 
-log_fname = os.path.join("/tmp", f"amend_sword_out_errs_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"amend_sword_out_errs_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 
@@ -55,8 +55,8 @@ with (app.app_context()):
             sword_dep_rec.update()
             write_log(f"\n** Sword rec updated id: {sword_dep_rec.id}; Error msg: {sword_dep_rec.error_message}\n")
             updated += 1
-        if count >= 1:
-            break
+        # if count >= 1:
+        #     break
 
     for sword_dep_rec in dep_recs_2:
         count += 1
@@ -66,8 +66,8 @@ with (app.app_context()):
         sword_dep_rec.update()
         write_log(f"\n** Sword rec updated id: {sword_dep_rec.id}; Error msg: {sword_dep_rec.error_message}\n")
         updated += 1
-        if count > 1:
-            break
+        # if count > 1:
+        #     break
 
     for sword_dep_rec in dep_recs_3:
         count += 1
@@ -77,8 +77,8 @@ with (app.app_context()):
         sword_dep_rec.update()
         write_log(f"\n** Sword rec updated id: {sword_dep_rec.id}; Error msg: {sword_dep_rec.error_message}\n")
         updated += 1
-        if count > 1:
-            break
+        # if count > 1:
+        #     break
 
     write_log(f"\n**** Num recs processed {count}; recs updated {updated} ****\n")
     write_log(f"\n**** DONE ****\n")

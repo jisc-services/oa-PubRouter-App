@@ -9,7 +9,7 @@ from octopus.lib.dates import now_str
 from router.jper.app import app     # need to import app_decorator as other modules import it from here.
 from router.shared.models.note import RoutedNotification
 
-log_fname = os.path.join("/tmp", f"notification_adhoc_analysis_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"notification_adhoc_analysis_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 

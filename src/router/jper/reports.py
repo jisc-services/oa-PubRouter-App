@@ -4,7 +4,9 @@ Functions which generate reports from the JPER system
 """
 import os
 from json import dump
-from octopus.lib.csv_files import create_csv_file
+from zipfile import ZipFile, ZIP_DEFLATED
+
+from octopus.lib.csv_files import create_csv_file, create_in_memory_csv_file, StringIO
 from octopus.lib.dates import now_str
 
 from router.shared.models.account import AccOrg, AccRepoMatchParams, REPO_MATCH_PARAM_SCROLL_NUM, CONN_CLOSE, DICT
@@ -15,6 +17,17 @@ from router.jper.models.publisher import PublisherDepositRecord
 from router.jper.pub_testing import validate_aff_org_value
 
 month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+
+def delete_dict_fields(_dict, fields):
+    """
+    Attempt to delete elements from dict, ignore KeyError (field not in dict)
+    """
+    for _field in fields:
+        try:
+            del _dict[_field]
+        except KeyError:
+            pass
 
 
 def column_month_headers(*args):
@@ -244,7 +257,7 @@ def note_types_report(log_file_pathname=None, print_it=False):
         return sep + sep.join(sorted(_set)) + "\n"
 
     if log_file_pathname is None:
-        log_file_pathname = os.path.join("/tmp", f"notification_types_analysis_{now_str('%Y-%m-%d')}.txt")
+        log_file_pathname = os.path.join(os.sep, "tmp", f"notification_types_analysis_{now_str('%Y-%m-%d')}.txt")
     try:
         log_file = open(log_file_pathname, "w", encoding="utf-8")
     except Exception as e:
@@ -354,7 +367,7 @@ def provider_aff_usage_report(csv_file_pathname=None, print_it=False):
     :return: Tuple (output-file-path, record count)
     """
     if csv_file_pathname is None:
-        csv_file_pathname = os.path.join("/tmp", f"provider_aff_usage_{now_str('%Y-%m-%d')}.csv")
+        csv_file_pathname = os.path.join(os.sep, "tmp", f"provider_aff_usage_{now_str('%Y-%m-%d')}.csv")
 
     if print_it:
         print(f"\nResults will be written to file: {csv_file_pathname}\n")
@@ -471,7 +484,7 @@ def provider_aff_org_report(csv_file_pathname=None, print_it=False):
     :return: Tuple (output-file-path, record count)
     """
     if csv_file_pathname is None:
-        csv_file_pathname = os.path.join("/tmp", f"provider_dubious_aff_org_{now_str('%Y-%m-%d')}.csv")
+        csv_file_pathname = os.path.join(os.sep, "tmp", f"provider_dubious_aff_org_{now_str('%Y-%m-%d')}.csv")
 
     if print_it:
         print(f"\nResults will be written to file: {csv_file_pathname}\n")
@@ -560,7 +573,7 @@ def provider_aff_org_report(csv_file_pathname=None, print_it=False):
     return csv_file_pathname, count
 
 
-def matching_params_report(csv_file_pathname=None, print_it=False, sep=",  "):
+def all_matching_params_report(csv_file_pathname=None, print_it=False, sep=",  "):
     """
     Produce a summary of all matching parameters.
 
@@ -593,7 +606,7 @@ def matching_params_report(csv_file_pathname=None, print_it=False, sep=",  "):
 
 
     if csv_file_pathname is None:
-        csv_file_pathname = os.path.join("/tmp", f"all_matching_parameters.csv")
+        csv_file_pathname = os.path.join(os.sep, "tmp", f"all_matching_parameters.csv")
 
     if print_it:
         print(f"\nResults will be written to file: {csv_file_pathname}\n")
@@ -619,14 +632,15 @@ def matching_params_report(csv_file_pathname=None, print_it=False, sep=",  "):
                 list_to_str(mp.formatted_org_ids, sep),
                 list_to_str(mp.domains, sep),
                 list_to_str(mp.postcodes, sep),
-                len(mp.grants),
-                len(mp.author_orcids)
+                list_to_str(mp.author_emails, sep),
+                len(mp.grants),         # Count of grants (as there can be hundreds)
+                len(mp.author_orcids)   # Count of ORCIDs (as there can be hundreds)
             ))
     del match_param_scroller  # Delete here to clear down any memory
 
     data_list.sort(key=lambda row: row[0])
     ## Create CSV file of results ##
-    headings = ["Org Name", "Rec ID", "Last Updated", "Regex used", "Regex previously used", "Num archived params", "Name Variants", "Organisation IDs", "Domains", "Postcodes", "Num. Grants", "Num ORCIDs"]
+    headings = ["Org Name", "Rec ID", "Last Updated", "Regex used", "Regex previously used", "Num archived params", "Name Variants", "Organisation IDs", "Domains", "Postcodes", "Emails", "Num. Grants", "Num ORCIDs"]
     num_recs = create_csv_file(csv_file_pathname, data_list, headings)
 
     if print_it:
@@ -634,7 +648,8 @@ def matching_params_report(csv_file_pathname=None, print_it=False, sep=",  "):
 
     return csv_file_pathname, num_recs
 
-def matching_params_json(json_file_pathname=None, print_it=False, indent=4):
+
+def all_matching_params_json(json_file_pathname=None, print_it=False, indent=4):
     """
     Produce JSON output of all matching parameters.
 
@@ -644,18 +659,8 @@ def matching_params_json(json_file_pathname=None, print_it=False, indent=4):
     :return: Tuple (output-file-path, record count)
     """
 
-    def delete_dict_fields(_dict, fields):
-        """
-        Attempt to delete elements from dict, ignore KeyError (field not in dict)
-        """
-        for _field in fields:
-            try:
-                del _dict[_field]
-            except KeyError:
-                pass
-
     if json_file_pathname is None:
-        json_file_pathname = os.path.join("/tmp", f"all_matching_parameters.json")
+        json_file_pathname = os.path.join(os.sep, "tmp", f"all_matching_parameters.json")
 
     if print_it:
         print(f"\nResults will be written to file: {json_file_pathname}\n")
@@ -672,10 +677,10 @@ def matching_params_json(json_file_pathname=None, print_it=False, indent=4):
             mp_dict["org_name"] = repo_acc_ids_dict.get(mp_id, 'MISSING')
             mp_dict["has_regex"] = mp_dict["has_regex"] == 1
             mp_dict["had_regex"] = mp_dict["had_regex"] == 1
+            # Add match params dict to list
             data_list.append(mp_dict)
             num_recs += 1
     del match_param_scroller  # Delete here to clear down any memory
-
 
     data_list.sort(key=lambda row: row["org_name"])
     ## Create json file of results ##
@@ -685,3 +690,100 @@ def matching_params_json(json_file_pathname=None, print_it=False, indent=4):
         print(f"\nResults have been written to files: {json_file_pathname}.\n")
 
     return json_file_pathname, num_recs
+
+
+def zip_all_matching_params_as_csv_and_json(zip_pathname=None, print_it=False, indent=4, detailed_json=False):
+    """
+        Create zip file containing
+            * either both CSV & JSON version of matching params for repositories - either of which is uploadable via the
+               matching params upload function (in Org Account matching param page)
+            * or Detailed JSON version of matching params for repositories (cannot be uploaded)
+    """
+
+    def create_json_memory_file(mp_dict, indent=4):
+        """
+        Create JSON file in memory.
+        """
+        file = StringIO()
+        dump(mp_dict, file, indent=indent)
+        file.seek(0)
+        return file
+
+
+    def save_detailed_json_to_zip():
+        """
+        Write detailed JSON to zip file.  (No CSV files created)
+
+        No parameters - uses variables print_it, org_name, mp_dict, filename_no_suffix, & match_params_zip from outer scope
+        """
+        if print_it:
+            print(f"\n** Creating detailed JSON file for {org_name} **")
+        # Not interested in these fields
+        delete_dict_fields(mp_dict, ("id", "created", "updated", "had_regex"))
+        mp_dict["org_name"] = org_name
+        mp_dict["has_regex"] = mp_dict.get("has_regex") == 1
+        # If no Original-name-variants, delete the dict entry (if it exists)
+        if not mp_dict.get("orig_name_variants"):
+            delete_dict_fields(mp_dict, ["orig_name_variants"])
+        # Create JSON file in memory FIRST because CSV file creation pops items from mp_dict
+        json_file = create_json_memory_file(mp_dict, indent=indent)
+        match_params_zip.writestr(f"detailed_params_{filename_no_suffix}.json", json_file.read())
+        json_file.close()
+
+
+    def save_csv_and_json_to_zip():
+        """
+        Write uploadable JSON file and CSV file to zip file.
+
+        No parameters - uses variables print_it, org_name, mp_dict, filename_no_suffix, & match_params_zip from outer scope
+        """
+        if print_it:
+            print(f"\n** Creating JSON & CSV files for {org_name} **")
+
+        match_params = mp_dict.get("matching_config", [])
+
+        # Create JSON file in memory FIRST because CSV file creation pops items from match_params
+        json_file = create_json_memory_file(match_params, indent=indent)
+        match_params_zip.writestr(filename_no_suffix + ".json", json_file.read())
+        json_file.close()
+
+        # Create CSV file and add to Zip file
+        row_count, csv_file = create_in_memory_csv_file(
+            data_iterable=AccRepoMatchParams.csv_row_generator(match_params, preserve_data=False),
+            heading_row=AccRepoMatchParams.csv_row_headings(),
+            return_bytes_io=False
+        )
+        match_params_zip.writestr(filename_no_suffix + ".csv", csv_file.read())
+        csv_file.close()
+
+    if zip_pathname is None:
+        zip_pathname = os.path.join(os.sep, "tmp", f"all_matching_parameters.zip")
+
+    if print_it:
+        print(f"\nOutput will be written to file: {zip_pathname}\n")
+
+    # Load all Repo organisation names into a dict.
+    repo_acc_ids_dict = AccOrg.get_account_id_to_org_names_dict("R", live_test="LT", close_cursor=True)
+
+    # Set the function that will create JSON (& CSV) files and write to Zip
+    file_output_fn = save_detailed_json_to_zip if detailed_json else save_csv_and_json_to_zip
+
+    with ZipFile(zip_pathname, "w", compression=ZIP_DEFLATED) as match_params_zip:
+        num_acs = 0
+        match_param_scroller = AccRepoMatchParams.scroller_obj(
+            pull_name="all_repo", rec_format=DICT, scroll_num=REPO_MATCH_PARAM_SCROLL_NUM, end_action=CONN_CLOSE)
+        with match_param_scroller:
+            for mp_dict in match_param_scroller:
+                org_name = repo_acc_ids_dict.get(mp_dict["id"], 'MISSING')
+                filename_no_suffix = AccOrg.org_name_to_filename(org_name)
+
+                file_output_fn()    # Function either adds a detailed JSON or both a basic JSON & CSV file to the zip
+
+                num_acs += 1
+
+        del match_param_scroller  # Delete here to clear down any memory
+
+    if print_it:
+        print(f"\n*** Completed - {num_acs} institutions processed. Zipfile: {zip_pathname}. ***")
+
+    return zip_pathname, num_acs

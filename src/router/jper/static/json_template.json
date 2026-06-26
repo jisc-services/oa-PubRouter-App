@@ -1,0 +1,37 @@
+{
+    "domains": [
+        "excellence-univeristy.ac.uk",
+        "ex-uni.ac.uk"
+    ],
+    "emails": [
+        "a.researcher@gmail.com"
+    ],
+    "grants": [
+        "MR/J000973/1",
+        "1317140",
+        "EP/M012670/1",
+        "ST/P001254/1",
+        "1367768",
+        "1649245"
+    ],
+    "name_variants": [
+        "Excellent University",
+        "University of Excellent"
+    ],
+    "orcids": [
+        "0000-0003-3358-7519",
+        "0000-0003-3371-4159",
+        "0000-0002-9605-6309",
+        "0000-0002-4292-9039",
+        "0000-0002-9172-2289"
+    ],
+    "org_ids": [
+        "GRID:grid.44361.34",
+        "ISNI:0000000103398665",
+        "ROR:04mwwnx67"
+    ],
+    "postcodes": [
+        "AB1 1CD",
+        "EF2 4GG"
+    ]
+}

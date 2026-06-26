@@ -16,7 +16,7 @@ if not os.path.exists(store_root):
     exit(1)
 
 
-log_fname = os.path.join("/tmp", "xml_analysis.txt")
+log_fname = os.path.join(os.sep, "tmp", "xml_analysis.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 try:

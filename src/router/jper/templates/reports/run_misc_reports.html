@@ -18,11 +18,11 @@
 		</div>
 		<form id="report-form" class="form" method="GET">
 			<br>
-			<ul class="form-fields form">
+			<ul class="form-fields">
 				<li>
 					{{render_field(report_form.report_selector,'form__item','form__label')}}
 					<br><span class="form__label"></span>
-					<span id="info" class="form_fields-text-block light">Previously run reports are available <a href="{{url_for('reports.past_misc_reports')}}">here</a>.</span>
+					<span id="info" class="form_fields-text-block min_height_2rem light">Previously run reports are available <a href="{{url_for('reports.past_misc_reports')}}">here</a>.</span>
 				</li>
 				<li>
 					<span class="form__label"></span>

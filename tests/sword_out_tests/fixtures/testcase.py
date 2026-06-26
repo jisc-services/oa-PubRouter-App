@@ -7,7 +7,7 @@ from tests.fixtures.testcase import JPERMySQLTestCase
 class SwordOutTestCase(JPERMySQLTestCase):
 
     # Use os.path.join to make sure that these paths are correct on Windows
-    store = os.path.join("/tmp", "store")
+    store = os.path.join(os.sep, "tmp", "store")
     storage_mgr = None
 
     @classmethod

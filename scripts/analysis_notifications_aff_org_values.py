@@ -14,7 +14,7 @@ from router.shared.models.note import RoutedNotification
 org_has_bad_str = re.compile('(Also at|Building|c\/o|C(?:ampus|ent(?:er|re)|hair|ollege.+?University|onsultant)|D(?:ep(?:t|artment)|irectorate|ivision)|F(?:ac(?:ility|ulty)|loor)|Group|House|In(?:itiative|stitute)|L(?:aboratory|ibrar)|Program|Road|S(?:ection|ervice d|chool.+?University)|Team|Unit|(?:,.+?,))')
 
 
-log_fname = os.path.join("/tmp", f"notification_aff_org_analysis_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"notification_aff_org_analysis_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 print(f"\nResults will be written to file: {log_fname}\n")
 print_it = True

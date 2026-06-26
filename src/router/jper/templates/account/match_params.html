@@ -60,24 +60,24 @@
         <h2>Update matching parameters</h2>
 		{% if matching_params %}<p>Parameters last updated:  {{matching_params.last_updated_formatted()}}</p>{% endif %}
 		<section class="is-collapsible show_hide__container is-collapsible--button" data-collapsible="">
-			{% set file_desc = "CSV or JSON file" if curr_org_is_super else "CSV file" %}
+			{% set file_desc = "CSV or JSON file" %}
 			<h3 class="show_hide__trigger">Set parameters from {{file_desc}}</h3>
 			<div class="show_hide__target" style="display: block;">
 				<div class="cms">
-					<p>Change your matching parameters by uploading a new set in CSV format - see example template in
+					<p>Change your matching parameters by uploading a new set in CSV format (see example template in
 						<a href="/static/csvtemplate.csv" download="">csv format</a> or
-						<a href="/static/csvtemplate_router_matching_params_XLS_FORMAT.xlsx" download="">excel format</a>.
+						<a href="/static/csvtemplate_router_matching_params_XLS_FORMAT.xlsx" download="">excel format</a>) or JSON format (see <a href="/static/json_template.json" download="">JSON example</a>).
 					</p>
-					<p>You can choose to upload one, some or all types of parameter in one or more CSV files - the column headings will determine which parameters are changed. (See guidance notes in the templates above).</p>
-					<p>Before making changes it is recommended that you download your current parameters (link below) in case you need to revert.  However, if you find you have made a mistake that you can't easily recover from, then contact <a href="mailto:XXXX@YYYY.ac.uk?subject=Publications%20Router%20-%20Revert%20matching%20parameters">XXXX@YYYY.ac.uk</a> requesting Publications Router support to revert to a previous parameter set (which are automatically archived each time you upload a new file).</p>
+					<p>You can choose to upload one, some or all types of parameter in one or more CSV files - the column headings will determine which parameters are changed - see guidance notes in the templates above; or in one or more JSON files - the data labels will determine which parameters are changed.</p>
+					<p>Before making changes it is recommended that you download your current parameters (buttons below) in case you need to revert.  However, if you find you have made a mistake that you can't easily recover from, then contact <a href="mailto:XXXX@YYYY.ac.uk?subject=Publications%20Router%20-%20Revert%20matching%20parameters">XXXX@YYYY.ac.uk</a> requesting Publications Router support to revert to a previous parameter set (which are automatically archived each time you upload a new file).</p>
 				{% set set_match_params_url = url_for('account.set_match_params', org_uuid=org_acc.uuid) %}
 					<form class="form" method="POST" action="{{set_match_params_url}}"  enctype="multipart/form-data">
 						<ul class="form-fields">
 							<li>
 								<p class="strong">Upload parameters from your PC &nbsp;<small> (must be {{file_desc}} in prescribed format)</small></p>
-								<input class="form__item" type="file" name="file" id="file" accept={{".csv,.json" if curr_org_is_super else ".csv"}} aria-label="Choose file">
+								<input class="form__item" type="file" name="file" id="file" accept=".csv,.json" aria-label="Choose file">
 								<button class="gap-left btn btn--primary btn--3d" id="config_upload" type="submit">Upload</button>
-								<p class="info-note under">Replaces existing parameters of the types indicated by column headings.</p>
+								<p class="info-note under">Replaces existing parameters of the types included in the file.</p>
 							</li>
 						</ul>
 					</form>
@@ -90,7 +90,7 @@
 									<input type="url" name="url" id="url" class="" placeholder="enter URL of file to upload">
 								</label>
 								<button class="gap-left btn btn--primary btn--3d" id="config_retrieve" type="submit">Upload</button>
-								<p class="info-note under">Replaces existing parameters of the types indicated by column headings.</p>
+								<p class="info-note under">Replaces existing parameters of the types included in the file.</p>
 							</li>
 						</ul>
 					</form>
@@ -222,8 +222,9 @@
 {% endif %}
 	<br>
 	<h2 id="curr_params">Current matching parameters</h2>
-	<p class="no-underline"><a class="btn btn--3d btn--primary download" href="{{url_for('account.match_params_as_csv', org_uuid=org_acc.uuid)}}" role="button">Download as CSV file</a>
-		{% if curr_org_is_super %}<a class="gap-left btn btn--3d btn--primary download" href="{{url_for('account.match_params_as_json', org_uuid=org_acc.uuid)}}" role="button">Download as JSON file</a> <span class="smaller">(dev only option).</span>{% endif %}
+	<p class="no-underline">
+		<a class="btn btn--3d btn--primary download" href="{{url_for('account.match_params_as_csv', org_uuid=org_acc.uuid)}}" role="button">Download as CSV file</a>
+		<a class="gap-left btn btn--3d btn--primary download" href="{{url_for('account.match_params_as_json', org_uuid=org_acc.uuid)}}" role="button">Download as JSON file</a>
 	</p>
 	{% if matching_params %}
 		{{render_params(matching_params.name_variants, 'name_variants', 'Name Variants', 'Variants of the name of your institution (may contain Regex input by Jisc staff)')}}

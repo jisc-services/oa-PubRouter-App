@@ -53,7 +53,24 @@ The results are displayed as a table on screen, with an option to download the d
 |---|---|-----------------------------------------|
 | Analyse providers structured affiliation usage | Scan ALL notifications (3 months worth) &amp; report on providers use of structured affiliations.   | Report run as background job & emailed. |
 | Analyse affiliations for overpopulated institution (org) elements |  Scan ALL notifications (3 months worth) &amp; report on providers use of 'institution' (org) element in structured affiliations. | Report run as background job & emailed. |
-|  Analyse various 'type' values in notifications | Scan ALL notifications (3 months worth) &amp; list the 'type' values of various metadata items. | Report run as background job & emailed. |
-|  List matching parameters for all repository account | Summarise matching parameters for all repository accounts.  Parameters are separated by '  ~  '.   | CSV file for downlad.   |
-| List matching parameters (with newlines) for all repository accounts | Summarise matching parameters for all repository accounts. Each parameter is listed on a new line.   | CSV file for downlad.   |
-| Output matching parameters as JSON for all repository accounts | Outputs matching parameters for all repository accounts in JSON format." value="matching_params_json | JSON file for downlad.   |
+| Analyse various 'type' values in notifications | Scan ALL notifications (3 months worth) &amp; list the 'type' values of various metadata items. | Report run as background job & emailed. |
+
+
+<br/>
+
+## Matching parameter downloads
+
+Matching parameters can be downloaded in a variety of ways.
+
+From individual Repository Organisation accounts, the organisation's matching parameters can be downloaded as self-contained CSV or JSON files (by an administrator).
+
+Administrators can also download matching parameters for ALL accounts into single output files as described here.
+
+| Title                                                                  | Description                                                                                                                                                | Notes                  |
+|------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
+| List matching parameters for all repository account                    | For all repository accounts, list matching parameters except ORCIDs & Grant-numbers for which counts are given.<br>Parameters are separated by '  ~  '.    | CSV file for downlad.  |
+| List matching parameters (with newlines) for all repository accounts   | For all repository accounts, list matching parameters except ORCIDs & Grant-numbers for which counts are given.<br>Each parameter is listed on a new line. | CSV file for downlad.  |
+| Detailed matching parameters as JSON for all repository accounts       | Outputs matching parameter records (full detail) for all repository accounts in 1 JSON format file. Convenient for full details in one place.              | JSON file for downlad. |
+| Zip file of JSON & CSV matching parameters for each repository account |Outputs a Zip containing separate CSV & JSON matching parameters files (suitable for uploading) for each repository account.| Zip file for download. |
+| Zip file of detailed JSON matching parameters for each repository account |Outputs a Zip containing separate JSON detailed matching parameters files (NOT for uploading) for each repository account.|  Zip file for download  |
+

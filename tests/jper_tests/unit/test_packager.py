@@ -193,7 +193,7 @@ class TestPackager(TestCase):
         'grants' : ['NIH GM61374', 'NSF DBI-0317510', 'GM18458', 'DMS-0204674', 'DMS-0244638'],
         'emails' : ['e.asoli@frontiersin.org', 'b.ceecee@frontiersin.org', 'e.cerasoli@frontiersin.org']
     }
-    store = os.path.join("/tmp", "store")
+    store = os.path.join(os.sep, "tmp", "store")
 
     @classmethod
     @app_decorator

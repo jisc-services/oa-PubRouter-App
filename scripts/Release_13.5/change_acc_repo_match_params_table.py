@@ -14,7 +14,7 @@ from router.shared.models.account import AccRepoMatchParams, AccRepoMatchParamsA
 
 includes_regex = re.compile(r'[[|+?]')      # For testing if a name variant includes any REGEX
 tbl = "acc_repo_match_params"
-log_fname = os.path.join("/tmp", f"update_modify_{tbl}_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"update_modify_{tbl}_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 

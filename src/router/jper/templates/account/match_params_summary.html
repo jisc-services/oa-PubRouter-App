@@ -3,8 +3,8 @@
 
 <div class="row cms">
 	<h1 id="stickme">Repository matching parameters</h1>
-	<p class="info-note">Matching parameters are listed for selected type of accounts; those that are currently Off (not operational) are listed in lighter font.</p>
 	<div class="col span-12 cms">
+		<p class="info-note ">Matching parameters are listed for selected type of accounts; those that are currently Off (not operational) are listed in lighter font.</p>
 		<form id="radio-btn-form" method="GET" action="">
 			{# JQuery code below causes form to be submitted whenever any radio button is changed. #}
 			<fieldset class="form">
@@ -47,6 +47,7 @@
 			{% endfor %}
 			</tbody>
 		</table>
+		<p>You can download matching parameters <a href="{{url_for('account.match_params_download')}}">here</a>.</p>
 	</div>
 </div>
 {% endblock %} 
@@ -56,8 +57,9 @@ $(document).ready(function(){
 	/**
 	*	Code to submit form if any radio button changes
 	**/
-	$form = $("#radio-btn-form");
-	$form.on("change", function(e){ $form.submit(); });
+	$radio_form = $("#radio-btn-form");
+	$radio_form.on("change", function(e){ $radio_form.submit(); });
+
 });
 </script>
 

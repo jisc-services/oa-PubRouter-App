@@ -12,7 +12,7 @@ from router.jper.app import app     # need to import app_decorator as other modu
 from router.shared.mysql_dao import RoutedNotificationDAO, DAO, DICT
 
 tbl = "notification"
-log_fname = os.path.join("/tmp", f"update_modify_{tbl}_{now_str('%Y-%m-%d')}.txt")
+log_fname = os.path.join(os.sep, "tmp", f"update_modify_{tbl}_{now_str('%Y-%m-%d')}.txt")
 log_file = open(log_fname, "w", encoding="utf-8")
 
 

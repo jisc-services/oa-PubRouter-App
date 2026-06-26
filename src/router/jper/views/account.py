@@ -13,7 +13,7 @@ from json import load, dumps
 from operator import itemgetter
 from urllib.parse import quote
 from io import BytesIO
-from os import listdir
+import os
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from flask import Blueprint, request, url_for, flash, redirect, current_app, jsonify, send_file, render_template, abort,\
@@ -33,9 +33,10 @@ from router.jper.models.publisher import PublisherDepositRecord, PubTestRecord
 from router.jper.models.repository import MatchProvenance
 from router.jper.models.identifier import Identifier
 from router.jper.api import ParameterException
+from router.jper.reports import all_matching_params_report, all_matching_params_json, zip_all_matching_params_as_csv_and_json
 from router.jper.forms.account import AddOrgForm, RepoSettingsForm, RepoDuplicatesForm, PubSettingsForm,\
     PubReportsForm, PubTestingForm, OrgIdentifiersForm, MatchSettingsForm, OrgDataForm,\
-    PasswordUserForm, UserDetailsForm, CompareMatchParamsForm
+    PasswordUserForm, UserDetailsForm, CompareMatchParamsForm, MatchParamsDownloadForm
 from router.jper.views.webapi import post_patch_matching_params
 from router.jper.views.utility_funcs import get_page_details_from_request, calc_num_of_pages
 from router.jper.security import admin_org_only__gui, org_user_or_admin_org__gui, own_user_acc_or_org_admin_or_admin_org__gui,\
@@ -94,7 +95,7 @@ def _wtforms_validation_error_string(wtform, prefix_msg='', msg_join=' '):
 
 def _get_files_from_dir(directory, ends_with, sort_desc=True):
     try:
-        reports = [fl for fl in listdir(directory) if fl.endswith(ends_with)]
+        reports = [fl for fl in os.listdir(directory) if fl.endswith(ends_with)]
         reports.sort(reverse=sort_desc)
     except:
         reports = []
@@ -1199,12 +1200,10 @@ def _info_dict_to_csv_file(info_dict):
     """
     row_count, bytes_io_obj = create_in_memory_csv_file(data_context_mgr_iterable=info_dict.get("data_iterable"),
                                                         heading_row=info_dict["col_headings"])
-    filename = info_dict["org_name"].replace(" ", "_")
-
     return send_file(
         bytes_io_obj,
         mimetype='text/csv',
-        download_name=f"{filename}.csv",
+        download_name=AccOrg.org_name_to_filename(info_dict["org_name"],  extension="csv"),
         as_attachment=True
     )
 
@@ -1517,75 +1516,21 @@ def match_params_as_csv(org_uuid, curr_user=None, cu_org_acc=None):
     :param curr_user: Current user - SET BY DECORATOR FUNCTION
     :param cu_org_acc: Current user's Organisation account - SET BY DECORATOR FUNCTION
     """
-    def data_row_generator(matching_params):
-        """
-        Generates rows of data for outputting to CSV file
-        :param matching_params: Matching parameters Object
-        :return:
-        """
-        def pop_and_add_to_list(row_list, list_to_pop):
-            """
-            Pop from one list and add to another list - if there is nothing left in the list, don't add anything.
-
-            :param row_list: List to ADD data to
-            :param list_to_pop: List used to retrieve the value
-            :return: Boolean - True if value found; False no value
-            """
-            try:
-                value = list_to_pop.pop()
-                row_list.append(value)
-                return True
-            except IndexError:
-                # There is nothing left in the list - the other lists may still have values though, so don't throw error
-                row_list.append(None)
-                return False
-
-        if matching_params:
-            name_vars = matching_params.name_variants
-            domains = matching_params.domains
-            postcodes = matching_params.postcodes
-            grants = matching_params.grants
-            orcids = matching_params.author_orcids
-            emails = matching_params.author_emails
-            org_ids = matching_params.org_ids
-
-            while True:
-                next_row = []
-                data_found = False  # Will be set to True if any of following calls to pop_and_add_to_list returns True
-                data_found |= pop_and_add_to_list(next_row, name_vars)
-                data_found |= pop_and_add_to_list(next_row, domains)
-                data_found |= pop_and_add_to_list(next_row, postcodes)
-                data_found |= pop_and_add_to_list(next_row, grants)
-                data_found |= pop_and_add_to_list(next_row, orcids)
-                data_found |= pop_and_add_to_list(next_row, emails)
-                data_found |= pop_and_add_to_list(next_row, org_ids)
-                # if we do have data, write the row into the csv
-                if data_found:
-                    yield next_row
-                else:
-                    # If we don't have any data left, just break out of the loop
-                    break
-        return None
-
     # If current org-user is Admin, then we want to retrieve Org Account that the Admin user selected (will abort
     # with 404 if not found); otherwise we just use the user's parent Org Account
     org_acc = _get_org_acc_by_uuid(org_uuid) if cu_org_acc.is_super and cu_org_acc.uuid != org_uuid else cu_org_acc
 
     # Retrieve account's matching params
-    matching_params = AccRepoMatchParams.pull(org_acc.id)
+    matching_params_dict = AccRepoMatchParams.pull(org_acc.id, wrap=False)
 
     row_count, bytes_io_obj = create_in_memory_csv_file(
-        data_iterable=data_row_generator(matching_params),
-        heading_row=["Name Variants", "Domains", "Postcodes", "Grant Numbers", "ORCIDs", "Author Emails", "Organisation Identifiers"]
+        data_iterable=AccRepoMatchParams.csv_row_generator(matching_params_dict.get("matching_config")),
+        heading_row=AccRepoMatchParams.csv_row_headings()
     )
-
-    # Get the repo account so we can add the username as part of the filename
-    account_org_name = org_acc.org_name.replace(" ", "_")
-
     return send_file(
         bytes_io_obj,
         mimetype='text/csv',
-        download_name=f"Matching_Parameters_{account_org_name}.csv",
+        download_name=AccOrg.org_name_to_filename(org_acc.org_name,  prefix="Match_params__", extension="csv"),
         as_attachment=True
     )
 
@@ -1607,12 +1552,10 @@ def match_params_as_json(org_uuid, curr_user=None, cu_org_acc=None):
     # Retrieve account's matching params
     matching_params = AccRepoMatchParams.pull(org_acc.id)
     json_str = dumps(matching_params.matching_config, indent=4) if matching_params else ""
-    # Get the repo account so we can add the username as part of the filename
-    account_org_name = org_acc.org_name.replace(" ", "_")
     return send_file(
         BytesIO(json_str.encode("utf-8")),
         mimetype='application/json',
-        download_name=f"Matching_Parameters_{account_org_name}.json",
+        download_name=AccOrg.org_name_to_filename(org_acc.org_name, prefix="Match_params__", extension="json"),
         as_attachment=True
     )
 
@@ -1642,12 +1585,11 @@ def archived_match_params_json(org_uuid, pkid, curr_user=None, cu_org_acc=None):
         return redirect(request.referrer)
 
     json_str = dumps(archived_match_params.matching_config, indent=4)
-    acc_org_name = org_acc.org_name.replace(" ", "_")
     archived_str = archived_match_params.archived_datetime_str('%d-%m-%Y_%Hh%Mm%Ss')
     return send_file(
         BytesIO(json_str.encode("utf-8")),
         mimetype='application/json',
-        download_name=f"Matching_Parameters_Archived_{archived_str}_{acc_org_name}.json",
+        download_name=AccOrg.org_name_to_filename(org_acc.org_name, prefix=f"Match_params_Archived_{archived_str}__", extension="json"),
         as_attachment=True
     )
 
@@ -1743,10 +1685,12 @@ def compare_match_params(repo_uuid, curr_user=None, cu_org_acc=None):
 @admin_org_only__gui
 def match_params_summary(curr_user=None, cu_org_acc=None):
     """
-    List Accounts that include regex in their match params
+    List Repo matching parameter details, including regex indicators.
+    
     :param curr_user: Current user - SET BY DECORATOR FUNCTION
     :param cu_org_acc: Current user's Organisation account - SET BY DECORATOR FUNCTION
     """
+
     min_status = int(request.args.get("status", 1))
     return render_template(
         'account/match_params_summary.html',
@@ -1757,11 +1701,78 @@ def match_params_summary(curr_user=None, cu_org_acc=None):
     )
 
 
-# Update repository notification Max age value
-@blueprint.route("/<org_uuid>/update_other_match", methods=["POST"])
-@org_user_or_admin_org__gui()
-def update_other_match_params(org_uuid, curr_user=None, cu_org_acc=None):
+@blueprint.route("/match_params_download", methods=["GET"])
+@admin_org_only__gui
+def match_params_download(curr_user=None, cu_org_acc=None):
     """
+    Provide facility for downloading matching parameters.
+
+    :param curr_user: Current user - SET BY DECORATOR FUNCTION
+    :param cu_org_acc: Current user's Organisation account - SET BY DECORATOR FUNCTION
+    """
+    report_funcs = {
+        # "aff_analysis": (provider_aff_usage_report, {}),  - REPORT PRODUCED BY `scheduler.py` ##
+        # "aff_org_analysis": (reports.provider_aff_org_report, {}),  - REPORT PRODUCED BY `scheduler.py` ##
+        # "note_analysis": (note_types_report, {}),         - REPORT PRODUCED BY `scheduler.py` ##
+        "matching_params": (all_matching_params_report, {"sep": "  ~  "}),
+        "matching_params_nl": (all_matching_params_report, {"sep": "\n"}),
+        "matching_params_json": (all_matching_params_json, {"indent": 4}),
+        "zip_separate_match_params": (zip_all_matching_params_as_csv_and_json, {"indent": 4}),
+        "zip_separate_detailed_match_params": (zip_all_matching_params_as_csv_and_json, {"indent": 4, "detailed_json": True}),
+
+    }
+    sub_dir = "match_params"
+    params_download_form = MatchParamsDownloadForm()
+    report_type = request.args.get("download_selector")
+    if report_type:
+        # The `params_info` tuple has following 5 elements:
+        #   0 - Report summary (displayed as select field option)
+        #   1 - Report description (added as title attribute to select field option)
+        #   2 - Further information
+        #   3 - Output filename for script (could contain '{}' placeholders if script can fill them)
+        #   4 - File mimetype
+        rep_title, rep_desc, rep_info, rep_filename, mimetype = \
+            params_download_form.params_info.get(report_type, (None, None, None, None, None, None))
+        if rep_title:
+            try:
+                match_params_dir = os.path.join(current_app.config.get('REPORTS_DIR', '/tmp'), sub_dir)
+                if not os.path.exists(match_params_dir):
+                    os.makedirs(match_params_dir)
+
+                report_fn, kwargs = report_funcs.get(report_type)
+                file_path, rec_count = report_fn(os.path.join(match_params_dir, rep_filename), **kwargs)
+                # download_path = os.path.join(sub_dir, rep_filename)
+                # msg = f"<i>{rep_title}</i> file created & downloaded."
+                # flash(msg, 'info+html')
+                return send_file(
+                    file_path,
+                    mimetype=mimetype,
+                    download_name=rep_filename,
+                    as_attachment=True
+                )
+
+            except Exception as e:
+                msg = f"Failed to create file: '{rep_filename}'."
+                current_app.logger.error(msg, exc_info=True)
+                flash(f"{msg}<br>{repr(e)}", "error+html")
+                # request args were passed (so page presumably already displayed), we want to redisplay the page
+                # WITHOUT having those args appended to URL
+                return redirect(request.path)
+
+    return render_template(
+        'account/match_params_download.html',
+        curr_user_acc=curr_user,
+        params_form=params_download_form
+    )
+
+
+# Update repository notification Max age value
+@blueprint.route("/<org_uuid>/update_other_match_data", methods=["POST"])
+@org_user_or_admin_org__gui()
+def update_other_match_data(org_uuid, curr_user=None, cu_org_acc=None):
+    """
+    Update other data used by the matching process: Maximum publication age.
+
     :param org_uuid: UUID of organisation to be displayed
     :param curr_user: Current user - SET BY DECORATOR FUNCTION
     :param cu_org_acc: Current user's Organisation account - SET BY DECORATOR FUNCTION

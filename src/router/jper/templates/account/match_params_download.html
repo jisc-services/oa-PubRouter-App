@@ -1,0 +1,72 @@
+{% from "helpers/field_render.html" import render_field %}
+
+{% extends "base.html" %}a
+{% block content %}
+
+<div class="row cms">
+	<h1 id="stickme">Download matching parameters</h1>
+	<div class="col span-12 cms">
+		<div class="title-accordion cms">
+			<p>Download options</p>
+			<br>
+			<ul>
+				{% for v in params_form.params_info.values() %}
+				<li><span class="strong">{{v[0]}}</span>:<br>{{v[1]|safe}}&nbsp; {{v[2]|safe}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+
+		<form id="report-form" class="form" method="GET">
+			<br>
+			<ul class="form-fields">
+				<li>
+					{{render_field(params_form.download_selector,'form__item','form__label')}}
+					<br><span class="form__label"></span>
+					<span id="info" class="form_fields-text-block min_height_2rem light">The selected type of file will be downloaded immediately.</span>
+				</li>
+				<li>
+					<span class="form__label"></span>
+					<button class="btn btn--3d btn--primary" type="submit">Download</button>
+				</li>
+
+			</ul>
+		</form>
+	</div>
+</div>
+{% endblock %} 
+{% block extra_js_bottom %}
+<script>
+$(document).ready(function(){
+	/**
+	* 	Code for Info accordion
+	**/
+	initInfoAccordion();
+
+	/**
+	*	Code to update info element to display information about selected item
+	**/
+	const $info = $("#info");
+	const $sel = $("#download_selector");
+	$sel.on('change', function(e){
+		const optionSelected = $("option:selected", this)[0];
+		$info.html(optionSelected.title + '<br>' + (optionSelected.dataset?.info ?? ''));
+	});
+
+	/**
+	*	Code to display the spinner & timer when the form is submitted & prevent repeated button clicks
+	**/
+	const $form = $("#report-form");
+	/** const showSpinnerStartTimerFn = addSpinnerTimer(); */
+
+	$form.on("submit", function(e){
+		// If selected option has no value, then do nothing
+		if (! $sel.children("option:selected").val()){
+			e.preventDefault();
+			return;
+		}
+	});
+
+});
+</script>
+
+{% endblock extra_js_bottom %}

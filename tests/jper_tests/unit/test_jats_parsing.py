@@ -226,7 +226,7 @@ class TestJATSParsing(TestCase):
 
         with self.assertRaises(InvalidJATSError) as exc:
             _, pub_date = jats.get_history_and_pub_dates()
-        assert str(exc.exception) == "Invalid date '2017-02-31' (day is out of range for month) for element: ❮date date-type=\"pub\"❯"
+        assert str(exc.exception) == "Invalid date '2017-02-31' (day 31 must be in range 1..28 for month 2 in year 2017) for element: ❮date date-type=\"pub\"❯"
 
     def test_duplicate_pub_dates_error(self):
         jats = JATSFactory.jats_from_file('valid_jats_duplicate_pub_dates_bad.xml')

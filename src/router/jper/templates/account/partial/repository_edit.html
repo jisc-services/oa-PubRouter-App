@@ -50,7 +50,7 @@
 			<p>If you wish to filter your data feed to exclude notifications about older articles you may set a maximum age (in years) since article publication. This is used to calculate an <i>earliest publication date</i> by subtracting that number of years from the <i>current date</i> each time the matching process runs. Any notification with a publication date older than the <i>earliest publication date</i> will NOT be matched.</p>
 			<p>Critical updates like errata, corrigenda or retraction notices are usually given new, recent publication dates by their publishers, and so should not be affected by this filter. However, if publishers do not adopt this convention, you risk not receiving such notices when their publication date is older than the maximum age.</p>
 		</div>
-		<form class="form" method="POST" action="{{ url_for('account.update_other_match_params', org_uuid=org_acc.uuid) }}#manage_matching">
+		<form class="form" method="POST" action="{{ url_for('account.update_other_match_data', org_uuid=org_acc.uuid) }}#manage_matching">
 			<ul class="form-fields">
 				<li class="form__item">
 					{{render_field(form_match.pub_years,'form__item','form__label')}}
@@ -97,11 +97,11 @@
 			<ul class="form-fields">
 				<li class="form__item-select">
 					{{render_field(form_repo_duplicates.dups_level_pub, 'form__item', 'form__label')}}
-					<br><span class="form__label"></span><span class="form_fields-text-block light">{{duplicate_desc_dict[pub_dup_level]}}.</span>
+					<br><span class="form__label"></span><span class="form_fields-text-block min_height_4rem light">{{duplicate_desc_dict[pub_dup_level]}}.</span>
 				</li>
 				<li class="form__item-select">
 					{{render_field(form_repo_duplicates.dups_level_harv, 'form__item', 'form__label')}}
-					<br><span class="form__label"></span><span class="form_fields-text-block light">{{duplicate_desc_dict[harv_dup_level]}}.</span>
+					<br><span class="form__label"></span><span class="form_fields-text-block min_height_4rem light">{{duplicate_desc_dict[harv_dup_level]}}.</span>
 				</li>
 				{# -- COMMENTED OUT FOR NOW - Send-duplicates-by-email may be added in future release --
 				<br>

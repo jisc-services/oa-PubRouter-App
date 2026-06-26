@@ -34,30 +34,15 @@ class MiscReportScriptsForm(Form):
             "note_type_values_analysis_{}.txt",
             True  # Batch report
         ),
-        "matching_params": (
-            "List matching parameters for all repository accounts",
-            "Summarise matching parameters for all repository accounts.  Parameters are separated by '  ~  '.",
-            "This report is provided as a CSV file for download.",
-            "All accounts matching parameters",
-            "all_matching_parameters.csv",
-            False  # Online report
-        ),
-        "matching_params_nl": (
-            "List matching parameters (with newlines) for all repository accounts",
-            "Summarise matching parameters for all repository accounts. Each parameter is listed on a new line.",
-            "This report is provided as a CSV file for download.",
-            "All accounts matching parameters",
-            "all_matching_parameters_nl.csv",
-            False  # Online report
-        ),
-        "matching_params_json": (
-            "Output matching parameters as JSON for all repository accounts",
-            "Outputs matching parameters for all repository accounts in JSON format.",
-            "This report is provided as a JSON file for download.",
-            "All accounts matching parameters (JSON)",
-            "all_matching_parameters.json",
-            False  # Online report
-        ),
+        ## Example of an online report - this & 2 other entries have now moved to forms\account.py (with some modifications)
+        # "matching_params": (
+        #     "List matching parameters for all repository accounts",
+        #     "Summarise matching parameters for all repository accounts, except ORCIDs & Grant-numbers for which counts are given.  Parameters are separated by '  ~  '.  ",
+        #     "This report is provided as a CSV file for download.",
+        #     "All accounts matching parameters (CSV)",
+        #     "all_matching_parameters.csv",
+        #     False  # Online report
+        # ),
     }
     report_selector = SelectField(
         "Report script",

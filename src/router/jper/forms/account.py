@@ -593,3 +593,52 @@ class CompareMatchParamsForm(Form):
         self.prev_param.data = selected
         
         
+class MatchParamsDownloadForm(Form):
+    # params_info dict is used below and also in views\account.py & match_params_download.html
+    # The tuple has following 5 elements:
+    #   0 - Report summary (displayed as select field option)
+    #   1 - Report description (added as title attribute to select field option)
+    #   2 - Further information
+    #   3 - Output filename for script (could contain '{}' placeholders if script can fill them)
+    #   4 - File mimetype
+    params_info = {
+        "matching_params": (
+            "Summary matching parameters as CSV for all repository accounts",
+            "For all repository accounts, list matching parameters except ORCIDs & Grant-numbers for which counts are given.  Lists one row per institution, with parameters separated by '  ~  '.  ",
+            "Outputs a CSV file for download.",
+            "all_match_params_summary.csv",
+            "text/csv"
+        ),
+        "matching_params_nl": (
+            "Summary matching parameters (with newlines) as CSV for all repositories",
+            "For all repository accounts, list matching parameters except ORCIDs & Grant-numbers for which counts are given. Lists one row per institution, with parameters separated by a new line character.",
+            "Outputs a CSV file for download.",
+            "all_match_params_nl_summary.csv",
+            "text/csv"
+        ),
+        "matching_params_json": (
+            "Detailed JSON matching parameters for all repository accounts",
+            "Outputs matching parameter records (full detail) for all repository accounts in 1 JSON format file.",
+            "Outputs one JSON file for download.",
+            "all_detailed_match_params.json",
+            "application/json"
+        ),
+        "zip_separate_match_params": (
+            "Zip file of JSON & CSV matching parameters for each repository account",
+            "Outputs a Zip containing separate CSV & JSON matching parameters files (suitable for uploading) for each repository account.",
+            "Outputs a Zip file for download.",
+            "all_match_params_csv_and_json.zip",
+            "application/zip"
+        ),
+        "zip_separate_detailed_match_params": (
+            "Zip file of detailed JSON matching parameters for each repository account",
+            "Outputs a Zip containing separate JSON detailed matching parameters files (NOT for uploading) for each repository account.",
+            "Outputs a Zip file for download.",
+            "all_detailed_match_params_json.zip",
+            "application/zip"
+        ),
+    }
+    download_selector = SelectField(
+        "Download format",
+        choices=[("", "Choose one", {"title": "The selected type of file will be downloaded immediately."})] + [(k, v[0], {"title": v[1], "data-info": v[2]}) for k, v in params_info.items()]
+    )

@@ -3662,6 +3662,12 @@ p.small-gap {
   clear: both;
 }
 ******/
+.min_height_2rem {
+  min-height: 2rem;
+}
+.min_height_4rem {
+  min-height: 4rem;
+}
 
 .form_fields-same-line {
   display: block;
@@ -3673,7 +3679,6 @@ p.small-gap {
 }
 .form_fields-text-block {
   display: block;
-  min-height: 4rem;
   max-width: 95%;
   margin: 1rem 0 0.5rem 0.5rem;
 }
