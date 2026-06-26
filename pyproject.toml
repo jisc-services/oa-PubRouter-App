@@ -11,7 +11,7 @@ authors = [{name = "JISC", email = "XXXX@YYYY.ZZZ"}]
 description = "PubRouter Octopus - Flask Library for PubRouter code"
 requires-python = ">=3.11"
 dependencies = [
-    "octopus==8.5.8",           # OCTOPUS LATEST VERSION
+    "octopus==8.5.9",           # OCTOPUS LATEST VERSION
     "python-sword2==1.6.7",     # SWORD2 LATEST VERSION
     "email_validator==2.3.0",
     "Flask>=3.1.3,<4.0.0",
