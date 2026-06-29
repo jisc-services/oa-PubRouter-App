@@ -88,14 +88,14 @@
 							<div class="submenu submenu--left">
 								<ul>
 									{% if curr_user_is_not_readonly %}<li><a href="{{ url_for('account.register') }}">Add organisation</a></li>{% endif %}
-									<li><a href="{{ url_for('account.recent_errors', pub_or_repo='repository')}}">Recent repository errors</a></li>
+									<li><a href="{{ url_for('account.index')}}">Manage all organisations</a></li>
+									<li class="menu-sep"><a href="{{ url_for('account.recent_errors', pub_or_repo='repository')}}">Recent repository errors</a></li>
 									<li><a href="{{ url_for('account.recent_errors', pub_or_repo='publisher')}}">Recent publisher errors</a></li>
-									<li class="menu-sep"><a href="{{ url_for('account.index')}}">Manage all organisations</a></li>
-									<li><a href="{{ url_for('account.manage_repositories')}}">Manage repositories</a></li>
-									<li><a href="{{ url_for('account.manage_publishers')}}">Manage publishers</a></li>
-									<li><a href="{{ url_for('account.test_overview')}}">Publisher auto-test overview</a></li>
-									<li class="menu-sep"><a href="{{ url_for('account.match_params_summary')}}">Repository matching params</a></li>
+									<li class="menu-sep"><a href="{{ url_for('account.manage_repositories')}}">Manage repositories</a></li>
+									<li><a href="{{ url_for('account.match_params_summary')}}">Repository matching params</a></li>
 									<li><a href="{{ url_for('account.match_params_download')}}">Download matching params</a></li>
+									<li class="menu-sep"><a href="{{ url_for('account.manage_publishers')}}">Manage publishers</a></li>
+									<li><a href="{{ url_for('account.test_overview')}}">Publisher auto-test overview</a></li>
 									<li class="menu-sep"><a href="{{ url_for('account.list_all_users')}}">List users</a></li>
 									<li><a href="{{ url_for('account.org_user_count')}}">Organisation user counts</a></li>
 									<li class="menu-sep"><a href="{{ url_for('account.bulk_email')}}">Bulk email</a></li>
