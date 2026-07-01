@@ -428,7 +428,7 @@ def note_details():
     if note_id:
         note = RoutedNotification.pull(note_id)
         if note is None:
-            flash(f"Notification note found for ID {note_id}", "error")
+            flash(f"Notification not found for ID {note_id}", "error")
         else:
             dup_diffs_list = note.dup_diffs
             highlight_bits = 0
