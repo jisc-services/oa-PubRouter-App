@@ -75,7 +75,9 @@ In summary, restore from a backup is accomplished by the following steps:
 
 ![data model](./images/data_model.png)
 
-The datamodel shows relationships between tables (with foreign keys).  However, the database does not use foreign key constraints to maintain referential integrity for 2 principal reasons:
+The datamodel shows relationships between tables (with foreign keys).  
+
+However, the actual database does NOT implement foreign key constraints to maintain referential integrity for 2 principal reasons:
 * Notifications are kept for only 3 months, but records in some related tables are kept longer
 * Reduces processing overhead.
 
