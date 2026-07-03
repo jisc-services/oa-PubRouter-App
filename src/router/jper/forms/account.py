@@ -9,7 +9,7 @@ from flask_login import current_user
 from wtforms import Form, validators, SelectField, RadioField, StringField, IntegerField, \
     TextAreaField, BooleanField, ValidationError
 from wtforms.fields import URLField, EmailField
-from router.shared.models.account import AccOrg, AccUser
+from router.shared.models.account import AccOrg, AccUser, RepositoryData
 from router.shared.models.doi_register import dup_choices_tuple_list, select_tuple_arr_formatter
 
 
@@ -199,8 +199,6 @@ class RepoSettingsForm(AccForm):
                                 description="full URL of collection endpoint",
                                 validators=[validators.Optional(), validators.URL()])
 
-    eprints_dspace_native_regex = re.compile(r'(?:eprints|dspace|native)')
-
     def validate_it(self, ac_is_live):
         """
         Validate the Repository settings (this is not called `validate` as requires non-standard parameter)
@@ -214,7 +212,7 @@ class RepoSettingsForm(AccForm):
 
         # Repository software is indicated to be one of our supported repos, so SWORD details should be filled in
         repo_sw = self.repository_software.data
-        if self.eprints_dspace_native_regex.search(repo_sw):
+        if RepositoryData.repo_uses_sword(repo_sw):
             xml_format = self.xml_format.data
             if not xml_format:
                 self.xml_format.errors.append("Configuration must be specified")

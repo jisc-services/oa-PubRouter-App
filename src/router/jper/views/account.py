@@ -909,6 +909,23 @@ def golive(org_uuid, curr_user=None, cu_org_acc=None):
         if pub_data.in_test:
             pub_data.end_testing()
             current_app.logger.info(f"Auto-testing ENDED for publisher account '{org_acc.org_name}' ({org_acc.id}).")
+    elif org_acc.is_repository:
+        # Need to check that connection settings are OK
+        repo_data = org_acc.repository_data
+        # If API software
+        if not repo_data.repo_uses_sword(repo_data.repository_software):
+            errors = []
+            if repo_data.repository_xml_format:
+                errors.append("<i>Repository config</i> is not None")
+            if repo_data.sword_username:
+                errors.append("<i>Sword username</i> is set")
+            if repo_data.sword_password:
+                errors.append("<i>Sword password</i> is set")
+            if repo_data.sword_collection:
+                errors.append("<i>Collection URL</i> is set")
+            if errors:
+                flash(f"In 'Manage Connection Settings' the <i>Repo / CRIS software</i> dropdown indicates that the API is used, in which case all SWORD settings (expanding panel) should be empty... but {'; '.join(errors)}.", "error+html")
+                return redirect(url_for('.disp_org_acc', org_uuid=org_uuid) + "#manage_connection")
 
     org_acc.update()
     current_app.logger.info(f"Made {org_acc.role} account '{org_acc.org_name}' ({org_acc.id}) LIVE.")

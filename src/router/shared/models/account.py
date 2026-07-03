@@ -100,6 +100,8 @@ class RepositoryData(DAOChild):
         }
     }
     """
+    # Check whether repository uses SWORD (as opposed to API) for deposits
+    repository_sword_regex = re.compile(r'(?:eprints|dspace|native)')
 
     def _get_identifier_by_type(self, type, return_index=False):
         """
@@ -465,6 +467,15 @@ class RepositoryData(DAOChild):
     def repository_deactivate(self):
         # Set the current status to "failing".
         self._set_repository_status(FAILING)
+
+    @classmethod
+    def repo_uses_sword(cls, repo_sw):
+        """
+        Determine whether repository software indicates that it uses SWORD or API
+        :param repo_sw: String - String indicating type of software package that Repository uses  (as stored in self.repo_software
+        :return: True - Repository is using SWORD; False - Repository uses API
+        """
+        return cls.repository_sword_regex.search(repo_sw) is not None
 
     # def get_matching_config_dict(self):
     #     matching_params_dict = AccRepoMatchParams.pull(self.id, wrap=False)
@@ -1117,18 +1128,6 @@ class AccOrg(dataobj.DataObj, AccOrgDAO, UserMixin):
         # indicates if an account has a sword_collection (True or False)
         if self.is_repository:
             return bool(self.repository_data.sword_collection)
-        return False
-
-    def has_sword_repo_software(self):
-        """
-        Returns True if repository software typically uses SWORD for receiving notifications -
-        currently Eprints and DSpace.
-        :return: Boolean
-        """
-        repo_sw = self.repository_data.repository_software
-        for keyword in ("eprints", "dspace"):
-            if keyword in repo_sw:
-                return True
         return False
 
     def tech_and_users_emails_dict_lists(self, role_codes=None):
