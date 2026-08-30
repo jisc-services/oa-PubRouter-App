@@ -156,7 +156,7 @@ cd C:\PATH-TO-YOUR-GIT-REPO\oa-PubRouter-App\sword2
 pip install .
 
 # Install Router
-cd C:\PATH-TO-YOUR-GIT-REPO\oa-PubRouter-App\src
+cd C:\PATH-TO-YOUR-GIT-REPO\oa-PubRouter-App
 # requirements_4_testing.txt includes packages required for running tests
 pip install -r requirements_4_testing.txt
 ```
@@ -184,14 +184,14 @@ C:\tmp
 
 #### Create Router Database and Admin user account
 
-The Router database, named 'jper' together with a user account 'jper_user' (which is used for all application database access) must be created by executing the following script:
-
+The Router database, named 'jper' together with a MySQL user account 'jper_user' (which is used for all application database access) and a Router administrator account must be created by executing the script  **create_dev_db.py** (in scripts directory).
 ```buildoutcfg
-# Execute script to create 'jper' db & 'jper_user'. 
+# Execute script to create 'jper' db & 'jper_user' & Router 'admin' user. 
 # If db root username is NOT supplied then it will default to 'root'.
 # If db root user password is NOT supplied then default of 'admin' will be used.
-python scripts/create_dev_db.py <root-user>  <root-password>
+python3 scripts/create_dev_db.py  <root-user>  <root-password>
 ```
+NOTE - if this fails to run as expected, the [Ubuntu setup instructions](../Ubuntu_development_env.md) descrive how this may be done from within PyCharm (once you have configured it).
 
 ### PyCharm Setup
 #### Configure PyCharm
@@ -219,4 +219,5 @@ In PyCharm:
 * Run _**scheduler**_ (src\router\jper\scheduler.py).
 
 From a browser, navigate to:
-* **http://localhost:5998/** (you should be presented with Router home page).
+* **http://localhost:5998/** (you should be presented with Router home page)
+* You should log in as Administrator with username / password:  `admin` / `admin`.
