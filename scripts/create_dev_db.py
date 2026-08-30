@@ -5,7 +5,7 @@ Script to CREATE A DEVELOPMENT ENVIRONMENT DATABASE (named 'jper') plus 'jper_us
 Also, create Router admin account.
 
 Usage:
-    create_dev_db  db-root-pwd
+    create_dev_db  db-root-user db-root-pwd
 
 """
 import uuid
@@ -24,15 +24,21 @@ if __name__ == "__main__":
         if app.config.get("OPERATING_ENV") != "development":
             print("\n\nExiting - script will ONLY RUN in development environment\n\n")
             exit(0)
+
         try:
-            root_pwd = sys.argv[1]
-        except KeyError:
+            root_user = sys.argv[1]
+        except IndexError:
+            root_user = "root"
+
+        try:
+            root_pwd = sys.argv[2]
+        except IndexError:
             root_pwd = "admin"
 
         db_name = app.config["MYSQL_DB"]
 
         user_priv = ["SELECT", "INSERT", "UPDATE", "DELETE", "DROP", "EXECUTE", "LOCK TABLES", "CREATE TEMPORARY TABLES"]
-        db = utils.SQLUtils(host=app.config["MYSQL_HOST"], user="root", password=root_pwd)
+        db = utils.SQLUtils(host=app.config["MYSQL_HOST"], user=root_user, password=root_pwd)
 
         # Create database
         try:

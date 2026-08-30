@@ -188,8 +188,9 @@ The Router database, named 'jper' together with a user account 'jper_user' (whic
 
 ```buildoutcfg
 # Execute script to create 'jper' db & 'jper_user'. 
+# If db root username is NOT supplied then it will default to 'root'.
 # If db root user password is NOT supplied then default of 'admin' will be used.
-python scripts/create_dev_db.py <root-password>
+python scripts/create_dev_db.py <root-user>  <root-password>
 ```
 
 ### PyCharm Setup
