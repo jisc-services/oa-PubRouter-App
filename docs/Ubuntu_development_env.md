@@ -150,7 +150,7 @@ pip install -r requirements_4_testing.txt
 
 #### Create Router Database and Admin user account
 
-The Router database, named 'jper' together with a MySQL user account 'jper_user' (which is used for all application database access) and a Router administrator account must be created by executing the script  **create_dev_db.py** (in scripts directory) from the PyCharm terminal window.
+The Router database, named 'jper' together with a MySQL user account 'jper_user' (which is used for all application database access) and a Router administrator account must be created by executing the script  **create_database.py** (in scripts directory) from the PyCharm terminal window.
 
 From the Pycharm Terminal window (Alt+F12)...
 ```
@@ -158,7 +158,7 @@ From the Pycharm Terminal window (Alt+F12)...
 cd ~/PycharmProjects/oa-PubRouter-App/scripts
 
 # Run the script passing MySQL user name 'root2'
-python -m create_dev_db root2
+python -m create_database root2
 
 # This may take a little while
 ```

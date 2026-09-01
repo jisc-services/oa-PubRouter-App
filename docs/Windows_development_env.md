@@ -184,12 +184,12 @@ C:\tmp
 
 #### Create Router Database and Admin user account
 
-The Router database, named 'jper' together with a MySQL user account 'jper_user' (which is used for all application database access) and a Router administrator account must be created by executing the script  **create_dev_db.py** (in scripts directory).
+The Router database, named 'jper' together with a MySQL user account 'jper_user' (which is used for all application database access) and a Router administrator account must be created by executing the script  **create_database.py** (in scripts directory).
 ```buildoutcfg
 # Execute script to create 'jper' db & 'jper_user' & Router 'admin' user. 
 # If db root username is NOT supplied then it will default to 'root'.
 # If db root user password is NOT supplied then default of 'admin' will be used.
-python3 scripts/create_dev_db.py  <root-user>  <root-password>
+python3 scripts/create_database.py  <root-user>  <root-password>
 ```
 NOTE - if this fails to run as expected, the [Ubuntu setup instructions](../Ubuntu_development_env.md) descrive how this may be done from within PyCharm (once you have configured it).
 

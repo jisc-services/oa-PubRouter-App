@@ -99,6 +99,7 @@ Notes:
 | "close_conn" | Close ALL database connections. | Should recover memory used by MySQL connector, though in testing difficult to determine if this actually happened. |
 | "close_curs" | Close ALL cursors. | Should recover memory used by MySQL connector library, though in testing difficult to determine if this actually happened. |
 | "close_class_curs" | Close cursors for a predetermined list of Classes. | Should recover memory used by MySQL connector library, though in testing difficult to determine if this actually happened. |
+<br>
 
 ## MySQL Configuration
 
@@ -106,9 +107,16 @@ For AWS Aurora MySQL  parameter settings - see section *Specific database parame
 
 ### MySQL database and user accounts
 
-NB. On _MySQL Workbench_ application is a useful Windows tool for creating users and reviewing the database table contents etc.  
+The Python script `create_database.py` available in the `scripts` directory of this repository will create the following:
+* `jper` database and all necessary tables
+* `jper_user` database user
+* `test_admin` database user (except in production environment)
+* (Application user `admin` account).
+
+Alternatively these can be created manually - e.g. using  _MySQL Workbench_ application which is a useful tool for creating users and reviewing the database table contents etc.  
 
 #### Database & user for normal operation
+
 PubRouter uses a MySQL database (schema) named `jper` which is accessed by User: `jper_user` (which must have access to *jper* database).
 
 The `jper_user` must have the following privileges:
@@ -119,7 +127,7 @@ The `jper_user` must have the following privileges:
 * EXECUTE
 * DROP.
 
-This user MUST be created before running Publications Router.
+This user MUST be created before running Publications Router (the `create_database.py` script will do this).
 
 Execute SQL:
 
@@ -127,11 +135,11 @@ Execute SQL:
 
 `GRANT DELETE, DROP, EXECUTE, INSERT, SELECT, UPDATE ON jper TO 'jper_user'@'%';`
 
-NB. For development environment there is a script `create_dev_db.py` which automatically creates the database and this user - see here: [Windows development environment](./Windows_development_env.md#create-router-database-and-admin-user-account).
+NB. For development environment there is a script `create_database.py` which automatically creates the database and this user - see here: [Windows development environment](./Windows_development_env.md#create-router-database-and-admin-user-account).
 
 #### Database & superuser for test purposes
 
-For Router's automated testing, it is necessary to have a MySQL superuser account created (in advance):
+For Router's automated testing, it is necessary to have a MySQL superuser account created (in advance). (the `create_database.py` script will do this)
 
 * Username: `test_admin`
 * Required Privileges: `CREATE, CREATE USER, DELETE, DROP, EXECUTE, GRANT OPTION, INDEX, INSERT, SELECT, UPDATE` 
@@ -143,7 +151,6 @@ Execute SQL:
 `CREATE USER 'test_admin'@'%' IDENTIFIED BY '...Password...';`
 
 `GRANT CREATE, CREATE USER, DELETE, DROP, EXECUTE, GRANT OPTION, INDEX, INSERT, SELECT, UPDATE ON *.* TO 'test_admin'@'%';`
-
 
 (This superuser account is used by the test suite to create & destroy test database instances and test users.)
 
