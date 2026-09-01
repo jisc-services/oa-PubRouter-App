@@ -1,3 +1,4 @@
+/build
 *.pyc
 *__pycache__*
 *.pytest_cache*
@@ -16,4 +17,3 @@ Pipfile.lock
 *.log
 /DUMP_IT
 /.coverage
-/build
