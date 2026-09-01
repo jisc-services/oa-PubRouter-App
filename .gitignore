@@ -16,3 +16,4 @@ Pipfile.lock
 *.log
 /DUMP_IT
 /.coverage
+/build
