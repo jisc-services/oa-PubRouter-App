@@ -150,22 +150,6 @@ pip install -r requirements_4_testing.txt
 ```
 <br>
 
-#### Create Router Database and Admin user account
-
-The Router database, named 'jper' together with a MySQL user account 'jper_user' (which is used for all application database access) and a Router administrator account must be created by executing the script  **create_database.py** (in scripts directory) from the PyCharm terminal window.
-
-From the Pycharm Terminal window (Alt+F12)...
-```
-# Change to scripts directory
-cd ~/PycharmProjects/oa-PubRouter-App/scripts
-
-# Run the script passing MySQL user name 'root2'
-python -m create_database root2
-
-# This may take a little while
-```
-<br>
-
 #### Add necessary File-system directories
 
 Create the following directory tree structure and make all directories r/w by all:
@@ -185,8 +169,6 @@ Create the following directory tree structure and make all directories r/w by al
 ```bash
 # As root user ....
 sudo mkdir /Incoming
-sudo chmod -R g+w,o+w /Incoming
-
 sudo cd /Incoming
 
 # Create sub-directories under /Incocming
@@ -199,8 +181,26 @@ sudo mkdir store
 sudo mkdir sftpusers
 sudo mkdir tmparchive
 
-chmod -R g+w,o+w *
+sudo chmod -R g+w,o+w /Incoming
 ```
+<br>
+
+#### Create Router Database and Admin user account
+
+The Router database, named 'jper' together with a MySQL user account 'jper_user' (which is used for all application database access) and a Router administrator account must be created by executing the script  **create_database.py** (in scripts directory) from the PyCharm terminal window.
+
+From the Pycharm Terminal window (Alt+F12)...
+```
+# Change to scripts directory
+cd ~/PycharmProjects/oa-PubRouter-App/scripts
+
+# Run the script passing MySQL user name 'root2'
+python -m create_database root2
+
+# This may take a little while
+```
+<br>
+
 
 
 #### Test Pycharm
