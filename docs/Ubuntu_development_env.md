@@ -10,7 +10,8 @@ These instructions are based on using **Ubuntu 24.04.4 LTS**.
 
 ### IDE - Pycharm
 * [Pycharm IDE](https://www.jetbrains.com/pycharm/): Community Edition (this is now combined with professional edition)
-* It is recommended that Pycharm is installed via Jetbrains Toolbox - see [Installation Guide](https://www.jetbrains.com/help/pycharm/installation-guide.html).  On a single user laptop/PC it is recommended that you install the Toolbox under  `~/.local/share/` directory (rather than in /opt/ which requires sudo permissions).  (Do not install the SNAP version of Pycharm as it suffers from performance issues.)
+* It is recommended that Pycharm is installed via Jetbrains Toolbox - see [Installation Guide](https://www.jetbrains.com/help/pycharm/installation-guide.html).  On a single user laptop/PC it is recommended that you install the Toolbox under  `~/.local/share/` directory (rather than in `/opt/` which requires sudo permissions).
+* (Do not install the SNAP version of Pycharm as it suffers from performance issues.)
 
 
 ## Installing Development Environment on Ubuntu
